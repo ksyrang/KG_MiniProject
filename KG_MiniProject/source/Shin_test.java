@@ -5,6 +5,7 @@ public class Shin_test {
 		System.out.println("신다은입니당");
 		System.out.println("");
 		System.out.println("");
+		System.out.println("");
 	}
 
 }

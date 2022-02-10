@@ -8,7 +8,7 @@ public class SYB {
 		System.out.println("오전09시43분");
 		System.out.println("ff");
 		System.out.println("ffhh");
-		
+		System.out.println("집에서 테스트");
 		
 	}
 }

@@ -6,6 +6,8 @@ public class SYB {
 		System.out.println("오후11시23분");
 		System.out.println("오후09시36분");
 		System.out.println("오전09시43분");
+		System.out.println("ff");
+		
 		
 	}
 }

@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+
+#btn:focused {
+	-fx-focus-color : green;
+}

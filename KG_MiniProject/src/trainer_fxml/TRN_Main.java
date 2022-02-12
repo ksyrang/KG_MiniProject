@@ -1,4 +1,4 @@
-package Main;
+package trainer_fxml;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,23 +6,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application{
+public class TRN_Main extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginMain.FXML"));
-		Parent loginForm = loader.load();
+		FXMLLoader Loader = new FXMLLoader(getClass().getResource("KG_TRN_FX_Welcome.fxml"));
 		
-		Controller mainController = new Controller();
-		
-		primaryStage.setTitle("LoginMainPage");
-		primaryStage.setScene(new Scene(loginForm));
+		Parent TRN_WelcomeForm = Loader.load();
+	
+		primaryStage.setTitle("TRN_Page_TEST");
+		primaryStage.setScene(new Scene(TRN_WelcomeForm));
 		primaryStage.show();
+
 	}
 	
-	
+
 }

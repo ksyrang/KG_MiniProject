@@ -161,14 +161,14 @@
                         <Insets left="10.0" top="20.0" />
                      </HBox.margin>
                   </Label>
-                  <VBox prefHeight="81.0" prefWidth="293.0">
+                  <VBox prefHeight="81.0" prefWidth="400.0">
                      <children>
-                        <TextField alignment="CENTER" maxWidth="300.0" prefHeight="20.0" prefWidth="300.0" promptText="도로명주소 or 지번주소">
+                        <TextField alignment="CENTER" maxWidth="350.0" prefHeight="20.0" prefWidth="350.0" promptText="도로명주소 or 지번주소">
                            <VBox.margin>
                               <Insets left="25.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField alignment="CENTER" maxWidth="300.0" prefHeight="20.0" prefWidth="177.0" promptText="상세주소">
+                        <TextField alignment="CENTER" maxWidth="350.0" prefHeight="20.0" prefWidth="350.0" promptText="상세주소">
                            <VBox.margin>
                               <Insets left="25.0" />
                            </VBox.margin>

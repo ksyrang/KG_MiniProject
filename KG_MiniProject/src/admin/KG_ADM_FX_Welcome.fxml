@@ -62,7 +62,7 @@
             </HBox>
             <HBox prefHeight="230.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="230.0" prefWidth="290.0" text="헬스 이용권 관리" />
+                  <Button mnemonicParsing="false" prefHeight="230.0" prefWidth="290.0" text="헬스 회원권 관리" />
                   <Button mnemonicParsing="false" prefHeight="230.0" prefWidth="290.0" text="매출 조회" />
                   <Button mnemonicParsing="false" prefHeight="230.0" prefWidth="290.0" text="통계" />
                </children>

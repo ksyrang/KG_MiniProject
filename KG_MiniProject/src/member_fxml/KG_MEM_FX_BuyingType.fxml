@@ -80,7 +80,7 @@
             </FlowPane>
             <FlowPane alignment="CENTER_LEFT" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Label text="금        액 : ">
+                  <Label text="금         액 : ">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

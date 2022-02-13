@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.login.LoginController">
    <top>
       <HBox prefHeight="40.0" prefWidth="900.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
@@ -65,7 +65,7 @@
                         <Insets left="30.0" top="15.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField prefHeight="33.0" prefWidth="231.0">
+                  <TextField fx:id="idText" prefHeight="33.0" prefWidth="231.0">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -78,7 +78,7 @@
                         <Insets left="40.0" top="15.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField>
+                  <TextField fx:id="pwText">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -86,7 +86,7 @@
                         <Insets left="5.0" top="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" text="로그인">
+                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginProc" prefHeight="31.0" prefWidth="70.0" text="로그인">
                      <HBox.margin>
                         <Insets left="40.0" top="10.0" />
                      </HBox.margin>
@@ -100,17 +100,17 @@
             </HBox>
             <HBox prefHeight="50.0" prefWidth="828.0">
                <children>
-                  <RadioButton mnemonicParsing="false" prefHeight="20.0" prefWidth="65.0" text="회원">
+                  <RadioButton fx:id="memberRadio" mnemonicParsing="false" prefHeight="20.0" prefWidth="65.0" text="회원">
                      <HBox.margin>
                         <Insets left="139.0" top="15.0" />
                      </HBox.margin>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" prefHeight="20.0" prefWidth="73.0" text="강사">
+                  <RadioButton fx:id="instructorRadio" mnemonicParsing="false" prefHeight="20.0" prefWidth="73.0" text="강사">
                      <HBox.margin>
                         <Insets left="70.0" top="15.0" />
                      </HBox.margin>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" prefHeight="20.0" prefWidth="123.0" text="admin">
+                  <RadioButton fx:id="adminRadio" mnemonicParsing="false" prefHeight="20.0" prefWidth="123.0" text="관리자">
                      <HBox.margin>
                         <Insets left="70.0" top="15.0" />
                      </HBox.margin>

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.welcome.WelcomeController">
    <top>
       <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
@@ -29,7 +29,7 @@
                   <Insets left="600.0" top="12.5" />
                </HBox.margin>
             </Label>
-            <Button mnemonicParsing="false" text="logout">
+            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutProc" text="logout">
                <HBox.margin>
                   <Insets left="20.0" top="12.5" />
                </HBox.margin>
@@ -40,7 +40,7 @@
    <bottom>
       <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" hgap="100.0" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="취소">
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelProc" prefHeight="30.0" prefWidth="100.0" text="취소">
                <FlowPane.margin>
                   <Insets right="10.0" />
                </FlowPane.margin></Button>
@@ -52,9 +52,9 @@
          <children>
             <HBox prefHeight="230.0" prefWidth="900.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="230.0" prefWidth="290.0" text="회원관리" />
-                  <Button mnemonicParsing="false" prefHeight="230.0" prefWidth="290.0" text="강사관리" />
-                  <Button mnemonicParsing="false" prefHeight="230.0" prefWidth="290.0" text="EX프로그램 관리" />
+                  <Button fx:id="memberMgtButton" mnemonicParsing="false" onAction="#memberMgtProc" prefHeight="230.0" prefWidth="290.0" text="회원관리" />
+                  <Button fx:id="trainerMgtButton" mnemonicParsing="false" onAction="#trainerMgtProc" prefHeight="230.0" prefWidth="290.0" text="강사관리" />
+                  <Button fx:id="exProgramMgtButton" mnemonicParsing="false" onAction="#exProgramMgtProc" prefHeight="230.0" prefWidth="290.0" text="EX프로그램 관리" />
                </children>
                <padding>
                   <Insets left="10.0" right="10.0" />
@@ -62,9 +62,9 @@
             </HBox>
             <HBox prefHeight="230.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="230.0" prefWidth="290.0" text="헬스 회원권 관리" />
-                  <Button mnemonicParsing="false" prefHeight="230.0" prefWidth="290.0" text="매출 조회" />
-                  <Button mnemonicParsing="false" prefHeight="230.0" prefWidth="290.0" text="통계" />
+                  <Button fx:id="helthProgramMgtButton" mnemonicParsing="false" onAction="#helthProgramMgtProc" prefHeight="230.0" prefWidth="290.0" text="헬스 회원권 관리" />
+                  <Button fx:id="salesButton" mnemonicParsing="false" onAction="#salesProc" prefHeight="230.0" prefWidth="290.0" text="매출 조회" />
+                  <Button fx:id="statisticsButton" mnemonicParsing="false" onAction="#statisticsProc" prefHeight="230.0" prefWidth="290.0" text="통계" />
                </children>
                <VBox.margin>
                   <Insets left="10.0" right="10.0" />

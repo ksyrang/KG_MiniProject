@@ -21,13 +21,14 @@ public class TrnWelcomeController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		WelcomeService = new WelcomeService();
-//		WelcomeService.setWelcomeForm(WelcomeForm);
-		
+		WelcomeService = new WelcomeService();		
+	}
+	public void TrnClickProc() {
+		WelcomeService.TrnMgtOpen();
 	}
 	
 	public void programclickPro() {
-		WelcomeService.programclickProc(WelcomeForm);
+//		WelcomeService.programclickProc(WelcomeForm);
 	}
 	
 	public void ExPEnrollProc() {

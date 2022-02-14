@@ -14,16 +14,16 @@ public class WelcomeMain extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource());
-		Parent welcomeForm = loader.load();
-		
-		Controller
-		
-		WelcomeController welcomeController = 
-		
-		Scene scene = new Scene(welcomeForm);
-		primaryStage.setTitle("welcomeForm");
-		primaryStage.setScene(scene);
+//		FXMLLoader loader = new FXMLLoader(getClass().getResource());
+//		Parent welcomeForm = loader.load();
+//		
+//		Controller
+//		
+//		WelcomeController welcomeController = 
+//		
+//		Scene scene = new Scene(welcomeForm);
+//		primaryStage.setTitle("welcomeForm");
+//		primaryStage.setScene(scene);
 		primaryStage.show();
 		
 	}

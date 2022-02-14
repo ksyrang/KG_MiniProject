@@ -1,4 +1,4 @@
-package trainer_fxml;
+package trainer.Welcome;
 
 import java.net.URL;
 import java.util.ResourceBundle;

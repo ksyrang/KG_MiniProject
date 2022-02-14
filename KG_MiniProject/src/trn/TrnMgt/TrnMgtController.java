@@ -15,6 +15,11 @@ public class TrnMgtController implements Initializable {
 	private String trnCode;
 	private Parent trnMgtForm;
 	
+	public TrnMgtController() {
+		TrnMgtSvc = new TrnMgtService();
+		
+	}
+	
 	public void setTrnMgtForm(Parent trnMgtForm) {
 		this.trnMgtForm = trnMgtForm;
 	}
@@ -25,8 +30,7 @@ public class TrnMgtController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		TrnMgtSvc = new TrnMgtService();
-		
+
 	}
 	public void TnrMgtProc() {
 		MgtDTO tmpTrnDto = TrnMgtSvc.getTrnInfo(trnCode);
@@ -63,7 +67,7 @@ public class TrnMgtController implements Initializable {
 	}
 	
 	public void BackProc() {
-		CommonService.WindowClose(trnMgtForm);
+		TrnMgtSvc.BackProc(trnMgtForm);
 	}
 	
 	

@@ -49,15 +49,16 @@ public class TrnWelcomeController implements Initializable {
 		this.trnExpMgtController = trnExpMgtController;
 	}
 
-	public void setWelcomeForm(Parent welcomeForm) {
+	public void setTrnWelcomeForm(Parent welcomeForm) {
 		this.WelcomeForm = welcomeForm;	
 	}
-	public Parent getWelcomeForm() {
+	public Parent getTrnWelcomeForm() {
 		return WelcomeForm;
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {	
+		WelcomeService.setWelcomeForm(WelcomeForm);
 	}
 	
 	public void TrnClickProc() {

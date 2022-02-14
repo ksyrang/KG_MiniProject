@@ -9,14 +9,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import trn.TrnMgt.MgtDAO;
 import trn.TrnMgt.MgtDTO;
 import trn.TrnMgt.TrnMgtController;
 import trn.TrnMgt.TrnMgtService;
 
 public class WelcomeService {
+	
 	private TrnWelcomeController trnWelcomeController;
 	private String trnCode;
-	private Parent WelcomeForm;
+	private Parent welcomeForm;
+	private TrnMgtController trnMgtController;
+	
 	
 	public void setTrnCode(String trnCode) {
 		this.trnCode = trnCode;
@@ -26,28 +30,34 @@ public class WelcomeService {
 		this.trnWelcomeController = trnWelcomeController;
 	}
 	
+	public void setWelcomeForm(Parent welcomeForm) {
+		this.welcomeForm = welcomeForm;
+	}
+
 	//강사정보페이지
 	public void TrnMgtOpen() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/trn/TrnMgt/KG_TRN_FX_Mgt.fxml"));
 		Parent trnMgtForm;
 		try {
 			trnMgtForm = loader.load();		
+			trnMgtController.setTrnMgtForm(trnMgtForm);
 //			trnWelcomeController.setTrnMgtController(loader.getController());
 //			trnWelcomeController.getTrnMgtController().setTrnMgtForm(trnMgtForm);
 //			trnWelcomeController.getTrnMgtController().setTrnCode(trnCode);
 			//초기 표시 설정
+//			MgtDTO tmpDTO = new MgtDAO().SelectTrnInfo(trnCode);
 //			Label IDDis = (Label)trnMgtForm.lookup("#IDDisplay");//아이디표시
-//			IDDis.setText(trnMgtService.getTrnInfo(trnCode).getTRAINER_ID());
+//			IDDis.setText(tmpDTO.getTRAINER_ID());
 //			TextField NameField = (TextField)trnMgtForm.lookup("#TrnNameField");//기존 이름 표시
-//			NameField.setText(trnMgtService.getTrnInfo(trnCode).getTRAINER_Name());
+//			NameField.setText(tmpDTO.getTRAINER_Name());
 //			TextField BirthField = (TextField)trnMgtForm.lookup("#TrnBirthField");//기존 생일 표시
-//			BirthField.setText(Integer.toString(trnMgtService.getTrnInfo(trnCode).getTRAINER_Birth()));
+//			BirthField.setText(Integer.toString(tmpDTO.getTRAINER_Birth()));
 //			TextField MobileField = (TextField)trnMgtForm.lookup("#TrnMobileField");//기존 전번 표시
-//			MobileField.setText(Integer.toString(trnMgtService.getTrnInfo(trnCode).getTRAINER_Mobile()));
+//			MobileField.setText(Integer.toString(tmpDTO.getTRAINER_Mobile()));
 //			TextField AddrField = (TextField)trnMgtForm.lookup("#TrnAddr1");//기존 주소 표시
-//			AddrField.setText(trnMgtService.getTrnInfo(trnCode).getTRAINER_Addr());
+//			AddrField.setText(tmpDTO.getTRAINER_Addr());
 //			TextField CareerField = (TextField)trnMgtForm.lookup("#TrnCareer");//기존 커리어 표시
-//			CareerField.setText(Integer.toString(trnMgtService.getTrnInfo(trnCode).getTRAINER_Career()));
+//			CareerField.setText(Integer.toString(tmpDTO.getTRAINER_Career()));
 
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnMgtForm));
@@ -60,16 +70,15 @@ public class WelcomeService {
 		
 	}
 	
-	
-	
+	//프로그램 개설 페이지
 	public void ExPEnrollOpen() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/trn/EXProgramMgt/KG_TRN_FX_EXProgramMgt.fxml"));
 		Parent trnExPEnrollFrom;
 		try {
 			trnExPEnrollFrom= loader.load();
-			trnWelcomeController.setTrnMgtController(loader.getController());
-			trnWelcomeController.getTrnMgtController().setTrnMgtForm(trnExPEnrollFrom);
-			trnWelcomeController.getTrnMgtController().setTrnCode(trnCode);			
+//			trnWelcomeController.setTrnExpEnrollController(loader.getController());
+//			trnWelcomeController.getTrnExpEnrollController().setTrnExpEnrollForm(trnExPEnrollFrom);
+//			trnWelcomeController.getTrnExpEnrollController().setTrnCode(trnCode);			
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnExPEnrollFrom));
 			stage.setTitle("trnExPEnroll");
@@ -78,15 +87,16 @@ public class WelcomeService {
 			e.printStackTrace();
 		}			
 	}
-	//
+	
+	//프로그램 관리 페이지
 	public void ExPMgtOpen() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/trn/EXProgramMgt/KG_TRN_FX_EXProgramMgt.fxml"));
 		Parent trnExPMgtFrom;
 		try {
 			trnExPMgtFrom = loader.load();
-			trnWelcomeController.setTrnMgtController(loader.getController());
-			trnWelcomeController.getTrnMgtController().setTrnMgtForm(trnExPMgtFrom);
-			trnWelcomeController.getTrnMgtController().setTrnCode(trnCode);
+//			trnWelcomeController.setTrnExpMgtController(loader.getController());
+//			trnWelcomeController.getTrnExpMgtController().setTrnExProgramMgtForm(trnExPMgtFrom);
+//			trnWelcomeController.getTrnExpMgtController().setTrnCode(trnCode);
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnExPMgtFrom));
 			stage.setTitle("trnExPEnroll");

@@ -57,7 +57,7 @@ public class MainService {
 			controller.setTrinerWelcomeForm(trainerWelcomeForm);
 			//trainer welcome form 참조값을 trainer package로 이동
 			controller.setTrnWelcomeController(loader.getController());
-			controller.getTrnWelcomeController().setWelcomeForm(trainerWelcomeForm);
+			controller.getTrnWelcomeController().setTrnWelcomeForm(trainerWelcomeForm);
 			
 			
 			

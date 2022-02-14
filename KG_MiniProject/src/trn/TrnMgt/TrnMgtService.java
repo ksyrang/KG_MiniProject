@@ -1,5 +1,8 @@
 package trn.TrnMgt;
 
+import common.CommonService;
+import javafx.scene.Parent;
+
 public class TrnMgtService {
 	private MgtDAO TrnDAO; 
 
@@ -13,6 +16,9 @@ public class TrnMgtService {
 	}
 	
 	
+	public void BackProc(Parent root) {
+		CommonService.WindowClose(root);
+	}
 	
 	
 }

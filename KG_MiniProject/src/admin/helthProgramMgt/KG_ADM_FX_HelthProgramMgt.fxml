@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.helthProgramMgt.HelthProgramMgtController">
    <top>
       <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
@@ -43,9 +43,9 @@
    <bottom>
       <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="100.0" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="회원권 등록" />
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="회원권 삭제" />
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="이전" />
+            <Button fx:id="insertButton" mnemonicParsing="false" onAction="#memshipInsertProc" prefHeight="30.0" prefWidth="100.0" text="회원권 등록" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#memshipDeleteProc" prefHeight="30.0" prefWidth="100.0" text="회원권 삭제" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#memshipCancelProc" prefHeight="30.0" prefWidth="100.0" text="이전" />
          </children>
       </FlowPane>
    </bottom>
@@ -64,7 +64,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ListView prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="memshipList" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                   <VBox prefHeight="400.0" prefWidth="435.0" spacing="5.0">
@@ -88,7 +88,7 @@
                                     <Insets left="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField prefHeight="29.0" prefWidth="44.0">
+                              <TextField fx:id="memshipType" prefHeight="29.0" prefWidth="44.0">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -106,11 +106,11 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Label text="가격" />
-                              <PasswordField prefHeight="29.0" prefWidth="161.0">
+                              <TextField fx:id="memshipPrice" prefHeight="29.0" prefWidth="161.0">
                                  <HBox.margin>
                                     <Insets left="50.0" />
                                  </HBox.margin>
-                              </PasswordField>
+                              </TextField>
                               <Label text="원">
                                  <HBox.margin>
                                     <Insets left="5.0" />

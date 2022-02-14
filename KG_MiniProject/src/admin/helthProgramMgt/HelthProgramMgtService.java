@@ -13,15 +13,18 @@ public class HelthProgramMgtService {
 	public void memshipInsert(Parent helthProgramMgtForm) {
 		System.out.println("회원권 등록 svc");
 		
+		System.out.println(helthProgramMgtForm);
 		TextField typetxt = (TextField) helthProgramMgtForm.lookup("#memshipType");
 		TextField pricetxt = (TextField) helthProgramMgtForm.lookup("#memshipPrice");
 		
 		String type = typetxt.getText();
 		int price = Integer.parseInt(pricetxt.getText());
 		
+		System.out.println(type);
+		System.out.println(price);
+		
 		HelthProgramMgtDAO helthProgramDao = new HelthProgramMgtDAO();
 		HelthProgramMgtDTO helthProgramDto = helthProgramDao.selectType(type);
-		
 		if(helthProgramDto == null) {
 			helthProgramDto = new HelthProgramMgtDTO();
 			helthProgramDto.setMemship_type(type);

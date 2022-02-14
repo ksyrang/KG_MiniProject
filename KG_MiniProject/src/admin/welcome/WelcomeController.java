@@ -71,7 +71,6 @@ public class WelcomeController implements Initializable {
 	public void setStatisticsForm(Parent statisticsForm) {
 		this.statisticsForm = statisticsForm;
 	}
-
 	
 	
 	

@@ -17,6 +17,7 @@ public class HelthProgramMgtController implements Initializable{
 	
 	public void setHelthMgtForm(Parent helthProgramMgtForm) {
 		this.helthProgramMgtForm = helthProgramMgtForm;
+		System.out.println(helthProgramMgtForm);
 	}
 	
 	// 회원권 등록 버튼 클릭 시

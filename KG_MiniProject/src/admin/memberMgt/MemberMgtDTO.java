@@ -1,64 +1,61 @@
 package admin.memberMgt;
 
 public class MemberMgtDTO {
-	private String MemCode;
-	private String ID;
-	private String PW;
-	private String Name;
-	private String Gender;
-	private String Birth;
-	private String Mobile;
-	private String Addr;
-	
-	public String getMemCode() {
-		return MemCode;
+	private String mem_code;
+	private String mem_id;
+	private String mem_pw;
+	private String mem_name;
+	private String mem_gender;
+	private String mem_birth;
+	private String mem_mobile;
+	private String mem_addr;
+	public String getMem_code() {
+		return mem_code;
 	}
-	
-	public void setMemCode(String memCode) {
-		MemCode = memCode;
+	public void setMem_code(String mem_code) {
+		this.mem_code = mem_code;
 	}
-	
-	public String getID() {
-		return ID;
+	public String getMem_id() {
+		return mem_id;
 	}
-	public void setID(String iD) {
-		ID = iD;
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
 	}
-	public String getPW() {
-		return PW;
+	public String getMem_pw() {
+		return mem_pw;
 	}
-	public void setPW(String pW) {
-		PW = pW;
+	public void setMem_pw(String mem_pw) {
+		this.mem_pw = mem_pw;
 	}
-	public String getName() {
-		return Name;
+	public String getMem_name() {
+		return mem_name;
 	}
-	public void setName(String name) {
-		Name = name;
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
 	}
-	public String getGender() {
-		return Gender;
+	public String getMem_gender() {
+		return mem_gender;
 	}
-	public void setGender(String gender) {
-		Gender = gender;
+	public void setMem_gender(String mem_gender) {
+		this.mem_gender = mem_gender;
 	}
-	public String getBirth() {
-		return Birth;
+	public String getMem_birth() {
+		return mem_birth;
 	}
-	public void setBirth(String birth) {
-		Birth = birth;
+	public void setMem_birth(String mem_birth) {
+		this.mem_birth = mem_birth;
 	}
-	public String getMobile() {
-		return Mobile;
+	public String getMem_mobile() {
+		return mem_mobile;
 	}
-	public void setMobile(String mobile) {
-		Mobile = mobile;
+	public void setMem_mobile(String mem_mobile) {
+		this.mem_mobile = mem_mobile;
 	}
-	public String getAddr() {
-		return Addr;
+	public String getMem_addr() {
+		return mem_addr;
 	}
-	public void setAddr(String addr) {
-		Addr = addr;
+	public void setMem_addr(String mem_addr) {
+		this.mem_addr = mem_addr;
 	}
 	
 	

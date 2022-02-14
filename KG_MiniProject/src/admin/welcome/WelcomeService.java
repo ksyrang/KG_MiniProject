@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 public class WelcomeService {
@@ -20,6 +21,11 @@ public class WelcomeService {
 		try {
 			memberMgtForm = loader.load();
 			welcomeController.setMemberMgtForm(memberMgtForm);
+			
+			ComboBox<String> combo = (ComboBox<String>)memberMgtForm.lookup("#filterCombo");
+			if(combo != null) {
+				combo.getItems().addAll("전체보기", "승인여부");
+			}
 			
 			Scene scene = new Scene(memberMgtForm);
 			Stage primaryStage = new Stage();

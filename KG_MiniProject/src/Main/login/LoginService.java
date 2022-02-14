@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 
 public class LoginService {
 
-	private String job = "";
+	private String job;
 	// 로그인 버튼 클릭 시 호출
 	public LoginDTO loginProc(Parent mainForm) {
 		TextField idText = (TextField) mainForm.lookup("#idText");
@@ -20,11 +20,11 @@ public class LoginService {
 		
 		
 		if(memberRadio.isSelected())
-			job += "회원";
+			job = "회원";
 		else if(trainerRadio.isSelected())
-			job += "강사";
+			job = "강사";
 		else if(adminRadio.isSelected())
-			job += "관리자";
+			job = "관리자";
 		
 		LoginDAO loginDao = new LoginDAO();
 		LoginDTO loginDto = null;

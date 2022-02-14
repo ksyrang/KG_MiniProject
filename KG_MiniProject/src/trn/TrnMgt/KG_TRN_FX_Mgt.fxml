@@ -110,7 +110,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <Label text="생년월일" />
-                  <TextField fx:id="BirthField" prefHeight="25.0" />
+                  <TextField fx:id="TrnBirthField" prefHeight="25.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="485.0">
@@ -153,8 +153,8 @@
                   <Label text="주소" />
                   <VBox prefHeight="58.0" prefWidth="321.0" spacing="5.0">
                      <children>
-                        <TextField prefHeight="25.0" prefWidth="200.0" />
-                        <TextField prefHeight="25.0" prefWidth="200.0" />
+                        <TextField fx:id="TrnAddr1" prefHeight="25.0" prefWidth="200.0" />
+                        <TextField fx:id="TrnAddr2" prefHeight="25.0" prefWidth="200.0" />
                      </children>
                      <HBox.margin>
                         <Insets left="40.0" />
@@ -168,7 +168,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
                <children>
                   <Label text="경력" />
-                  <TextField prefHeight="25.0" prefWidth="36.0">
+                  <TextField fx:id="TrnCareer" prefHeight="25.0" prefWidth="36.0">
                      <HBox.margin>
                         <Insets left="40.0" />
                      </HBox.margin>

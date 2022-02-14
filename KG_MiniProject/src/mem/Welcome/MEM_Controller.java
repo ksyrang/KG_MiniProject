@@ -10,8 +10,8 @@ public class MEM_Controller implements Initializable {
 	
 	Parent MEMWelcomeForm;
 	
-	public void setMEMWelcomeForm(Parent MEMwelcomeForm) {
-		this.MEMWelcomeForm = MEMwelcomeForm;
+	public void setMEMWelcomeForm(Parent MEMWelcomeForm) {
+		this.MEMWelcomeForm = MEMWelcomeForm;
 	}
 	public Parent getMEMWelcomeForm() {
 		return this.MEMWelcomeForm;

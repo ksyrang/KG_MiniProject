@@ -10,12 +10,16 @@ public class TrnController {
 	private Parent trnEnrollForm;
 	private Parent trnWelcomeForm;
 	private Parent trnExPMegForm;
-	private WelcomeService Welcomsvic;
+//	private WelcomeService Welcomsvic;
+//	
+//	
+//	public TrnController() {
+//		Welcomsvic = new WelcomeService();
+//		Welcomsvic.setController(this);
+//	}
 	
-	
-	public TrnController() {
-		Welcomsvic = new WelcomeService();
-		Welcomsvic.setController(this);
+	public void settrnWelcomeController(Parent controller) {
+		
 	}
 	
 	public void settrnMgtForm(Parent trnMgtForm) {
@@ -30,20 +34,7 @@ public class TrnController {
 	public void settrnExPMegForm(Parent trnExPMegForm) {
 		this.trnExPMegForm = trnExPMegForm;
 	}
-	
-	
-//	public void TrnOpen(String division) {
-//		if("adminWelcome".equals(division)) {
-//			trnSerivce.Open();
-//		}else if("memberWelcome".equals(division)) {
-//			trnSerivce.Open();
-//		}else if("trainerWelcome".equals(division)) {
-//			trnSerivce.Open();
-//		}else if("memberJoin".equals(division)) {
-//			trnSerivce.Open();
-//		}
-//	}
-	
+		
 	
 	
 

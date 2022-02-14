@@ -31,15 +31,15 @@ public class TrnWelcomeController implements Initializable {
 	}
 	
 	public void ExPEnrollProc() {
-		WelcomeService.ExPEnrollProc();
+		WelcomeService.ExPEnrollOpen();
 	}
 	
 	public void ExPMgtProc() {
-		WelcomeService.ExPMgtProc();
+		WelcomeService.ExPMgtOpen();
 	}
 	
 	public void BackProc() {
-		WelcomeService.backProc(WelcomeForm);
+		WelcomeService.backClose(WelcomeForm);
 	}
 
 }

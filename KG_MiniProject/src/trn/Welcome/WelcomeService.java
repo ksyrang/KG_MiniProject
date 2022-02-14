@@ -23,7 +23,7 @@ public class WelcomeService {
 		return null;
 	}
 	
-	public void ExPEnrollProc() {
+	public void ExPEnrollOpen() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/trn/EXProgramMgt/KG_TRN_FX_EXProgramMgt.fxml"));
 		Parent trnExPEnrollFrom;
 		try {
@@ -38,7 +38,7 @@ public class WelcomeService {
 		}			
 	}
 
-	public void ExPMgtProc() {
+	public void ExPMgtOpen() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/trn/EXProgramMgt/KG_TRN_FX_EXProgramMgt.fxml"));
 		Parent trnExPMgtFrom;
 		try {
@@ -53,7 +53,7 @@ public class WelcomeService {
 		}	
 	
 	}
-	public void backProc(Parent back) {
+	public void backClose(Parent back) {
 		CommonService.WindowClose(WelcomeForm);
 	}
 	

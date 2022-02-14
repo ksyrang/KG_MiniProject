@@ -18,7 +18,7 @@ public class TrnWelcomeController implements Initializable {
 		this.WelcomeForm = welcomeForm;
 		
 	}
-
+//
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		WelcomeService = new WelcomeService();		

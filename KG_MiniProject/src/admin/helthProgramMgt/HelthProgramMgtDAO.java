@@ -16,6 +16,7 @@ public class HelthProgramMgtDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			con = DriverManager.getConnection(url, user, password);
+			System.out.println("DB 연동 성공");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -23,6 +24,7 @@ public class HelthProgramMgtDAO {
 	
 	// 회원권 중복 체크
 	public HelthProgramMgtDTO selectType(String type) {
+		System.out.println("dao 내 selectType");
 		String sql = "SELECT * FROM memship_tb WHERE memship_type = ?";
 		PreparedStatement ps;
 		ResultSet rs;
@@ -48,6 +50,7 @@ public class HelthProgramMgtDAO {
 	
 	// 회원권 등록
 	public int memshipInsert(HelthProgramMgtDTO helthProgramDto) {
+		System.out.println("dao 내 memshipInset");
 		String sql = "INSERT INTO memship_tb VALUES(?,?,?)";
 		PreparedStatement ps;
 		int result = 0;

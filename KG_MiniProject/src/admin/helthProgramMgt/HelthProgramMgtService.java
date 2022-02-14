@@ -11,6 +11,7 @@ public class HelthProgramMgtService {
 	
 	
 	public void memshipInsert(Parent helthProgramMgtForm) {
+		System.out.println("회원권 등록 svc");
 		
 		TextField typetxt = (TextField) helthProgramMgtForm.lookup("#memshipType");
 		TextField pricetxt = (TextField) helthProgramMgtForm.lookup("#memshipPrice");

@@ -27,23 +27,27 @@ public class LoginService {
 			job += "관리자";
 		
 		LoginDAO loginDao = new LoginDAO();
-		LoginDTO loginDto =null;
+		LoginDTO loginDto = null;
 		
 		if(job.equals("관리자") || job.equals("회원")) {
 			loginDto = loginDao.SelectMemberId(idText.getText());
+			if(loginDto != null && loginDto.getMEM_PW().equals(pwText.getText())) {
+				if(job.equals("관리자"))
+					CommonService.Msg("관리자 계정 로그인 성공");
+				else if(job.equals("회원"))
+					CommonService.Msg("회원 계정 로그인 성공");
+			}else {
+				CommonService.Msg("로그인 실패");
+			}
 		}else if(job.equals("강사")) {
 			loginDto = loginDao.SelectTrainerId(idText.getText());
-		}
-		
-		if(loginDto != null && loginDto.getMEM_PW().equals(pwText.getText())) {
-			if(job.equals("관리자"))
-				CommonService.Msg("관리자 계정 로그인 성공");
-			else if(job.equals("회원"))
-				CommonService.Msg("회원 계정 로그인 성공");
-			else if(job.equals("강사"))
+			if(loginDto != null && loginDto.getTRAINER_PW().equals(pwText.getText())) {
 				CommonService.Msg("강사 계정 로그인 성공");
+			}else {
+				CommonService.Msg("로그인 실패");
+			}
 		}else {
-			CommonService.Msg("로그인 실패");
+			CommonService.Msg("로그인 실패 : 체크박스 미선택");
 		}
 		return loginDto;
 	}

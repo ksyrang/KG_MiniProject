@@ -38,7 +38,6 @@ public class Controller {
 	}
 	
 
-	
 	public LoginController getLoginController() {
 		return this.loginController;
 	}

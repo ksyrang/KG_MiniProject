@@ -11,14 +11,14 @@ public class EnrollDTO {
 	public String getID() {
 		return ID;
 	}
-	public void setID(String iD) {
-		this.ID = iD;
+	public void setID(String id) {
+		this.ID = id;
 	}
 	public String getPW() {
 		return PW;
 	}
-	public void setPW(String pW) {
-		this.PW = pW;
+	public void setPW(String pw) {
+		this.PW = pw;
 	}
 	public String getName() {
 		return Name;
@@ -50,6 +50,8 @@ public class EnrollDTO {
 	public void setAddr(String addr) {
 		this.Addr = addr;
 	}
+
+
 	
 	
 	

@@ -14,7 +14,6 @@ public class Controller {
 		mainService.setController(this);
 	}
 	
-	
 	public void setAdminWelcomeForm(Parent adminWelcomeForm) {
 		this.adminWelcomeForm = adminWelcomeForm;
 	}
@@ -31,8 +30,13 @@ public class Controller {
 	public void open(String division) {
 		if("adminWelcome".equals(division)) {
 			mainService.adminWelcomeOpen();
-		}
-		
+		}else if("memberWelcome".equals(division)) {
+			mainService.memberWelcomeOpen();
+		}else if("trainerWelcome".equals(division)) {
+			mainService.trainerWelcomeOpen();
+		}else if("memberJoin".equals(division)) {
+			mainService.memberJoinOpen();
+		}	
 	}
 
 

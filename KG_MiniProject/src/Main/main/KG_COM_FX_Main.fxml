@@ -3,10 +3,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
@@ -53,11 +55,11 @@
       </TabPane>
    </center>
    <bottom>
-      <FlowPane prefHeight="99.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+      <FlowPane alignment="CENTER" prefHeight="100.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="50.0" prefWidth="828.0">
+            <HBox alignment="CENTER" fillHeight="false" prefHeight="50.0" prefWidth="900.0">
                <FlowPane.margin>
-                  <Insets left="41.0" />
+                  <Insets />
                </FlowPane.margin>
                <children>
                   <Label text="ID">
@@ -65,7 +67,7 @@
                         <Insets left="30.0" top="15.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="idText" prefHeight="33.0" prefWidth="231.0">
+                  <TextField fx:id="idText" prefHeight="35.0" prefWidth="180.0">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -78,41 +80,41 @@
                         <Insets left="40.0" top="15.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="pwText">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
+                  <PasswordField fx:id="pwText" prefHeight="35.0" prefWidth="180.0">
                      <HBox.margin>
                         <Insets left="5.0" top="10.0" />
                      </HBox.margin>
-                  </TextField>
-                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginProc" prefHeight="31.0" prefWidth="70.0" text="로그인">
+                  </PasswordField>
+                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginProc" prefHeight="50.0" prefWidth="150.0" text="로그인">
                      <HBox.margin>
                         <Insets left="40.0" top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="회원가입">
+                  <Button fx:id="joinButton" mnemonicParsing="false" onAction="#joinProc" prefHeight="50.0" prefWidth="150.0" text="회원가입">
                      <HBox.margin>
-                        <Insets left="44.0" top="10.0" />
+                        <Insets left="40.0" right="20.0" top="10.0" />
                      </HBox.margin>
                   </Button>
                </children>
             </HBox>
-            <HBox prefHeight="50.0" prefWidth="828.0">
+            <HBox alignment="CENTER" fillHeight="false" prefHeight="50.0" prefWidth="900.0">
                <children>
-                  <RadioButton fx:id="memberRadio" mnemonicParsing="false" prefHeight="20.0" prefWidth="65.0" text="회원">
+                  <RadioButton fx:id="memberRadio" mnemonicParsing="false" prefHeight="20.0" prefWidth="70.0" text="회원">
                      <HBox.margin>
-                        <Insets left="139.0" top="15.0" />
+                        <Insets />
+                     </HBox.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="job" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="trainerRadio" mnemonicParsing="false" prefHeight="20.0" prefWidth="70.0" text="강사" toggleGroup="$job">
+                     <HBox.margin>
+                        <Insets left="30.0" />
                      </HBox.margin>
                   </RadioButton>
-                  <RadioButton fx:id="instructorRadio" mnemonicParsing="false" prefHeight="20.0" prefWidth="73.0" text="강사">
+                  <RadioButton fx:id="adminRadio" mnemonicParsing="false" prefHeight="20.0" prefWidth="70.0" text="관리자" toggleGroup="$job">
                      <HBox.margin>
-                        <Insets left="70.0" top="15.0" />
-                     </HBox.margin>
-                  </RadioButton>
-                  <RadioButton fx:id="adminRadio" mnemonicParsing="false" prefHeight="20.0" prefWidth="123.0" text="관리자">
-                     <HBox.margin>
-                        <Insets left="70.0" top="15.0" />
+                        <Insets left="30.0" />
                      </HBox.margin>
                   </RadioButton>
                   <Label prefHeight="18.0" prefWidth="78.0" text="아이디 찾기">
@@ -120,12 +122,12 @@
                         <Font size="14.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="49.0" top="15.0" />
+                        <Insets left="100.0" />
                      </HBox.margin>
                   </Label>
                   <Label text="/">
                      <HBox.margin>
-                        <Insets left="11.0" top="15.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
                   <Label prefHeight="18.0" prefWidth="94.0" text="비밀번호 찾기">
@@ -133,12 +135,12 @@
                         <Font size="14.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="11.0" top="15.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
                </children>
                <FlowPane.margin>
-                  <Insets left="41.0" />
+                  <Insets />
                </FlowPane.margin>
             </HBox>
          </children>

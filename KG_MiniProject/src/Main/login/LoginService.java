@@ -9,49 +9,48 @@ import javafx.scene.control.TextField;
 
 public class LoginService {
 
+	private String job = "";
 	// 로그인 버튼 클릭 시 호출
 	public LoginDTO loginProc(Parent mainForm) {
 		TextField idText = (TextField) mainForm.lookup("#idText");
 		PasswordField pwText = (PasswordField) mainForm.lookup("#pwText");
-//		RadioButton memberRadio = (RadioButton)mainForm.lookup("#memberRadio");
-//		RadioButton instructorRadio = (RadioButton)mainForm.lookup("#instructorRadio");
-//		RadioButton adminRadio = (RadioButton)mainForm.lookup("#adminRadio");
-//		
-//		System.out.println("여기까진 옴");
-//		String job = "";
-//		if(memberRadio.isSelected())
-//			job += "회원";
-//		else if(instructorRadio.isSelected())
-//			job += "강사";
-//		else if(adminRadio.isSelected())
-//			job += "관리자";
+		RadioButton memberRadio = (RadioButton)mainForm.lookup("#memberRadio");
+		RadioButton trainerRadio = (RadioButton)mainForm.lookup("#trainerRadio");
+		RadioButton adminRadio = (RadioButton)mainForm.lookup("#adminRadio");
 		
-//		// 데이터베이스에 조회를 하여 정보를 검증함.
+		
+		if(memberRadio.isSelected())
+			job += "회원";
+		else if(trainerRadio.isSelected())
+			job += "강사";
+		else if(adminRadio.isSelected())
+			job += "관리자";
+		
 		LoginDAO loginDao = new LoginDAO();
-		LoginDTO loginDto = loginDao.SelectId(idText.getText());
+		LoginDTO loginDto =null;
 		
-		if(loginDto != null) {
-			System.out.println("로그인 성공");
-//			if(job.equals("관리자") && loginDto.getMEM_PW().equals(pwText.getText())) {
-//				CommonService.Msg("관리자 계정 로그인 성공");
-//			}else if(job.equals("강사") && loginDto.getMEM_PW().equals(pwText.getText())) {
-//				CommonService.Msg("강사 계정 로그인 성공");
-//			}else if(job.equals("회원") && loginDto.getMEM_PW().equals(pwText.getText())) {
-//				CommonService.Msg("회원 로그인 성공");
-//			}else {
-//				CommonService.Msg("로그인 실패 : 비밀번호 불일치");
-//			}
-		}else {
-			CommonService.Msg("로그인 실패 : 존재하지 않는 아이디");
+		if(job.equals("관리자") || job.equals("회원")) {
+			loginDto = loginDao.SelectMemberId(idText.getText());
+		}else if(job.equals("강사")) {
+			loginDto = loginDao.SelectTrainerId(idText.getText());
 		}
-		System.out.println("여기까지옴");
+		
+		if(loginDto != null && loginDto.getMEM_PW().equals(pwText.getText())) {
+			if(job.equals("관리자"))
+				CommonService.Msg("관리자 계정 로그인 성공");
+			else if(job.equals("회원"))
+				CommonService.Msg("회원 계정 로그인 성공");
+			else if(job.equals("강사"))
+				CommonService.Msg("강사 계정 로그인 성공");
+		}else {
+			CommonService.Msg("로그인 실패");
+		}
 		return loginDto;
-
+	}
+	
+	public String job() {
+		return job;
 	}
 	
 	
-	
-	
-
-
 }

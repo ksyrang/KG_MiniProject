@@ -19,25 +19,36 @@ public class LoginController implements Initializable{
 		this.loginSvc = new LoginService();
 	}
 	
-	public void setmainForm(Parent mainForm) {
-		this.mainForm = mainForm;
-		System.out.println(this.mainForm);
-	}
 	
 	public void setController(Controller controller) {
 		this.controller = controller;
 	}
+	
+	public void setmainForm(Parent mainForm) {
+		this.mainForm = mainForm;
+	}
 
 	//로그인 버튼 클릭 시 호출
 	public void loginProc() {
-		System.out.println(this.mainForm);
-//		LoginDTO loginDto = loginSvc.loginProc(mainForm);
-//		
-//		if(loginDto != null) {
-//			CommonService.WindowClose(mainForm);
-//			controller.open("adminWelcome");
-//		}
+		LoginDTO loginDto = loginSvc.loginProc(mainForm);
+		String job = loginSvc.job();
+		if(loginDto != null) {
+			CommonService.WindowClose(mainForm);
+			if(job.equals("회원"))
+				controller.open("memberWelcome");
+			else if(job.equals("강사"))
+				controller.open("trainerWelcome");
+			else if(job.equals("관리자"))
+				controller.open("adminWelcome");
+		}
 	}
+	
+	
+	//회원가입 버튼 클릭 시 호출
+	public void joinProc() {		
+			CommonService.WindowClose(mainForm);
+			controller.open("memberJoin");
+		}
 	
 
 }

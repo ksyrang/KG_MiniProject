@@ -8,20 +8,36 @@ public class Controller {
 	private LoginController loginController;
 	private MainService mainService;
 	private Parent adminWelcomeForm;
+	private Parent memberWelcomeForm;
+	private Parent trainerWelcomeForm;
+	private Parent memberJoinForm;
+	
 	
 	public Controller() {
 		mainService = new MainService();
 		mainService.setController(this);
 	}
 	
-	public void setAdminWelcomeForm(Parent adminWelcomeForm) {
-		this.adminWelcomeForm = adminWelcomeForm;
-	}
-	
 	public void setLoginController(LoginController loginController) {
 		this.loginController = loginController;
 		this.loginController.setController(this);
 	}
+	
+	
+	public void setAdminWelcomeForm(Parent adminWelcomeForm) {
+		this.adminWelcomeForm = adminWelcomeForm;
+	}
+	public void setmemberWelcomeForm(Parent memberWelcomeForm) {
+		this.memberWelcomeForm = memberWelcomeForm;
+	}
+	public void setTrinerWelcomeForm(Parent trainerWelcomeForm) {
+		this.trainerWelcomeForm = trainerWelcomeForm;
+	}
+	public void setmemberJoinForm(Parent memberJoinForm) {
+		this.memberJoinForm = memberJoinForm;
+	}
+	
+
 	
 	public LoginController getLoginController() {
 		return this.loginController;

@@ -33,11 +33,11 @@ public class MainService {
 	}
 	
 	public void memberWelcomeOpen() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/welcome/KG_ADM_FX_Welcome.fxml"));//경로수정해주세요
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/Welcome/KG_MEM_FX_Welcome.fxml"));
 		Parent memberWelcomeForm;
 		try {
 			memberWelcomeForm = loader.load();
-			controller.setAdminWelcomeForm(memberWelcomeForm);
+			controller.setmemberWelcomeForm(memberWelcomeForm);
 			
 			Scene scene = new Scene(memberWelcomeForm);
 			Stage primaryStage = new Stage();
@@ -50,11 +50,11 @@ public class MainService {
 	}
 	
 	public void trainerWelcomeOpen() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/welcome/KG_ADM_FX_Welcome.fxml"));//경로수정해주세요
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/trn/Welcome/KG_TRN_FX_Welcome.fxml"));
 		Parent trainerWelcomeForm;
 		try {
 			trainerWelcomeForm = loader.load();
-			controller.setAdminWelcomeForm(trainerWelcomeForm);
+			controller.setTrinerWelcomeForm(trainerWelcomeForm);
 			
 			Scene scene = new Scene(trainerWelcomeForm);
 			Stage primaryStage = new Stage();
@@ -67,11 +67,11 @@ public class MainService {
 	}
 	
 	public void memberJoinOpen() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/welcome/KG_ADM_FX_Welcome.fxml"));//경로수정해주세요
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/Enroll/KG_MEM_FX_Enroll.fxml"));
 		Parent memberJoinForm;
 		try {
 			memberJoinForm = loader.load();
-			controller.setAdminWelcomeForm(memberJoinForm);
+			controller.setmemberJoinForm(memberJoinForm);
 			
 			Scene scene = new Scene(memberJoinForm);
 			Stage primaryStage = new Stage();

@@ -1,5 +1,5 @@
 package trn.EXProgramMgt;
 
-public class ExpMgtController {
+public class TrnExpMgtController {
 
 }

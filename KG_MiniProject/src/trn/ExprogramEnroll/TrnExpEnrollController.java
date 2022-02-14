@@ -1,5 +1,5 @@
 package trn.ExprogramEnroll;
 
-public class ExpEnrollController {
+public class TrnExpEnrollController {
 
 }

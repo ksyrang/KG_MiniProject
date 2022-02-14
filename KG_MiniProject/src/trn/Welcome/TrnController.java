@@ -1,6 +1,6 @@
 package trn.Welcome;
 
-import trn.EXProgramMgt.TrnExpMgtController;
+import trn.EXProgramMgt.TrnExProgramMgtController;
 import trn.ExprogramEnroll.TrnExpEnrollController;
 import trn.TrnMgt.TrnMgtController;
 
@@ -9,7 +9,7 @@ public class TrnController {
 	private TrnWelcomeController trnWelcomeController;
 	private TrnMgtController trnMgtController;
 	private TrnExpEnrollController trnExpEnrollController;
-	private TrnExpMgtController trnExpMgtController;
+	private TrnExProgramMgtController trnExpMgtController;
 	
 	
 	//웰컴 컨트롤러
@@ -37,10 +37,10 @@ public class TrnController {
 	}
 	
 	//프로그램 수정 컨트롤러
-	public void setTrnExpMgtController(TrnExpMgtController trnExpMgtController) {
+	public void setTrnExpMgtController(TrnExProgramMgtController trnExpMgtController) {
 		this.trnExpMgtController = trnExpMgtController;
 	}
-	public TrnExpMgtController TrnExpMgtController() {
+	public TrnExProgramMgtController TrnExpMgtController() {
 		return this.trnExpMgtController;
 	}
 	

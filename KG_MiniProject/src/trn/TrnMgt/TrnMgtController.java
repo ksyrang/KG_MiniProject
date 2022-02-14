@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 public class TrnMgtController implements Initializable {
 
 	private TrnMgtService TrnMgtSvc;
-	private String trnCode = null;
+	private String trnCode;
 	private Parent trnMgtForm;
 	
 	public void setTrnMgtForm(Parent trnMgtForm) {

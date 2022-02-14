@@ -14,11 +14,7 @@ import trn.TrnMgt.TrnMgtController;
 import trn.TrnMgt.TrnMgtService;
 
 public class WelcomeService {
-
-	private TrnController trncontroller;
-	
-	
-	private TrnMgtService trnMgtService;
+	private TrnWelcomeController trnWelcomeController;
 	private String trnCode;
 	private Parent WelcomeForm;
 	
@@ -26,8 +22,8 @@ public class WelcomeService {
 		this.trnCode = trnCode;
 	}
 	
-	public void setTrnController(TrnController trncontroller) {
-		this.trncontroller = trncontroller;
+	public void setTrnController(TrnWelcomeController trnWelcomeController) {
+		this.trnWelcomeController = trnWelcomeController;
 	}
 	
 	//강사정보페이지
@@ -35,11 +31,10 @@ public class WelcomeService {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/trn/TrnMgt/KG_TRN_FX_Mgt.fxml"));
 		Parent trnMgtForm;
 		try {
-			trnMgtForm = loader.load();
-			trncontroller.setTrnMgtController(loader.getController());
-			trncontroller.getTrnMgtController().setTrnMgtForm(trnMgtForm);
-			trncontroller.getTrnMgtController().setTrnCode(trnCode);
-			
+			trnMgtForm = loader.load();		
+//			trnWelcomeController.setTrnMgtController(loader.getController());
+//			trnWelcomeController.getTrnMgtController().setTrnMgtForm(trnMgtForm);
+//			trnWelcomeController.getTrnMgtController().setTrnCode(trnCode);
 			//초기 표시 설정
 //			Label IDDis = (Label)trnMgtForm.lookup("#IDDisplay");//아이디표시
 //			IDDis.setText(trnMgtService.getTrnInfo(trnCode).getTRAINER_ID());
@@ -72,7 +67,9 @@ public class WelcomeService {
 		Parent trnExPEnrollFrom;
 		try {
 			trnExPEnrollFrom= loader.load();
-			trncontroller.setTrnExpEnrollController(loader.getController());
+			trnWelcomeController.setTrnMgtController(loader.getController());
+			trnWelcomeController.getTrnMgtController().setTrnMgtForm(trnExPEnrollFrom);
+			trnWelcomeController.getTrnMgtController().setTrnCode(trnCode);			
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnExPEnrollFrom));
 			stage.setTitle("trnExPEnroll");
@@ -87,10 +84,9 @@ public class WelcomeService {
 		Parent trnExPMgtFrom;
 		try {
 			trnExPMgtFrom = loader.load();
-			trncontroller.setTrnExpMgtController(loader.getController());
-			
-			
-			
+			trnWelcomeController.setTrnMgtController(loader.getController());
+			trnWelcomeController.getTrnMgtController().setTrnMgtForm(trnExPMgtFrom);
+			trnWelcomeController.getTrnMgtController().setTrnCode(trnCode);
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnExPMgtFrom));
 			stage.setTitle("trnExPEnroll");

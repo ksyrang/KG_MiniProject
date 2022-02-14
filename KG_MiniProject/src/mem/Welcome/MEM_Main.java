@@ -1,4 +1,4 @@
-package member_fxml;
+package mem.Welcome;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

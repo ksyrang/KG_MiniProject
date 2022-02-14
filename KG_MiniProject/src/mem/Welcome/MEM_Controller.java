@@ -1,4 +1,4 @@
-package member_fxml;
+package mem.Welcome;
 
 import java.net.URL;
 import java.util.ResourceBundle;

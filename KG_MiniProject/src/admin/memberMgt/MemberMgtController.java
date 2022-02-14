@@ -4,25 +4,26 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import common.CommonService;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.ComboBox;
 
 public class MemberMgtController implements Initializable{
-	private Parent KG_ADM_FX_MemberMgt;
+	private Parent memberMgtForm;
 	private MemberMgtService memberMgtService;
+	
+	public void setMemberMgtForm(Parent memberMgtForm) {
+		this.memberMgtForm = memberMgtForm;
+	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		memberMgtService = new MemberMgtService();
 	}
 	
-	public void setMemberMgtForm(Parent KG_ADM_FX_MemberMgt) {
-		this.KG_ADM_FX_MemberMgt = KG_ADM_FX_MemberMgt;
-	}
+	
+	//이전 버튼 클릭 시
 	public void memberMgtCancelProc() {
-		CommonService.WindowClose(KG_ADM_FX_MemberMgt);
+		CommonService.WindowClose(memberMgtForm);
 	}
 
 }

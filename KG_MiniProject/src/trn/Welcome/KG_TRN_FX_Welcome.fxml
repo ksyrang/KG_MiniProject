@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trn.Welcome.WelcomeController">
+   <top>
+      <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="KG GYM">
+               <font>
+                  <Font size="25.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" top="12.5" />
+               </HBox.margin>
+            </Label>
+            <Label text="-회원님">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="600.0" top="12.5" />
+               </HBox.margin>
+            </Label>
+            <Button mnemonicParsing="false" text="logout">
+               <HBox.margin>
+                  <Insets left="20.0" top="12.5" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="300.0" prefWidth="350.0" spacing="20.0">
+               <HBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </HBox.margin>
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="운영중인 프로그램" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <TableView fx:id="CurrentProgramList" onMouseClicked="#programclickProc" prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn fx:id="코드번호" prefWidth="100.0" text="코드번호" />
+                            <TableColumn fx:id="프로그램명" prefWidth="170.0" text="프로그램명" />
+                              <TableColumn fx:id="정원" text="정원" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="300.0" prefWidth="450.0" spacing="20.0">
+               <HBox.margin>
+                  <Insets left="50.0" top="20.0" />
+               </HBox.margin>
+               <children>
+                  <Label text="프로그램 상세정보">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="Programinfo" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="ExPEnrollbtn" mnemonicParsing="false" onAction="#ExPEnrollProc" prefHeight="50.0" prefWidth="170.0" text="프로그램 개설" />
+            <Button fx:id="ExPMgtbtn" mnemonicParsing="false" onAction="#ExPMgtProc" prefHeight="50.0" prefWidth="170.0" text="프로그램 관리" />
+            <Button fx:id="Backbtn" mnemonicParsing="false" onAction="#BackProc" prefHeight="50.0" prefWidth="170.0" text="이전" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

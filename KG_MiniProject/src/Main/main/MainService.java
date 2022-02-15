@@ -2,10 +2,12 @@ package Main.main;
 
 import java.io.IOException;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import trn.Welcome.TrnTbVDTO;
@@ -63,16 +65,15 @@ public class MainService {
 			controller.getTrnWelcomeController().setTrnWelcomeForm(trainerWelcomeForm);
 			
 			TableView<TrnTbVDTO> CurrentExPTable = (TableView<TrnTbVDTO>)trainerWelcomeForm.lookup("#CurrentProgramTableList");
-			
+			TableColumn<TrnTbVDTO, String> CodeColumn = new TableColumn<>("번호");
+			TableColumn<TrnTbVDTO, String> NameColumn = new TableColumn<>("프로그램명");;
+			TableColumn<TrnTbVDTO, String> MemsColumn = new TableColumn<>("정원");;
 
-//			ObservableList<TrnTbVDTO> initialtable 
-			
-			
-			CurrentExPTable.setItems(null);
-
-			
-			
-			CurrentExPTable.setItems(null);
+			ObservableList<TrnTbVDTO> list = FXCollections.observableArrayList(
+					 new TrnTbVDTO("1","2","3")
+					);
+			CurrentExPTable.getColumns().addAll(CodeColumn,NameColumn,MemsColumn);
+			CurrentExPTable.setItems(list);
 
 			
 			Scene scene = new Scene(trainerWelcomeForm);

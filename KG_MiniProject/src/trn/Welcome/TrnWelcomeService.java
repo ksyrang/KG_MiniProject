@@ -62,17 +62,17 @@ public class TrnWelcomeService {
 			//초기 표시 설정
 			MgtDTO tmpDTO = new MgtDAO().SelectTrnInfo(trnCode);
 			Label IDDis = (Label)trnMgtForm.lookup("#IDDisplay");//아이디표시
-			IDDis.setText(tmpDTO.getTRAINER_ID());
-			TextField NameField = (TextField)trnMgtForm.lookup("#TrnNameField");//기존 이름 표시
-			NameField.setText(tmpDTO.getTRAINER_Name());
-			TextField BirthField = (TextField)trnMgtForm.lookup("#TrnBirthField");//기존 생일 표시
-			BirthField.setText(Integer.toString(tmpDTO.getTRAINER_Birth()));
-			TextField MobileField = (TextField)trnMgtForm.lookup("#TrnMobileField");//기존 전번 표시
-			MobileField.setText(Integer.toString(tmpDTO.getTRAINER_Mobile()));
-			TextField AddrField = (TextField)trnMgtForm.lookup("#TrnAddr1");//기존 주소 표시
-			AddrField.setText(tmpDTO.getTRAINER_Addr());
-			TextField CareerField = (TextField)trnMgtForm.lookup("#TrnCareer");//기존 커리어 표시
-			CareerField.setText(Integer.toString(tmpDTO.getTRAINER_Career()));
+//			IDDis.setText(tmpDTO.getTRAINER_ID());
+//			TextField NameField = (TextField)trnMgtForm.lookup("#TrnNameField");//기존 이름 표시
+//			NameField.setText(tmpDTO.getTRAINER_Name());
+//			TextField BirthField = (TextField)trnMgtForm.lookup("#TrnBirthField");//기존 생일 표시
+//			BirthField.setText(Integer.toString(tmpDTO.getTRAINER_Birth()));
+//			TextField MobileField = (TextField)trnMgtForm.lookup("#TrnMobileField");//기존 전번 표시
+//			MobileField.setText(Integer.toString(tmpDTO.getTRAINER_Mobile()));
+//			TextField AddrField = (TextField)trnMgtForm.lookup("#TrnAddr1");//기존 주소 표시
+//			AddrField.setText(tmpDTO.getTRAINER_Addr());
+//			TextField CareerField = (TextField)trnMgtForm.lookup("#TrnCareer");//기존 커리어 표시
+//			CareerField.setText(Integer.toString(tmpDTO.getTRAINER_Career()));
 
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnMgtForm));

@@ -3,15 +3,35 @@ package trn.Welcome;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import Main.main.Controller;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import trn.EXProgramMgt.TrnExProgramMgtController;
 import trn.ExprogramEnroll.TrnExpEnrollController;
 import trn.TrnMgt.TrnMgtController;
 
 
 public class TrnWelcomeController implements Initializable {
+	
+	@FXML private Label TrnNameLabel;
+    @FXML private TableView<TrnTbVDTO> CurrentProgramTableList;
+    @FXML private TableColumn<TrnTbVDTO, String> CodeColumn;
+    @FXML private TableColumn<TrnTbVDTO, String> NameColumn;
+    @FXML private TableColumn<TrnTbVDTO, String> MemsColumn;
+    @FXML private ListView<TrnTbVDTO> Programinfo;
+    @FXML private Button ExPEnrollbtn;
+    @FXML private Button ExPMgtbtn;
+    @FXML private Button Backbtn;
+    
+    private ObservableList<TrnTbVDTO> Tablelist;
 	
 	
 	private TrnWelcomeService WelcomeService;
@@ -72,6 +92,16 @@ public class TrnWelcomeController implements Initializable {
 		//이니셜라이즈는 인스턴스의 최초의 행동이기 때문에 해당괄호안에서는 어떤 데이터든 null만이 있는것
 		//인스턴스 이후의 데이터는 계속 메소드의 매개변수로 넣어줘야 한다
 		//EX : 	WelcomeService.backClose(WelcomeForm);
+		CodeColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("PCodeColumn"));
+	    NameColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("PNameColumn"));
+	    MemsColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("MembersColumn"));
+		
+		Tablelist = FXCollections.observableArrayList(
+				new TrnTbVDTO("1","2","3")	
+		);
+		CurrentProgramTableList.setItems(Tablelist);
+		
+		
 	}
 	
 	public void TrnClickProc() {

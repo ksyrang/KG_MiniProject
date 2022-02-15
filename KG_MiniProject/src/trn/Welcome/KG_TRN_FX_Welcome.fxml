@@ -55,12 +55,11 @@
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <TableView fx:id="CurrentProgramTableList" onMouseClicked="#programclickPro" prefHeight="200.0" prefWidth="200.0">
-                          <columns>
-                            <TableColumn fx:id="PCodeColumn" prefWidth="100.0" text="코드번호" />
-                            <TableColumn fx:id="PNameColumn" prefWidth="170.0" text="프로그램명" />
-                              <TableColumn fx:id="MembersColumn" text="정원" />
-                          </columns>
-                        </TableView>
+                           <columns>
+                              <TableColumn fx:id="CodeColumn" prefWidth="65.0" text="번호" />
+                              <TableColumn fx:id="NameColumn" prefWidth="207.0" text="프로그램 이름" />
+                              <TableColumn fx:id="MemsColumn" minWidth="0.0" prefWidth="77.0" text="정원" />
+                           </columns></TableView>
                      </children>
                   </VBox>
                </children>

@@ -17,6 +17,14 @@ import javafx.scene.control.ToggleGroup;
 	// 필터
 	public void filter(Parent memberMgtForm) {
 		
+		TextField idfield = (TextField) memberMgtForm.lookup("#idtxt");
+		TextField namefield = (TextField) memberMgtForm.lookup("#nametxt");
+		TextField pwfield = (TextField) memberMgtForm.lookup("#pwtxt");
+		TextField mobilefield = (TextField) memberMgtForm.lookup("#mobiletxt");
+		TextField addrfield = (TextField) memberMgtForm.lookup("#addrtxt");
+		RadioButton men = (RadioButton) memberMgtForm.lookup("#menradio");
+		RadioButton women = (RadioButton) memberMgtForm.lookup("#womenradio");
+		
 		ComboBox<String> comboBox = (ComboBox<String>) memberMgtForm.lookup("#filterCombo");
 		String combo = comboBox.getValue();
 		
@@ -32,6 +40,14 @@ import javafx.scene.control.ToggleGroup;
 			}
 			allTable.setItems(tableView);
 			
+			idfield.setText(null);
+			namefield.setText(null);
+			pwfield.setText(null);
+			mobilefield.setText(null);
+			addrfield.setText(null);
+			men.setSelected(false);
+			women.setSelected(false);
+			
 		} else if (combo.equals("승인여부")) {
 			// 가입 승인 안된 회원 테이블 뷰
 			TableView<MemberMgtTable> notApproveTable = (TableView<MemberMgtTable>) memberMgtForm.lookup("#memTable");
@@ -40,6 +56,14 @@ import javafx.scene.control.ToggleGroup;
 				tableView.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), m.getMem_approve()));
 			}
 			notApproveTable.setItems(tableView);
+			
+			idfield.setText(null);
+			namefield.setText(null);
+			pwfield.setText(null);
+			mobilefield.setText(null);
+			addrfield.setText(null);
+			men.setSelected(false);
+			women.setSelected(false);
 			
 		}
 	}

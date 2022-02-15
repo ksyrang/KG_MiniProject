@@ -33,7 +33,6 @@ public class TrnWelcomeController implements Initializable {
     
     private ObservableList<TrnTbVDTO> Tablelist;
 	
-	
 	private TrnWelcomeService WelcomeService;
 	private TrnWelcomeController trnWelcomeController;
 	private TrnMgtController trnMgtController;

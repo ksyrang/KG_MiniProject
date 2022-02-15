@@ -3,13 +3,13 @@ package trn.DTO;
 public class ExPDTO {
 	private String PRM_Code;
 	private String PRM_Name;
-	private String PRM_Price;
+	private int PRM_Price;
 	
 	public ExPDTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ExPDTO(String pRM_Code, String pRM_Name, String pRM_Price) {
+	public ExPDTO(String pRM_Code, String pRM_Name, int pRM_Price) {
 		super();
 		PRM_Code = pRM_Code;
 		PRM_Name = pRM_Name;
@@ -28,10 +28,10 @@ public class ExPDTO {
 	public void setPRM_Name(String pRM_Name) {
 		PRM_Name = pRM_Name;
 	}
-	public String getPRM_Price() {
+	public int getPRM_Price() {
 		return PRM_Price;
 	}
-	public void setPRM_Price(String pRM_Price) {
+	public void setPRM_Price(int pRM_Price) {
 		PRM_Price = pRM_Price;
 	}
 	

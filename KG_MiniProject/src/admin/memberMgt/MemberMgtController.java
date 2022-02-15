@@ -44,14 +44,11 @@ public class MemberMgtController implements Initializable{
 		
 		filterCombo.setValue("전체보기");
 		
+		// tableview
 		MemberMgtDAO memberMgtDao = new MemberMgtDAO();
 		ObservableList<MemberMgtDTO> memberMgtDto = memberMgtDao.getAllMemberList();
 		
 		obserList = FXCollections.observableArrayList();
-//				for(int i = 0; i < memberMgtDto.size(); i++) {
-//					new MemberMgtTable("mem1", "회원1", "false")
-//				}
-//				);
 		
 		colCode.setCellValueFactory(new PropertyValueFactory<>("colCode"));
 		colName.setCellValueFactory(new PropertyValueFactory<>("colName"));

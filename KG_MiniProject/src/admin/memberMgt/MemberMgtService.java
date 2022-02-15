@@ -2,20 +2,12 @@ package admin.memberMgt;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
-public class MemberMgtService {
+ class MemberMgtService {
 
-	@FXML private TableView<MemberMgtTable> memTable;
-	@FXML private TableColumn<MemberMgtTable, String> colCode;
-	@FXML private TableColumn<MemberMgtTable, String> colName;
-	@FXML private TableColumn<MemberMgtTable, String> colApprove;
-	
 
 	// 필터
 	public void filter(Parent memberMgtForm) {
@@ -23,33 +15,34 @@ public class MemberMgtService {
 		ComboBox<String> comboBox = (ComboBox<String>) memberMgtForm.lookup("#filterCombo");
 		String combo = comboBox.getValue();
 		
-		
-//		colCode = new TableColumn<MemberMgtTable, String>();
-//		colCode.setCellValueFactory(new PropertyValueFactory<>("strCode"));
-//		
-//		colName = new TableColumn<MemberMgtTable, String>();
-//		colName.setCellValueFactory(new PropertyValueFactory<>("strName"));
-//		
-//		colApprove = new TableColumn<MemberMgtTable, String>();
-//		colApprove.setCellValueFactory(new PropertyValueFactory<>("strApprove"));
+		ObservableList<MemberMgtTable> tableView = FXCollections.observableArrayList();
+		MemberMgtDAO memberMgtDao = new MemberMgtDAO();
 		
 		if (combo.equals("전체보기")) {
 			System.out.println("전체보기");
 			
-//			memTable = new TableView<MemberMgtTable>();
-//			memTable.setItems(getCell());
-//			memTable.getColumns().addAll(colCode, colName, colApprove);
+			// 전체 회원 테이블 뷰
+			TableView<MemberMgtTable> allTable = (TableView<MemberMgtTable>) memberMgtForm.lookup("#memTable");
+			ObservableList<MemberMgtDTO> allList = memberMgtDao.getAllMemberList();
+			for(MemberMgtDTO m : allList) {
+				tableView.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), m.getMem_approve()));
+			}
+			allTable.setItems(tableView);
 			
 		} else if (combo.equals("승인여부")) {
 			System.out.println("승인여부");
+			
+			// 가입 승인 안된 회원 테이블 뷰
+			TableView<MemberMgtTable> notApproveTable = (TableView<MemberMgtTable>) memberMgtForm.lookup("#memTable");
+			ObservableList<MemberMgtDTO> notApproveList = memberMgtDao.getNotApproveList();
+			for(MemberMgtDTO m : notApproveList) {
+				tableView.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), m.getMem_approve()));
+			}
+			notApproveTable.setItems(tableView);
+			
 		}
 	}
-	
-//	public ObservableList<MemberMgtTable> getCell() {
-//		ObservableList<MemberMgtTable> cells = FXCollections.observableArrayList();
-//		cells.add(new MemberMgtTable("mem01", "멤버1", "false"));
-//		return cells;
-//	}
+
 
 	// 가입 승인
 	public void approve(Parent memberMgtForm) {

@@ -49,5 +49,26 @@ public class MemberMgtDAO {
 		return member;
 	}
 	
+	public ObservableList<MemberMgtDTO> getNotApproveList() {
+		String sql = "SELECT mem_code, mem_name, mem_approve FROM mem_tb WHERE mem_approve ='false'";
+		PreparedStatement ps;
+		ResultSet rs;
+		ObservableList<MemberMgtDTO> member = FXCollections.observableArrayList();
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				MemberMgtDTO memberMgtDto = new MemberMgtDTO();
+				memberMgtDto.setMem_code(rs.getString("mem_code"));
+				memberMgtDto.setMem_name(rs.getString("mem_name"));
+				memberMgtDto.setMem_approve(rs.getString("mem_approve"));
+				member.add(memberMgtDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return member;
+	}
+	
 
 }

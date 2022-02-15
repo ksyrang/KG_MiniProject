@@ -64,10 +64,16 @@ public class MainService {
 			
 			TableView<TrnTbVDTO> CurrentExPTable = (TableView<TrnTbVDTO>)trainerWelcomeForm.lookup("#CurrentProgramTableList");
 			
-			ObservableList<TrnTbVDTO> initialtable 
+
+//			ObservableList<TrnTbVDTO> initialtable 
 			
 			
 			CurrentExPTable.setItems(null);
+
+			
+			
+			CurrentExPTable.setItems(null);
+
 			
 			Scene scene = new Scene(trainerWelcomeForm);
 			Stage primaryStage = new Stage();

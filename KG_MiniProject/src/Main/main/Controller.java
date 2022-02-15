@@ -89,7 +89,9 @@ public class Controller {
 			mainService.trainerWelcomeOpen(UserCode);
 		}else if("memberJoin".equals(division)) {
 			mainService.memberJoinOpen();
-		}	
+		}else if("memberFindID".equals(division)) {
+			mainService.memberFindIDOpen();
+		}
 	}
 
 

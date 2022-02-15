@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -126,11 +125,11 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Label text="PW" />
-                              <PasswordField fx:id="pwtxt" prefHeight="29.0" prefWidth="189.0">
+                              <TextField fx:id="pwtxt" prefHeight="29.0" prefWidth="197.0">
                                  <HBox.margin>
                                     <Insets left="50.0" />
                                  </HBox.margin>
-                              </PasswordField>
+                              </TextField>
                            </children>
                            <VBox.margin>
                               <Insets bottom="20.0" />
@@ -143,23 +142,11 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <VBox prefHeight="48.0" prefWidth="207.0" spacing="5.0">
-                                 <children>
-                                    <PasswordField prefHeight="29.0" prefWidth="197.0">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </PasswordField>
-                                    <Label text="비밀번호가 다릅니다.">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </Label>
-                                 </children>
+                              <TextField fx:id="pwconfrimtxt" prefHeight="29.0" prefWidth="197.0">
                                  <HBox.margin>
                                     <Insets left="15.0" />
                                  </HBox.margin>
-                              </VBox>
+                              </TextField>
                            </children>
                            <VBox.margin>
                               <Insets bottom="20.0" />
@@ -168,19 +155,11 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Label text="전화번호" />
-                              <VBox prefHeight="30.0" prefWidth="209.0" spacing="5.0">
-                                 <children>
-                                    <TextField fx:id="mobiletxt" prefWidth="0.0">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </TextField>
-                                    <Label text="동일한 전화번호가 있습니다." />
-                                 </children>
+                              <TextField fx:id="mobiletxt" prefWidth="197.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
-                              </VBox>
+                              </TextField>
                               <Label text="성별">
                                  <HBox.margin>
                                     <Insets left="20.0" />

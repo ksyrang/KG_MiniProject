@@ -1,5 +1,6 @@
 package admin.memberMgt;
 
+import common.CommonService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,8 +14,8 @@ import javafx.scene.control.ToggleGroup;
 
  class MemberMgtService {
 	 
-	 // @FXML private TextField idtxt, nametxt, pwtxt, mobiletxt, addrtxt;
 	 private MemberMgtDAO memberMgtDao;
+	 
 
 	// 필터
 	public void filter(Parent memberMgtForm) {
@@ -60,17 +61,17 @@ import javafx.scene.control.ToggleGroup;
 		TextField pwfield = (TextField) memberMgtForm.lookup("#pwtxt");
 		TextField mobilefield = (TextField) memberMgtForm.lookup("#mobiletxt");
 		TextField addrfield = (TextField) memberMgtForm.lookup("#addrtxt");
-		RadioButton mem = (RadioButton) memberMgtForm.lookup("#menradio");
-		RadioButton womem = (RadioButton) memberMgtForm.lookup("#womenradio");
+		RadioButton men = (RadioButton) memberMgtForm.lookup("#menradio");
+		RadioButton women = (RadioButton) memberMgtForm.lookup("#womenradio");
 		ToggleGroup gender = new ToggleGroup();
-		mem.setToggleGroup(gender);
-		womem.setToggleGroup(gender);
+		men.setToggleGroup(gender);
+		women.setToggleGroup(gender);
 		
 		if(memberMgtDto.getMem_gender() != null) {
 			if(memberMgtDto.getMem_gender().equals("남")) {
-				mem.setSelected(true);
+				men.setSelected(true);
 			} else if(memberMgtDto.getMem_gender().equals("여")) {
-				womem.setSelected(true);
+				women.setSelected(true);
 			} 
 		}
 		
@@ -81,28 +82,68 @@ import javafx.scene.control.ToggleGroup;
 		if(memberMgtDto.getMem_mobile() != null) {
 			mobilefield.setText(memberMgtDto.getMem_mobile());
 		} else {
-			mobilefield.setText("정보 없음");
+			mobilefield.setText(null);
 		}
 		if(memberMgtDto.getMem_addr() != null) {
 			addrfield.setText(memberMgtDto.getMem_addr());
 		} else {
-			addrfield.setText("정보 없음");
+			addrfield.setText(null);
 		}
 	}
 
 
 	// 가입 승인
 	public void approve(Parent memberMgtForm) {
-
+		TextField idfield = (TextField) memberMgtForm.lookup("#idtxt");
+		String id = idfield.getText();
+		memberMgtDao.approveUpdate(id);
+		
+		CommonService.Msg(id + " 회원님 가입 승인 완료");
 	}
 
 	// 회원 수정
 	public void update(Parent memberMgtForm) {
+		TextField idfield = (TextField) memberMgtForm.lookup("#idtxt");
+		TextField namefield = (TextField) memberMgtForm.lookup("#nametxt");
+		TextField pwfield = (TextField) memberMgtForm.lookup("#pwtxt");
+		TextField confrimpwfield = (TextField) memberMgtForm.lookup("#pwconfrimtxt");
+		TextField mobilefield = (TextField) memberMgtForm.lookup("#mobiletxt");
+		TextField addrfield = (TextField) memberMgtForm.lookup("#addrtxt");
+		RadioButton men = (RadioButton) memberMgtForm.lookup("#menradio");
+		RadioButton women = (RadioButton) memberMgtForm.lookup("#womenradio");
+		ToggleGroup genderGroup = new ToggleGroup();
+		men.setToggleGroup(genderGroup);
+		women.setToggleGroup(genderGroup);
+		
+		String id = idfield.getText();
+		String name = namefield.getText();
+		String pw = pwfield.getText();
+		String confrimpw = confrimpwfield.getText();
+		String mobile = mobilefield.getText();
+		String addr = addrfield.getText();
+		String gender = null;
+		if(men.isSelected()) {
+			gender = "남";
+		}else if(women.isSelected()) {
+			gender = "여";
+		}
+		if(confrimpw != null) {
+			if(pw.equals(confrimpw)) {
+				memberMgtDao.memberUpdate(id, name, pw, mobile, gender, addr);
+				CommonService.Msg(id + " 회원 수정 완료");
+			} else {
+				CommonService.Msg("비밀번호가 다릅니다.");
+			}
+		} else {
+			CommonService.Msg("PW확인란을 입력해주세요.");
+		}
+		
 
 	}
 
 	// 회원 삭제
 	public void delete(Parent memberMgtForm) {
+		
 
 	}
 

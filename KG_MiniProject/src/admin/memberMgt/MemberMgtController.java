@@ -41,7 +41,6 @@ public class MemberMgtController implements Initializable{
 		
 		//TextField 편집 붉가능
 		idtxt.setEditable(false);
-		nametxt.setEditable(false);
 		
 		filterCombo.setValue("전체보기");
 		

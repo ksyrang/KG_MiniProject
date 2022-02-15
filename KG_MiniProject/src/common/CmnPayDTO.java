@@ -13,7 +13,13 @@ public class CmnPayDTO {
 	public CmnPayDTO() {
 		// TODO Auto-generated constructor stub
 	}
-
+	public CmnPayDTO(CmnPayDTO cmnPayDTO) {
+		PAY_Code = cmnPayDTO.getPAY_Code();
+		PAY_Type = cmnPayDTO.getPAY_Type();
+		PAY_Date = cmnPayDTO.getPAY_Date();
+		MEMSHIPSCHE_Code = cmnPayDTO.getMEMSHIPSCHE_Code();
+		RES_Code = cmnPayDTO.getRES_Code();	
+	}
 	public CmnPayDTO(String pAY_Code, String pAY_Type, Date pAY_Date, String mEMSHIPSCHE_Code, String rES_Code) {
 		super();
 		PAY_Code = pAY_Code;

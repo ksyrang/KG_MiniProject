@@ -6,6 +6,9 @@ import java.util.ResourceBundle;
 import javax.swing.Action;
 
 import common.CommonService;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -13,6 +16,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
 
 public class MemberMgtController implements Initializable{
@@ -23,6 +27,13 @@ public class MemberMgtController implements Initializable{
 	@FXML private TextField nametxt;
 	@FXML private ComboBox<String> filterCombo; 
 	
+	@FXML private TableView<MemberMgtTable> memTable;
+	@FXML private TableColumn<MemberMgtTable, String> colCode;
+	@FXML private TableColumn<MemberMgtTable, String> colName;
+	@FXML private TableColumn<MemberMgtTable, String> colApprove;
+	
+	ObservableList<MemberMgtTable> obserList;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		memberMgtSvc = new MemberMgtService();
@@ -32,6 +43,26 @@ public class MemberMgtController implements Initializable{
 		nametxt.setEditable(false);
 		
 		filterCombo.setValue("전체보기");
+		
+		MemberMgtDAO memberMgtDao = new MemberMgtDAO();
+		ObservableList<MemberMgtDTO> memberMgtDto = memberMgtDao.getAllMemberList();
+		
+		obserList = FXCollections.observableArrayList();
+//				for(int i = 0; i < memberMgtDto.size(); i++) {
+//					new MemberMgtTable("mem1", "회원1", "false")
+//				}
+//				);
+		
+		colCode.setCellValueFactory(new PropertyValueFactory<>("colCode"));
+		colName.setCellValueFactory(new PropertyValueFactory<>("colName"));
+		colApprove.setCellValueFactory(new PropertyValueFactory<>("colApprove"));
+		for(MemberMgtDTO m : memberMgtDto) {
+			obserList.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), m.getMem_approve()));
+		}
+		//obserList.add(new MemberMgtTable("mem1", "회원1", "false"));
+		
+		memTable.setItems(obserList);
+		
 	}
 	
 	public void setMemberMgtForm(Parent memberMgtForm) {
@@ -40,10 +71,7 @@ public class MemberMgtController implements Initializable{
 	
 	// 필터 콤보 박스
 	public void memberMgtFilterCombo() {
-		System.out.println("콤보 박스");
-		String combo = filterCombo.getValue();
-		System.out.println(combo);
-		memberMgtSvc.filter(combo);
+		memberMgtSvc.filter(memberMgtForm);
 	}
 	
 	// 가입 승인 버튼 클리 시

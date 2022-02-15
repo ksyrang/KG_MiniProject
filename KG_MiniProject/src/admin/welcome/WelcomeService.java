@@ -2,14 +2,21 @@ package admin.welcome;
 
 import java.io.IOException;
 
+import admin.memberMgt.MemberMgtTable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class WelcomeService {
 	private WelcomeController welcomeController;
+	private TableView<MemberMgtTable> memberMgtTabel;
 	
 	public void setWelcomeController(WelcomeController welcomeController) {
 		this.welcomeController = welcomeController;
@@ -39,6 +46,8 @@ public class WelcomeService {
 			e.printStackTrace();
 		}
 	}
+	
+	
 	
 	public void trainerMgtProc() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/trainerMgt/KG_ADM_FX_TrainerMgt.fxml"));

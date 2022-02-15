@@ -54,11 +54,11 @@
                   </Label>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <TableView fx:id="CurrentProgramList" prefHeight="200.0" prefWidth="200.0">
+                        <TableView fx:id="CurrentProgramTableList" onMouseClicked="#programclickPro" prefHeight="200.0" prefWidth="200.0">
                           <columns>
-                            <TableColumn fx:id="코드번호" prefWidth="100.0" text="코드번호" />
-                            <TableColumn fx:id="프로그램명" prefWidth="170.0" text="프로그램명" />
-                              <TableColumn fx:id="정원" text="정원" />
+                            <TableColumn fx:id="PCodeColumn" prefWidth="100.0" text="코드번호" />
+                            <TableColumn fx:id="PNameColumn" prefWidth="170.0" text="프로그램명" />
+                              <TableColumn fx:id="MembersColumn" text="정원" />
                           </columns>
                         </TableView>
                      </children>

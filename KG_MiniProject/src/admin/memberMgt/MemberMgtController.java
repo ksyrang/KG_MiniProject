@@ -74,34 +74,28 @@ public class MemberMgtController implements Initializable{
 	// 테이블뷰 행 클릭시 이벤트 처리
 	public void tableClick() {
 		memTable.setOnMouseClicked((MouseEvent e) -> {
-			System.out.println(memTable.getSelectionModel().getSelectedIndex());
 			MemberMgtTable mt = memTable.getSelectionModel().getSelectedItem();
-			System.out.println(mt.getColCode());
 			memberMgtSvc.cellClick(memberMgtForm, mt.getColCode());
 		});
 	}
 	
 	// 가입 승인 버튼 클리 시
 	public void memberMgtApproveProc() {
-		System.out.println("가입 승인 버튼 클릭");
 		memberMgtSvc.approve(memberMgtForm);
 	}
 	// 회원 수정 버튼 클릭 시
 	public void memberMgtUpdateProc() {
-		System.out.println("회원 수정 버튼 클릭");
 		memberMgtSvc.update(memberMgtForm);
 	}
 	
 	//회원 삭제 버튼 클릭 시
 	public void memberMgtDeleteProc() {
-		System.out.println("회원 삭제 버튼 클릭");
 		memberMgtSvc.delete(memberMgtForm);
 	}
 	
 	
 	// 이전 버튼 클릭 시
 	public void memberMgtCancelProc() {
-		System.out.println("이전 버튼 클릭");
 		CommonService.WindowClose(memberMgtForm);
 	}
 

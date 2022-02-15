@@ -20,7 +20,6 @@ public class MemberMgtDAO {
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			String user = "KGGYM";
 			String password = "oracle1";
-			
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				con = DriverManager.getConnection(url, user, password);
@@ -134,5 +133,18 @@ public class MemberMgtDAO {
 		}
 	}
 	
+	// 회원 삭제
+	public void memberDelete(String mem_id) {
+		String sql = "DELETE FROM mem_tb WHERE mem_id = ?";
+		PreparedStatement ps;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, mem_id);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 }

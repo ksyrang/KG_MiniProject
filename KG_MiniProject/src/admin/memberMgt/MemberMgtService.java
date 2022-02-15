@@ -3,19 +3,16 @@ package admin.memberMgt;
 import common.CommonService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 
  class MemberMgtService {
 	 
 	 private MemberMgtDAO memberMgtDao;
-	 
 
 	// 필터
 	public void filter(Parent memberMgtForm) {
@@ -27,8 +24,6 @@ import javafx.scene.control.ToggleGroup;
 		memberMgtDao = new MemberMgtDAO();
 		
 		if (combo.equals("전체보기")) {
-			System.out.println("전체보기");
-			
 			// 전체 회원 테이블 뷰
 			TableView<MemberMgtTable> allTable = (TableView<MemberMgtTable>) memberMgtForm.lookup("#memTable");
 			ObservableList<MemberMgtDTO> allList = memberMgtDao.getAllMemberList();
@@ -38,8 +33,6 @@ import javafx.scene.control.ToggleGroup;
 			allTable.setItems(tableView);
 			
 		} else if (combo.equals("승인여부")) {
-			System.out.println("승인여부");
-			
 			// 가입 승인 안된 회원 테이블 뷰
 			TableView<MemberMgtTable> notApproveTable = (TableView<MemberMgtTable>) memberMgtForm.lookup("#memTable");
 			ObservableList<MemberMgtDTO> notApproveList = memberMgtDao.getNotApproveList();
@@ -99,6 +92,15 @@ import javafx.scene.control.ToggleGroup;
 		memberMgtDao.approveUpdate(id);
 		
 		CommonService.Msg(id + " 회원님 가입 승인 완료");
+		ComboBox<String> comboBox = (ComboBox<String>) memberMgtForm.lookup("#filterCombo");
+		comboBox.setValue("전체보기");
+		ObservableList<MemberMgtTable> tableView = FXCollections.observableArrayList();
+		TableView<MemberMgtTable> allTable = (TableView<MemberMgtTable>) memberMgtForm.lookup("#memTable");
+		ObservableList<MemberMgtDTO> allList = memberMgtDao.getAllMemberList();
+		for(MemberMgtDTO m : allList) {
+			tableView.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), m.getMem_approve()));
+		}
+		allTable.setItems(tableView);
 	}
 
 	// 회원 수정
@@ -106,7 +108,6 @@ import javafx.scene.control.ToggleGroup;
 		TextField idfield = (TextField) memberMgtForm.lookup("#idtxt");
 		TextField namefield = (TextField) memberMgtForm.lookup("#nametxt");
 		TextField pwfield = (TextField) memberMgtForm.lookup("#pwtxt");
-		TextField confrimpwfield = (TextField) memberMgtForm.lookup("#pwconfrimtxt");
 		TextField mobilefield = (TextField) memberMgtForm.lookup("#mobiletxt");
 		TextField addrfield = (TextField) memberMgtForm.lookup("#addrtxt");
 		RadioButton men = (RadioButton) memberMgtForm.lookup("#menradio");
@@ -118,7 +119,6 @@ import javafx.scene.control.ToggleGroup;
 		String id = idfield.getText();
 		String name = namefield.getText();
 		String pw = pwfield.getText();
-		String confrimpw = confrimpwfield.getText();
 		String mobile = mobilefield.getText();
 		String addr = addrfield.getText();
 		String gender = null;
@@ -127,23 +127,39 @@ import javafx.scene.control.ToggleGroup;
 		}else if(women.isSelected()) {
 			gender = "여";
 		}
-		if(confrimpw != null) {
-			if(pw.equals(confrimpw)) {
-				memberMgtDao.memberUpdate(id, name, pw, mobile, gender, addr);
-				CommonService.Msg(id + " 회원 수정 완료");
-			} else {
-				CommonService.Msg("비밀번호가 다릅니다.");
-			}
-		} else {
-			CommonService.Msg("PW확인란을 입력해주세요.");
-		}
 		
+		memberMgtDao.memberUpdate(id, name, pw, mobile, gender, addr);
+		CommonService.Msg(id + " 회원 수정 완료");
 
+		ComboBox<String> comboBox = (ComboBox<String>) memberMgtForm.lookup("#filterCombo");
+		comboBox.setValue("전체보기");
+		ObservableList<MemberMgtTable> tableView = FXCollections.observableArrayList();
+		TableView<MemberMgtTable> allTable = (TableView<MemberMgtTable>) memberMgtForm.lookup("#memTable");
+		ObservableList<MemberMgtDTO> allList = memberMgtDao.getAllMemberList();
+		for (MemberMgtDTO m : allList) {
+			tableView.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), m.getMem_approve()));
+		}
+		allTable.setItems(tableView);
+	
 	}
 
 	// 회원 삭제
 	public void delete(Parent memberMgtForm) {
+		TextField idfield = (TextField) memberMgtForm.lookup("#idtxt");
+		String id = idfield.getText();
 		
+		memberMgtDao.memberDelete(id);
+		CommonService.Msg(id + " 회원 삭제 완료");
+		
+		ComboBox<String> comboBox = (ComboBox<String>) memberMgtForm.lookup("#filterCombo");
+		comboBox.setValue("전체보기");
+		ObservableList<MemberMgtTable> tableView = FXCollections.observableArrayList();
+		TableView<MemberMgtTable> allTable = (TableView<MemberMgtTable>) memberMgtForm.lookup("#memTable");
+		ObservableList<MemberMgtDTO> allList = memberMgtDao.getAllMemberList();
+		for(MemberMgtDTO m : allList) {
+			tableView.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), m.getMem_approve()));
+		}
+		allTable.setItems(tableView);
 
 	}
 

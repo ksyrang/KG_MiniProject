@@ -41,6 +41,13 @@ public class Controller {
 		return trnWelcomeController;
 	}
 	
+	public void setEnrollController(EnrollController enrollController) {
+		this.enrollController = enrollController;
+	}
+	
+	public EnrollController getEnrollController() {
+		return this.enrollController;
+	}
 	
 	public void setAdminWelcomeForm(Parent adminWelcomeForm) {
 		this.adminWelcomeForm = adminWelcomeForm;
@@ -53,10 +60,6 @@ public class Controller {
 	}
 	public void setmemberJoinForm(Parent memberJoinForm) {
 		this.memberJoinForm = memberJoinForm;
-	}
-	
-	public void setEnrollController(EnrollController enrollController) {
-		this.enrollController = enrollController;
 	}
 	
 	public void settingEnroll() {

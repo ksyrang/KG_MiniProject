@@ -1,6 +1,7 @@
 package mem.Enroll;
 
 public class EnrollDTO {
+	private String MEM_Code;
 	private String ID;
 	private String PW;
 	private String Name;
@@ -8,6 +9,8 @@ public class EnrollDTO {
 	private String Birth;
 	private String Mobile;
 	private String Addr;
+	private String approve;
+	
 	public String getID() {
 		return ID;
 	}
@@ -51,7 +54,19 @@ public class EnrollDTO {
 		this.Addr = addr;
 	}
 
-
+	public String getApprove() {
+		return approve;
+	}
+	
+	public void setApprove(String approve) {
+		this.approve = approve;
+	}
+	public String getMEM_Code() {
+		return MEM_Code;
+	}
+	public void setMEM_Code(String mEM_Code) {
+		MEM_Code = mEM_Code;
+	}
 	
 	
 	

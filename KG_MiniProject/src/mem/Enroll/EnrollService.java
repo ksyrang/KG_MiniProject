@@ -34,6 +34,7 @@ public class EnrollService {
 		String birth = birthTxt.getText();
 		String mobile = mobileTxt.getText();
 		String addr = addrTxt.getText();
+		String approve = "false";
 //		 label1 = labelTxt1.getTextFill;
 //		colorLabel1.setTextFill(Color.RED);
 //		colorLabel2.setTextFill(Color.RED);
@@ -53,20 +54,22 @@ public class EnrollService {
 			CommonService.Msg("필수 데이터 입니다.");
 			return;
 		}
-		EnrollDTO enrollDTOC = new EnrollDTO();
-		if(enrollDTOC.getID().equals(id)) {
-			CommonService.Msg("중복된 ID입니다.");
-		}
+//		EnrollDTO enrollDTOC = new EnrollDTO();
+//		if(enrollDTOC.getID().equals(id)) {
+//			CommonService.Msg("중복된 ID입니다.");
+//		}
 		
-		if(enrollDTOC.getMobile().equals(mobile)) {
+//		if(enrollDTOC.getMobile().equals(mobile)) {
 //			colorLabel2.setTextFill(Color.RED);
-		}
+//		}
 		
 		if(pw.equals(confirm)) {	
 			EnrollDAO enrollDAO = new EnrollDAO();
 			EnrollDTO enrollDTO = enrollDAO.SelectId(id);
 			if(enrollDTO == null) {
+
 				enrollDTO = new EnrollDTO();
+				enrollDTO.setMEM_Code("mem" + id);
 				enrollDTO.setID(id);
 				enrollDTO.setPW(pw);
 				enrollDTO.setName(name);
@@ -74,16 +77,16 @@ public class EnrollService {
 				enrollDTO.setBirth(birth);
 				enrollDTO.setMobile(mobile);
 				enrollDTO.setAddr(addr);
+				enrollDTO.setApprove(approve);
 				
 				enrollDAO.insert(enrollDTO);
-				CommonService.Msg(" 계정이 등록되었습니다.");
-			}
-			else {
-				CommonService.Msg("는/은 등록된 계정입니다.");
-			}
-		}else {
+				CommonService.Msg(id + " 계정이 등록되었습니다.");
+			}else {
+				CommonService.Msg(id + "는/은 등록된 계정입니다.");
+				}
+//		}else {
 //			colorLabel1.setTextFill(Color.RED);
-			CommonService.Msg("비밀번호가 일치하지 않습니다.");
+//			CommonService.Msg("비밀번호가 일치하지 않습니다.");
 		}
 	}
 }

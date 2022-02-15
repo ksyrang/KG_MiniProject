@@ -11,6 +11,22 @@ public class TrnDTO {
 	private int TRAINER_Career;
 	private String TRAINER_Addr;
 	
+	public TrnDTO() {
+		// TODO Auto-generated constructor stub
+	}
+	public TrnDTO(String tRAINER_Code, String tRAINER_Name, String tRAINER_ID, String tRAINER_PW, String tRAINER_Gender,
+			int tRAINER_Birth, int tRAINER_Mobile, int tRAINER_Career, String tRAINER_Addr) {
+		super();
+		TRAINER_Code = tRAINER_Code;
+		TRAINER_Name = tRAINER_Name;
+		TRAINER_ID = tRAINER_ID;
+		TRAINER_PW = tRAINER_PW;
+		TRAINER_Gender = tRAINER_Gender;
+		TRAINER_Birth = tRAINER_Birth;
+		TRAINER_Mobile = tRAINER_Mobile;
+		TRAINER_Career = tRAINER_Career;
+		TRAINER_Addr = tRAINER_Addr;
+	}
 	public String getTRAINER_Code() {
 		return TRAINER_Code;
 	}

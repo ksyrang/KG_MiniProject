@@ -5,26 +5,30 @@ import java.util.ArrayList;
 import common.CommonService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 public class ExProgramMgtService {
 	ExProgramMgtDAO exprogramDao;
-	public ListView<String> programListView;
+	ListView<String> programListView;
+	private String selectData;
 	
-	
+	//실행 시 리스트 업
 	public void listUp(ListView<String> programListView) {
 		this.programListView = programListView;
 		exprogramDao = new ExProgramMgtDAO();
-		ArrayList<String> allProgram = exprogramDao.allProgram();
+		ObservableList<String> allProgram = exprogramDao.allProgram();
+//		ArrayList<String> allProgram = exprogramDao.allProgram();
 		programListView.getItems().addAll(allProgram);
 	}
 	
 	//등록
-	public void exProgramInsertProc(Parent exProgramMgtForm) {
+	public void insertProc(Parent exProgramMgtForm) {
 		
 		ListView<String> listView = this.programListView;
 		TextField addProgramText = (TextField) exProgramMgtForm.lookup("#addProgramText");
@@ -49,6 +53,21 @@ public class ExProgramMgtService {
 	}
 	
 	
+	public void deleteProc(Parent exProgramMgtForm) {
+
+		exprogramDao = new ExProgramMgtDAO();
+		if(exprogramDao.selectDelete(this.selectData)==1) {
+			CommonService.Msg("EX프로그램 삭제 완료");
+		}else {
+			CommonService.Msg("EX프로그램 삭제 실패");
+		}
+		
+		exprogramDao = new ExProgramMgtDAO();
+		ObservableList<String> allProgram = exprogramDao.allProgram();
+		ListView<String> listView = (ListView<String>) exProgramMgtForm.lookup("#programListView");
+		listView.getItems().addAll(allProgram);
+		
+	}
 	
 
 	//수정
@@ -79,5 +98,14 @@ public class ExProgramMgtService {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	public void setSelectData(String selectData) {
+		this.selectData = selectData;
+		
+	}
+
+
+
 
 }

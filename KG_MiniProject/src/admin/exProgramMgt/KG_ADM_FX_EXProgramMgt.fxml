@@ -47,21 +47,29 @@
       </HBox>
    </top>
    <bottom>
-      <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" orientation="VERTICAL" prefHeight="50.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" orientation="VERTICAL" prefHeight="90.0" prefWidth="900.0">
          <children>
-            <Button fx:id="insertButton" mnemonicParsing="false" onAction="#exProgramInsertProc" prefHeight="30.0" prefWidth="200.0" text="프로그램 등록">
-               <FlowPane.margin>
-                  <Insets left="10.0" right="80.0" />
-               </FlowPane.margin></Button>
-            <Button fx:id="modifyButton" mnemonicParsing="false" onAction="#exProgramModifyProc" prefHeight="30.0" prefWidth="200.0" text="EX  프로그램 수정" />
-            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#exProgramDeleteProc" prefHeight="30.0" prefWidth="200.0" text="EX 프로그램 삭제">
-               <FlowPane.margin>
-                  <Insets left="30.0" />
-               </FlowPane.margin></Button>
-            <Button fx:id="cancleButton" mnemonicParsing="false" onAction="#exProgramCancleProc" prefHeight="30.0" prefWidth="100.0" text="이전">
-               <FlowPane.margin>
-                  <Insets left="30.0" />
-               </FlowPane.margin></Button>
+            <HBox prefHeight="90.0" prefWidth="900.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="90.0" prefWidth="241.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="insertButton" mnemonicParsing="false" onAction="#insertProc" prefHeight="30.0" prefWidth="200.0" text="프로그램 등록" />
+                        <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteProc" prefHeight="30.0" prefWidth="200.0" text="프로그램 삭제" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button fx:id="cancleButton" mnemonicParsing="false" onAction="#exProgramCancleProc" prefHeight="30.0" prefWidth="100.0" text="이전" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets left="500.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
       </FlowPane>
    </bottom>
@@ -217,6 +225,12 @@
                               </Label>
                            </children>
                         </HBox>
+                        <VBox alignment="CENTER" prefHeight="90.0" prefWidth="248.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="exmodifyButton" mnemonicParsing="false" onAction="#exProgramModifyProc" prefHeight="30.0" prefWidth="150.0" text="EX  프로그램 수정" />
+                              <Button fx:id="exDeleteButton" mnemonicParsing="false" onAction="#exProgramDeleteProc" prefHeight="30.0" prefWidth="150.0" text="EX 프로그램 삭제" />
+                           </children>
+                        </VBox>
                      </children>
                   </VBox>
                </children>

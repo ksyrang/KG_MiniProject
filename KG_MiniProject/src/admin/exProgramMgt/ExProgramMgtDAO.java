@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class ExProgramMgtDAO {
 	private Connection con;
 
@@ -23,12 +26,13 @@ public class ExProgramMgtDAO {
 		}
 	}
 
-	public ArrayList<String> allProgram() {
-		
+//	public ArrayList<String> allProgram() {
+	public ObservableList<String> allProgram() {	
 		String sql = "SELECT PRM_Name FROM PRM_TB";
 		PreparedStatement ps;
 		ResultSet rs;
-		ArrayList<String> allProgram = new ArrayList<String> ();
+		ObservableList<String> allProgram = FXCollections.observableArrayList();
+//		ArrayList<String> allProgram = new ArrayList<String> ();
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -78,6 +82,22 @@ public class ExProgramMgtDAO {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	public int selectDelete(String selectData) {
+		String sql = "DELETE FROM PRM_TB WHERE PRM_Name=?";
+		PreparedStatement ps;
+		int result = 0;
+
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, selectData);
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+		
 	}
 
 

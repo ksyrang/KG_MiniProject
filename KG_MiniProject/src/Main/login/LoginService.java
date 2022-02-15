@@ -12,6 +12,7 @@ public class LoginService {
 	private Controller controller;
 	
 	private String job;
+	private String welcomepage;
 	// 로그인 버튼 클릭 시 호출
 	public LoginDTO loginProc(Parent mainForm) {
 		TextField idText = (TextField) mainForm.lookup("#idText");
@@ -34,21 +35,17 @@ public class LoginService {
 		if(job.equals("관리자") || job.equals("회원")) {
 			loginDto = loginDao.SelectMemberId(idText.getText());
 			if(loginDto != null && loginDto.getMEM_PW().equals(pwText.getText())) {
-				
 				if(job.equals("관리자"))
-					CommonService.Msg("관리자 계정 로그인 성공");
+					welcomepage = "adminWelcome"; //관리자
 				else if(job.equals("회원"))
-//					controller.setUserCode(loginDto.getMEM_Code());
-					CommonService.Msg("회원 계정 로그인 성공");
+					welcomepage = "memberWelcome";	//회원
 			}else {
 				CommonService.Msg("로그인 실패");
 			}
 		}else if(job.equals("강사")) {
 			loginDto = loginDao.SelectTrainerId(idText.getText());
 			if(loginDto != null && loginDto.getTRAINER_PW().equals(pwText.getText())) {
-//				controller.setUserCode("0");
-//				controller.setUserCode(loginDto.getTRAINER_Code());
-				CommonService.Msg("강사 계정 로그인 성공");
+				welcomepage = "trainerWelcome";//강사
 			}else {
 				CommonService.Msg("로그인 실패");
 			}
@@ -58,9 +55,11 @@ public class LoginService {
 		return loginDto;
 	}
 	
-	public String job() {
+	public String getjob() {
 		return job;
 	}
-	
+	public String getpage() {
+		return welcomepage;
+	}
 	
 }

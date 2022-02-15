@@ -13,7 +13,16 @@ public class LoginController implements Initializable{
 	private Parent mainForm;
 	private LoginService loginSvc;
 	private Controller controller;
+	private String UserCode;
 	
+	public String getUserCode() {
+		return UserCode;
+	}
+	public void setUserCode(String userCode) {
+		UserCode = userCode;
+	}
+
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.loginSvc = new LoginService();
@@ -31,15 +40,21 @@ public class LoginController implements Initializable{
 	//로그인 버튼 클릭 시 호출
 	public void loginProc() {
 		LoginDTO loginDto = loginSvc.loginProc(mainForm);
-		String job = loginSvc.job();
+		String job = loginSvc.getjob();
 		if(loginDto != null) {
 			CommonService.WindowClose(mainForm);
-			if(job.equals("회원"))
-				controller.open("memberWelcome");
-			else if(job.equals("강사"))
-				controller.open("trainerWelcome");
-			else if(job.equals("관리자"))
-				controller.open("adminWelcome");
+			if(job.equals("회원")) {
+				controller.open(loginSvc.getpage());
+				CommonService.Msg("회원 계정 로그인 성공");
+			}
+			else if(job.equals("강사")) {
+				controller.open(loginSvc.getpage());
+				CommonService.Msg("강사 계정 로그인 성공");
+			}
+			else if(job.equals("관리자")) {
+				controller.open(loginSvc.getpage());
+				CommonService.Msg("관리자 계정 로그인 성공");
+			}
 		}
 	}
 	

@@ -81,6 +81,7 @@ public class Controller {
 	}
 	
 	
+	
 	public void open(String division) {
 		if("adminWelcome".equals(division)) {
 			mainService.adminWelcomeOpen();

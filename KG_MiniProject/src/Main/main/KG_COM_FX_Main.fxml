@@ -117,20 +117,13 @@
                         <Insets left="30.0" />
                      </HBox.margin>
                   </RadioButton>
-                  <Button fx:id="findIDButton" mnemonicParsing="false" onAction="#findIDProc" text="아이디 찾기">
-                     <HBox.margin>
-                        <Insets left="100.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </Button>
+                  <Label fx:id="FindIDLabel" onMouseClicked="#findIDProc" text="아이디 찾기" />
                   <Label text="/">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Label prefHeight="18.0" prefWidth="94.0" text="비밀번호 찾기">
+                  <Label fx:id="findPWLabel" prefHeight="18.0" prefWidth="94.0" text="비밀번호 찾기">
                      <font>
                         <Font size="14.0" />
                      </font>

@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class HelthProgramMgtDAO {
 	private Connection con;
 	public HelthProgramMgtDAO() {
@@ -16,10 +19,32 @@ public class HelthProgramMgtDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			con = DriverManager.getConnection(url, user, password);
-			System.out.println("DB 연동 성공");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	// 헬스 회원권 모두 보기
+	public ObservableList<HelthProgramMgtDTO> getAllPro() {
+		String sql = "SELECT * FROM memship_tb";
+		PreparedStatement ps;
+		ResultSet rs;
+		ObservableList<HelthProgramMgtDTO> helthPro = FXCollections.observableArrayList();
+		
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				HelthProgramMgtDTO helthProMgtDto = new HelthProgramMgtDTO();
+				helthProMgtDto.setMemship_code(rs.getString("memship_code"));
+				helthProMgtDto.setMemship_type(rs.getString("memship_type"));
+				helthProMgtDto.setMemship_price(rs.getInt("memship_price"));
+				helthPro.add(helthProMgtDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return helthPro;
 	}
 	
 	// 회원권 중복 체크

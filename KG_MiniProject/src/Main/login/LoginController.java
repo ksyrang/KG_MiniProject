@@ -28,7 +28,6 @@ public class LoginController implements Initializable{
 		this.loginSvc = new LoginService();
 	}
 	
-	
 	public void setController(Controller controller) {
 		this.controller = controller;
 	}

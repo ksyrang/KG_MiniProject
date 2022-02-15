@@ -17,12 +17,12 @@ public class testmain {
 //		testResTB(Res_Code);
 		String Mem_Code = "mem01";
 //		String Mem_Code = "All";
-//		testMemTB(Mem_Code);
+		testMemTB(Mem_Code);
 		
-		CmnMemDAO CmnMemDAO = new CmnMemDAO();
-		CmnMemDTO CmnMemDTO = new CmnMemDTO(CmnMemDAO.SltResOne(Mem_Code));
-		CmnMemDTO.setMEM_Code("mem02");
-		System.out.println(CmnMemDAO.IstMem(CmnMemDTO));
+//		CmnMemDAO CmnMemDAO = new CmnMemDAO();
+//		CmnMemDTO CmnMemDTO = new CmnMemDTO(CmnMemDAO.SltResOne(Mem_Code));
+//		CmnMemDTO.setMEM_Code("mem02");
+//		System.out.println(CmnMemDAO.IstMem(CmnMemDTO));
 		
 		
 //		CmnPayDAO CmnPayDAO = new CmnPayDAO();

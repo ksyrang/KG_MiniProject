@@ -7,7 +7,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 
 public class TrnExpEnrollController implements Initializable {
-	public Parent trnExpEnrollForm;
+	private TrnExPEnrollService trnExPEnrollService;
+	private Parent trnExpEnrollForm;
+	private String trnCode;
+	
+	public TrnExpEnrollController() {
+		trnExPEnrollService = new TrnExPEnrollService();
+	}
+	
+	public void setTrnCode(String trnCode) {
+		this.trnCode = trnCode;
+	}
 	
 	public void setTrnExpEnrollForm(Parent trnExpEnrollForm) {
 		this.trnExpEnrollForm = trnExpEnrollForm;
@@ -17,6 +27,9 @@ public class TrnExpEnrollController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		
+	}
+	public void BackProc() {
+		trnExPEnrollService.BackProc(trnExpEnrollForm);
 	}
 	
 }

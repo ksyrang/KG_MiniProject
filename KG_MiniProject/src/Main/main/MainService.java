@@ -55,7 +55,7 @@ public class MainService {
 		}
 	}
 	
-	public void trainerWelcomeOpen() {
+	public void trainerWelcomeOpen(String UserCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/trn/Welcome/KG_TRN_FX_Welcome.fxml"));
 		Parent trainerWelcomeForm;
 		try {
@@ -64,6 +64,7 @@ public class MainService {
 			//trainer welcome form 참조값을 trainer package로 이동
 			controller.setTrnWelcomeController(loader.getController());
 			controller.getTrnWelcomeController().setTrnWelcomeForm(trainerWelcomeForm);
+			controller.getTrnWelcomeController().setTrnCode(UserCode);
 //			Label titleUserName = (Label)trainerWelcomeForm.lookup("#TitleNameLabel"); 
 //			titleUserName.setText(null);
 			

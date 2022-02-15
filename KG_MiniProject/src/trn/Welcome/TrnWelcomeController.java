@@ -39,7 +39,6 @@ public class TrnWelcomeController implements Initializable {
     @FXML private Button Backbtn;
     
     private ObservableList<TrnTbVDTO> Tablelist;
-	private Controller controller;
 	private TrnWelcomeService WelcomeService;
 	private TrnWelcomeController trnWelcomeController;
 	private TrnMgtController trnMgtController;
@@ -122,7 +121,7 @@ public class TrnWelcomeController implements Initializable {
 	}
 	
 	public void TrnClickProc() {
-		WelcomeService.TrnMgtOpen();
+		WelcomeService.TrnMgtOpen(trnCode);
 	}
 	//프로그램이 플릭될때
 	public void programclickPro() {
@@ -130,11 +129,11 @@ public class TrnWelcomeController implements Initializable {
 	}
 	
 	public void ExPEnrollProc() {
-		WelcomeService.ExPEnrollOpen();
+		WelcomeService.ExPEnrollOpen(trnCode);
 	}
 	
 	public void ExPMgtProc() {
-		WelcomeService.ExPMgtOpen();
+		WelcomeService.ExPMgtOpen(trnCode);
 	}
 	
 	public void BackProc() {

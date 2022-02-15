@@ -16,23 +16,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import trn.DBDAO.TrnTrainerDAO;
 import trn.DBDTO.TrnTrainerDTO;
-import trn.TrnMgt.TrnMgtController;
-import trn.TrnMgt.TrnMgtService;
 
 public class TrnWelcomeService {
 	
 	private TrnWelcomeController trnWelcomeController;
-	private String trnCode;
-	private TrnMgtController trnMgtController;
+
 	private ObservableList<TrnTbVDTO> list = FXCollections.observableArrayList(
 			new TrnTbVDTO("hellocode", "hellocode","hellocode"),
 			new TrnTbVDTO("hellocode2", "helloname2","hellomems2")
 			);
-	
-	public void setTrnCode(String trnCode) {
-		this.trnCode = trnCode;
-	}
-	
+		
 	public void setTrnWelcomeController(TrnWelcomeController trnWelcomeController) {
 		this.trnWelcomeController = trnWelcomeController;
 	}
@@ -48,7 +41,7 @@ public class TrnWelcomeService {
 	}
 
 	//강사정보페이지
-	public void TrnMgtOpen() {
+	public void TrnMgtOpen(String trnCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/trn/TrnMgt/KG_TRN_FX_Mgt.fxml"));
 		Parent trnMgtForm;
 		try {
@@ -56,11 +49,11 @@ public class TrnWelcomeService {
 			trnWelcomeController.setTrnMgtController(loader.getController());
 			trnWelcomeController.getTrnMgtController().setTrnMgtForm(trnMgtForm);
 			trnWelcomeController.getTrnMgtController().setTrnCode(trnCode);
-			trnCode = "0";
+//			trnCode = "0";
 			//초기 표시 설정
 			TrnTrainerDTO tmptrnDTO = new TrnTrainerDAO().SelectTrnInfo(trnCode);
 			Label IDDis = (Label)trnMgtForm.lookup("#IDDisplay");//아이디표시
-			IDDis.setText(tmptrnDTO.getTRAINER_Name());
+//			IDDis.setText(tmptrnDTO.getTRAINER_Name());
 //			IDDis.setText(tmpDTO.getTRAINER_ID());
 //			TextField NameField = (TextField)trnMgtForm.lookup("#TrnNameField");//기존 이름 표시
 //			NameField.setText(tmpDTO.getTRAINER_Name());
@@ -85,14 +78,14 @@ public class TrnWelcomeService {
 	}
 	
 	//프로그램 개설 페이지
-	public void ExPEnrollOpen() {
+	public void ExPEnrollOpen(String trnCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/trn/ExprogramEnroll/KG_TRN_FX_EXProgramEnroll.fxml"));
 		Parent trnExPEnrollFrom;
 		try {
 			trnExPEnrollFrom= loader.load();
 			trnWelcomeController.setTrnExpEnrollController(loader.getController());
 			trnWelcomeController.getTrnExpEnrollController().setTrnExpEnrollForm(trnExPEnrollFrom);
-//			trnWelcomeController.getTrnExpEnrollController().setTrnCode(trnCode);			
+			trnWelcomeController.getTrnExpEnrollController().setTrnCode(trnCode);			
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnExPEnrollFrom));
 			stage.setTitle("trnExPEnroll");
@@ -103,14 +96,14 @@ public class TrnWelcomeService {
 	}
 	
 	//프로그램 관리 페이지
-	public void ExPMgtOpen() {
+	public void ExPMgtOpen(String trnCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/trn/EXProgramMgt/KG_TRN_FX_EXProgramMgt.fxml"));
 		Parent trnExPMgtFrom;
 		try {
 			trnExPMgtFrom = loader.load();
 			trnWelcomeController.setTrnExpMgtController(loader.getController());
 			trnWelcomeController.getTrnExpMgtController().setTrnExProgramMgtForm(trnExPMgtFrom);
-//			trnWelcomeController.getTrnExpMgtController().setTrnCode(trnCode);
+			trnWelcomeController.getTrnExpMgtController().setTrnCode(trnCode);
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnExPMgtFrom));
 			stage.setTitle("trnExPEnroll");

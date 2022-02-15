@@ -17,8 +17,7 @@ public class TrnMgtController implements Initializable {
 	private Parent trnMgtForm;
 	
 	public TrnMgtController() {
-		TrnMgtSvc = new TrnMgtService();
-		
+		TrnMgtSvc = new TrnMgtService();	
 	}
 	
 	public void setTrnMgtForm(Parent trnMgtForm) {

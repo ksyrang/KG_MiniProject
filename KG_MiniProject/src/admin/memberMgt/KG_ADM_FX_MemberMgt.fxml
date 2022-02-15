@@ -188,8 +188,8 @@
                               </Label>
                               <VBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="99.0" spacing="5.0">
                                  <children>
-                                    <RadioButton mnemonicParsing="false" text="남" />
-                                    <RadioButton mnemonicParsing="false" text="여" />
+                                    <RadioButton fx:id="menradio" mnemonicParsing="false" text="남" />
+                                    <RadioButton fx:id="womenradio" mnemonicParsing="false" text="여" />
                                  </children>
                                  <HBox.margin>
                                     <Insets left="10.0" />

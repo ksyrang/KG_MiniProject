@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javafx.scene.Parent;
+
 //import Main.login.LoginDTO;
 
 public class EnrollDAO {
@@ -37,14 +39,14 @@ public class EnrollDAO {
 				EnrollDTO enrDTO = new EnrollDTO();
 				
 
-				enrDTO.setID(rs.getString("ID"));
-				enrDTO.setPW(rs.getString("PW"));
-				enrDTO.setName(rs.getString("Name"));
-				enrDTO.setGender(rs.getString("gender"));
-				enrDTO.setBirth(rs.getString("Birth"));
-				enrDTO.setMobile(rs.getString("Mobile"));
-				enrDTO.setAddr(rs.getString("Addr"));
-				enrDTO.setApprove(rs.getString("approve"));
+				enrDTO.setID(rs.getString("mem_ID"));
+				enrDTO.setPW(rs.getString("mem_PW"));
+				enrDTO.setName(rs.getString("mem_Name"));
+				enrDTO.setGender(rs.getString("mem_gender"));
+				enrDTO.setBirth(rs.getString("mem_Birth"));
+				enrDTO.setMobile(rs.getString("mem_Mobile"));
+				enrDTO.setAddr(rs.getString("mem_Addr"));
+				enrDTO.setApprove(rs.getString("mem_approve"));
 				return enrDTO;
 			}
 		} catch (Exception e) {

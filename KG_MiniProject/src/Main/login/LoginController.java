@@ -46,7 +46,7 @@ public class LoginController implements Initializable{
 	
 	//회원가입 버튼 클릭 시 호출
 	public void joinProc() {		
-			CommonService.WindowClose(mainForm);
+	//		CommonService.WindowClose(mainForm);
 			controller.open("memberJoin");
 		}
 	

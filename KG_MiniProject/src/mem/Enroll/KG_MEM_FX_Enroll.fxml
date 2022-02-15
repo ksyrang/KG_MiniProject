@@ -50,7 +50,7 @@
                         <Insets left="25.0" top="13.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#enrollConfirmProc" text="중복확인">
+                  <Button fx:id="confirmButton" mnemonicParsing="false"  text="중복확인">
                      <HBox.margin>
                         <Insets left="25.0" top="13.0" />
                      </HBox.margin>

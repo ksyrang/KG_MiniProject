@@ -5,10 +5,14 @@ import java.util.ResourceBundle;
 import common.CommonService;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.TextField;
+
 
 public class EnrollController implements Initializable{
+
 	private Parent memberJoinForm;
 	private EnrollService enrollService;
+	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -23,14 +27,25 @@ public class EnrollController implements Initializable{
 	
 	// 아이디 중복확인 클릭 시 동작.
 	public void enrollConfirmProc() {
-		CommonService.Msg("사용 가능한 ID입니다.");
+		
+		TextField idTxt = (TextField) memberJoinForm.lookup("#idTxt");
+		String id = idTxt.getText();
+		System.out.println(id);
+		EnrollDAO enrollDAO = new EnrollDAO();
+		EnrollDTO enrollDTO = enrollDAO.SelectId(id);
+		if(id.equals(enrollDTO.getID())) {
+			CommonService.Msg("중복된 ID입니다.");
+		
+		}else {
+			CommonService.Msg("사용 가능한 ID입니다.");
+		}
 	}
 	
 	// 회원 가입 버튼 클릭 시 동작.
-	public void enrollProc() {
-		enrollService.insert(memberJoinForm);
+//	public void enrollProc() {
+//		enrollService.insert(memberJoinForm);
 		
-	}
+//	}
 	
 	// 취소 버튼 클릭 시 동작.
 	public void enrollCancelProc() {

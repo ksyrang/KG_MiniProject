@@ -80,6 +80,7 @@ public class Controller {
 		this.memberFindIDForm = memberFindIDForm;
 	}
 	
+	
 	public void open(String division) {
 		if("adminWelcome".equals(division)) {
 			mainService.adminWelcomeOpen();

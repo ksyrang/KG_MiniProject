@@ -106,7 +106,7 @@ public class MainService {
 			try {
 				memberFindIDForm = loader.load();
 				controller.setMemberFindIDForm(memberFindIDForm);
-				controller.setEnrollController(loader.getController());
+				controller.setFindIDController(loader.getController());
 				
 				Scene scene = new Scene(memberFindIDForm);
 				Stage primaryStage = new Stage();

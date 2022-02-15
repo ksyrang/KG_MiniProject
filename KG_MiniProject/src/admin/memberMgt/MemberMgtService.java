@@ -1,7 +1,5 @@
 package admin.memberMgt;
 
-import java.util.ArrayList;
-
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
@@ -9,24 +7,17 @@ import javafx.scene.control.TableView;
 
 public class MemberMgtService {
 
-	@FXML
-	private TableView<MemberMgtDTO> memberMgtTabel;
-	@FXML
-	private TableColumn colCode;
-	@FXML
-	private TableColumn colName;
+	@FXML private TableView<MemberMgtDTO> memberMgtTabel;
+	@FXML private TableColumn colCode;
+	@FXML private TableColumn colName;
+	@FXML private TableColumn colApprove;
+	
 
 	// 필터
 	public void filter(String combo) {
-		ArrayList<MemberMgtDTO> member = new ArrayList<MemberMgtDTO>();
-		MemberMgtDAO memberMgtDao = new MemberMgtDAO();
 		
 		if (combo.equals("전체보기")) {
 			System.out.println("전체보기");
-			member = memberMgtDao.getAllMemberList();
-			for(MemberMgtDTO m : member) {
-				System.out.println(m.getMem_code() + "/" + m.getMem_name());
-			}
 		} else if (combo.equals("승인여부")) {
 			System.out.println("승인여부");
 		}

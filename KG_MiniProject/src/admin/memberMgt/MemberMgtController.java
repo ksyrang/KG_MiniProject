@@ -31,8 +31,7 @@ public class MemberMgtController implements Initializable{
 		idtxt.setEditable(false);
 		nametxt.setEditable(false);
 		
-		
-		
+		filterCombo.setValue("전체보기");
 	}
 	
 	public void setMemberMgtForm(Parent memberMgtForm) {
@@ -44,7 +43,6 @@ public class MemberMgtController implements Initializable{
 		System.out.println("콤보 박스");
 		String combo = filterCombo.getValue();
 		System.out.println(combo);
-		
 		memberMgtSvc.filter(combo);
 	}
 	

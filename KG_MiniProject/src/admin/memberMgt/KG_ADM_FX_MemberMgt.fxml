@@ -81,7 +81,7 @@
                            <columns>
                               <TableColumn fx:id="colCode" prefWidth="150.0" text="회원코드" />
                               <TableColumn fx:id="colName" prefWidth="110.0" text="이름" />
-                              <TableColumn prefWidth="90.0" text="승인여부" />
+                              <TableColumn fx:id="colApprove" prefWidth="90.0" text="승인여부" />
                            </columns>
                         </TableView>
                      </children>

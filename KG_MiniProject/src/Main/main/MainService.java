@@ -2,13 +2,10 @@ package Main.main;
 
 import java.io.IOException;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import trn.Welcome.TrnTbVDTO;
 
 //새로운 창 오픈을 위한 메인 서비스 클래스
 public class MainService {
@@ -62,11 +59,13 @@ public class MainService {
 			controller.setTrnWelcomeController(loader.getController());
 			controller.getTrnWelcomeController().setTrnWelcomeForm(trainerWelcomeForm);
 			
-			TableView<TrnTbVDTO> CurrentExPTable = (TableView<TrnTbVDTO>)trainerWelcomeForm.lookup("#CurrentProgramTableList");
 			
+<<<<<<< HEAD
 			
 			
 			CurrentExPTable.setItems(null);
+=======
+>>>>>>> refs/remotes/origin/develop
 			
 			Scene scene = new Scene(trainerWelcomeForm);
 			Stage primaryStage = new Stage();

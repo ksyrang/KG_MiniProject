@@ -2,19 +2,17 @@ package mem.Enroll;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import mem.Enroll.EnrollService;
 import common.CommonService;
-import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
-import javafx.scene.input.InputMethodEvent;
-import javafx.scene.paint.Color;
+
+
 
 
 
 public class EnrollController implements Initializable{
-	private Parent KG_MEM_FX_Enroll;
+	private Parent memberJoinForm;
 	private EnrollService enrollService;
 	
 	@Override
@@ -22,8 +20,8 @@ public class EnrollController implements Initializable{
 		enrollService = new EnrollService();
 	}
 	
-	public void setEnrollForm(Parent KG_MEM_FX_Enroll) {
-		this.KG_MEM_FX_Enroll = KG_MEM_FX_Enroll;
+	public void setEnrollForm(Parent memberJoinForm) {
+		this.memberJoinForm = memberJoinForm;
 	}
 	
 	// 아이디 중복확인 클릭 시 동작.
@@ -33,12 +31,12 @@ public class EnrollController implements Initializable{
 	
 	// 회원 가입 버튼 클릭 시 동작.
 	public void enrollProc() {
-		enrollService.insert(KG_MEM_FX_Enroll);
+		enrollService.insert(memberJoinForm);
 	}
 	
 	// 취소 버튼 클릭 시 동작.
 	public void enrollCancelProc() {
-		CommonService.WindowClose(KG_MEM_FX_Enroll);
+		CommonService.WindowClose(memberJoinForm);
 	}
 	
 //	public final void setOnInputMethodTextChanged1(EventHandler<? super InputMethodEvent> value) {

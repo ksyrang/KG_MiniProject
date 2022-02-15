@@ -64,7 +64,6 @@ public class MainService {
 			
 			TableView<TrnTbVDTO> CurrentExPTable = (TableView<TrnTbVDTO>)trainerWelcomeForm.lookup("#CurrentProgramTableList");
 			
-			ObservableList<TrnTbVDTO> initialtable 
 			
 			
 			CurrentExPTable.setItems(null);

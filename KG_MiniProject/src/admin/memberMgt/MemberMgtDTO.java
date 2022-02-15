@@ -9,6 +9,8 @@ public class MemberMgtDTO {
 	private String mem_birth;
 	private String mem_mobile;
 	private String mem_addr;
+	private String mem_approve;
+	
 	public String getMem_code() {
 		return mem_code;
 	}
@@ -58,7 +60,13 @@ public class MemberMgtDTO {
 		this.mem_addr = mem_addr;
 	}
 	
+	public String getMem_approve() {
+		return mem_approve;
+	}
 	
+	public void setMem_approve(String mem_approve) {
+		this.mem_approve = mem_approve;
+	}
 	
 
 }

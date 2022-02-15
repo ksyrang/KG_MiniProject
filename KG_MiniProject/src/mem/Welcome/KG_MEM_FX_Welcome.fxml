@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mem.Welcome.MEM_WelcomeController">
    <top>
       <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
@@ -32,7 +32,7 @@
                   <Insets left="600.0" top="12.5" />
                </HBox.margin>
             </Label>
-            <Button mnemonicParsing="false" text="logout">
+            <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#logoutProc" text="logout">
                <HBox.margin>
                   <Insets left="20.0" top="12.5" />
                </HBox.margin>
@@ -43,9 +43,9 @@
    <bottom>
       <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="100.0" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="회원권" />
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="EX프로그램" />
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="취소" />
+            <Button fx:id="healthProgramBuyingBtn" mnemonicParsing="false" onAction="#healthProgramBuyingProc" prefHeight="30.0" prefWidth="100.0" text="회원권" />
+            <Button fx:id="exProgramBuyingBtn" mnemonicParsing="false" onAction="#exProgramBuyingProc" prefHeight="30.0" prefWidth="100.0" text="EX프로그램" />
+            <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#cancelProc" prefHeight="30.0" prefWidth="100.0" text="취소" />
          </children>
       </FlowPane>
    </bottom>

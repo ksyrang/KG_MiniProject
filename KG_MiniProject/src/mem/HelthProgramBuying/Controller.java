@@ -2,14 +2,14 @@ package mem.HelthProgramBuying;
 
 import javafx.scene.Parent;
 
-public class MEM_HealthProgramBuyingController {
+public class Controller {
 //	private MEM_HealthProgramBuyingController HPBuyingController;
-	private MEM_HealthProgramBuyingService HPBuyingService;
+	private Service HPBuyingService;
 	private Parent HPBuyingForm;
 	
-	public MEM_HealthProgramBuyingController() {
+	public Controller() {
 		System.out.println("Check 1");
-		HPBuyingService = new MEM_HealthProgramBuyingService();
+		HPBuyingService = new Service();
 		System.out.println("Check 2");
 		HPBuyingService.setHPBuyingController(this);
 		System.out.println("Check 3");

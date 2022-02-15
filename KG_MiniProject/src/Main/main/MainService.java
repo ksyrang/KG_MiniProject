@@ -84,7 +84,7 @@ public class MainService {
 		Parent memberJoinForm;
 		try {
 			memberJoinForm = loader.load();
-			controller.setmemberJoinForm(memberJoinForm);
+			controller.setMemberJoinForm(memberJoinForm);
 			controller.setEnrollController(loader.getController());
 			controller.settingEnroll();
 			
@@ -96,6 +96,26 @@ public class MainService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}	
+	
+		public void memberFindIDOpen() {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/FindID/KG_MEM_FX_FindID.fxml"));
+			Parent memberFindIDForm;
+			try {
+				memberFindIDForm = loader.load();
+				controller.setMemberFindIDForm(memberFindIDForm);
+				controller.setEnrollController(loader.getController());
+				controller.settingEnroll();
+				
+				Scene scene = new Scene(memberFindIDForm);
+				Stage primaryStage = new Stage();
+				primaryStage.setTitle("memberFindID");
+				primaryStage.setScene(scene);
+				primaryStage.show();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		
 	}
 	
 	public void memberFindIDOpen() {

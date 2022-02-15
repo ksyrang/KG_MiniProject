@@ -10,6 +10,7 @@ import trn.Welcome.TrnWelcomeController;
 public class Controller {
 	private LoginController loginController;
 	private EnrollController enrollController;
+	private FindIDController findIDController;
 	private MainService mainService;
 	private Parent adminWelcomeForm;
 	private Parent memberWelcomeForm;
@@ -20,7 +21,8 @@ public class Controller {
 	private Parent memberFindIDForm;
 	
 	/**Trainer package controller**/
-	private TrnWelcomeController trnWelcomeController;	
+	private TrnWelcomeController trnWelcomeController;
+	private Parent memberFindIDForm;	
 	/******************************/
 	
 	public Controller() {
@@ -62,10 +64,6 @@ public class Controller {
 		this.enrollController = enrollController;
 	}
 	
-	public EnrollController getEnrollController() {
-		return this.enrollController;
-	}
-	
 	public void setAdminWelcomeForm(Parent adminWelcomeForm) {
 		this.adminWelcomeForm = adminWelcomeForm;
 	}
@@ -75,7 +73,7 @@ public class Controller {
 	public void setTrinerWelcomeForm(Parent trainerWelcomeForm) {
 		this.trainerWelcomeForm = trainerWelcomeForm;
 	}
-	public void setmemberJoinForm(Parent memberJoinForm) {
+	public void setMemberJoinForm(Parent memberJoinForm) {
 		this.memberJoinForm = memberJoinForm;
 	}
 	
@@ -83,7 +81,9 @@ public class Controller {
 		this.enrollController.setEnrollForm(this.memberJoinForm);
 	}
 	
-	
+	public void setMemberFindIDForm(Parent memberFindIDForm) {
+		this.memberFindIDForm = memberFindIDForm;
+	}
 	
 	public void open(String division) {
 		if("adminWelcome".equals(division)) {

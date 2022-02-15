@@ -64,7 +64,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TableView fx:id="memshipTable" prefHeight="376.0" prefWidth="425.0">
+                        <TableView fx:id="memshipTable" onMouseClicked="#tableClick" prefHeight="376.0" prefWidth="425.0">
                           <columns>
                             <TableColumn fx:id="colCode" prefWidth="97.0" text="회원퀀 코드" />
                             <TableColumn fx:id="colType" prefWidth="204.0" text="회원권 종류" />

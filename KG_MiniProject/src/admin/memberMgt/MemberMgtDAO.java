@@ -58,6 +58,36 @@ public class MemberMgtDAO {
 		return null;
 	}
 	
+	// id 체크
+	public MemberMgtDTO selectId(String mem_id) {
+		String sql = "SELECT * FROM mem_tb WHERE mem_id= ?";
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, mem_id);
+			rs = ps.executeQuery();
+			MemberMgtDTO memberMgtDto = new MemberMgtDTO();
+			if(rs.next()) {
+				memberMgtDto.setMem_code(rs.getString("mem_code"));
+				memberMgtDto.setMem_id(rs.getString("mem_id"));
+				memberMgtDto.setMem_name(rs.getString("mem_name"));
+				memberMgtDto.setMem_pw(rs.getString("mem_pw"));
+				memberMgtDto.setMem_gender(rs.getString("mem_gender"));
+				memberMgtDto.setMem_birth(rs.getString("mem_birth"));
+				memberMgtDto.setMem_mobile(rs.getString("mem_mobile"));
+				memberMgtDto.setMem_addr(rs.getString("mem_addr"));
+				memberMgtDto.setMem_approve(rs.getString("mem_approve"));
+				
+				return memberMgtDto;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	// 회원 전체 보기
 	public ObservableList<MemberMgtDTO> getAllMemberList() {
 		String sql = "SELECT mem_code, mem_name, mem_approve FROM mem_tb";

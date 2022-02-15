@@ -58,7 +58,7 @@ public class HelthProgramMgtController implements Initializable{
 				HelthProTable ht = memshipTable.getSelectionModel().getSelectedItem();
 				healthSvc.cellClick(helthProgramMgtForm, ht.getColCode());
 			} catch (NullPointerException e2) {
-				CommonService.Msg("올바른 회원권을 선택해주세요.");
+				CommonService.Msg("회원권을 선택해주세요.");
 			}
 			
 		});

@@ -59,7 +59,6 @@ public class MemberMgtController implements Initializable{
 		//obserList.add(new MemberMgtTable("mem1", "회원1", "false"));
 		
 		memTable.setItems(obserList);
-		
 	}
 	
 	public void setMemberMgtForm(Parent memberMgtForm) {
@@ -74,8 +73,13 @@ public class MemberMgtController implements Initializable{
 	// 테이블뷰 행 클릭시 이벤트 처리
 	public void tableClick() {
 		memTable.setOnMouseClicked((MouseEvent e) -> {
-			MemberMgtTable mt = memTable.getSelectionModel().getSelectedItem();
-			memberMgtSvc.cellClick(memberMgtForm, mt.getColCode());
+			try {
+				MemberMgtTable mt = memTable.getSelectionModel().getSelectedItem();
+				memberMgtSvc.cellClick(memberMgtForm, mt.getColCode());
+			} catch (NullPointerException e2) {
+				CommonService.Msg("회원을 선택해주세요.");
+			}
+			
 		});
 	}
 	

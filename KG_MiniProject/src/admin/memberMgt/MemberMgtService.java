@@ -89,18 +89,33 @@ import javafx.scene.control.ToggleGroup;
 	public void approve(Parent memberMgtForm) {
 		TextField idfield = (TextField) memberMgtForm.lookup("#idtxt");
 		String id = idfield.getText();
-		memberMgtDao.approveUpdate(id);
 		
-		CommonService.Msg(id + " 회원님 가입 승인 완료");
-		ComboBox<String> comboBox = (ComboBox<String>) memberMgtForm.lookup("#filterCombo");
-		comboBox.setValue("전체보기");
-		ObservableList<MemberMgtTable> tableView = FXCollections.observableArrayList();
-		TableView<MemberMgtTable> allTable = (TableView<MemberMgtTable>) memberMgtForm.lookup("#memTable");
-		ObservableList<MemberMgtDTO> allList = memberMgtDao.getAllMemberList();
-		for(MemberMgtDTO m : allList) {
-			tableView.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), m.getMem_approve()));
+		try {
+			MemberMgtDTO memberMgtDto = memberMgtDao.selectId(id);
+			if (memberMgtDto != null) {
+				if (memberMgtDto.getMem_approve().equals("false")) {
+					memberMgtDao.approveUpdate(id);
+
+					CommonService.Msg(id + " 회원님 가입 승인 완료");
+					ComboBox<String> comboBox = (ComboBox<String>) memberMgtForm.lookup("#filterCombo");
+					comboBox.setValue("전체보기");
+					ObservableList<MemberMgtTable> tableView = FXCollections.observableArrayList();
+					TableView<MemberMgtTable> allTable = (TableView<MemberMgtTable>) memberMgtForm.lookup("#memTable");
+					ObservableList<MemberMgtDTO> allList = memberMgtDao.getAllMemberList();
+					for (MemberMgtDTO m : allList) {
+						tableView.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), m.getMem_approve()));
+					}
+					allTable.setItems(tableView);
+				} else {
+					CommonService.Msg("이미 승인된 회원입니다.");
+				}
+			} else {
+				CommonService.Msg("회원을 선택해주세요.");
+			}
+		} catch (NullPointerException e) {
+			CommonService.Msg("회원을 선택해주세요.");
 		}
-		allTable.setItems(tableView);
+		
 	}
 
 	// 회원 수정
@@ -128,39 +143,86 @@ import javafx.scene.control.ToggleGroup;
 			gender = "여";
 		}
 		
-		memberMgtDao.memberUpdate(id, name, pw, mobile, gender, addr);
-		CommonService.Msg(id + " 회원 수정 완료");
+		try {
+			if(name.isEmpty() || pw.isEmpty()) {
+				CommonService.Msg("이름과 비밀번호는 필수입니다.");
+			}else {
+				MemberMgtDTO memberMgtDto = memberMgtDao.selectId(id);
+				if (memberMgtDto != null) {
+					memberMgtDao.memberUpdate(id, name, pw, mobile, gender, addr);
+					CommonService.Msg(id + " 회원 수정 완료");
 
-		ComboBox<String> comboBox = (ComboBox<String>) memberMgtForm.lookup("#filterCombo");
-		comboBox.setValue("전체보기");
-		ObservableList<MemberMgtTable> tableView = FXCollections.observableArrayList();
-		TableView<MemberMgtTable> allTable = (TableView<MemberMgtTable>) memberMgtForm.lookup("#memTable");
-		ObservableList<MemberMgtDTO> allList = memberMgtDao.getAllMemberList();
-		for (MemberMgtDTO m : allList) {
-			tableView.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), m.getMem_approve()));
+					ComboBox<String> comboBox = (ComboBox<String>) memberMgtForm.lookup("#filterCombo");
+					comboBox.setValue("전체보기");
+					ObservableList<MemberMgtTable> tableView = FXCollections.observableArrayList();
+					TableView<MemberMgtTable> allTable = (TableView<MemberMgtTable>) memberMgtForm.lookup("#memTable");
+					ObservableList<MemberMgtDTO> allList = memberMgtDao.getAllMemberList();
+					for (MemberMgtDTO m : allList) {
+						tableView.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), m.getMem_approve()));
+					}
+					allTable.setItems(tableView);
+
+					idfield.setText(null);
+					namefield.setText(null);
+					pwfield.setText(null);
+					mobilefield.setText(null);
+					addrfield.setText(null);
+					men.setSelected(false);
+					women.setSelected(false);
+				} else {
+					CommonService.Msg("회원을 선택해주세요.");
+				}
+			}
+		} catch (NullPointerException e) {
+			CommonService.Msg("회원을 선택해주세요.");
 		}
-		allTable.setItems(tableView);
+		
+		
 	
 	}
 
 	// 회원 삭제
 	public void delete(Parent memberMgtForm) {
 		TextField idfield = (TextField) memberMgtForm.lookup("#idtxt");
+		TextField namefield = (TextField) memberMgtForm.lookup("#nametxt");
+		TextField pwfield = (TextField) memberMgtForm.lookup("#pwtxt");
+		TextField mobilefield = (TextField) memberMgtForm.lookup("#mobiletxt");
+		TextField addrfield = (TextField) memberMgtForm.lookup("#addrtxt");
+		RadioButton men = (RadioButton) memberMgtForm.lookup("#menradio");
+		RadioButton women = (RadioButton) memberMgtForm.lookup("#womenradio");
+		
 		String id = idfield.getText();
 		
-		memberMgtDao.memberDelete(id);
-		CommonService.Msg(id + " 회원 삭제 완료");
-		
-		ComboBox<String> comboBox = (ComboBox<String>) memberMgtForm.lookup("#filterCombo");
-		comboBox.setValue("전체보기");
-		ObservableList<MemberMgtTable> tableView = FXCollections.observableArrayList();
-		TableView<MemberMgtTable> allTable = (TableView<MemberMgtTable>) memberMgtForm.lookup("#memTable");
-		ObservableList<MemberMgtDTO> allList = memberMgtDao.getAllMemberList();
-		for(MemberMgtDTO m : allList) {
-			tableView.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), m.getMem_approve()));
-		}
-		allTable.setItems(tableView);
+		try {
+			MemberMgtDTO memberMgtDto = memberMgtDao.selectId(id);
+			if (memberMgtDto != null) {
+				memberMgtDao.memberDelete(id);
+				CommonService.Msg(id + " 회원 삭제 완료");
 
+				ComboBox<String> comboBox = (ComboBox<String>) memberMgtForm.lookup("#filterCombo");
+				comboBox.setValue("전체보기");
+				ObservableList<MemberMgtTable> tableView = FXCollections.observableArrayList();
+				TableView<MemberMgtTable> allTable = (TableView<MemberMgtTable>) memberMgtForm.lookup("#memTable");
+				ObservableList<MemberMgtDTO> allList = memberMgtDao.getAllMemberList();
+				for (MemberMgtDTO m : allList) {
+					tableView.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), m.getMem_approve()));
+				}
+				allTable.setItems(tableView);
+
+				idfield.setText(null);
+				namefield.setText(null);
+				pwfield.setText(null);
+				mobilefield.setText(null);
+				addrfield.setText(null);
+				men.setSelected(false);
+				women.setSelected(false);
+			} else {
+				CommonService.Msg("회원을 선택해주세요.");
+			}
+		} catch (NullPointerException e) {
+			CommonService.Msg("회원을 선택해주세요.");
+		}
+		
 	}
 
 }

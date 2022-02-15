@@ -49,7 +49,7 @@ public class HelthProgramMgtService {
 					TableView<HelthProTable> allTable = (TableView<HelthProTable>) helthProgramMgtForm.lookup("#memshipTable");
 					ObservableList<HelthProgramMgtDTO> allList = helthProgramDao.getAllPro();
 					for(HelthProgramMgtDTO m : allList) {
-						tableView.add(new HelthProTable(m.getMemship_code(), "헬스 회원권 " + m.getMemship_type() + "개월", m.getMemship_price()));
+						tableView.add(new HelthProTable(m.getMemship_code(), "헬스 회원권 " + m.getMemship_type() + "개월", m.getMemship_price() + "원"));
 					}
 					allTable.setItems(tableView);
 					
@@ -83,17 +83,17 @@ public class HelthProgramMgtService {
 			ObservableList<HelthProgramMgtDTO> allList = helthProgramDao.getAllPro();
 			for (HelthProgramMgtDTO m : allList) {
 				tableView.add(new HelthProTable(m.getMemship_code(), "헬스 회원권 " + m.getMemship_type() + "개월",
-						m.getMemship_price()));
+						m.getMemship_price() + "원"));
 			}
 			allTable.setItems(tableView);
 
 			typetxt.setText(null);
 			pricetxt.setText(null);
 			} else {
-				CommonService.Msg("삭제할 회원권을 클릭해주세요.");
+				CommonService.Msg("회원권을 선택해주세요.");
 			}
 		} catch (NullPointerException e) {
-			CommonService.Msg("삭제할 회원권을 클릭해주세요.");
+			CommonService.Msg("회원권을 선택해주세요.");
 		}
 
 	}

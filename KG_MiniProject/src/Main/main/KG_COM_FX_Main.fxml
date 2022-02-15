@@ -117,14 +117,14 @@
                         <Insets left="30.0" />
                      </HBox.margin>
                   </RadioButton>
-                  <Label prefHeight="18.0" prefWidth="78.0" text="아이디 찾기">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
+                  <Button fx:id="findIDButton" mnemonicParsing="false" onAction="#findIDProc" text="아이디 찾기">
                      <HBox.margin>
                         <Insets left="100.0" />
                      </HBox.margin>
-                  </Label>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
                   <Label text="/">
                      <HBox.margin>
                         <Insets left="10.0" />

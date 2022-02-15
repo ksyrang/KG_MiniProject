@@ -49,6 +49,10 @@ public class LoginController implements Initializable{
 	//		CommonService.WindowClose(mainForm);
 			controller.open("memberJoin");
 		}
-	
+	//아이디찾기 클릭 시 호출
+	public void findIDProc() {
+//		CommonService.WindowClose(mainForm);
+		controller.open("memberFindID");
+	}
 
 }

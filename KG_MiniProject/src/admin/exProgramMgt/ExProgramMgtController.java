@@ -1,18 +1,30 @@
 package admin.exProgramMgt;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+
+
 
 public class ExProgramMgtController implements Initializable{
 	private Parent exProgramMgtForm;
 	private ExProgramMgtService exProgramSvc;
 	
+	@FXML public ListView<String> programListView;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		exProgramSvc = new ExProgramMgtService();
+		exProgramSvc.listUp(this.programListView);
+		
 	}
 	
 	public void setExProgramMgtForm(Parent exProgramMgtForm) {

@@ -4,15 +4,16 @@ import java.util.Date;
 
 public class ExProgramMgtDTO {
 	
-	private String PRMSCHE_Code;
+
 	private String PRM_Code;
-	private String TRAINER_Code;
 	private String PRM_Name;
-	private int PRM_Price;
+	private String PRMSCHE_Code;
+	private String TRAINER_Code;
 	private Date PRMSCHE_Strdate;
 	private Date PRMSCHE_Enddate;
 	private String PRMSCHE_Time;
 	private String PRMSCHE_LimitP;
+	private int PRMSCHE_Price;
 	
 
 	
@@ -41,11 +42,11 @@ public class ExProgramMgtDTO {
 	public void setPRM_Name(String pRM_Name) {
 		PRM_Name = pRM_Name;
 	}
-	public int getPRM_Price() {
-		return PRM_Price;
+	public int setPRMSCHE_Price() {
+		return PRMSCHE_Price;
 	}
-	public void setPRM_Price(int pRM_Price) {
-		PRM_Price = pRM_Price;
+	public void setPRMSCHE_Price(int pRMSCHE_Price) {
+		PRMSCHE_Price = pRMSCHE_Price;
 	}
 	public Date getPRMSCHE_Strdate() {
 		return PRMSCHE_Strdate;

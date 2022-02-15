@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ExProgramMgtDAO {
 	private Connection con;
@@ -22,20 +23,38 @@ public class ExProgramMgtDAO {
 		}
 	}
 
-	public ExProgramMgtDTO selectExProgram(String exname) {
+	public ArrayList<String> allProgram() {
+		
+		String sql = "SELECT PRM_Name FROM PRM_TB";
+		PreparedStatement ps;
+		ResultSet rs;
+		ArrayList<String> allProgram = new ArrayList<String> ();
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				allProgram.add(rs.getString("PRM_Name"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return allProgram;
+	}
+	
+	//ex프로그램 중복체크
+	public ExProgramMgtDTO selectExProgram(String addProgram) {
 		String sql = "SELECT * FROM PRM_TB WHERE PRM_Name=?";
 		PreparedStatement ps;
 		ResultSet rs;
 
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, exname);
+			ps.setString(1, addProgram);
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				ExProgramMgtDTO exProgramDto = new ExProgramMgtDTO();
 				exProgramDto.setPRM_Code(rs.getString("PRM_Code"));
 				exProgramDto.setPRM_Name(rs.getString("PRM_Name"));
-				exProgramDto.setPRM_Price(rs.getInt("PRM_Price"));
 				return exProgramDto;
 			}
 		} catch (Exception e) {
@@ -43,9 +62,10 @@ public class ExProgramMgtDAO {
 		}
 		return null;
 	}
-
+	
+	//ex프로그램 등록
 	public int insertExProgram(ExProgramMgtDTO exprogramDto) {
-		String sql = "INSERT INTO PRM_TB VALUES(?,?,?)";
+		String sql = "INSERT INTO PRM_TB VALUES(?,?)";
 		PreparedStatement ps;
 		int result = 0;
 
@@ -53,12 +73,14 @@ public class ExProgramMgtDAO {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, exprogramDto.getPRM_Code());
 			ps.setString(2, exprogramDto.getPRM_Name());
-			ps.setInt(3, exprogramDto.getPRM_Price());
 			result = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return result;
 	}
+
+
+
 
 }

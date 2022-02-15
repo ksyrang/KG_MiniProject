@@ -44,8 +44,6 @@ public class TrnWelcomeService {
 //		TableColumn<TrnTableView, String> MembersColumn;
 		CurrentProgramTableList.setItems(list);
 		
-		
-		
 
 	}
 

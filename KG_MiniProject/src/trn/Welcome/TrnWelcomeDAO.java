@@ -3,11 +3,11 @@ package trn.Welcome;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class WelcomeDAO {
+public class TrnWelcomeDAO {
 	
 	private Connection con;
 	
-	public WelcomeDAO() {
+	public TrnWelcomeDAO() {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "KGGYM";
 		String password = "oracle1";
@@ -19,5 +19,5 @@ public class WelcomeDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
 }

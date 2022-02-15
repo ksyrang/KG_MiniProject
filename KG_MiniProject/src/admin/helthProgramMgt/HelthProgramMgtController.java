@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 public class HelthProgramMgtController implements Initializable{
 	private Parent helthProgramMgtForm;
 	private HelthProgramMgtService healthSvc;
-	private WelcomeController welcomeController;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

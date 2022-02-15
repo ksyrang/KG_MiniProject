@@ -74,6 +74,8 @@ public class Controller {
 		this.enrollController.setEnrollForm(this.memberJoinForm);
 	}
 	
+	
+	
 	public void open(String division) {
 		if("adminWelcome".equals(division)) {
 			mainService.adminWelcomeOpen();

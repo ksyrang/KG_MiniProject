@@ -1,4 +1,4 @@
-package mem.FindPW;
+package mem.FindID;
 
 public class FindIDController {
 

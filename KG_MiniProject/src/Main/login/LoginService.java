@@ -1,5 +1,6 @@
 package Main.login;
 
+import Main.main.Controller;
 import common.CommonService;
 import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
@@ -8,7 +9,8 @@ import javafx.scene.control.TextField;
 
 
 public class LoginService {
-
+	private Controller controller;
+	
 	private String job;
 	// 로그인 버튼 클릭 시 호출
 	public LoginDTO loginProc(Parent mainForm) {

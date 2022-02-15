@@ -14,6 +14,7 @@ public class Controller {
 	private Parent memberWelcomeForm;
 	private Parent trainerWelcomeForm;
 	private Parent memberJoinForm;
+	private String UserCode;
 	
 	/**Trainer package controller**/
 	private TrnWelcomeController trnWelcomeController;	
@@ -24,7 +25,14 @@ public class Controller {
 		mainService.setController(this);
 	}
 	
-	
+	public String getUserCode() {
+		return UserCode;
+	}
+	public void setUserCode(String userCode) {
+		UserCode = userCode;
+	}
+
+
 	public void setLoginController(LoginController loginController) {
 		this.loginController = loginController;
 		this.loginController.setController(this);

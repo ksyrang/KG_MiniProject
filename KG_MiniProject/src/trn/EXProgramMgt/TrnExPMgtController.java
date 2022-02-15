@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 
-public class TrnExProgramMgtController implements Initializable {
+public class TrnExPMgtController implements Initializable {
 	public Parent trnExProgramMgtForm;
 	
 	public void setTrnExProgramMgtForm(Parent trnExProgramMgtForm) {

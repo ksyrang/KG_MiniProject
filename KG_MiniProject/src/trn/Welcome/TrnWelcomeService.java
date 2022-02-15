@@ -14,8 +14,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import trn.DTO.TrnDTO;
-import trn.TrnMgt.MgtDAO;
+import trn.DBDAO.TrnTrainerDAO;
+import trn.DBDTO.TrnTrainerDTO;
 import trn.TrnMgt.TrnMgtController;
 import trn.TrnMgt.TrnMgtService;
 
@@ -58,8 +58,9 @@ public class TrnWelcomeService {
 			trnWelcomeController.getTrnMgtController().setTrnCode(trnCode);
 			trnCode = "0";
 			//초기 표시 설정
-			TrnDTO tmpDTO = new MgtDAO().SelectTrnInfo(trnCode);
+			TrnTrainerDTO tmptrnDTO = new TrnTrainerDAO().SelectTrnInfo(trnCode);
 			Label IDDis = (Label)trnMgtForm.lookup("#IDDisplay");//아이디표시
+			IDDis.setText(tmptrnDTO.getTRAINER_Name());
 //			IDDis.setText(tmpDTO.getTRAINER_ID());
 //			TextField NameField = (TextField)trnMgtForm.lookup("#TrnNameField");//기존 이름 표시
 //			NameField.setText(tmpDTO.getTRAINER_Name());

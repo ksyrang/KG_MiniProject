@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -63,6 +64,9 @@ public class MainService {
 			//trainer welcome form 참조값을 trainer package로 이동
 			controller.setTrnWelcomeController(loader.getController());
 			controller.getTrnWelcomeController().setTrnWelcomeForm(trainerWelcomeForm);
+//			Label titleUserName = (Label)trainerWelcomeForm.lookup("#TitleNameLabel"); 
+//			titleUserName.setText(null);
+			
 			
 			Scene scene = new Scene(trainerWelcomeForm);
 			Stage primaryStage = new Stage();

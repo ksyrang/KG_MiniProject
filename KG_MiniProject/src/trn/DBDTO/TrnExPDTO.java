@@ -1,19 +1,19 @@
-package trn.DTO;
+package trn.DBDTO;
 
-public class ExPDTO {
+public class TrnExPDTO {
 	private String PRM_Code;
 	private String PRM_Name;
-	private int PRM_Price;
+
 	
-	public ExPDTO() {
+	public TrnExPDTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ExPDTO(String pRM_Code, String pRM_Name, int pRM_Price) {
+	public TrnExPDTO(String pRM_Code, String pRM_Name) {
 		super();
 		PRM_Code = pRM_Code;
 		PRM_Name = pRM_Name;
-		PRM_Price = pRM_Price;
+
 	}
 	
 	public String getPRM_Code() {
@@ -28,12 +28,5 @@ public class ExPDTO {
 	public void setPRM_Name(String pRM_Name) {
 		PRM_Name = pRM_Name;
 	}
-	public int getPRM_Price() {
-		return PRM_Price;
-	}
-	public void setPRM_Price(int pRM_Price) {
-		PRM_Price = pRM_Price;
-	}
-	
-	
+
 }

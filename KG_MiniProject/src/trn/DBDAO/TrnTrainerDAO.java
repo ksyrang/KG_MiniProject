@@ -1,17 +1,17 @@
-package trn.TrnMgt;
+package trn.DBDAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import trn.DTO.TrnDTO;
+import trn.DBDTO.TrnTrainerDTO;
 
-public class MgtDAO {
+public class TrnTrainerDAO {
 	
 	private Connection con;
 
-	public MgtDAO() {
+	public TrnTrainerDAO() {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "KGGYM";
 		String password = "oracle1";
@@ -24,9 +24,9 @@ public class MgtDAO {
 		}
 	}	
 	
-	public TrnDTO SelectTrnInfo(String Code) {
-		TrnDTO tmpDto = null;
-		String sql = "SELECT * FROM MEM_TB WHERE TRAINER_Code = ?";
+	public TrnTrainerDTO SelectTrnInfo(String Code) {
+		TrnTrainerDTO tmpDto = null;
+		String sql = "SELECT * FROM TRAINER_TB WHERE TRAINER_Code = ?";
 		PreparedStatement ps;
 		ResultSet rs;
 		try {
@@ -34,12 +34,12 @@ public class MgtDAO {
 			ps.setString(1, Code);
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				tmpDto = new TrnDTO();	
+				tmpDto = new TrnTrainerDTO();	
 				tmpDto.setTRAINER_Code(rs.getString("TRAINER_Code"));
 				tmpDto.setTRAINER_ID(rs.getString("TRAINER_ID"));
 				tmpDto.setTRAINER_PW(rs.getString("TRAINER_PW"));
 				tmpDto.setTRAINER_Name(rs.getString("TRAINER_Name"));
-				tmpDto.setTRAINER_Gender(rs.getString(""));
+				tmpDto.setTRAINER_Gender(rs.getString("TRAINER_Gender"));
 				tmpDto.setTRAINER_Birth(rs.getInt("TRAINER_Birth"));
 				tmpDto.setTRAINER_Mobile(rs.getInt("TRAINER_Mobile"));
 				tmpDto.setTRAINER_Career(rs.getInt("TRAINER_Career"));
@@ -51,10 +51,10 @@ public class MgtDAO {
 		return tmpDto;
 	}
 	
-	public int UpdateTrnInfo(TrnDTO trndto) {
+	public int UpdateTrnInfo(TrnTrainerDTO trndto) {
 		int result = 0;
 		PreparedStatement ps;
-		String sql = "UPDATE FROM MEM_TB SET "
+		String sql = "UPDATE FROM TRAINER_TB SET "
 				+ "TRAINER_PW=?,TRAINER_Name=?, "
 				+ "TRAINER_Birth=?, TRAINER_Mobile=?, "
 				+ "TRAINER_Career=?, TRAINER_Addr=?"

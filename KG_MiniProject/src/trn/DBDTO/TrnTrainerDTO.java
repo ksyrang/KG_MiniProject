@@ -1,6 +1,6 @@
-package trn.DTO;
+package trn.DBDTO;
 
-public class TrnDTO {
+public class TrnTrainerDTO {
 	private String TRAINER_Code;
 	private String TRAINER_Name;
 	private String TRAINER_ID;
@@ -11,10 +11,10 @@ public class TrnDTO {
 	private int TRAINER_Career;
 	private String TRAINER_Addr;
 	
-	public TrnDTO() {
+	public TrnTrainerDTO() {
 		// TODO Auto-generated constructor stub
 	}
-	public TrnDTO(String tRAINER_Code, String tRAINER_Name, String tRAINER_ID, String tRAINER_PW, String tRAINER_Gender,
+	public TrnTrainerDTO(String tRAINER_Code, String tRAINER_Name, String tRAINER_ID, String tRAINER_PW, String tRAINER_Gender,
 			int tRAINER_Birth, int tRAINER_Mobile, int tRAINER_Career, String tRAINER_Addr) {
 		super();
 		TRAINER_Code = tRAINER_Code;

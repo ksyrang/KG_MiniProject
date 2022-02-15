@@ -1,8 +1,10 @@
 package trn.Welcome;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import Main.main.Controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,14 +16,19 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import trn.EXProgramMgt.TrnExProgramMgtController;
+import trn.DBDAO.TrnExPDAO;
+import trn.DBDAO.TrnExPSCHEDAO;
+import trn.DBDAO.TrnTrainerDAO;
+import trn.DBDTO.TrnExPSCHEDTO;
+import trn.DBDTO.TrnTrainerDTO;
+import trn.EXProgramMgt.TrnExPMgtController;
 import trn.ExprogramEnroll.TrnExpEnrollController;
 import trn.TrnMgt.TrnMgtController;
 
 
 public class TrnWelcomeController implements Initializable {
 	
-	@FXML private Label TrnNameLabel;
+	@FXML private Label TitleUserNameLabel;
     @FXML private TableView<TrnTbVDTO> CurrentProgramTableList;
     @FXML private TableColumn<TrnTbVDTO, String> CodeColumn;
     @FXML private TableColumn<TrnTbVDTO, String> NameColumn;
@@ -32,12 +39,12 @@ public class TrnWelcomeController implements Initializable {
     @FXML private Button Backbtn;
     
     private ObservableList<TrnTbVDTO> Tablelist;
-	
+	private Controller controller;
 	private TrnWelcomeService WelcomeService;
 	private TrnWelcomeController trnWelcomeController;
 	private TrnMgtController trnMgtController;
 	private TrnExpEnrollController trnExpEnrollController;
-	private TrnExProgramMgtController trnExpMgtController;
+	private TrnExPMgtController trnExpMgtController;
 	private Parent WelcomeForm;
 	private String trnCode;
 	
@@ -72,10 +79,10 @@ public class TrnWelcomeController implements Initializable {
 	public void setTrnExpEnrollController(TrnExpEnrollController trnExpEnrollController) {
 		this.trnExpEnrollController = trnExpEnrollController;
 	}
-	public TrnExProgramMgtController getTrnExpMgtController() {
+	public TrnExPMgtController getTrnExpMgtController() {
 		return trnExpMgtController;
 	}
-	public void setTrnExpMgtController(TrnExProgramMgtController trnExpMgtController) {
+	public void setTrnExpMgtController(TrnExPMgtController trnExpMgtController) {
 		this.trnExpMgtController = trnExpMgtController;
 	}
 
@@ -91,16 +98,27 @@ public class TrnWelcomeController implements Initializable {
 		//이니셜라이즈는 인스턴스의 최초의 행동이기 때문에 해당괄호안에서는 어떤 데이터든 null만이 있는것
 		//인스턴스 이후의 데이터는 계속 메소드의 매개변수로 넣어줘야 한다
 		//EX : 	WelcomeService.backClose(WelcomeForm);
+//		this.trnCode = controller.getUserCode();
+//		this.trnCode = "0"; //테스트용 입력제한
+//		TrnTrainerDTO tmpTrnDTO = new TrnTrainerDAO().SelectTrnInfo(trnCode);
+//		TitleUserNameLabel.setText(tmpTrnDTO.getTRAINER_Name());
+		
 		CodeColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("PCodeColumn"));
 	    NameColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("PNameColumn"));
 	    MemsColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("MembersColumn"));
 		
+//	    for(TrnExPSCHEDTO dto : new TrnExPSCHEDAO().ExPSCHESelectALLbyTrn(trnCode)) {
+//	    	String mems =  Integer.toString(dto.getPRMSCHE_CURRENTP())+" / "+Integer.toString(dto.getPRMSCHE_LIMITP());
+//	    	Tablelist.add(new TrnTbVDTO(dto.getPRMSCHE_CODE(),
+//	    			new TrnExPDAO().SelectExP(dto.getPRM_CODE()).getPRM_Name(),
+//	    			mems));
+//	    }
+	    
 		Tablelist = FXCollections.observableArrayList(
 				new TrnTbVDTO("1","2","3")	
 		);
+
 		CurrentProgramTableList.setItems(Tablelist);
-		
-		
 	}
 	
 	public void TrnClickProc() {

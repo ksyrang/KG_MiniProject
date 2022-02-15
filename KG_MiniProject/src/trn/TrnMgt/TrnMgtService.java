@@ -2,17 +2,18 @@ package trn.TrnMgt;
 
 import common.CommonService;
 import javafx.scene.Parent;
-import trn.DTO.TrnDTO;
+import trn.DBDAO.TrnTrainerDAO;
+import trn.DBDTO.TrnTrainerDTO;
 
 public class TrnMgtService {
-	private MgtDAO TrnDAO; 
+	private TrnTrainerDAO TrnDAO; 
 
-	public TrnDTO getTrnInfo(String Code) {
-		TrnDTO tmpDto = TrnDAO.SelectTrnInfo(Code);
+	public TrnTrainerDTO getTrnInfo(String Code) {
+		TrnTrainerDTO tmpDto = TrnDAO.SelectTrnInfo(Code);
 		return tmpDto;
 	}
 
-	public int TrnMgtUpdate(TrnDTO Dto) {
+	public int TrnMgtUpdate(TrnTrainerDTO Dto) {
 		return TrnDAO.UpdateTrnInfo(Dto);
 	}
 	

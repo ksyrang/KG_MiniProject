@@ -57,6 +57,13 @@ public class WelcomeService {
 			welcomeController.setTrainerMgtController(loader.getController());
 			welcomeController.setTrainerMgtForm(trainerMgtForm);
 			welcomeController.settingTrainerMgt();
+			
+			// 콤보 박스
+			ComboBox<String> kindCombo = (ComboBox<String>)exProgramMgtForm.lookup("#filterCombo");
+			if(kindCombo != null) {
+				kindCombo.getItems().addAll("필라테스", "요가", "스피닝", "경찰시험 대비반");
+			}
+			
 			Scene scene = new Scene(trainerMgtForm);
 			Stage primaryStage = new Stage();
 			primaryStage.setTitle("adminWelcome");

@@ -26,26 +26,26 @@ public class EnrollController implements Initializable{
 	}
 	
 	// 아이디 중복확인 클릭 시 동작.
-	public void enrollConfirmProc() {
+//	public void enrollConfirmProc() {
 		
-		TextField idTxt = (TextField) memberJoinForm.lookup("#idTxt");
-		String id = idTxt.getText();
-		System.out.println(id);
-		EnrollDAO enrollDAO = new EnrollDAO();
-		EnrollDTO enrollDTO = enrollDAO.SelectId(id);
-		if(id.equals(enrollDTO.getID())) {
-			CommonService.Msg("중복된 ID입니다.");
+//		TextField idTxt = (TextField) memberJoinForm.lookup("#idTxt");
+//		String id = idTxt.getText();
+//		System.out.println(id);
+//		EnrollDAO enrollDAO = new EnrollDAO();
+//		EnrollDTO enrollDTO = enrollDAO.SelectId(id);
+//		if(id.equals(enrollDTO.getID())) {
+//			CommonService.Msg("중복된 ID입니다.");
 		
-		}else {
-			CommonService.Msg("사용 가능한 ID입니다.");
-		}
-	}
-	
-	// 회원 가입 버튼 클릭 시 동작.
-//	public void enrollProc() {
-//		enrollService.insert(memberJoinForm);
-		
+//		}else {
+//			CommonService.Msg("사용 가능한 ID입니다.");
+//		}
 //	}
+	
+//	 회원 가입 버튼 클릭 시 동작.
+	public void enrollProc() {
+		enrollService.insert(memberJoinForm);
+		
+	}
 	
 	// 취소 버튼 클릭 시 동작.
 	public void enrollCancelProc() {

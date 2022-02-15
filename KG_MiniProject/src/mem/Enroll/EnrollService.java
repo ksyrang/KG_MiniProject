@@ -23,7 +23,7 @@ public class EnrollService {
 		TextField birthTxt = (TextField) memberJoinForm.lookup("#birthTxt");
 		TextField mobileTxt = (TextField) memberJoinForm.lookup("#mobileTxt");
 		TextField addrTxt = (TextField) memberJoinForm.lookup("#addrTxt");
-		Text labelTxt1 = (Text) memberJoinForm.lookup("#labelTxt1");
+//		Text labelTxt1 = (Text) memberJoinForm.lookup("#labelTxt1");
 //		Label colorLabel1 = (Label) KG_MEM_FX_Enroll.lookup("#colorLabel1");
 //		Label colorLabel2 = (Label) KG_MEM_FX_Enroll.lookup("#colorLabel2");
 		

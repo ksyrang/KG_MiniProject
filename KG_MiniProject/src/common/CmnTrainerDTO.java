@@ -1,6 +1,6 @@
 package common;
 
-public class CmnTRAINERDTO {
+public class CmnTrainerDTO {
 	private String TRAINER_Code;//PK
 	private String TRAINER_Name;
 	private String TRAINER_ID;
@@ -11,7 +11,7 @@ public class CmnTRAINERDTO {
 	private int TRAINER_Career;
 	private String TRAINER_Addr;
 	
-	public CmnTRAINERDTO() {
+	public CmnTrainerDTO() {
 		// TODO Auto-generated constructor stub
 	}
 

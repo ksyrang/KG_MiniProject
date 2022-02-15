@@ -2,7 +2,7 @@ package common;
 
 import java.sql.Date;
 
-public class CmnPRMSCHEDTO {
+public class CmnPrmScheDTO {
 
 	private String PRMSCHE_Code;//PK
 	private Date PRMSCHE_Strdate;
@@ -16,11 +16,11 @@ public class CmnPRMSCHEDTO {
 	private String PRM_Code;
 	private String TRAINER_Code;
 	
-	public CmnPRMSCHEDTO() {
+	public CmnPrmScheDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CmnPRMSCHEDTO(String pRMSCHE_Code, Date pRMSCHE_Strdate, Date pRMSCHE_Enddate, String pRMSCHE_Time,
+	public CmnPrmScheDTO(String pRMSCHE_Code, Date pRMSCHE_Strdate, Date pRMSCHE_Enddate, String pRMSCHE_Time,
 			int pRMSCHE_LimitP, int pRMSCHE_CurrentP, int pRM_Price, String pRMSCHE_Name, String pRM_Code,
 			String tRAINER_Code) {
 		super();

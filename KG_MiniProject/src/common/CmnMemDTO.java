@@ -1,6 +1,6 @@
 package common;
 
-public class CmnMEMDTO {
+public class CmnMemDTO {
 	private String MEM_Code; //PK
 	private String MEM_ID;
 	private String MEM_PW;
@@ -14,11 +14,11 @@ public class CmnMEMDTO {
 	private String PRMSCHE_Code; 
 	private String MEMSHIPSCHE_Code;
 	
-	public CmnMEMDTO() {
+	public CmnMemDTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public CmnMEMDTO(String mEM_Code, String mEM_ID, String mEM_PW, 
+	public CmnMemDTO(String mEM_Code, String mEM_ID, String mEM_PW, 
 			String mEM_Name, String mEM_Gender,	int mEM_Birth, int mEM_Mobile, 
 			String mEM_Addr, String pRMSCHE_Code, String mEMSHIPSCHE_Code) {
 		super();

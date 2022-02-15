@@ -2,7 +2,7 @@ package common;
 
 import java.sql.Date;
 
-public class CmnMEMSHIPSCHEDTO {
+public class CmnMemShipScheDTO {
 	private String MEMSHIPSCHE_Code;//PK
 	private Date MEMSHIPSCHE_Strdate;
 	private Date MEMSHIPSCHE_Enddate;
@@ -10,11 +10,11 @@ public class CmnMEMSHIPSCHEDTO {
 	private String MEMSHIP_Code;
 	private String MEM_Code;
 	
-	public CmnMEMSHIPSCHEDTO() {
+	public CmnMemShipScheDTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public CmnMEMSHIPSCHEDTO(String mEMSHIPSCHE_Code, Date mEMSHIPSCHE_Strdate, Date mEMSHIPSCHE_Enddate,
+	public CmnMemShipScheDTO(String mEMSHIPSCHE_Code, Date mEMSHIPSCHE_Strdate, Date mEMSHIPSCHE_Enddate,
 			String mEMSHIP_Code, String mEM_Code) {
 		super();
 		MEMSHIPSCHE_Code = mEMSHIPSCHE_Code;

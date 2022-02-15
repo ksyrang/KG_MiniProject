@@ -1,12 +1,12 @@
 package common;
 
-public class CmnPRMDTO {
+public class CmnPrmDTO {
 	private String PRM_Code;//PK
 	private String PRM_Name;
-	public CmnPRMDTO() {
+	public CmnPrmDTO() {
 		// TODO Auto-generated constructor stub
 	}
-	public CmnPRMDTO(String pRM_Code, String pRM_Name) {
+	public CmnPrmDTO(String pRM_Code, String pRM_Name) {
 		super();
 		PRM_Code = pRM_Code;
 		PRM_Name = pRM_Name;

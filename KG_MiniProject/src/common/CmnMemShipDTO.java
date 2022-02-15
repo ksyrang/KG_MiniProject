@@ -1,15 +1,15 @@
 package common;
 
-public class CmnMEMSHIPDTO {
+public class CmnMemShipDTO {
 	private String MEMSHIP_Code;//PK
 	private String MEMSHIP_Type;
 	private int MEMSHIP_Price;
 	
-	public CmnMEMSHIPDTO() {
+	public CmnMemShipDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CmnMEMSHIPDTO(String mEMSHIP_Code, String mEMSHIP_Type, int mEMSHIP_Price) {
+	public CmnMemShipDTO(String mEMSHIP_Code, String mEMSHIP_Type, int mEMSHIP_Price) {
 		super();
 		MEMSHIP_Code = mEMSHIP_Code;
 		MEMSHIP_Type = mEMSHIP_Type;

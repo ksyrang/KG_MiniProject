@@ -32,6 +32,12 @@ public class MemberMgtController implements Initializable{
 		idtxt.setEditable(false);
 		nametxt.setEditable(false);
 		
+		// 콤보 박스
+		ComboBox<String> combo = (ComboBox<String>)memberMgtForm.lookup("#filterCombo");
+		if(combo != null) {
+			combo.getItems().addAll("전체보기", "승인여부");
+		}
+		
 	}
 	
 	public void setMemberMgtForm(Parent memberMgtForm) {

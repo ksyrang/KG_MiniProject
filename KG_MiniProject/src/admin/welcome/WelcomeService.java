@@ -22,11 +22,6 @@ public class WelcomeService {
 			memberMgtForm = loader.load();
 			welcomeController.setMemberMgtForm(memberMgtForm);
 			
-			ComboBox<String> combo = (ComboBox<String>)memberMgtForm.lookup("#filterCombo");
-			if(combo != null) {
-				combo.getItems().addAll("전체보기", "승인여부");
-			}
-			
 			Scene scene = new Scene(memberMgtForm);
 			Stage primaryStage = new Stage();
 			primaryStage.setTitle("memberMgtForm");

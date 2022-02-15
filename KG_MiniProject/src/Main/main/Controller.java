@@ -3,6 +3,7 @@ package Main.main;
 import Main.login.LoginController;
 import javafx.scene.Parent;
 import mem.Enroll.EnrollController;
+import mem.FindID.FindIDController;
 import trn.Welcome.TrnWelcomeController;
 
 //컨트롤러들의 참조 값을 저장하는 기능.
@@ -15,6 +16,8 @@ public class Controller {
 	private Parent trainerWelcomeForm;
 	private Parent memberJoinForm;
 	private String UserCode;
+	private FindIDController findIDController;
+	private Parent memberFindIDForm;
 	
 	/**Trainer package controller**/
 	private TrnWelcomeController trnWelcomeController;	
@@ -31,7 +34,13 @@ public class Controller {
 	public void setUserCode(String userCode) {
 		UserCode = userCode;
 	}
-
+	public void setMemberFindIDForm(Parent memberFindIDForm) {
+	      this.memberFindIDForm = memberFindIDForm;
+	   }
+	   
+	   public void setFindIDController(FindIDController findIDController) {
+	      this.findIDController = findIDController;
+	   }
 
 	public void setLoginController(LoginController loginController) {
 		this.loginController = loginController;
@@ -80,7 +89,7 @@ public class Controller {
 		if("adminWelcome".equals(division)) {
 			mainService.adminWelcomeOpen();
 		}else if("memberWelcome".equals(division)) {
-			mainService.memberWelcomeOpen();
+			mainService.memberWelcomeOpen(UserCode);
 		}else if("trainerWelcome".equals(division)) {
 			mainService.trainerWelcomeOpen(UserCode);
 		}else if("memberJoin".equals(division)) {

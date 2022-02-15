@@ -38,7 +38,7 @@ public class MainService {
 		}
 	}
 	
-	public void memberWelcomeOpen() {
+	public void memberWelcomeOpen(String UserCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/Welcome/KG_MEM_FX_Welcome.fxml"));
 		Parent memberWelcomeForm;
 		try {
@@ -98,7 +98,25 @@ public class MainService {
 		}
 	}
 	
-	
+	public void memberFindIDOpen() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/FindID/KG_MEM_FX_FindID.fxml"));
+        Parent memberFindIDForm;
+        try {
+           memberFindIDForm = loader.load();
+           controller.setMemberFindIDForm(memberFindIDForm);
+           controller.setEnrollController(loader.getController());
+           
+           
+           Scene scene = new Scene(memberFindIDForm);
+           Stage primaryStage = new Stage();
+           primaryStage.setTitle("memberFindID");
+           primaryStage.setScene(scene);
+           primaryStage.show();
+        } catch (IOException e) {
+           e.printStackTrace();
+        }
+     
+  }
 	
 	
 	

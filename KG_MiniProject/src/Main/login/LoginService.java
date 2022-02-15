@@ -34,9 +34,11 @@ public class LoginService {
 		if(job.equals("관리자") || job.equals("회원")) {
 			loginDto = loginDao.SelectMemberId(idText.getText());
 			if(loginDto != null && loginDto.getMEM_PW().equals(pwText.getText())) {
+				
 				if(job.equals("관리자"))
 					CommonService.Msg("관리자 계정 로그인 성공");
 				else if(job.equals("회원"))
+					controller.setUserCode(loginDto.getMEM_Code());
 					CommonService.Msg("회원 계정 로그인 성공");
 			}else {
 				CommonService.Msg("로그인 실패");
@@ -44,6 +46,7 @@ public class LoginService {
 		}else if(job.equals("강사")) {
 			loginDto = loginDao.SelectTrainerId(idText.getText());
 			if(loginDto != null && loginDto.getTRAINER_PW().equals(pwText.getText())) {
+				controller.setUserCode(loginDto.getTRAINER_Code());
 				CommonService.Msg("강사 계정 로그인 성공");
 			}else {
 				CommonService.Msg("로그인 실패");

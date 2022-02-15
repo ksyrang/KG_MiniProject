@@ -26,7 +26,7 @@ public class TrnTrainerDAO {
 	
 	public TrnTrainerDTO SelectTrnInfo(String Code) {
 		TrnTrainerDTO tmpDto = null;
-		String sql = "SELECT * FROM TRAINER_TB WHERE TRAINER_Code = ?";
+		String sql = "SELECT * FROM TRAINER_TB WHERE TRAINER_CODE=?";
 		PreparedStatement ps;
 		ResultSet rs;
 		try {
@@ -35,15 +35,15 @@ public class TrnTrainerDAO {
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				tmpDto = new TrnTrainerDTO();	
-				tmpDto.setTRAINER_Code(rs.getString("TRAINER_Code"));
+				tmpDto.setTRAINER_Code(rs.getString("TRAINER_CODE"));
 				tmpDto.setTRAINER_ID(rs.getString("TRAINER_ID"));
 				tmpDto.setTRAINER_PW(rs.getString("TRAINER_PW"));
-				tmpDto.setTRAINER_Name(rs.getString("TRAINER_Name"));
-				tmpDto.setTRAINER_Gender(rs.getString("TRAINER_Gender"));
+				tmpDto.setTRAINER_Name(rs.getString("TRAINER_NAME"));
+				tmpDto.setTRAINER_Gender(rs.getString("TRAINER_GENDER"));
 				tmpDto.setTRAINER_Birth(rs.getInt("TRAINER_Birth"));
-				tmpDto.setTRAINER_Mobile(rs.getInt("TRAINER_Mobile"));
-				tmpDto.setTRAINER_Career(rs.getInt("TRAINER_Career"));
-				tmpDto.setTRAINER_Addr(rs.getString("TRAINER_Addr"));
+				tmpDto.setTRAINER_Mobile(rs.getInt("TRAINER_MOBILE"));
+				tmpDto.setTRAINER_Career(rs.getInt("TRAINER_CAREER"));
+				tmpDto.setTRAINER_Addr(rs.getString("TRAINER_ADDR"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

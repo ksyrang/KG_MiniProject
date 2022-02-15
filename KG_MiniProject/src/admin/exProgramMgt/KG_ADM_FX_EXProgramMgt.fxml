@@ -51,22 +51,25 @@
          <children>
             <HBox prefHeight="90.0" prefWidth="900.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="90.0" prefWidth="241.0" spacing="10.0">
+                  <VBox alignment="CENTER" prefHeight="90.0" prefWidth="158.0" spacing="10.0">
                      <children>
                         <Button fx:id="insertButton" mnemonicParsing="false" onAction="#insertProc" prefHeight="30.0" prefWidth="200.0" text="프로그램 등록" />
                         <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteProc" prefHeight="30.0" prefWidth="200.0" text="프로그램 삭제" />
                      </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Button fx:id="cancleButton" mnemonicParsing="false" onAction="#exProgramCancleProc" prefHeight="30.0" prefWidth="100.0" text="이전" />
-                     </children>
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                      <HBox.margin>
-                        <Insets left="500.0" />
+                        <Insets left="550.0" />
                      </HBox.margin>
+                     <children>
+                        <Button fx:id="cancleButton" mnemonicParsing="false" onAction="#exProgramCancleProc" prefHeight="30.0" prefWidth="100.0" text="이전" />
+                     </children>
                   </VBox>
                </children>
             </HBox>
@@ -78,7 +81,7 @@
          <children>
             <HBox spacing="10.0">
                <children>
-                  <VBox prefHeight="400.0" prefWidth="350.0" spacing="5.0">
+                  <VBox prefHeight="400.0" prefWidth="419.0" spacing="5.0">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -88,26 +91,39 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TableView fx:id="exProgramTableView" prefHeight="374.0" prefWidth="334.0">
+                        <TableView fx:id="exProgramTableView" prefHeight="374.0" prefWidth="440.0" tableMenuButtonVisible="true">
                           <columns>
-                            <TableColumn prefWidth="60.0" text="고유번호" />
-                            <TableColumn prefWidth="75.0" text="프로그램명" />
-                              <TableColumn prefWidth="65.0" text="오전/오후" />
-                              <TableColumn prefWidth="75.0" text="강사">
+                            <TableColumn fx:id="programName" minWidth="0.0" prefWidth="38.33332824707031" text="프로그램 종류" />
+                            <TableColumn fx:id="code" minWidth="0.0" prefWidth="131.6666717529297" text="고유번호">
                                  <columns>
-                                    <TableColumn prefWidth="75.0" text="인원 수" />
+                                    <TableColumn fx:id="trainerName" minWidth="4.333343505859375" prefWidth="7.66668701171875" text="강사" />
+                                 </columns></TableColumn>
+                              <TableColumn fx:id="limtPerson" minWidth="0.0" prefWidth="47.0" resizable="false" text="최대인원">
+                                 <columns>
+                                    <TableColumn fx:id="currentPerson" minWidth="0.0" prefWidth="0.0" text="현재인원" />
                                  </columns>
                               </TableColumn>
-                              <TableColumn prefWidth="75.0" text="시작일">
+                              <TableColumn fx:id="strDate" minWidth="0.0" prefWidth="0.0" text="시작일">
                                  <columns>
-                                    <TableColumn prefWidth="75.0" text="마감일" />
+                                    <TableColumn fx:id="endDate" minWidth="0.0" prefWidth="0.0" text="마감일" />
+                                 </columns>
+                              </TableColumn>
+                              <TableColumn fx:id="price" minWidth="0.0" prefWidth="70.0" text="가격">
+                                 <columns>
+                                    <TableColumn fx:id="timeC" minWidth="0.0" prefWidth="0.0" text="오전/오후" />
                                  </columns>
                               </TableColumn>
                           </columns>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                         </TableView>
                      </children>
                   </VBox>
-                  <VBox prefHeight="400.0" prefWidth="297.0" spacing="5.0">
+                  <VBox prefHeight="400.0" prefWidth="280.0" spacing="5.0">
                      <children>
                         <Label text="EX 프로그램 상세정보">
                            <font>
@@ -153,15 +169,14 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <VBox prefHeight="63.0" prefWidth="233.0" spacing="5.0">
+                              <VBox alignment="CENTER_RIGHT" prefHeight="51.0" prefWidth="169.0" spacing="5.0">
                                  <children>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                        <children>
-                                          <DatePicker fx:id="startDatePicker" />
-                                          <Label prefHeight="19.0" prefWidth="13.0" text="~" />
+                                          <DatePicker fx:id="startDatePicker" promptText="시작일" />
                                        </children>
                                     </HBox>
-                                    <DatePicker fx:id="endDatePicker" />
+                                    <DatePicker fx:id="endDatePicker" promptText="마감일" />
                                  </children>
                                  <HBox.margin>
                                     <Insets left="20.0" />
@@ -172,7 +187,7 @@
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="30.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Label text="시간" />
                               <RadioButton fx:id="amRadioButton" mnemonicParsing="false" text="오전">
@@ -245,7 +260,7 @@
       </VBox>
    </center>
    <left>
-      <VBox prefHeight="400.0" prefWidth="220.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="440.0" prefWidth="161.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="프로그램 종류">
                <font>
@@ -255,7 +270,7 @@
                   <Insets bottom="5.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <ListView fx:id="programListView" prefHeight="297.0" prefWidth="220.0">
+            <ListView fx:id="programListView" prefHeight="297.0" prefWidth="179.0">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>

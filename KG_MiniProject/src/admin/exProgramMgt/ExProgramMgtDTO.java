@@ -12,7 +12,8 @@ public class ExProgramMgtDTO {
 	private Date PRMSCHE_Strdate;
 	private Date PRMSCHE_Enddate;
 	private String PRMSCHE_Time;
-	private String PRMSCHE_LimitP;
+	private int PRMSCHE_LimitP;
+	private int PRMSCHE_CurrentP;
 	private int PRMSCHE_Price;
 	
 
@@ -42,7 +43,7 @@ public class ExProgramMgtDTO {
 	public void setPRM_Name(String pRM_Name) {
 		PRM_Name = pRM_Name;
 	}
-	public int setPRMSCHE_Price() {
+	public int getPRMSCHE_Price() {
 		return PRMSCHE_Price;
 	}
 	public void setPRMSCHE_Price(int pRMSCHE_Price) {
@@ -66,12 +67,19 @@ public class ExProgramMgtDTO {
 	public void setPRMSCHE_Time(String pRMSCHE_Time) {
 		PRMSCHE_Time = pRMSCHE_Time;
 	}
-	public String getPRMSCHE_LimitP() {
+	public int getPRMSCHE_LimitP() {
 		return PRMSCHE_LimitP;
 	}
-	public void setPRMSCHE_LimitP(String pRMSCHE_LimitP) {
+	public void setPRMSCHE_LimitP(int pRMSCHE_LimitP) {
 		PRMSCHE_LimitP = pRMSCHE_LimitP;
 	}
+	public int getPRMSCHE_CurrentP() {
+		return PRMSCHE_CurrentP;
+	}
+	public void setPRMSCHE_CurrentP(int pRMSCHE_CurrentP) {
+		PRMSCHE_CurrentP = pRMSCHE_CurrentP;
+	}
+	
 
 
 

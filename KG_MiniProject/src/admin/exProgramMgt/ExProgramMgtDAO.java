@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import admin.helthProgramMgt.HelthProgramMgtDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -26,13 +27,11 @@ public class ExProgramMgtDAO {
 		}
 	}
 
-//	public ArrayList<String> allProgram() {
-	public ObservableList<String> allProgram() {	
+	public ObservableList<String> getAllProgram() {	
 		String sql = "SELECT PRM_Name FROM PRM_TB";
 		PreparedStatement ps;
 		ResultSet rs;
 		ObservableList<String> allProgram = FXCollections.observableArrayList();
-//		ArrayList<String> allProgram = new ArrayList<String> ();
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -44,6 +43,35 @@ public class ExProgramMgtDAO {
 		}
 		return allProgram;
 	}
+	
+	public ObservableList<ExProgramMgtDTO> getAllInfo() {
+		String sql = "SELECT * FROM PRMSCHE_TB";
+		PreparedStatement ps;
+		ResultSet rs;
+		ObservableList<ExProgramMgtDTO> allList = FXCollections.observableArrayList();
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				ExProgramMgtDTO exProgramMgtDto = new ExProgramMgtDTO();
+				exProgramMgtDto.setPRMSCHE_Code(rs.getString("PRMSCHE_Code"));
+				exProgramMgtDto.setPRM_Code(rs.getString("PRM_Code"));
+				exProgramMgtDto.setTRAINER_Code(rs.getString("TRAINER_Code"));
+				exProgramMgtDto.setPRMSCHE_Price(rs.getInt("PRMSCHE_Price"));
+				exProgramMgtDto.setPRMSCHE_Strdate(rs.getDate("PRMSCHE_Strdate"));
+				exProgramMgtDto.setPRMSCHE_Enddate(rs.getDate("PRMSCHE_Enddate"));
+				exProgramMgtDto.setPRMSCHE_Time(rs.getString("PRMSCHE_Time"));
+				exProgramMgtDto.setPRMSCHE_LimitP(rs.getInt("PRMSCHE_LimitP"));
+				exProgramMgtDto.setPRMSCHE_CurrentP(rs.getInt("PRMSCHE_CurrentP"));
+				allList.add(exProgramMgtDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return allList;
+	}
+		
+
 	
 	//ex프로그램 중복체크
 	public ExProgramMgtDTO selectExProgram(String addProgram) {
@@ -99,6 +127,8 @@ public class ExProgramMgtDAO {
 		return result;
 		
 	}
+
+
 
 
 

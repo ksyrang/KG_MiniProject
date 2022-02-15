@@ -1,10 +1,23 @@
 package mem.Enroll;
 
+import java.awt.PaintContext;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.ColorModel;
+
+import common.CommonService;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import common.CommonService;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 
 
@@ -21,7 +34,8 @@ public class EnrollService {
 		TextField birthTxt = (TextField) KG_MEM_FX_Enroll.lookup("#birthTxt");
 		TextField mobileTxt = (TextField) KG_MEM_FX_Enroll.lookup("#mobileTxt");
 		TextField addrTxt = (TextField) KG_MEM_FX_Enroll.lookup("#addrTxt");
-		
+//		Label colorLabel1 = (Label) KG_MEM_FX_Enroll.lookup("#colorLabel1");
+//		Label colorLabel2 = (Label) KG_MEM_FX_Enroll.lookup("#colorLabel2");
 		
 		String name = nameTxt.getText();
 		String id = idTxt.getText();
@@ -30,6 +44,10 @@ public class EnrollService {
 		String birth = birthTxt.getText();
 		String mobile = mobileTxt.getText();
 		String addr = addrTxt.getText();
+//		colorLabel1.setTextFill(Color.RED);
+//		colorLabel2.setTextFill(Color.RED);
+//		Paint label = colorLabel.getTextFill(#e10b0b);
+		
 		
 		RadioButton manRadio = (RadioButton) KG_MEM_FX_Enroll.lookup("#manRadio");
 		RadioButton womanRadio = (RadioButton) KG_MEM_FX_Enroll.lookup("#womanRadio");
@@ -44,7 +62,15 @@ public class EnrollService {
 			CommonService.Msg("필수 데이터 입니다.");
 			return;
 		}
-				
+		EnrollDTO enrollDTOC = new EnrollDTO();
+		if(enrollDTOC.getID().equals(id)) {
+			CommonService.Msg("중복된 ID입니다.");
+		}
+		
+//		if(enrollDTOC.getMobile().equals(mobile)) {
+//			colorLabel2.setTextFill(Color.RED);
+//		}
+		
 		if(pw.equals(confirm)) {	
 			EnrollDAO enrollDAO = new EnrollDAO();
 			EnrollDTO enrollDTO = enrollDAO.SelectId(id);
@@ -61,13 +87,9 @@ public class EnrollService {
 				enrollDAO.insert(enrollDTO);
 				CommonService.Msg(" 계정이 등록되었습니다.");
 			}
-			else if(enrollDTO.equals(id)) {
-				CommonService.Msg("중복된 ID입니다.");
-			}else {
+			else {
 				CommonService.Msg("는/은 등록된 계정입니다.");
 			}
-		}else {
-			CommonService.Msg("입력한 두 패스워드가 틀립니다.");
 		}
 	}
 }

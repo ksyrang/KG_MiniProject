@@ -80,7 +80,7 @@
                               <Insets left="25.0" top="10.0" />
                            </VBox.margin>
                         </PasswordField>
-                        <Label prefHeight="20.0" prefWidth="150.0" text="X : 비밀번호가 다릅니다" textFill="#fbefef">
+                        <Label fx:id="colorLabel1" onInputMethodTextChanged="#setOnInputMethodTextChanged1" prefHeight="20.0" prefWidth="150.0" text="X : 비밀번호가 다릅니다" textFill="#fbefef">
                            <VBox.margin>
                               <Insets left="25.0" />
                            </VBox.margin>
@@ -116,7 +116,7 @@
                               <Insets left="25.0" top="13.0" />
                            </VBox.margin>
                         </TextField>
-                        <Label maxWidth="150.0" prefHeight="20.0" text="X : 전화번호가 다릅니다" textFill="#fbefef">
+                        <Label fx:id="colorLabel2" maxWidth="150.0" onInputMethodTextChanged="#setOnInputMethodTextChanged2" prefHeight="20.0" text="X : 전화번호가 다릅니다" textFill="#fbefef">
                            <VBox.margin>
                               <Insets left="25.0" />
                            </VBox.margin>

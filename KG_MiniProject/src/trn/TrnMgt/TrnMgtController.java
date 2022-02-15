@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import trn.DTO.TrnDTO;
 
 public class TrnMgtController implements Initializable {
 
@@ -33,7 +34,7 @@ public class TrnMgtController implements Initializable {
 
 	}
 	public void TnrMgtProc() {
-		MgtDTO tmpTrnDto = TrnMgtSvc.getTrnInfo(trnCode);
+		TrnDTO tmpTrnDto = TrnMgtSvc.getTrnInfo(trnCode);
 		PasswordField CPwField = (PasswordField)trnMgtForm.lookup("#TrnPWField");
 		PasswordField CPwCField = (PasswordField)trnMgtForm.lookup("#TrnPWCField");
 		

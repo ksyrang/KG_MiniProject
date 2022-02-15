@@ -19,5 +19,7 @@ public class TrnWelcomeDAO {
 			e.printStackTrace();
 		}
 	}
-	
+	public void SelectExProgram() {
+		
+	}
 }

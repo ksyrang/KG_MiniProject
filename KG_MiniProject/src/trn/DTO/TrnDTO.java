@@ -1,6 +1,6 @@
-package trn.TrnMgt;
+package trn.DTO;
 
-public class MgtDTO {
+public class TrnDTO {
 	private String TRAINER_Code;
 	private String TRAINER_Name;
 	private String TRAINER_ID;

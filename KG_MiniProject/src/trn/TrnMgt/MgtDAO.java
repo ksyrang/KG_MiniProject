@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import trn.DTO.TrnDTO;
+
 public class MgtDAO {
 	
 	private Connection con;
@@ -22,8 +24,8 @@ public class MgtDAO {
 		}
 	}	
 	
-	public MgtDTO SelectTrnInfo(String Code) {
-		MgtDTO tmpDto = null;
+	public TrnDTO SelectTrnInfo(String Code) {
+		TrnDTO tmpDto = null;
 		String sql = "SELECT * FROM MEM_TB WHERE TRAINER_Code = ?";
 		PreparedStatement ps;
 		ResultSet rs;
@@ -32,7 +34,7 @@ public class MgtDAO {
 			ps.setString(1, Code);
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				tmpDto = new MgtDTO();	
+				tmpDto = new TrnDTO();	
 				tmpDto.setTRAINER_Code(rs.getString("TRAINER_Code"));
 				tmpDto.setTRAINER_ID(rs.getString("TRAINER_ID"));
 				tmpDto.setTRAINER_PW(rs.getString("TRAINER_PW"));
@@ -49,7 +51,7 @@ public class MgtDAO {
 		return tmpDto;
 	}
 	
-	public int UpdateTrnInfo(MgtDTO trndto) {
+	public int UpdateTrnInfo(TrnDTO trndto) {
 		int result = 0;
 		PreparedStatement ps;
 		String sql = "UPDATE FROM MEM_TB SET "

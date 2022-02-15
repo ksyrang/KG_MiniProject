@@ -1,23 +1,12 @@
 package mem.Enroll;
 
-import java.awt.PaintContext;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.ColorModel;
-
 import common.CommonService;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 
 
 
@@ -34,6 +23,7 @@ public class EnrollService {
 		TextField birthTxt = (TextField) KG_MEM_FX_Enroll.lookup("#birthTxt");
 		TextField mobileTxt = (TextField) KG_MEM_FX_Enroll.lookup("#mobileTxt");
 		TextField addrTxt = (TextField) KG_MEM_FX_Enroll.lookup("#addrTxt");
+		Text labelTxt1 = (Text) KG_MEM_FX_Enroll.lookup("#labelTxt1");
 //		Label colorLabel1 = (Label) KG_MEM_FX_Enroll.lookup("#colorLabel1");
 //		Label colorLabel2 = (Label) KG_MEM_FX_Enroll.lookup("#colorLabel2");
 		
@@ -44,6 +34,7 @@ public class EnrollService {
 		String birth = birthTxt.getText();
 		String mobile = mobileTxt.getText();
 		String addr = addrTxt.getText();
+//		 label1 = labelTxt1.getTextFill;
 //		colorLabel1.setTextFill(Color.RED);
 //		colorLabel2.setTextFill(Color.RED);
 //		Paint label = colorLabel.getTextFill(#e10b0b);
@@ -67,9 +58,9 @@ public class EnrollService {
 			CommonService.Msg("중복된 ID입니다.");
 		}
 		
-//		if(enrollDTOC.getMobile().equals(mobile)) {
+		if(enrollDTOC.getMobile().equals(mobile)) {
 //			colorLabel2.setTextFill(Color.RED);
-//		}
+		}
 		
 		if(pw.equals(confirm)) {	
 			EnrollDAO enrollDAO = new EnrollDAO();
@@ -90,6 +81,9 @@ public class EnrollService {
 			else {
 				CommonService.Msg("는/은 등록된 계정입니다.");
 			}
+		}else {
+//			colorLabel1.setTextFill(Color.RED);
+			CommonService.Msg("비밀번호가 일치하지 않습니다.");
 		}
 	}
 }

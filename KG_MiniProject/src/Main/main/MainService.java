@@ -77,6 +77,8 @@ public class MainService {
 		try {
 			memberJoinForm = loader.load();
 			controller.setmemberJoinForm(memberJoinForm);
+			controller.setEnrollController(loader.getController());
+			controller.settingEnroll();
 			
 			Scene scene = new Scene(memberJoinForm);
 			Stage primaryStage = new Stage();

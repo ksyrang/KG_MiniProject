@@ -2,11 +2,15 @@ package admin.memberMgt;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
  class MemberMgtService {
+	 
+	 // @FXML private TextField idtxt, nametxt, pwtxt, mobiletxt, addrtxt;
 
 
 	// 필터
@@ -41,6 +45,15 @@ import javafx.scene.control.TableView;
 			notApproveTable.setItems(tableView);
 			
 		}
+	}
+	
+	// 테이블뷰 행 클릭시 이벤트
+	public void cellClick(Parent memberMgtForm, String colCode) {
+		TextField idfield = (TextField) memberMgtForm.lookup("#idtxt");
+		idfield.setText(colCode);
+		
+		
+		
 	}
 
 

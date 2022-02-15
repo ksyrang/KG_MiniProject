@@ -28,6 +28,7 @@ public class MemberMgtDAO {
 			}
 	}
 	
+	
 	public ObservableList<MemberMgtDTO> getAllMemberList() {
 		String sql = "SELECT mem_code, mem_name, mem_approve FROM mem_tb";
 		PreparedStatement ps;

@@ -9,6 +9,7 @@ import common.CommonService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -18,13 +19,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldListCell;
+import javafx.scene.input.MouseEvent;
 
 public class MemberMgtController implements Initializable{
 	private Parent memberMgtForm;
 	private MemberMgtService memberMgtSvc;
 	
-	@FXML private TextField idtxt;
-	@FXML private TextField nametxt;
+	@FXML private TextField idtxt, nametxt, pwtxt, mobiletxt, addrtxt;
 	@FXML private ComboBox<String> filterCombo; 
 	
 	@FXML private TableView<MemberMgtTable> memTable;
@@ -71,6 +72,16 @@ public class MemberMgtController implements Initializable{
 		memberMgtSvc.filter(memberMgtForm);
 	}
 	
+	// 테이블뷰 행 클릭시 이벤트 처리
+	public void tableClick() {
+		memTable.setOnMouseClicked((MouseEvent e) -> {
+			System.out.println(memTable.getSelectionModel().getSelectedIndex());
+			MemberMgtTable mt = memTable.getSelectionModel().getSelectedItem();
+			System.out.println(mt.getColCode());
+			memberMgtSvc.cellClick(memberMgtForm, mt.getColCode());
+		});
+	}
+	
 	// 가입 승인 버튼 클리 시
 	public void memberMgtApproveProc() {
 		System.out.println("가입 승인 버튼 클릭");
@@ -87,6 +98,7 @@ public class MemberMgtController implements Initializable{
 		System.out.println("회원 삭제 버튼 클릭");
 		memberMgtSvc.delete(memberMgtForm);
 	}
+	
 	
 	// 이전 버튼 클릭 시
 	public void memberMgtCancelProc() {

@@ -20,8 +20,9 @@ public class WelcomeService {
 		Parent memberMgtForm;
 		try {
 			memberMgtForm = loader.load();
+			welcomeController.setMemberMgtController(loader.getController());
 			welcomeController.setMemberMgtForm(memberMgtForm);
-			
+			welcomeController.settingMemberMgt();
 			Scene scene = new Scene(memberMgtForm);
 			Stage primaryStage = new Stage();
 			primaryStage.setTitle("memberMgtForm");
@@ -37,8 +38,9 @@ public class WelcomeService {
 		Parent trainerMgtForm;
 		try {
 			trainerMgtForm = loader.load();
+			welcomeController.setTrainerMgtController(loader.getController());
 			welcomeController.setTrainerMgtForm(trainerMgtForm);
-			
+			welcomeController.settingTrainerMgt();
 			Scene scene = new Scene(trainerMgtForm);
 			Stage primaryStage = new Stage();
 			primaryStage.setTitle("adminWelcome");
@@ -54,8 +56,9 @@ public class WelcomeService {
 		Parent exProgramMgtForm;
 		try {
 			exProgramMgtForm = loader.load();
+			welcomeController.setExProgramMgtController(loader.getController());
 			welcomeController.setExProgramMgtForm(exProgramMgtForm);
-			
+			welcomeController.settingExProgramMgt();
 			Scene scene = new Scene(exProgramMgtForm);
 			Stage primaryStage = new Stage();
 			primaryStage.setTitle("adminWelcome");
@@ -90,7 +93,9 @@ public class WelcomeService {
 		Parent salesForm;
 		try {
 			salesForm = loader.load();
+			welcomeController.setSalesController(loader.getController());
 			welcomeController.setSalesForm(salesForm);
+			welcomeController.settingSales();
 			
 			Scene scene = new Scene(salesForm);
 			Stage primaryStage = new Stage();
@@ -107,7 +112,9 @@ public class WelcomeService {
 		Parent statisticsForm;
 		try {
 			statisticsForm = loader.load();
+			welcomeController.setStatisticsController(loader.getController());
 			welcomeController.setStatisticsForm(statisticsForm);
+			welcomeController.settingStatistics();
 			
 			Scene scene = new Scene(statisticsForm);
 			Stage primaryStage = new Stage();
@@ -119,13 +126,4 @@ public class WelcomeService {
 		}
 	}
 
-	public void logoutProc() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void cancelProc() {
-		// TODO Auto-generated method stub
-		
-	}
 }

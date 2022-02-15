@@ -18,5 +18,4 @@ public class CommonService {
 		Stage stage = (Stage)form.getScene().getWindow();
 		stage.close();
 	}
-	
 }

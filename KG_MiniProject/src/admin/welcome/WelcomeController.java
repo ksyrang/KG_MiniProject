@@ -9,6 +9,7 @@ import admin.memberMgt.MemberMgtController;
 import admin.sales.SalesController;
 import admin.statistics.StatisticsController;
 import admin.trainerMgt.TrainerMgtController;
+import common.CommonService;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 
@@ -59,10 +60,10 @@ public class WelcomeController implements Initializable {
 		welcomSvc.statisticsProc();
 	}
 	public void logoutProc() {
-		welcomSvc.logoutProc();
+		//common으로 동작
 	}
 	public void cancelProc() {
-		welcomSvc.cancelProc();
+		CommonService.WindowClose(welcomForm);
 	}
 	
 	// setForm

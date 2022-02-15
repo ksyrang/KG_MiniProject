@@ -17,12 +17,10 @@ public class Controller {
 	private Parent trainerWelcomeForm;
 	private Parent memberJoinForm;
 	private String UserCode;
-	private FindIDController findIDController;
 	private Parent memberFindIDForm;
 	
 	/**Trainer package controller**/
 	private TrnWelcomeController trnWelcomeController;
-	private Parent memberFindIDForm;	
 	/******************************/
 	
 	public Controller() {
@@ -36,9 +34,6 @@ public class Controller {
 	public void setUserCode(String userCode) {
 		UserCode = userCode;
 	}
-	public void setMemberFindIDForm(Parent memberFindIDForm) {
-	      this.memberFindIDForm = memberFindIDForm;
-	   }
 	   
 	   public void setFindIDController(FindIDController findIDController) {
 	      this.findIDController = findIDController;

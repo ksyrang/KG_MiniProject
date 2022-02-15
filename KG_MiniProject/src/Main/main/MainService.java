@@ -116,36 +116,10 @@ public class MainService {
 				e.printStackTrace();
 			}
 		
-	}
-	
-	public void memberFindIDOpen() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/FindID/KG_MEM_FX_FindID.fxml"));
-        Parent memberFindIDForm;
-        try {
-           memberFindIDForm = loader.load();
-           controller.setMemberFindIDForm(memberFindIDForm);
-           controller.setEnrollController(loader.getController());
-           
-           
-           Scene scene = new Scene(memberFindIDForm);
-           Stage primaryStage = new Stage();
-           primaryStage.setTitle("memberFindID");
-           primaryStage.setScene(scene);
-           primaryStage.show();
-        } catch (IOException e) {
-           e.printStackTrace();
-        }
-     
-  }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		}
+
+
+		
+		
+		
 }

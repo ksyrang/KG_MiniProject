@@ -23,6 +23,13 @@ public class WelcomeService {
 			welcomeController.setMemberMgtController(loader.getController());
 			welcomeController.setMemberMgtForm(memberMgtForm);
 			welcomeController.settingMemberMgt();
+			
+			// 콤보 박스
+			ComboBox<String> filterCombo = (ComboBox<String>)memberMgtForm.lookup("#filterCombo");
+			if(filterCombo != null) {
+				filterCombo.getItems().addAll("전체보기", "승인여부");
+			}
+			
 			Scene scene = new Scene(memberMgtForm);
 			Stage primaryStage = new Stage();
 			primaryStage.setTitle("memberMgtForm");

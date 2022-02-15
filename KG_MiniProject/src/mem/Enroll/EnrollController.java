@@ -7,10 +7,6 @@ import common.CommonService;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 
-
-
-
-
 public class EnrollController implements Initializable{
 	private Parent memberJoinForm;
 	private EnrollService enrollService;
@@ -19,6 +15,8 @@ public class EnrollController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		enrollService = new EnrollService();
 	}
+	
+
 	
 	public void setEnrollForm(Parent memberJoinForm) {
 		this.memberJoinForm = memberJoinForm;
@@ -32,6 +30,7 @@ public class EnrollController implements Initializable{
 	// 회원 가입 버튼 클릭 시 동작.
 	public void enrollProc() {
 		enrollService.insert(memberJoinForm);
+		
 	}
 	
 	// 취소 버튼 클릭 시 동작.

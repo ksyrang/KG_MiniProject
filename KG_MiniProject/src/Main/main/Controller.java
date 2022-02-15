@@ -2,11 +2,13 @@ package Main.main;
 
 import Main.login.LoginController;
 import javafx.scene.Parent;
+import mem.Enroll.EnrollController;
 import trn.Welcome.TrnWelcomeController;
 
 //컨트롤러들의 참조 값을 저장하는 기능.
 public class Controller {
 	private LoginController loginController;
+	private EnrollController enrollController;
 	private MainService mainService;
 	private Parent adminWelcomeForm;
 	private Parent memberWelcomeForm;
@@ -53,6 +55,13 @@ public class Controller {
 		this.memberJoinForm = memberJoinForm;
 	}
 	
+	public void setEnrollController(EnrollController enrollController) {
+		this.enrollController = enrollController;
+	}
+	
+	public void settingEnroll() {
+		this.enrollController.setEnrollForm(this.memberJoinForm);
+	}
 	
 	public void open(String division) {
 		if("adminWelcome".equals(division)) {

@@ -3,12 +3,14 @@ package admin.helthProgramMgt;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import admin.welcome.WelcomeController;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 
 public class HelthProgramMgtController implements Initializable{
 	private Parent helthProgramMgtForm;
 	private HelthProgramMgtService healthSvc;
+	private WelcomeController welcomeController;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -19,6 +21,7 @@ public class HelthProgramMgtController implements Initializable{
 		this.helthProgramMgtForm = helthProgramMgtForm;
 		System.out.println(helthProgramMgtForm);
 	}
+	
 	
 	// 회원권 등록 버튼 클릭 시
 	public void memshipInsertProc() {
@@ -37,5 +40,7 @@ public class HelthProgramMgtController implements Initializable{
 		System.out.println("이전 버튼");
 		
 	}
+	
+	
 
 }

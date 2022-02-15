@@ -71,7 +71,9 @@ public class WelcomeService {
 		Parent helthProgramMgtForm;
 		try {
 			helthProgramMgtForm = loader.load();
+			welcomeController.setHelthProgramMgtController(loader.getController());
 			welcomeController.setHelthProgramMgtForm(helthProgramMgtForm);
+			welcomeController.settingHelthProgramMgt();
 			
 			Scene scene = new Scene(helthProgramMgtForm);
 			Stage primaryStage = new Stage();

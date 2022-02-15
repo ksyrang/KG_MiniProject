@@ -3,6 +3,7 @@ package admin.welcome;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import admin.helthProgramMgt.HelthProgramMgtController;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 
@@ -15,8 +16,10 @@ public class WelcomeController implements Initializable {
 	private Parent helthProgramMgtForm;
 	private Parent salesForm;
 	private Parent statisticsForm;
+	private HelthProgramMgtController helthProgramController;
 	
 	private WelcomeService welcomSvc;
+	
 	
 	
 	@Override
@@ -52,7 +55,10 @@ public class WelcomeController implements Initializable {
 	public void cancelProc() {
 		welcomSvc.cancelProc();
 	}
-
+	
+	public Parent getHelthProgramMgtForm() {
+		return helthProgramMgtForm;
+	}
 	public void setMemberMgtForm(Parent memberMgtForm) {
 		this.memberMgtForm = memberMgtForm;
 	}
@@ -64,12 +70,25 @@ public class WelcomeController implements Initializable {
 	}
 	public void setHelthProgramMgtForm(Parent helthProgramMgtForm) {
 		this.helthProgramMgtForm = helthProgramMgtForm;
+		
 	}
 	public void setSalesForm(Parent salesForm) {
 		this.salesForm = salesForm;
 	}
 	public void setStatisticsForm(Parent statisticsForm) {
 		this.statisticsForm = statisticsForm;
+	}
+
+	
+	
+	//이작업 다해야함
+	public void setHelthProgramMgtController(HelthProgramMgtController helthProgramController) {
+		this.helthProgramController = helthProgramController;
+	}
+
+	public void settingHelthProgramMgt() {
+		this.helthProgramController.setHelthMgtForm(this.helthProgramMgtForm);
+		
 	}
 	
 	

@@ -9,6 +9,11 @@ public class CmnResDTO {
 	public CmnResDTO() {
 		// TODO Auto-generated constructor stub
 	}
+	public CmnResDTO(CmnResDTO cmnResDTO) {
+		RES_Code = cmnResDTO.getRES_Code();
+		MEM_Code = cmnResDTO.getMEM_Code();
+		PRMSCHE_Code = cmnResDTO.getPRMSCHE_Code();
+	}
 
 	public CmnResDTO(String rES_Code, String mEM_Code, String pRMSCHE_Code) {
 		super();

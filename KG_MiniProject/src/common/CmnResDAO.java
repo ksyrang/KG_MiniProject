@@ -25,6 +25,32 @@ public class CmnResDAO {
 		}
 	}
 	
+	public int IstRes(CmnResDTO cmnResDTO) {
+		int result = 0;
+		sql = "INSERT INTO PAY_TB "+
+				"(RES_Code,MEM_Code,PRMSCHE_Code)"+
+				"VALUES(?,?,?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, cmnResDTO.getRES_Code());
+			ps.setString(2, cmnResDTO.getMEM_Code());
+			ps.setString(3, cmnResDTO.getPRMSCHE_Code());
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try { //사용한 메소드만 닫아준다 -> 해당 메소드 이외에는 공통으로 사용하기 위해 선언해 놨기 때문 -> 마지막 종료 전에 나머지(rs,con) 닫으면됨
+				if(ps != null) ps.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+		
+	}
+	
+	
 	public CmnResDTO SltResOne(String RES_Code) {
 		CmnResDTO tmpdata = null;
 		sql = "SELECT * FROM RES_TB WHERE RES_Code = ?" ;

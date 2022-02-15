@@ -25,22 +25,25 @@ public class CmnPayDAO {
 			e.printStackTrace();
 		}
 	}
+	
 	public int Istpay(CmnPayDTO cmnPayDTO) {
 		int result = 0;
-		sql = "INSERT INTO PAY_TB VALUES(?,?,?,?,?,?)";
+		sql = "INSERT INTO PAY_TB "+
+				"(PAY_Code, PAY_Type, PAY_Date, MEMSHIPSCHE_Code, RES_Code)"+
+				"VALUES(?,?,?,?,?)";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, cmnPayDTO.getPAY_Code());
 			ps.setString(2, cmnPayDTO.getPAY_Type());
 			ps.setDate(3, cmnPayDTO.getPAY_Date());
-			ps.setString(3, cmnPayDTO.getMEMSHIPSCHE_Code());
-			ps.setString(3, cmnPayDTO.getRES_Code());
+			ps.setString(4, cmnPayDTO.getMEMSHIPSCHE_Code());
+			ps.setString(5, cmnPayDTO.getRES_Code());
 			result = ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			try { //사용한 메소드만 닫아준다 -> 해당 메소드 이외에는 공통으로 사용하기 위해 선언해 놨기 때문 -> 마지막 종료 전에 나머지(rs,con) 닫으면됨
+			try { 
 				if(ps != null) ps.close();
 			} catch (SQLException e2) {
 				e2.printStackTrace();

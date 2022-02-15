@@ -11,7 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import trn.Welcome.TrnTbVDTO;
+import trn.DBDAO.TrnTrainerDAO;
+import trn.DBDTO.TrnTrainerDTO;
 
 //새로운 창 오픈을 위한 메인 서비스 클래스
 public class MainService {
@@ -65,9 +66,10 @@ public class MainService {
 			controller.setTrnWelcomeController(loader.getController());
 			controller.getTrnWelcomeController().setTrnWelcomeForm(trainerWelcomeForm);
 			controller.getTrnWelcomeController().setTrnCode(UserCode);
-//			Label titleUserName = (Label)trainerWelcomeForm.lookup("#TitleNameLabel"); 
-//			titleUserName.setText(null);
-			
+			Label titleUserName = (Label)trainerWelcomeForm.lookup("#TitleNameLabel"); 
+//			TrnTrainerDTO tmptrndto = new TrnTrainerDAO().SelectTrnInfo(UserCode);
+//			if(tmptrndto != null) titleUserName.setText(tmptrndto.getTRAINER_Name()+"강사님");
+//			else titleUserName.setText("null임돠");
 			
 			Scene scene = new Scene(trainerWelcomeForm);
 			Stage primaryStage = new Stage();

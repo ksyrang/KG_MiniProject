@@ -97,8 +97,6 @@ public class TrnWelcomeController implements Initializable {
 		//이니셜라이즈는 인스턴스의 최초의 행동이기 때문에 해당괄호안에서는 어떤 데이터든 null만이 있는것
 		//인스턴스 이후의 데이터는 계속 메소드의 매개변수로 넣어줘야 한다
 		//EX : 	WelcomeService.backClose(WelcomeForm);
-//		this.trnCode = controller.getUserCode();
-//		this.trnCode = "0"; //테스트용 입력제한
 //		TrnTrainerDTO tmpTrnDTO = new TrnTrainerDAO().SelectTrnInfo(trnCode);
 //		TitleUserNameLabel.setText(tmpTrnDTO.getTRAINER_Name());
 		

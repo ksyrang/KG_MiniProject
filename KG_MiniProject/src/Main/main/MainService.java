@@ -55,6 +55,11 @@ public class MainService {
 		try {
 			trainerWelcomeForm = loader.load();
 			controller.setTrinerWelcomeForm(trainerWelcomeForm);
+			//trainer welcome form 참조값을 trainer package로 이동
+			controller.setTrnWelcomeController(loader.getController());
+			controller.getTrnWelcomeController().setTrnWelcomeForm(trainerWelcomeForm);
+			
+			
 			
 			Scene scene = new Scene(trainerWelcomeForm);
 			Stage primaryStage = new Stage();

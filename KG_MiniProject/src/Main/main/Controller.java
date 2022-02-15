@@ -2,6 +2,7 @@ package Main.main;
 
 import Main.login.LoginController;
 import javafx.scene.Parent;
+import trn.Welcome.TrnWelcomeController;
 
 //컨트롤러들의 참조 값을 저장하는 기능.
 public class Controller {
@@ -12,15 +13,30 @@ public class Controller {
 	private Parent trainerWelcomeForm;
 	private Parent memberJoinForm;
 	
+	/**Trainer package controller**/
+	private TrnWelcomeController trnWelcomeController;	
+	/******************************/
 	
 	public Controller() {
 		mainService = new MainService();
 		mainService.setController(this);
 	}
 	
+	
 	public void setLoginController(LoginController loginController) {
 		this.loginController = loginController;
 		this.loginController.setController(this);
+	}
+	
+	public LoginController getLoginController() {
+		return this.loginController;
+	}
+	
+	public void setTrnWelcomeController(TrnWelcomeController trnWelcomeController) {
+		this.trnWelcomeController = trnWelcomeController;
+	}
+	public TrnWelcomeController getTrnWelcomeController() {
+		return trnWelcomeController;
 	}
 	
 	
@@ -37,10 +53,6 @@ public class Controller {
 		this.memberJoinForm = memberJoinForm;
 	}
 	
-
-	public LoginController getLoginController() {
-		return this.loginController;
-	}
 	
 	public void open(String division) {
 		if("adminWelcome".equals(division)) {

@@ -1,4 +1,4 @@
-package trn.ExprogramEnroll;
+package trn.EXProgramMgt;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -6,11 +6,11 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 
-public class TrnExpEnrollController implements Initializable {
-	public Parent trnExpEnrollForm;
+public class TrnExProgramMgtController implements Initializable {
+	public Parent trnExProgramMgtForm;
 	
-	public void setTrnExpEnrollForm(Parent trnExpEnrollForm) {
-		this.trnExpEnrollForm = trnExpEnrollForm;
+	public void setTrnExProgramMgtForm(Parent trnExProgramMgtForm) {
+		this.trnExProgramMgtForm = trnExProgramMgtForm;
 	}
 	
 	@Override

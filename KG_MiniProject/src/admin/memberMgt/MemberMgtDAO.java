@@ -33,7 +33,6 @@ public class MemberMgtDAO {
 		PreparedStatement ps;
 		ResultSet rs;
 		ObservableList<MemberMgtDTO> member = FXCollections.observableArrayList();
-		//List<MemberMgtDTO> data = new ArrayList<MemberMgtDTO>();
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();

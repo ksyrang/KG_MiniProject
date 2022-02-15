@@ -42,7 +42,6 @@ public class MemberMgtController implements Initializable{
 	public void memberMgtFilterCombo() {
 		System.out.println("콤보 박스");
 		String combo = filterCombo.getValue();
-		
 		System.out.println(combo);
 		memberMgtSvc.filter(combo);
 	}

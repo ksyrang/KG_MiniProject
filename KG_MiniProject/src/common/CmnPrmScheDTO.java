@@ -11,9 +11,11 @@ public class CmnPrmScheDTO {
 	private int PRMSCHE_LimitP;
 	private int PRMSCHE_CurrentP;
 	private int PRMSCHE_Price;
+	private String PRMSCHE_Name;
 	//FK
 	private String PRM_Code;
 	private String TRAINER_Code;
+	
 	
 	public CmnPrmScheDTO() {
 		// TODO Auto-generated constructor stub
@@ -29,6 +31,7 @@ public class CmnPrmScheDTO {
 		PRMSCHE_Price = dTO.getPRMSCHE_Price();
 		PRM_Code = dTO.getPRM_Code();
 		TRAINER_Code = dTO.getTRAINER_Code();
+		PRMSCHE_Name = dTO.getPRMSCHE_Name();
 	}
 	public CmnPrmScheDTO(String pRMSCHE_Code, Date pRMSCHE_Strdate, Date pRMSCHE_Enddate, String pRMSCHE_Time,
 			int pRMSCHE_LimitP, int pRMSCHE_CurrentP, int pRMSCHE_Price, String pRM_Code,String tRAINER_Code) {
@@ -96,7 +99,7 @@ public class CmnPrmScheDTO {
 		return PRMSCHE_Price;
 	}
 
-	public void setPRM_Price(int pRMSCHE_Price) {
+	public void getPRMSCHE_Price(int pRMSCHE_Price) {
 		PRMSCHE_Price = pRMSCHE_Price;
 	}
 
@@ -114,6 +117,12 @@ public class CmnPrmScheDTO {
 
 	public void setTRAINER_Code(String tRAINER_Code) {
 		TRAINER_Code = tRAINER_Code;
+	}
+	public String getPRMSCHE_Name() {
+		return PRMSCHE_Name;
+	}
+	public void setPRMSCHE_Name(String pRMSCHE_Name) {
+		PRMSCHE_Name = pRMSCHE_Name;
 	}
 	
 	

@@ -7,6 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import trn.Welcome.TrnTbVDTO;
+
+
 public class CmnPrmScheDAO {
 	//TB : PRMSCHE_TB
 	private String sql = "";
@@ -245,7 +250,33 @@ public class CmnPrmScheDAO {
 		}
 		return Datalist;
 	}
-	
-	
+
+	public ObservableList<TrnTbVDTO> SltPrmScheAllforTable(){
+		ObservableList<TrnTbVDTO> Datalist = FXCollections.observableArrayList();
+		TrnTbVDTO tmpTvDtO = null;
+		sql = "SELECT * FROM MEM_TB";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				tmpTvDtO = new TrnTbVDTO(rs.getString("PRMSCHE_Code"),
+						rs.getString("PRMSCHE_Name"),
+						Integer.toString(rs.getInt("PRMSCHE_CurrentP"))
+						);
+				Datalist.add(tmpTvDtO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		return Datalist;
+	}
 	
 }//class end

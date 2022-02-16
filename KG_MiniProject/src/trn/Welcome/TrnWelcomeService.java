@@ -31,7 +31,8 @@ import trn.DBDTO.TrnTrainerDTO;
 public class TrnWelcomeService {
 	
 	private TrnWelcomeController trnWelcomeController;
-
+	
+	private TableView<TrnTbVDTO> CurrentProgramTableList;
 	private ObservableList<TrnTbVDTO> list = FXCollections.observableArrayList(
 			new TrnTbVDTO("hellocode", "hellocode","hellocode"),
 			new TrnTbVDTO("hellocode2", "helloname2","hellomems2")
@@ -41,10 +42,9 @@ public class TrnWelcomeService {
 		this.trnWelcomeController = trnWelcomeController;
 	}
 	public void programclickProc(Parent welcomeForm) {
-	
-		TableView<TrnTbVDTO> CurrentProgramTableList = (TableView<TrnTbVDTO>)welcomeForm.lookup("#CurrentProgramTableList");
-		CurrentProgramTableList.setItems(list);
+//		CurrentProgramTableList = (TableView<TrnTbVDTO>)welcomeForm.lookup("#CurrentProgramTableList");
 		
+//		CurrentProgramTableList.setItems(list);
 
 	}
 
@@ -181,9 +181,7 @@ public class TrnWelcomeService {
 			else AMRBtn.setSelected(true);
 			
 			LimitMemsField.setText(Integer.toString(ScheDto.getPRMSCHE_LimitP()));
-						
-			
-			
+
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnExPMgtFrom));
 			stage.setTitle("trnExPEnroll");
@@ -192,7 +190,12 @@ public class TrnWelcomeService {
 			e.printStackTrace();
 		}	
 	}
-
+	
+	public void InitTable(TableView TableView) {
+		CurrentProgramTableList = TableView;
+	}
+	
+	
 	public void ShutDown(Parent back) {
 		CommonService.WindowClose(back);
 	}

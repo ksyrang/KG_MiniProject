@@ -2,6 +2,8 @@ package Main.main;
 
 import java.io.IOException;
 
+import common.CmnPrmScheDAO;
+import common.CmnPrmScheDTO;
 import common.CmnTrainerDAO;
 import common.CmnTrainerDTO;
 import javafx.collections.FXCollections;
@@ -15,6 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import trn.DBDAO.TrnTrainerDAO;
 import trn.DBDTO.TrnTrainerDTO;
+import trn.Welcome.TrnTbVDTO;
 
 //새로운 창 오픈을 위한 메인 서비스 클래스
 public class MainService {
@@ -71,7 +74,15 @@ public class MainService {
 			Label titleUserName = (Label)trainerWelcomeForm.lookup("#TitleUserNameLabel");
 			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(UserCode));
 			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
-
+			//TableView<TrnTbVDTO> CurrentProgramTableList = (TableView<TrnTbVDTO>)trainerWelcomeForm.lookup("#CurrentProgramTableList");
+			CmnPrmScheDAO PrmShcheDao = new CmnPrmScheDAO();
+			
+			for(CmnPrmScheDTO e: PrmShcheDao.SltPrmScheAll()) {
+				System.out.println("for문은 들어옴");
+				System.out.println(e.getPRM_Code());	
+			};
+			ObservableList<TrnTbVDTO> list = PrmShcheDao.SltPrmScheAllforTable();
+			//CurrentProgramTableList.setItems(list);
 			
 			Scene scene = new Scene(trainerWelcomeForm);
 			Stage primaryStage = new Stage();

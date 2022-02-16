@@ -25,6 +25,7 @@ public class MEM_WelcomeController implements Initializable {
 	@FXML private TextField trainernameTextField;
 	@FXML private TextField trainercareerTextField;
 	@FXML private TextField prmsche_strdateTextField;
+	
 	@FXML private TextField prmsche_enddateTextField;
 	@FXML private TextField prmschetimeTextField;
 	

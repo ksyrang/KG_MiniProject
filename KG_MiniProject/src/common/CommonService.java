@@ -1,5 +1,6 @@
 package common;
 
+import Main.main.Controller;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -17,5 +18,10 @@ public class CommonService {
 	public static void WindowClose(Parent form) {
 		Stage stage = (Stage)form.getScene().getWindow();
 		stage.close();
+	}
+	
+	public static void LogOut() {
+
+		
 	}
 }

@@ -2,6 +2,8 @@ package Main.main;
 
 import Main.login.LoginController;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import mem.Enroll.EnrollController;
 import mem.FindID.FindIDController;
 import trn.Welcome.TrnWelcomeController;
@@ -11,6 +13,7 @@ public class Controller {
 	private LoginController loginController;
 	private EnrollController enrollController;
 	private FindIDController findIDController;
+	private TrnWelcomeController trnWelcomeController;
 	private MainService mainService;
 	private Parent adminWelcomeForm;
 	private Parent memberWelcomeForm;
@@ -18,11 +21,17 @@ public class Controller {
 	private Parent memberJoinForm;
 	private String UserCode;
 	private Parent memberFindIDForm;
+	private Stage stage;
+	private Scene scene;
 	
-	/**Trainer package controller**/
-	private TrnWelcomeController trnWelcomeController;
-	/******************************/
-	
+	public Stage getStage() {
+		return stage;
+	}
+
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
+
 	public Controller() {
 		mainService = new MainService();
 		mainService.setController(this);

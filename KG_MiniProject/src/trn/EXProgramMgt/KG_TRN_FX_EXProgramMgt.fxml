@@ -5,7 +5,6 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -21,12 +20,12 @@
                   <Font size="25.0" />
                </font>
             </Label>
-            <Label text="-강사님">
+            <Label fx:id="TitleUserNameLabel" text="-강사님">
                <font>
                   <Font size="20.0" />
                </font>
                <HBox.margin>
-                  <Insets left="450.0" />
+                  <Insets left="400.0" />
                </HBox.margin>
             </Label>
             <Button mnemonicParsing="false" text="logout">
@@ -43,12 +42,12 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="프로그램 수정">
+            <Button fx:id="ExPMdyBtn" mnemonicParsing="false" onAction="#ExPMdyProc" prefHeight="50.0" prefWidth="150.0" text="프로그램 수정">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="프로그램 삭제">
+            <Button fx:id="ExPDltBtn" mnemonicParsing="false" onAction="#ExPDltProc" prefHeight="50.0" prefWidth="150.0" text="프로그램 삭제">
                <font>
                   <Font size="15.0" />
                </font>
@@ -90,7 +89,7 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="10.0" prefHeight="25.0" text="???">
+                  <Label fx:id="TrnName" layoutX="10.0" layoutY="10.0" prefHeight="25.0" text="???">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -104,7 +103,7 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="35.0" prefWidth="300.0" />
+                  <TextField fx:id="ExPName" prefHeight="35.0" prefWidth="300.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="200.0" spacing="10.0">
@@ -114,23 +113,26 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <DatePicker prefHeight="35.0">
+                  <DatePicker fx:id="SrtDate" prefHeight="35.0" prefWidth="175.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </DatePicker>
-                  <Label prefHeight="35.0" prefWidth="30.0" text=" ~ ">
+                  <Label alignment="CENTER" prefHeight="35.0" text=" ~ ">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="16.0" />
                      </font>
                   </Label>
-                  <DatePicker prefHeight="35.0" />
-                  <RadioButton mnemonicParsing="false" prefHeight="35.0" text="오전">
+                  <DatePicker fx:id="EndDate" prefHeight="35.0" prefWidth="175.0" />
+                  <RadioButton fx:id="AMRBtn" mnemonicParsing="false" prefHeight="35.0" text="오전">
                      <font>
                         <Font size="13.0" />
                      </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" prefHeight="35.0" text="오후">
+                  <RadioButton fx:id="PMRBtn" mnemonicParsing="false" prefHeight="35.0" text="오후">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -146,7 +148,7 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <TextArea prefHeight="10.0" prefWidth="15.0" />
+                        <TextField fx:id="LimitMemsField" prefHeight="35.0" prefWidth="50.0" />
                         <Label text="명">
                            <font>
                               <Font size="17.0" />

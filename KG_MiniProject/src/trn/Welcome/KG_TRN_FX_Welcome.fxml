@@ -31,7 +31,7 @@
                   <Insets left="550.0" top="12.5" />
                </HBox.margin>
             </Label>
-            <Button mnemonicParsing="false" text="logout">
+            <Button fx:id="LogoutBtn" mnemonicParsing="false" onAction="#LogOutProc" text="logout">
                <HBox.margin>
                   <Insets left="20.0" top="12.5" />
                </HBox.margin>
@@ -85,7 +85,7 @@
          <children>
             <Button fx:id="ExPEnrollbtn" mnemonicParsing="false" onAction="#ExPEnrollProc" prefHeight="50.0" prefWidth="170.0" text="프로그램 개설" />
             <Button fx:id="ExPMgtbtn" mnemonicParsing="false" onAction="#ExPMgtProc" prefHeight="50.0" prefWidth="170.0" text="프로그램 관리" />
-            <Button fx:id="Backbtn" mnemonicParsing="false" onAction="#BackProc" prefHeight="50.0" prefWidth="170.0" text="이전" />
+            <Button fx:id="Backbtn" mnemonicParsing="false" onAction="#BackProc" prefHeight="50.0" prefWidth="170.0" text="종료" />
          </children>
       </HBox>
    </bottom>

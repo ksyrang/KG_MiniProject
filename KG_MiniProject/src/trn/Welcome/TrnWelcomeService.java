@@ -56,7 +56,6 @@ public class TrnWelcomeService {
 			trnWelcomeController.getTrnMgtController().setTrnCode(trnCode);
 		
 			//강사 정보 get
-			
 			//tilte sector set
 			Label titleUserName = (Label)trnMgtForm.lookup("#TitleUserNameLabel");
 			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnCode));
@@ -97,6 +96,7 @@ public class TrnWelcomeService {
 			//Career Sector
 			CareerField.setText(Integer.toString(tmpTrnDto.getTRAINER_Career()));
 		
+			
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnMgtForm));
 			stage.setTitle("강사 정보수정 페이지");
@@ -113,10 +113,15 @@ public class TrnWelcomeService {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/trn/ExprogramEnroll/KG_TRN_FX_EXProgramEnroll.fxml"));
 		Parent trnExPEnrollFrom;
 		try {
-			trnExPEnrollFrom= loader.load();
+			trnExPEnrollFrom = loader.load();
 			trnWelcomeController.setTrnExpEnrollController(loader.getController());
 			trnWelcomeController.getTrnExpEnrollController().setTrnExpEnrollForm(trnExPEnrollFrom);
-			trnWelcomeController.getTrnExpEnrollController().setTrnCode(trnCode);			
+			trnWelcomeController.getTrnExpEnrollController().setTrnCode(trnCode);	
+			
+			Label titleUserName = (Label)trnExPEnrollFrom.lookup("#TitleUserNameLabel");
+			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnCode));
+			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
+			
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnExPEnrollFrom));
 			stage.setTitle("trnExPEnroll");
@@ -131,10 +136,16 @@ public class TrnWelcomeService {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/trn/EXProgramMgt/KG_TRN_FX_EXProgramMgt.fxml"));
 		Parent trnExPMgtFrom;
 		try {
+			
 			trnExPMgtFrom = loader.load();
 			trnWelcomeController.setTrnExpMgtController(loader.getController());
 			trnWelcomeController.getTrnExpMgtController().setTrnExProgramMgtForm(trnExPMgtFrom);
 			trnWelcomeController.getTrnExpMgtController().setTrnCode(trnCode);
+			
+			Label titleUserName = (Label)trnExPMgtFrom.lookup("#TitleUserNameLabel");
+			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnCode));
+			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
+			
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnExPMgtFrom));
 			stage.setTitle("trnExPEnroll");
@@ -144,8 +155,12 @@ public class TrnWelcomeService {
 		}	
 	}
 
-	public void backClose(Parent back) {
+	public void ShutDown(Parent back) {
 		CommonService.WindowClose(back);
+	}
+	
+	public void LogOut() {
+//		LogOut();
 	}
 	
 

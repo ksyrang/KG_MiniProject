@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class CmnTrainerDAO {
 	//TB명 : TRAINER_TB
 	private String sql = "";
@@ -126,6 +129,41 @@ public class CmnTrainerDAO {
 	
 	public ArrayList<CmnTrainerDTO> SltTrnAll(){
 		ArrayList<CmnTrainerDTO> Datalist = new ArrayList<>();
+		CmnTrainerDTO tmpdata = null;
+		sql = "SELECT * FROM TRAINER_TB";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				tmpdata = new CmnTrainerDTO(
+						rs.getString("TRAINER_Code"),
+						rs.getString("TRAINER_Name"),
+						rs.getString("TRAINER_ID"),
+						rs.getString("TRAINER_PW"),
+						rs.getString("TRAINER_Gender"),
+						rs.getInt("TRAINER_Birth"),
+						rs.getInt("TRAINER_Mobile"),
+						rs.getInt("TRAINER_Career"),
+						rs.getString("TRAINER_Addr")
+				);
+				Datalist.add(tmpdata);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		return Datalist;
+	}
+	
+	public ObservableList<CmnTrainerDTO> OLSltTrnAll(){
+		ObservableList<CmnTrainerDTO> Datalist = FXCollections.observableArrayList();
 		CmnTrainerDTO tmpdata = null;
 		sql = "SELECT * FROM TRAINER_TB";
 		try {

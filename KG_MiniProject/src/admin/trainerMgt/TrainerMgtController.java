@@ -54,9 +54,14 @@ public class TrainerMgtController implements Initializable{
 		
 	}
 	
+	// 강사 테이블뷰 셀 클릭 시
+	public void trnCellClick() {
+		trainerMgtSvc.trnCellClick(trainerMgtForm);
+	}
+	
 	// 강사 삭제 버튼 클릭 시
 	public void trnDeleteProc() {
-		
+		trainerMgtSvc.trnDeleteProc(trainerMgtForm);
 	}
 	
 	// 이전 버튼 클릭 시

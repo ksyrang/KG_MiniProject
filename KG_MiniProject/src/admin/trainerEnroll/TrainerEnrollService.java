@@ -89,20 +89,25 @@ public class TrainerEnrollService {
 			trnGender = "여";
 		}
 		
-		if(trnId.isEmpty() || trnPw.isEmpty() || trnPwComfrim.isEmpty() || trnName.isEmpty()) {
+		if (trnId.isEmpty() || trnPw.isEmpty() || trnPwComfrim.isEmpty() || trnName.isEmpty()) {
 			CommonService.Msg(" * 필수 입력란을 입력해주세요.");
-		}else {
-			if(trnPw.equals(trnPwComfrim)) {
-				dao = new CmnTrainerDAO();
-				CmnTrainerDTO dto = new CmnTrainerDTO(trnCode, trnName, trnId, trnPw, trnGender, trnBirth, trnMobile, trnCareer, trnAaddr);
-				if(dao.IstTrn(dto) == 1) {
-					CommonService.Msg(trnId + "강사 등록되었습니다.");
-					CommonService.WindowClose(trainerEnrollForm);
-				}else {
-					CommonService.Msg("강사 등록 실패");
+		} else {
+			if (dao.SltTrnId(trnId) == null) {
+				if (trnPw.equals(trnPwComfrim)) {
+					dao = new CmnTrainerDAO();
+					CmnTrainerDTO dto = new CmnTrainerDTO(trnCode, trnName, trnId, trnPw, trnGender, trnBirth,
+							trnMobile, trnCareer, trnAaddr);
+					if (dao.IstTrn(dto) == 1) {
+						CommonService.Msg(trnId + "강사 등록되었습니다.");
+						CommonService.WindowClose(trainerEnrollForm);
+					} else {
+						CommonService.Msg("강사 등록 실패");
+					}
+				} else {
+					CommonService.Msg("비밀번호가 다릅니다.");
 				}
-			}else {
-				CommonService.Msg("비밀번호가 다릅니다.");
+			} else {
+				CommonService.Msg("중복 체크를 해주세요.");
 			}
 		}
 		

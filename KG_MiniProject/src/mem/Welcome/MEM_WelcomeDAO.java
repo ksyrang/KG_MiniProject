@@ -39,15 +39,15 @@ public class MEM_WelcomeDAO {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, id);
 			rs = ps.executeQuery();
-			while(rs.next()) {
-				MEM_WelcomeDTO memWelcomeDto = new MEM_WelcomeDTO();				
-				memWelcomeDto.setMem_code(rs.getString("mem_code"));
-				memWelcomeDto.setPrmsche_code(rs.getString("prmsche_code"));
-				memWelcomeDto.setMemshipsche_code(rs.getString("memshipsche_code"));
-				memWelcomeDto.setMem_id(rs.getString("mem_id"));
-				memWelcomeDto.setMem_name(rs.getString("mem_name"));
-				member.add(memWelcomeDto);
-			}
+			rs.next();
+			MEM_WelcomeDTO memWelcomeDto = new MEM_WelcomeDTO();				
+			memWelcomeDto.setMem_code(rs.getString("mem_code"));
+			memWelcomeDto.setPrmsche_code(rs.getString("prmsche_code"));
+			memWelcomeDto.setMemshipsche_code(rs.getString("memshipsche_code"));
+			memWelcomeDto.setMem_id(rs.getString("mem_id"));
+			memWelcomeDto.setMem_name(rs.getString("mem_name"));
+			member.add(memWelcomeDto);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

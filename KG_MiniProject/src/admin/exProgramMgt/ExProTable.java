@@ -1,5 +1,6 @@
 package admin.exProgramMgt;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class ExProTable {
@@ -7,17 +8,17 @@ public class ExProTable {
 	private String programName;
 	private String code;
 	private String trainerName;
-	private String limtPerson;
-	private String currentPerson;
-	private String strDate;
-	private String endDate;
-	private String price;
+	private int limtPerson;
+	private int currentPerson;
+	private Date strDate;
+	private Date endDate;
+	private int price;
 	private String timeC;
 	
 	
 	
-	public ExProTable(String programName, String code, String trainerName, String limtPerson, String currentPerson,
-			String strDate, String endDate, String price, String timeC) {
+	public ExProTable(String programName, String code, String trainerName, int limtPerson, int currentPerson,
+			Date strDate, Date endDate, int price, String timeC) {
 		super();
 		this.programName = programName;
 		this.code = code;
@@ -48,34 +49,34 @@ public class ExProTable {
 	public void setTrainerName(String trainerName) {
 		this.trainerName = trainerName;
 	}
-	public String getLimtPerson() {
+	public int getLimtPerson() {
 		return limtPerson;
 	}
-	public void setLimtPerson(String limtPerson) {
+	public void setLimtPerson(int limtPerson) {
 		this.limtPerson = limtPerson;
 	}
-	public String getCurrentPerson() {
+	public int getCurrentPerson() {
 		return currentPerson;
 	}
-	public void setCurrentPerson(String currentPerson) {
+	public void setCurrentPerson(int currentPerson) {
 		this.currentPerson = currentPerson;
 	}
-	public String getStrDate() {
+	public Date getStrDate() {
 		return strDate;
 	}
-	public void setStrDate(String strDate) {
+	public void setStrDate(Date strDate) {
 		this.strDate = strDate;
 	}
-	public String getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 	public String getTimeC() {

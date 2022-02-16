@@ -1,6 +1,10 @@
 package admin.exProgramMgt;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
+
 import admin.helthProgramMgt.HelthProTable;
 import admin.helthProgramMgt.HelthProgramMgtDTO;
 import common.CommonService;
@@ -8,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
@@ -19,6 +24,7 @@ public class ExProgramMgtService {
 	ExProgramMgtDAO exprogramDao;
 	ListView<String> programListView;
 	TableView<ExProTable> exProgramTableView;
+	private ExProTable codeTable;
 	
 	
 	private String selectData;
@@ -37,14 +43,13 @@ public class ExProgramMgtService {
 		ObservableList<ExProTable> tableItems = FXCollections.observableArrayList();
 		ObservableList<ExProgramMgtDTO> allList = exprogramDao.getAllInfo();
 		System.out.println("allList"+allList);
-//		for(ExProgramMgtDTO i : allList) {
-//			tableItems.add(new ExProTable(i.getPRM_Name(), i.getPRM_Code(), i.getTRAINER_Name(),
-//					i.getPRMSCHE_LimitP(), i.getPRMSCHE_CurrentP(), i.getPRMSCHE_Strdate(),
-//					i.getPRMSCHE_Enddate(), i.getPRMSCHE_Price(), i.getPRMSCHE_Time()));
-//		}
-//		
-//		exProgramTableView.setItems(tableItems);
-//		return tableItems;
+		for(ExProgramMgtDTO i : allList) {
+			tableItems.add(new ExProTable(i.getPRM_Name(), i.getPRM_Code(), i.getTRAINER_Name(),
+					i.getPRMSCHE_LimitP(), i.getPRMSCHE_CurrentP(), i.getPRMSCHE_Strdate(),
+					i.getPRMSCHE_Enddate(), i.getPRMSCHE_Price(), i.getPRMSCHE_Time()));
+		}
+		
+		exProgramTableView.setItems(tableItems);
 	}
 	
 	
@@ -101,27 +106,78 @@ public class ExProgramMgtService {
 		System.out.println(tableItems);
 		
 	}
-	
 
-	//수정
-	public void exProgramModifyProc(Parent exProgramMgtForm) {
-//		TextField exnameText = (TextField) exProgramMgtForm.lookup("#exnameText");
-//		TextField priceText = (TextField) exProgramMgtForm.lookup("#priceText");
-//		TextField personLimitText = (TextField) exProgramMgtForm.lookup("#personLimitText");
-//		RadioButton amRadioButton = (RadioButton)exProgramMgtForm.lookup("#amRadioButton");
-//		RadioButton pmRadioButton = (RadioButton)exProgramMgtForm.lookup("#pmRadioButton");
-//
-//		
-//		String gender ="";
-//		
-//		if(amRadioButton.isSelected())
-//			gender = "남";
-//		else if(pmRadioButton.isSelected())
-//			gender = "여";
-//		String exName= exnameText.getText();
+	//클릭 시 테이블내용 업데이트
+	public void modifyTableUp(Parent exProgramMgtForm) {
+		TextField exnameText = (TextField) exProgramMgtForm.lookup("#exnameText");
+		TextField priceText = (TextField) exProgramMgtForm.lookup("#priceText");
+		TextField personLimitText = (TextField) exProgramMgtForm.lookup("#personLimitText");
+		DatePicker startDatePicker = (DatePicker) exProgramMgtForm.lookup("#startDatePicker");
+		DatePicker endDatePicker = (DatePicker) exProgramMgtForm.lookup("#endDatePicker");
+		RadioButton amRadioButton = (RadioButton)exProgramMgtForm.lookup("#amRadioButton");
+		RadioButton pmRadioButton = (RadioButton)exProgramMgtForm.lookup("#pmRadioButton");
+		
+		
+		exnameText.setText(codeTable.getProgramName()+"-"+codeTable.getTimeC()+"반");
+		
+		Date startDate = codeTable.getStrDate();
+		LocalDate startLocalDate = startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		endDatePicker.setValue(startLocalDate);
+		Date endDate = codeTable.getStrDate();
+		LocalDate endLocalDate = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		startDatePicker.setValue(endLocalDate);
+		
+		if(codeTable.getTimeC().equals("오전")) {
+			amRadioButton.setSelected(true);
+		}else {
+			pmRadioButton.setSelected(true);
+		}
+		
+		priceText.setText(Integer.toString(codeTable.getPrice()));
+		personLimitText.setText(Integer.toString(codeTable.getLimtPerson()));
+		
+//		String exName = exnameText.getText();
 //		int price = Integer.parseInt(priceText.getText());
 //		int personLimit = Integer.parseInt(personLimitText.getText());
-//		
+//		LocalDate startDate = startDatePicker.getValue();
+//		LocalDate endDate = endDatePicker.getValue();
+		
+		
+		
+		
+	}
+	
+	//수정
+	public void exProgramModifyProc(Parent exProgramMgtForm) {
+		TextField exnameText = (TextField) exProgramMgtForm.lookup("#exnameText");
+		TextField priceText = (TextField) exProgramMgtForm.lookup("#priceText");
+		TextField personLimitText = (TextField) exProgramMgtForm.lookup("#personLimitText");
+		DatePicker startDatePicker = (DatePicker) exProgramMgtForm.lookup("#startDatePicker");
+		DatePicker endDatePicker = (DatePicker) exProgramMgtForm.lookup("#endDatePicker");
+		RadioButton amRadioButton = (RadioButton)exProgramMgtForm.lookup("#amRadioButton");
+		RadioButton pmRadioButton = (RadioButton)exProgramMgtForm.lookup("#pmRadioButton");
+
+		String exName = exnameText.getText();
+		int price = Integer.parseInt(priceText.getText());
+		int personLimit = Integer.parseInt(personLimitText.getText());
+		LocalDate startDate = startDatePicker.getValue();
+		LocalDate endDate = endDatePicker.getValue();
+		
+		String gender ="";
+
+		
+		
+		
+		
+		
+		
+		
+		if(amRadioButton.isSelected())
+			gender = "남";
+		else if(pmRadioButton.isSelected());
+
+
+		
 
 		
 
@@ -137,6 +193,15 @@ public class ExProgramMgtService {
 		this.selectData = selectData;
 		
 	}
+
+
+	public void setCodeTable(ExProTable codeTable) {
+		this.codeTable = codeTable;
+		
+	}
+
+
+
 
 
 

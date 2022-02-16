@@ -63,36 +63,25 @@ public class ExProgramMgtDAO {
 			while(rs.next()) {
 				
 				ExProgramMgtDTO exProgramMgtDto = new ExProgramMgtDTO();
-//				exProgramMgtDto.setPRMSCHE_Code(rs.getString("PRMSCHE_Code"));
-//				exProgramMgtDto.setPRMSCHE_Price(rs.getString("PRMSCHE_Price"));
-//				exProgramMgtDto.setPRMSCHE_Strdate(rs.getString("PRMSCHE_Strdate"));
-//				exProgramMgtDto.setPRMSCHE_Enddate(rs.getString("PRMSCHE_Enddate"));
-//				exProgramMgtDto.setPRMSCHE_Time(rs.getString("PRMSCHE_Time"));
-//				exProgramMgtDto.setPRMSCHE_LimitP(rs.getString("PRMSCHE_LimitP"));
-//				exProgramMgtDto.setPRMSCHE_CurrentP(rs.getString("PRMSCHE_CurrentP"));
-//				
-//				exProgramMgtDto.setTRAINER_Code(rs.getString("TRAINER_Code"));
-//				exProgramMgtDto.setPRM_Code(rs.getString("PRM_Code"));
-				
-				System.out.println(rs.getString("PRMSCHE_Code"));
-//				System.out.println(rs.getString("PRMSCHE_Price"));
-				System.out.println(rs.getString("PRMSCHE_Strdate"));
-				System.out.println(rs.getString("PRMSCHE_Enddate"));
-				System.out.println(rs.getString("PRMSCHE_Time"));
-				System.out.println(rs.getString("PRMSCHE_LimitP"));
-				System.out.println(rs.getString("PRMSCHE_CurrentP"));
-				System.out.println(rs.getString("TRAINER_Code"));
-				System.out.println(rs.getString("PRM_Code"));
+				exProgramMgtDto.setPRMSCHE_Code(rs.getString("PRMSCHE_Code"));
+				exProgramMgtDto.setPRMSCHE_Price(rs.getInt("PRMSCHE_Price"));
+				exProgramMgtDto.setPRMSCHE_Strdate(rs.getDate("PRMSCHE_Strdate"));
+				exProgramMgtDto.setPRMSCHE_Enddate(rs.getDate("PRMSCHE_Enddate"));
+				exProgramMgtDto.setPRMSCHE_Time(rs.getString("PRMSCHE_Time"));
+				exProgramMgtDto.setPRMSCHE_LimitP(rs.getInt("PRMSCHE_LimitP"));
+				exProgramMgtDto.setPRMSCHE_CurrentP(rs.getInt("PRMSCHE_CurrentP"));
+				exProgramMgtDto.setTRAINER_Code(rs.getString("TRAINER_Code"));
+				exProgramMgtDto.setPRM_Code(rs.getString("PRM_Code"));
 
 				
-//				CmnTrainerDAO cmnTrainerDao = new CmnTrainerDAO();
-//				CmnTrainerDTO cmnTrainerDto = cmnTrainerDao.SltTrnOne(rs.getString("TRAINER_Code"));
-//				exProgramMgtDto.setTRAINER_Name(cmnTrainerDto.getTRAINER_Name());
-//				CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
-//				CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(rs.getString("PRM_Code"));
-//				exProgramMgtDto.setPRM_Name(cmnPrmDto.getPRM_Name());
+				CmnTrainerDAO cmnTrainerDao = new CmnTrainerDAO();
+				CmnTrainerDTO cmnTrainerDto = cmnTrainerDao.SltTrnOne(rs.getString("TRAINER_Code"));
+				exProgramMgtDto.setTRAINER_Name(cmnTrainerDto.getTRAINER_Name());
+				CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
+				CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(rs.getString("PRM_Code"));
+				exProgramMgtDto.setPRM_Name(cmnPrmDto.getPRM_Name());
 
-//				allList.add(exProgramMgtDto);
+				allList.add(exProgramMgtDto);
 			}
 
 		} catch (SQLException e) {
@@ -101,6 +90,7 @@ public class ExProgramMgtDAO {
 		return allList;
 	}
 		
+	
 	
 	//ex프로그램 중복체크
 	public ExProgramMgtDTO selectExProgram(String addProgram) {

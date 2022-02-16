@@ -31,24 +31,28 @@ public class ExProgramMgtController implements Initializable{
 	private Parent exProgramMgtForm;
 	private ExProgramMgtService exProgramSvc;
 	private String selectData;
+	private ExProTable codeTable;
+
 	
 	@FXML public ListView<String> programListView;
 	@FXML public TableView<ExProTable> exProgramTableView;
 	@FXML public TableColumn<ExProTable, String> programName;
 	@FXML public TableColumn<ExProTable, String> code;
 	@FXML public TableColumn<ExProTable, String> trainerName;
-	@FXML public TableColumn<ExProTable, String> limtPerson;
-	@FXML public TableColumn<ExProTable, String> currentPerson;
-	@FXML public TableColumn<ExProTable, String> strDate;
-	@FXML public TableColumn<ExProTable, String> endDate;
-	@FXML public TableColumn<ExProTable, String> price;
+	@FXML public TableColumn<ExProTable, Integer> limtPerson;
+	@FXML public TableColumn<ExProTable, Integer> currentPerson;
+	@FXML public TableColumn<ExProTable, Date> strDate;
+	@FXML public TableColumn<ExProTable, Date> endDate;
+	@FXML public TableColumn<ExProTable, Integer> price;
 	@FXML public TableColumn<ExProTable, String> timeC;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		exProgramSvc = new ExProgramMgtService();
-		exProgramSvc.listUp(this.programListView);
 		
+		exProgramSvc = new ExProgramMgtService();
+		//리스트 창 
+		exProgramSvc.listUp(this.programListView);
+		//테이블 창
 		programName.setCellValueFactory(new PropertyValueFactory<>("programName"));
 		code.setCellValueFactory(new PropertyValueFactory<>("code"));
 		trainerName.setCellValueFactory(new PropertyValueFactory<>("trainerName"));
@@ -59,41 +63,39 @@ public class ExProgramMgtController implements Initializable{
 		endDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
 		price.setCellValueFactory(new PropertyValueFactory<>("price"));
 		timeC.setCellValueFactory(new PropertyValueFactory<>("timeC"));
-		
-//		ExProgramMgtDAO exProgramDao = new ExProgramMgtDAO();
-//		ObservableList<ExProTable> tableItems = FXCollections.observableArrayList();
-//		ObservableList<ExProgramMgtDTO> allList = exProgramDao.getAllInfo();
-//		
-//		for(ExProgramMgtDTO i : allList) {
-//			tableItems.add(new ExProTable(i.getPRM_Name(), i.getPRM_Code(), i.getTRAINER_Name(),
-//					i.getPRMSCHE_LimitP(), i.getPRMSCHE_CurrentP(), i.getPRMSCHE_Strdate(),
-//					i.getPRMSCHE_Enddate(), i.getPRMSCHE_Price(), i.getPRMSCHE_Time()));
-//		}
-//		System.out.println(allList);
-//		
-//		this.exProgramTableView.setItems(tableItems);
-//		ObservableList<ExProTable> tableItems = exProgramSvc.tableUp(exProgramTableView);
 		this.exProgramSvc.tableUp(exProgramTableView);
+		//수정창
+		
+		
+		
+		
 		
 		
 		
 		
 		//listview 클릭 시
 		programListView.setOnMouseClicked(new EventHandler<MouseEvent>() { 
+			
 			@Override public void handle(MouseEvent event) { 
 				selectData = programListView.getSelectionModel().getSelectedItem(); 
 				System.out.println(selectData);
-
 				exProgramSvc.setSelectData(selectData);
 				}
 			});
 		
-		
+		exProgramTableView.setOnMouseClicked(new EventHandler<MouseEvent>() { 
+			@Override public void handle(MouseEvent event) { 
+				codeTable = exProgramTableView.getSelectionModel().getSelectedItem();
+				exProgramSvc.setCodeTable(codeTable);
+				exProgramSvc.modifyTableUp(exProgramMgtForm);
+				}
+			});
 	}
 	
 	public void setExProgramMgtForm(Parent exProgramMgtForm) {
 		this.exProgramMgtForm = exProgramMgtForm;
 	}
+	
 	
 	
 	// 등록 버튼 클릭 시

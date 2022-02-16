@@ -114,8 +114,8 @@ public class CmnPrmScheDAO {
 			ps.setInt(6, DTO.getPRMSCHE_Price());
 			ps.setString(7, DTO.getPRM_Code());
 			ps.setString(8, DTO.getTRAINER_Code());
-			ps.setString(9, DTO.getPRMSCHE_Code());
-			ps.setString(10, DTO.getPRMSCHE_Name());
+			ps.setString(9, DTO.getPRMSCHE_Name());
+			ps.setString(10, DTO.getPRMSCHE_Code());
 			result = ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -227,6 +227,7 @@ public class CmnPrmScheDAO {
 		sql = "SELECT * FROM PRMSCHE_TB WHERE TRAINER_Code=?";
 		try {
 			ps = con.prepareStatement(sql);
+			ps.setString(1, TRAINER_Code);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				tmpdata = new CmnPrmScheDTO(

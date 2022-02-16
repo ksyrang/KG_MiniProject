@@ -2,6 +2,7 @@ package trn.Welcome;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import common.CmnPrmDAO;
 import common.CmnPrmDTO;
@@ -17,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -32,21 +34,17 @@ public class TrnWelcomeService {
 	
 	private TrnWelcomeController trnWelcomeController;
 	
-	private TableView<TrnTbVDTO> CurrentProgramTableList;
-	private ObservableList<TrnTbVDTO> list = FXCollections.observableArrayList(
-			new TrnTbVDTO("hellocode", "hellocode","hellocode"),
-			new TrnTbVDTO("hellocode2", "helloname2","hellomems2")
-			);
+//	private TableView<TrnTbVDTO> CurrentProgramTableList;
+	
+//	private ObservableList<TrnTbVDTO> list = FXCollections.observableArrayList(
+//			new TrnTbVDTO("hellocode", "hellocode","hellocode"),
+//			new TrnTbVDTO("hellocode2", "helloname2","hellomems2")
+//			);
 		
 	public void setTrnWelcomeController(TrnWelcomeController trnWelcomeController) {
 		this.trnWelcomeController = trnWelcomeController;
 	}
-	public void programclickProc(Parent welcomeForm) {
-//		CurrentProgramTableList = (TableView<TrnTbVDTO>)welcomeForm.lookup("#CurrentProgramTableList");
-		
-//		CurrentProgramTableList.setItems(list);
 
-	}
 
 	//강사정보페이지
 	public void TrnMgtOpen(String trnCode) {
@@ -112,21 +110,19 @@ public class TrnWelcomeService {
 	}
 	
 	//프로그램 개설 페이지
-	public void ExPEnrollOpen(String trnCode) {
+	public void ExPEnrollOpen(Parent form) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/trn/ExprogramEnroll/KG_TRN_FX_EXProgramEnroll.fxml"));
 		Parent trnExPEnrollFrom;
 		try {
 			trnExPEnrollFrom = loader.load();
 			trnWelcomeController.setTrnExpEnrollController(loader.getController());
 			trnWelcomeController.getTrnExpEnrollController().setTrnExpEnrollForm(trnExPEnrollFrom);
-			trnWelcomeController.getTrnExpEnrollController().setTrnCode(trnCode);	
+			trnWelcomeController.getTrnExpEnrollController().setTrnCode(trnWelcomeController.getTrnCode());	
 			
 			Label titleUserName = (Label)trnExPEnrollFrom.lookup("#TitleUserNameLabel");
-			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnCode));
+			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnWelcomeController.getTrnCode()));
 			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
-			
-			
-			
+
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnExPEnrollFrom));
 			stage.setTitle("trnExPEnroll");
@@ -137,18 +133,17 @@ public class TrnWelcomeService {
 	}
 	
 	//프로그램 관리 페이지
-	public void ExPMgtOpen(String trnCode) {
+	public void ExPMgtOpen(Parent form) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/trn/EXProgramMgt/KG_TRN_FX_EXProgramMgt.fxml"));
 		Parent trnExPMgtFrom;
 		try {
-			
 			trnExPMgtFrom = loader.load();
 			trnWelcomeController.setTrnExpMgtController(loader.getController());
 			trnWelcomeController.getTrnExpMgtController().setTrnExProgramMgtForm(trnExPMgtFrom);
-			trnWelcomeController.getTrnExpMgtController().setTrnCode(trnCode);
-			
+			trnWelcomeController.getTrnExpMgtController().setTrnCode(trnWelcomeController.getTrnCode());
+
 			Label titleUserName = (Label)trnExPMgtFrom.lookup("#TitleUserNameLabel");
-			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnCode));
+			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnWelcomeController.getTrnCode()));
 			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
 			
 			//초기 선언
@@ -161,26 +156,51 @@ public class TrnWelcomeService {
 			RadioButton PMRBtn = (RadioButton)trnExPMgtFrom.lookup("#PMRBtn");
 			TextField LimitMemsField = (TextField)trnExPMgtFrom.lookup("#LimitMemsField");
 			
-			CmnPrmScheDTO ScheDto = new CmnPrmScheDAO().SltPrmScheOne("0");		
-			CmnPrmDTO PrmDto = new CmnPrmDAO().SltPrmOne(ScheDto.getPRM_Code());
-		
-			//Type
-			ExPTypeLabel.setText(PrmDto.getPRM_Name());
-			//Name
-			ExPNameFeild.setText(ScheDto.getPRMSCHE_Name());
+			//ListView 데이터 get
+			ListView<String> getPrmScheInfo = (ListView<String>)form.lookup("#Programinfo");
+			ObservableList<String> InfoList = getPrmScheInfo.getItems();
+			String[] WashingData = new String[InfoList.size()];
+			for(int i =0; i < InfoList.size();i++) {
+				WashingData[i] = getPrmScheData(InfoList.get(i));
+			}
+			//code
+			PrmScheCodeLabel.setText(WashingData[0]);
+			//type
+			ExPTypeLabel.setText(WashingData[1]);
+			//name
+			ExPNameFeild.setText(WashingData[2]);
 			//Date
-//			System.out.println(CommonService.DateCnvt(ScheDto.getPRMSCHE_Strdate()));
-			SrtDate.setValue(CommonService.DateCnvt(ScheDto.getPRMSCHE_Strdate()));
-			EndDate.setValue(CommonService.DateCnvt(ScheDto.getPRMSCHE_Enddate()));
+			SrtDate.setValue(CommonService.StringtoLocalDate(WashingData[3]));
+			EndDate.setValue(CommonService.StringtoLocalDate(WashingData[4]));
 			//Time
 			ToggleGroup group = new ToggleGroup();
 			AMRBtn.setToggleGroup(group);
 			PMRBtn.setToggleGroup(group);
-			if(ScheDto.getPRMSCHE_Time().equals("오전")) AMRBtn.setSelected(true);
-			else if(ScheDto.getPRMSCHE_Time().equals("오후")) PMRBtn.setSelected(true);
+			if(WashingData[5].equals("오전")) AMRBtn.setSelected(true);
+			else if(WashingData[6].equals("오후")) PMRBtn.setSelected(true);
 			else AMRBtn.setSelected(true);
+			LimitMemsField.setText(WashingData[7]);
 			
-			LimitMemsField.setText(Integer.toString(ScheDto.getPRMSCHE_LimitP()));
+//			CmnPrmScheDTO ScheDto = new CmnPrmScheDAO().SltPrmScheOne(trnCode);
+//			ArrayList<CmnPrmScheDTO> test = new CmnPrmScheDAO().SltPrmScheAllbyTrn(trnCode);
+//			CmnPrmDTO PrmDto = new CmnPrmDAO().SltPrmOne(ScheDto.getPRM_Code());
+//		
+//			//Type
+//			ExPTypeLabel.setText(PrmDto.getPRM_Name());
+//			//Name
+//			ExPNameFeild.setText(ScheDto.getPRMSCHE_Name());
+//			//Date
+//			System.out.println(CommonService.DateCnvt(ScheDto.getPRMSCHE_Strdate()));
+//			SrtDate.setValue(CommonService.DateCnvt(ScheDto.getPRMSCHE_Strdate()));
+//			EndDate.setValue(CommonService.DateCnvt(ScheDto.getPRMSCHE_Enddate()));
+//			//Time
+//			ToggleGroup group = new ToggleGroup();
+//			AMRBtn.setToggleGroup(group);
+//			PMRBtn.setToggleGroup(group);
+//			if(ScheDto.getPRMSCHE_Time().equals("오전")) AMRBtn.setSelected(true);
+//			else if(ScheDto.getPRMSCHE_Time().equals("오후")) PMRBtn.setSelected(true);
+//			else AMRBtn.setSelected(true);
+//			LimitMemsField.setText(Integer.toString(ScheDto.getPRMSCHE_LimitP()));
 
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnExPMgtFrom));
@@ -191,17 +211,57 @@ public class TrnWelcomeService {
 		}	
 	}
 	
-	public void InitTable(TableView TableView) {
-		CurrentProgramTableList = TableView;
+//	public void InitTable(TableView tableView) {
+//		CurrentProgramTableList = tableView;
+//	}
+	
+	public void programclickProc(Parent form) {
+		TableView<TrnTbVDTO> TbVw = (TableView<TrnTbVDTO>)form.lookup("#CurrentProgramTableList");
+		TrnTbVDTO tmp = TbVw.getSelectionModel().getSelectedItem();
+		CmnPrmScheDTO getPrmSchetmpDto = new CmnPrmScheDAO().SltPrmScheOne(tmp.getPCodeColumn());
+		ListView<String> SetPrmScheInfo = (ListView<String>)form.lookup("#Programinfo");
+		System.out.println(CommonService.DateCnvt((getPrmSchetmpDto.getPRMSCHE_Strdate())).toString());
+		String[] Line =  new String[8];
+		Line[0] = "강의 코드 : "+getPrmSchetmpDto.getPRM_Code();
+		Line[1] = "강의 타입 : "+new CmnPrmDAO().SltPrmOne(getPrmSchetmpDto.getPRM_Code()).getPRM_Name();
+		Line[2] = "강의 이름 : "+getPrmSchetmpDto.getPRMSCHE_Name();
+		Line[3] = "시작 일자 : "+CommonService.DateCnvt((getPrmSchetmpDto.getPRMSCHE_Strdate())).toString();
+		Line[4] = "종료 일자 : "+CommonService.DateCnvt(getPrmSchetmpDto.getPRMSCHE_Enddate()).toString();
+		Line[5] = "강의 시간 : "+getPrmSchetmpDto.getPRMSCHE_Time();
+		Line[6] = "인원/정원 : "+getPrmSchetmpDto.getPRMSCHE_CurrentP()+"/"+getPrmSchetmpDto.getPRMSCHE_LimitP();
+		Line[7] = "강의 가격 : "+getPrmSchetmpDto.getPRMSCHE_Price()+"원";		
+		
+		for(int i = 0; i<Line.length; i++) SetPrmScheInfo.getItems().add(Line[i]);
 	}
-	
-	
-	public void ShutDown(Parent back) {
-		CommonService.WindowClose(back);
+
+	public void ShutDown(Parent form) {
+		CommonService.WindowClose(form);
 	}
 	
 	public void LogOut() {
 //		LogOut();
+	}
+	
+	private String getPrmScheData(String data) {
+		String Data = null;
+		if(data.startsWith("강의 코드 : ")) {
+			Data = data.replace("강의 코드 : ", null);	
+		}else if(data.startsWith("강의 타입 : ")) {
+			Data = data.replace("강의 타입 : ", null);
+		}else if(data.startsWith("강의 이름 : ")) {
+			Data = data.replace("강의 이름 : ", null);
+		}else if(data.startsWith("시작 일자 : ")) {
+			Data = data.replace("시작 일자 : ", null);
+		}else if(data.startsWith("종료 일자 : ")) {
+			Data = data.replace("종료 일자 : ", null);
+		}else if(data.startsWith("인원/정원 : ")) {
+			Data = data.replace("인원/정원 : ", null);
+		}else if(data.startsWith("강의 가격 : ")) {
+			Data = data.replace("강의 가격 : ", null);
+		}else {
+			Data = null;
+		}
+		return Data;
 	}
 	
 

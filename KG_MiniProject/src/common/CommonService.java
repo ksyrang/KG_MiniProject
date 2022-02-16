@@ -6,6 +6,7 @@ import java.util.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
@@ -30,6 +31,10 @@ public class CommonService {
 
 		
 	}
+	public static LocalDate StringtoLocalDate(String Date) {		
+		return LocalDate.parse(Date, DateTimeFormatter.ISO_DATE);
+	}
+	
 	
 	public static LocalDate DateCnvt(java.sql.Date sqldate) {
 		

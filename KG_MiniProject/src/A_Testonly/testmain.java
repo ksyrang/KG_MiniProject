@@ -23,7 +23,7 @@ public class testmain {
 //		String Trn_Code = "All";
 //		testTrnTB(Trn_Code);
 		String PrmSche_Code = "0";
-		testPrmScheTB(PrmSche_Code);
+//		testPrmScheTB(PrmSche_Code);
 		
 //		CmnMemDAO CmnMemDAO = new CmnMemDAO();
 //		CmnMemDTO CmnMemDTO = new CmnMemDTO(CmnMemDAO.SltResOne(Mem_Code));

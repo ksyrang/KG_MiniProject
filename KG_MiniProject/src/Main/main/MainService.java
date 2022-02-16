@@ -1,6 +1,7 @@
 package Main.main;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import common.CmnPrmScheDAO;
 import common.CmnPrmScheDTO;
@@ -70,24 +71,22 @@ public class MainService {
 			controller.setTrinerWelcomeForm(trainerWelcomeForm);
 			//trainer welcome form 참조값을 trainer package로 이동
 			controller.setTrnWelcomeController(loader.getController());
-			
 			controller.getTrnWelcomeController().setTrnWelcomeForm(trainerWelcomeForm);
 			controller.getTrnWelcomeController().setTrnCode(UserCode);
-			
+			//상단 강사명 표시
 			Label titleUserName = (Label)trainerWelcomeForm.lookup("#TitleUserNameLabel");
 			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(UserCode));
 			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
+			//테이블뷰 초기 표시
 			TableView<TrnTbVDTO> CurrentProgramTableList = (TableView<TrnTbVDTO>)trainerWelcomeForm.lookup("#CurrentProgramTableList");			
 //			TableView<TrnTbVDTO> CurrentProgramTableList = controller.getTrnWelcomeController().getCurrentProgramTableList();			
-			
-			CmnPrmScheDAO PrmShcheDao = new CmnPrmScheDAO();
-			
-			ObservableList<TrnTbVDTO> list = PrmShcheDao.SltPrmScheAllforTable();
-			System.out.println(list.get(0).getMembersColumn());
-			System.out.println(list.get(0).getPCodeColumn());
-			System.out.println(list.get(0).getPNameColumn());
-			
-			CurrentProgramTableList.setItems(list);
+			ArrayList<CmnPrmScheDTO> tmplist = new CmnPrmScheDAO().SltPrmScheAllbyTrn(UserCode);
+			ObservableList<TrnTbVDTO> TBVwlist = FXCollections.observableArrayList();
+			for(CmnPrmScheDTO DTO: tmplist) {//PCodeColumn, PNameColumn, MembersColumn
+				TBVwlist.add(new TrnTbVDTO(DTO.getPRMSCHE_Code(), DTO.getPRMSCHE_Name(), 
+						Integer.toString(DTO.getPRMSCHE_CurrentP())));
+			}			
+			CurrentProgramTableList.setItems(TBVwlist);
 			
 			Scene scene = new Scene(trainerWelcomeForm);
 			Stage primaryStage = new Stage();

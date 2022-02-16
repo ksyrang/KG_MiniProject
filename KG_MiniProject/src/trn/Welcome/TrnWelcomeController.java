@@ -38,7 +38,6 @@ public class TrnWelcomeController implements Initializable {
     @FXML private Button ExPMgtbtn;
     @FXML private Button Backbtn;
     
-    private ObservableList<TrnTbVDTO> Tablelist;
 	private TrnWelcomeService WelcomeSvc;
 	private TrnWelcomeController trnWelcomeController;
 	private TrnMgtController trnMgtController;
@@ -52,6 +51,44 @@ public class TrnWelcomeController implements Initializable {
 		WelcomeSvc.setTrnWelcomeController(this);
 	}
 	
+//
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {	
+		//이니셜라이즈는 인스턴스의 최초의 행동이기 때문에 해당괄호안에서는 어떤 데이터든 null만이 있는것
+		//인스턴스 이후의 데이터는 계속 메소드의 매개변수로 넣어줘야 한다
+		//EX : 	WelcomeSvc.backClose(WelcomeForm);
+		CodeColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("PCodeColumn"));
+	    NameColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("PNameColumn"));
+	    MemsColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("MembersColumn"));
+//	    WelcomeSvc.InitTable(CurrentProgramTableList);
+	}
+	
+	public void TrnClickProc() {
+		WelcomeSvc.TrnMgtOpen(trnCode);
+	}
+	//프로그램이 클릭될때
+	public void programclickPro() {
+		WelcomeSvc.programclickProc(WelcomeForm);
+	}
+	
+	public void ExPEnrollProc() {
+		WelcomeSvc.ExPEnrollOpen(WelcomeForm);
+	}
+	
+	public void ExPMgtProc() {
+		WelcomeSvc.ExPMgtOpen(WelcomeForm);
+	}
+	
+	public void BackProc() {
+		WelcomeSvc.ShutDown(WelcomeForm);
+		
+	}
+	public void LogOutProc(){
+		System.out.println("logout");
+		WelcomeSvc.LogOut();
+//		WelcomeSvc.ShutDown(WelcomeForm);
+		
+	}
 	public String getTrnCode() {
 		return this.trnCode;
 	}
@@ -91,46 +128,6 @@ public class TrnWelcomeController implements Initializable {
 	public Parent getTrnWelcomeForm() {
 		return WelcomeForm;
 	}
-	
-//
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {	
-		//이니셜라이즈는 인스턴스의 최초의 행동이기 때문에 해당괄호안에서는 어떤 데이터든 null만이 있는것
-		//인스턴스 이후의 데이터는 계속 메소드의 매개변수로 넣어줘야 한다
-		//EX : 	WelcomeSvc.backClose(WelcomeForm);
-		CodeColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("PCodeColumn"));
-	    NameColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("PNameColumn"));
-	    MemsColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("MembersColumn"));
-//	    WelcomeSvc.InitTable(CurrentProgramTableList);
-	}
-	
-	public void TrnClickProc() {
-		WelcomeSvc.TrnMgtOpen(trnCode);
-	}
-	//프로그램이 클릭될때
-	public void programclickPro() {
-		WelcomeSvc.programclickProc(WelcomeForm);
-	}
-	
-	public void ExPEnrollProc() {
-		WelcomeSvc.ExPEnrollOpen(trnCode);
-	}
-	
-	public void ExPMgtProc() {
-		WelcomeSvc.ExPMgtOpen(trnCode);
-	}
-	
-	public void BackProc() {
-		WelcomeSvc.ShutDown(WelcomeForm);
-		
-	}
-	public void LogOutProc(){
-		System.out.println("logout");
-		WelcomeSvc.LogOut();
-//		WelcomeSvc.ShutDown(WelcomeForm);
-		
-	}
-
 	public TableView<TrnTbVDTO> getCurrentProgramTableList() {
 		return CurrentProgramTableList;
 	}

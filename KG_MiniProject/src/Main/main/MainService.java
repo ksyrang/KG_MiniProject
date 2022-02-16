@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import trn.DBDAO.TrnTrainerDAO;
 import trn.DBDTO.TrnTrainerDTO;
@@ -69,15 +70,23 @@ public class MainService {
 			controller.setTrinerWelcomeForm(trainerWelcomeForm);
 			//trainer welcome form 참조값을 trainer package로 이동
 			controller.setTrnWelcomeController(loader.getController());
+			
 			controller.getTrnWelcomeController().setTrnWelcomeForm(trainerWelcomeForm);
 			controller.getTrnWelcomeController().setTrnCode(UserCode);
+			
 			Label titleUserName = (Label)trainerWelcomeForm.lookup("#TitleUserNameLabel");
 			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(UserCode));
 			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
-			TableView<TrnTbVDTO> CurrentProgramTableList = (TableView<TrnTbVDTO>)trainerWelcomeForm.lookup("#CurrentProgramTableList");
+			TableView<TrnTbVDTO> CurrentProgramTableList = (TableView<TrnTbVDTO>)trainerWelcomeForm.lookup("#CurrentProgramTableList");			
+//			TableView<TrnTbVDTO> CurrentProgramTableList = controller.getTrnWelcomeController().getCurrentProgramTableList();			
+			
 			CmnPrmScheDAO PrmShcheDao = new CmnPrmScheDAO();
-
+			
 			ObservableList<TrnTbVDTO> list = PrmShcheDao.SltPrmScheAllforTable();
+			System.out.println(list.get(0).getMembersColumn());
+			System.out.println(list.get(0).getPCodeColumn());
+			System.out.println(list.get(0).getPNameColumn());
+			
 			CurrentProgramTableList.setItems(list);
 			
 			Scene scene = new Scene(trainerWelcomeForm);

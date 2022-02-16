@@ -98,9 +98,9 @@ public class TrnWelcomeController implements Initializable {
 		//이니셜라이즈는 인스턴스의 최초의 행동이기 때문에 해당괄호안에서는 어떤 데이터든 null만이 있는것
 		//인스턴스 이후의 데이터는 계속 메소드의 매개변수로 넣어줘야 한다
 		//EX : 	WelcomeSvc.backClose(WelcomeForm);
-//		CodeColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("PCodeColumn"));
-//	    NameColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("PNameColumn"));
-//	    MemsColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("MembersColumn"));
+		CodeColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("PCodeColumn"));
+	    NameColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("PNameColumn"));
+	    MemsColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("MembersColumn"));
 //	    WelcomeSvc.InitTable(CurrentProgramTableList);
 	}
 	
@@ -129,6 +129,10 @@ public class TrnWelcomeController implements Initializable {
 		WelcomeSvc.LogOut();
 //		WelcomeSvc.ShutDown(WelcomeForm);
 		
+	}
+
+	public TableView<TrnTbVDTO> getCurrentProgramTableList() {
+		return CurrentProgramTableList;
 	}
 
 }

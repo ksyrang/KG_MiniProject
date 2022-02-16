@@ -268,7 +268,6 @@ public class CmnPrmScheDAO {
 				tmpTvDtO = new TrnTbVDTO(rs.getString("PRMSCHE_Code"), rs.getString("PRMSCHE_Name"),
 						Integer.toString(rs.getInt("PRMSCHE_CurrentP"))
 						);
-				System.out.println(tmpTvDtO.getMembersColumn());
 				Datalist.add(tmpTvDtO);
 			}
 		} catch (SQLException e) {

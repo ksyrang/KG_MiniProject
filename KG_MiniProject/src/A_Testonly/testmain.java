@@ -17,7 +17,11 @@ public class testmain {
 //		testResTB(Res_Code);
 		String Mem_Code = "mem01";
 //		String Mem_Code = "All";
-		testMemTB(Mem_Code);
+//		testMemTB(Mem_Code);
+		
+		String Trn_Code = "0";
+//		String Trn_Code = "All";
+		testTrnTB(Trn_Code);
 		
 //		CmnMemDAO CmnMemDAO = new CmnMemDAO();
 //		CmnMemDTO CmnMemDTO = new CmnMemDTO(CmnMemDAO.SltResOne(Mem_Code));
@@ -36,6 +40,36 @@ public class testmain {
 //		System.out.println("Istpay result: "+CmnPayDAO.Istpay(CmnPayDTO));
 		
 		
+	}
+	private static void testTrnTB(String Code) {
+		CmnTrainerDAO DAO = new CmnTrainerDAO();
+		if(Code.equals("All")) {
+			System.out.println("==allpaylis==");
+			for(CmnTrainerDTO dto : DAO.SltTrnAll()) {
+				System.out.println(dto.getTRAINER_Code());
+				System.out.println(dto.getTRAINER_Name());
+				System.out.println(dto.getTRAINER_ID());
+				System.out.println(dto.getTRAINER_PW());
+				System.out.println(dto.getTRAINER_Gender());	
+				System.out.println(dto.getTRAINER_Birth());
+				System.out.println(dto.getTRAINER_Mobile());
+				System.out.println(dto.getTRAINER_Career());
+				System.out.println(dto.getTRAINER_Addr());
+				System.out.println("=split line=");
+			}
+		}
+		else {
+			CmnTrainerDTO dto = new CmnTrainerDTO(DAO.SltTrnOne(Code));
+			System.out.println(dto.getTRAINER_Code());
+			System.out.println(dto.getTRAINER_Name());
+			System.out.println(dto.getTRAINER_ID());
+			System.out.println(dto.getTRAINER_PW());
+			System.out.println(dto.getTRAINER_Gender());	
+			System.out.println(dto.getTRAINER_Birth());
+			System.out.println(dto.getTRAINER_Mobile());
+			System.out.println(dto.getTRAINER_Career());
+			System.out.println(dto.getTRAINER_Addr());
+		}
 	}
 	private static void testMemTB(String Code) {
 		CmnMemDAO CmnMemDAO = new CmnMemDAO();

@@ -20,7 +20,6 @@ public class LoginController implements Initializable{
 	}
 	public void setUserCode(String userCode) {
 		UserCode = userCode;
-		controller.setUserCode(userCode);
 	}
 
 
@@ -44,10 +43,12 @@ public class LoginController implements Initializable{
 		if(loginDto != null) {
 			CommonService.WindowClose(mainForm);
 			if(job.equals("회원")) {
+				controller.setUserCode(loginSvc.getUserCode());
 				controller.open(loginSvc.getpage());
 				CommonService.Msg("회원 계정 로그인 성공");
 			}
 			else if(job.equals("강사")) {
+				controller.setUserCode(loginSvc.getUserCode());
 				controller.open(loginSvc.getpage());
 				CommonService.Msg("강사 계정 로그인 성공");
 			}

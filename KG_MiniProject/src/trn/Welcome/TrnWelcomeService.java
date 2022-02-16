@@ -2,6 +2,8 @@ package trn.Welcome;
 
 import java.io.IOException;
 
+import common.CmnTrainerDAO;
+import common.CmnTrainerDTO;
 import common.CommonService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -49,23 +53,37 @@ public class TrnWelcomeService {
 			trnWelcomeController.setTrnMgtController(loader.getController());
 			trnWelcomeController.getTrnMgtController().setTrnMgtForm(trnMgtForm);
 			trnWelcomeController.getTrnMgtController().setTrnCode(trnCode);
-//			trnCode = "0";
+		
+			//강사 정보 get
+			
+			//tilte sector set
+			Label titleUserName = (Label)trnMgtForm.lookup("#TitleUserNameLabel");
+			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnCode));
+			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
 			//초기 표시 설정
-			TrnTrainerDTO tmptrnDTO = new TrnTrainerDAO().SelectTrnInfo(trnCode);
-			Label IDDis = (Label)trnMgtForm.lookup("#IDDisplay");//아이디표시
-//			IDDis.setText(tmptrnDTO.getTRAINER_Name());
-//			IDDis.setText(tmpDTO.getTRAINER_ID());
-//			TextField NameField = (TextField)trnMgtForm.lookup("#TrnNameField");//기존 이름 표시
-//			NameField.setText(tmpDTO.getTRAINER_Name());
-//			TextField BirthField = (TextField)trnMgtForm.lookup("#TrnBirthField");//기존 생일 표시
-//			BirthField.setText(Integer.toString(tmpDTO.getTRAINER_Birth()));
-//			TextField MobileField = (TextField)trnMgtForm.lookup("#TrnMobileField");//기존 전번 표시
-//			MobileField.setText(Integer.toString(tmpDTO.getTRAINER_Mobile()));
-//			TextField AddrField = (TextField)trnMgtForm.lookup("#TrnAddr1");//기존 주소 표시
-//			AddrField.setText(tmpDTO.getTRAINER_Addr());
-//			TextField CareerField = (TextField)trnMgtForm.lookup("#TrnCareer");//기존 커리어 표시
-//			CareerField.setText(Integer.toString(tmpDTO.getTRAINER_Career()));
-
+			TextField IDField = (TextField)trnMgtForm.lookup("#TrnIDField");//기존 이름 표시
+			TextField NameField = (TextField)trnMgtForm.lookup("#TrnNameField");//기존 이름 표시
+			PasswordField PWField = (PasswordField)trnMgtForm.lookup("#TrnPWField");//기존 이름 표시
+			PasswordField PWCField = (PasswordField)trnMgtForm.lookup("#TrnPWCField");//기존 이름 표시
+			TextField BirthField = (TextField)trnMgtForm.lookup("#TrnBirthField");//기존 생일 표시
+			TextField MobileField = (TextField)trnMgtForm.lookup("#TrnMobileField");//기존 전번 표시
+			RadioButton maleBtn = (RadioButton)trnMgtForm.lookup("#MaleRbtn");//기존 남성버튼
+			RadioButton FeMaleBtn = (RadioButton)trnMgtForm.lookup("#FeMaleRbtn");//기존 여자버튼
+			TextField Addr1Field = (TextField)trnMgtForm.lookup("#TrnAddr1");//기존 주소 표시
+			TextField Addr2Field = (TextField)trnMgtForm.lookup("#TrnAddr2");//기존 주소 표시
+			TextField CareerField = (TextField)trnMgtForm.lookup("#TrnCareer");//기존 커리어 표시
+		
+			//ID Sector
+			IDField.setText(tmpTrnDto.getTRAINER_ID());
+			IDField.setEditable(false);//false:입력 불가
+			//Name Sector
+			NameField.setText(tmpTrnDto.getTRAINER_Name());
+			//PW Sector :초기 미표시
+			
+			//Birth Sector
+//			BirthField.setText(tmpTrnDto.getTRAINER_Birth());
+			
+			
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnMgtForm));
 			stage.setTitle("강사 정보수정 페이지");

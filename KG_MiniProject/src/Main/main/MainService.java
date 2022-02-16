@@ -2,6 +2,8 @@ package Main.main;
 
 import java.io.IOException;
 
+import common.CmnTrainerDAO;
+import common.CmnTrainerDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -66,10 +68,10 @@ public class MainService {
 			controller.setTrnWelcomeController(loader.getController());
 			controller.getTrnWelcomeController().setTrnWelcomeForm(trainerWelcomeForm);
 			controller.getTrnWelcomeController().setTrnCode(UserCode);
-			Label titleUserName = (Label)trainerWelcomeForm.lookup("#TitleNameLabel"); 
-//			TrnTrainerDTO tmptrndto = new TrnTrainerDAO().SelectTrnInfo(UserCode);
-//			if(tmptrndto != null) titleUserName.setText(tmptrndto.getTRAINER_Name()+"강사님");
-//			else titleUserName.setText("null임돠");
+			Label titleUserName = (Label)trainerWelcomeForm.lookup("#TitleUserNameLabel");
+			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(UserCode));
+			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
+
 			
 			Scene scene = new Scene(trainerWelcomeForm);
 			Stage primaryStage = new Stage();

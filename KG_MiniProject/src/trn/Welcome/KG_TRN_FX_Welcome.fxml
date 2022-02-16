@@ -23,12 +23,12 @@
                   <Insets left="10.0" top="12.5" />
                </HBox.margin>
             </Label>
-            <Label fx:id="TitleUserNameLabel" onMouseClicked="#TrnClickProc" text="-강사님">
+            <Label fx:id="TitleUserNameLabel" onMouseClicked="#TrnClickProc" prefHeight="25.0" prefWidth="130.0" text="-강사님">
                <font>
                   <Font size="20.0" />
                </font>
                <HBox.margin>
-                  <Insets left="600.0" top="12.5" />
+                  <Insets left="550.0" top="12.5" />
                </HBox.margin>
             </Label>
             <Button mnemonicParsing="false" text="logout">

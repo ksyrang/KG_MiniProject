@@ -38,6 +38,7 @@ public class LoginService {
 				if(job.equals("관리자"))
 					welcomepage = "adminWelcome"; //관리자
 				else if(job.equals("회원"))
+//					controller.setUserCode(loginDto.getMEM_Code());
 					welcomepage = "memberWelcome";	//회원
 			}else {
 				CommonService.Msg("로그인 실패");

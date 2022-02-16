@@ -27,7 +27,7 @@ public class CmnMemDAO {
 	public int IstMem(CmnMemDTO DTO) {
 		int result = 0;
 		sql = "INSERT INTO MEM_TB "+
-				"(MEM_Code, MEM_ID, MEM_PW, MEM_Name, MEM_Gender, MEM_Birth, MEM_Mobile, MEM_Addr, PRMSCHE_Code, MEMSHIPSCHE_Code, MEM_Aprove)"+
+				"(MEM_Code, MEM_ID, MEM_PW, MEM_Name, MEM_Gender, MEM_Birth, MEM_Mobile, MEM_Addr, PRMSCHE_Code, MEMSHIPSCHE_Code, MEM_Approve)"+
 				"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			ps = con.prepareStatement(sql);
@@ -41,7 +41,7 @@ public class CmnMemDAO {
 			ps.setString(8, DTO.getMEM_Addr());
 			ps.setString(9, DTO.getPRMSCHE_Code());
 			ps.setString(10, DTO.getMEMSHIPSCHE_Code());
-			ps.setString(11, DTO.getMEM_Aprove());
+			ps.setString(11, DTO.getMEM_Approve());
 			result = ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -111,7 +111,7 @@ public class CmnMemDAO {
 					rs.getString("MEM_Addr"),
 					rs.getString("PRMSCHE_Code"),
 					rs.getString("MEMSHIPSCHE_Code"),
-					rs.getString("MEM_Aprove")
+					rs.getString("MEM_Approve")
 				);
 				Datalist.add(tmpdata);
 			}
@@ -149,7 +149,7 @@ public class CmnMemDAO {
 					rs.getString("MEM_Addr"),
 					rs.getString("PRMSCHE_Code"),
 					rs.getString("MEMSHIPSCHE_Code"),
-					rs.getString("MEM_Aprove")
+					rs.getString("MEM_Approve")
 				);
 				Datalist.add(tmpdata);
 			}
@@ -186,7 +186,7 @@ public class CmnMemDAO {
 					rs.getString("MEM_Addr"),
 					rs.getString("PRMSCHE_Code"),
 					rs.getString("MEMSHIPSCHE_Code"),
-					rs.getString("MEM_Aprove")
+					rs.getString("MEM_Approve")
 				);
 				Datalist.add(tmpdata);
 			}

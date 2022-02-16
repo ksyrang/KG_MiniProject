@@ -13,7 +13,7 @@ public class CmnMemDTO {
 	//FK
 	private String PRMSCHE_Code; 
 	private String MEMSHIPSCHE_Code;
-	private String MEM_Aprove;
+	private String MEM_Approve;
 	
 	public CmnMemDTO() {
 		// TODO Auto-generated constructor stub
@@ -30,11 +30,11 @@ public class CmnMemDTO {
 		MEM_Addr = cmnMemDTO.getMEM_Addr();
 		PRMSCHE_Code = cmnMemDTO.getPRMSCHE_Code();
 		MEMSHIPSCHE_Code = cmnMemDTO.getMEMSHIPSCHE_Code();
-		MEM_Aprove = cmnMemDTO.getMEM_Aprove();
+		MEM_Approve = cmnMemDTO.getMEM_Approve();
 	}
 	
 	public CmnMemDTO(String mEM_Code, String mEM_ID, String mEM_PW, String mEM_Name, String mEM_Gender, int mEM_Birth,
-			int mEM_Mobile, String mEM_Addr, String pRMSCHE_Code, String mEMSHIPSCHE_Code, String mEM_Aprove) {
+			int mEM_Mobile, String mEM_Addr, String pRMSCHE_Code, String mEMSHIPSCHE_Code, String mEM_Approve) {
 		super();
 		MEM_Code = mEM_Code;
 		MEM_ID = mEM_ID;
@@ -46,7 +46,7 @@ public class CmnMemDTO {
 		MEM_Addr = mEM_Addr;
 		PRMSCHE_Code = pRMSCHE_Code;
 		MEMSHIPSCHE_Code = mEMSHIPSCHE_Code;
-		MEM_Aprove = mEM_Aprove;
+		MEM_Approve = mEM_Approve;
 	}
 
 	public String getMEM_Code() {
@@ -129,12 +129,12 @@ public class CmnMemDTO {
 		MEMSHIPSCHE_Code = mEMSHIPSCHE_Code;
 	}
 
-	public String getMEM_Aprove() {
-		return MEM_Aprove;
+	public String getMEM_Approve() {
+		return MEM_Approve;
 	}
 
-	public void setMEM_Aprove(String mEM_Aprove) {
-		MEM_Aprove = mEM_Aprove;
+	public void setMEM_Approve(String mEM_Aprove) {
+		MEM_Approve = mEM_Aprove;
 	}
 	
 	

@@ -52,7 +52,7 @@ public class testmain {
 				System.out.println(dto.getMEM_Addr());
 				System.out.println(dto.getPRMSCHE_Code());
 				System.out.println(dto.getMEMSHIPSCHE_Code());
-				System.out.println(dto.getMEM_Aprove());
+				System.out.println(dto.getMEM_Approve());
 				System.out.println("=split line=");
 			}
 		}
@@ -68,7 +68,7 @@ public class testmain {
 			System.out.println(dto.getMEM_Addr());
 			System.out.println(dto.getPRMSCHE_Code());
 			System.out.println(dto.getMEMSHIPSCHE_Code());
-			System.out.println(dto.getMEM_Aprove());
+			System.out.println(dto.getMEM_Approve());
 		}
 	}
 	

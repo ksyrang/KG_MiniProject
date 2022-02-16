@@ -55,7 +55,7 @@ public class testmain {
 				System.out.println(dto.getPRMSCHE_LimitP());	
 				System.out.println(dto.getPRMSCHE_CurrentP());
 				System.out.println(dto.getPRMSCHE_Price());
-				System.out.println(dto.getPRMSCHE_Name());
+				//System.out.println(dto.getPRMSCHE_Name());
 				System.out.println(dto.getPRM_Code());
 				System.out.println(dto.getTRAINER_Code());
 				System.out.println("=split line=");
@@ -70,7 +70,7 @@ public class testmain {
 			System.out.println(dto.getPRMSCHE_LimitP());	
 			System.out.println(dto.getPRMSCHE_CurrentP());
 			System.out.println(dto.getPRMSCHE_Price());
-			System.out.println(dto.getPRMSCHE_Name());
+			//System.out.println(dto.getPRMSCHE_Name());
 			System.out.println(dto.getPRM_Code());
 			System.out.println(dto.getTRAINER_Code());
 		}

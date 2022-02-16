@@ -80,6 +80,10 @@ public class TrainerMgtController implements Initializable{
 		this.trainerEnrollController.setTrainerEnrollForm(this.trainerEnrollForm);
 	}
 	
+	// 새로고침 버튼 클릭 시
+	public void refreshProc() {
+		trainerMgtSvc.refreshProc(trainerMgtForm);
+	}
 	
 	// 강사 등록 버튼 클릭 시
 	public void trnInsertProc() {

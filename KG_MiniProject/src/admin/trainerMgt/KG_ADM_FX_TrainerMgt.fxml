@@ -61,11 +61,20 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="강사 조회" textAlignment="CENTER">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
+                        <HBox prefHeight="40.0" prefWidth="200.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="강사 조회" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="refreshBtn" mnemonicParsing="false" onAction="#refreshProc" text="새로고침">
+                                 <HBox.margin>
+                                    <Insets left="190.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
                         <TableView fx:id="trnTable" onMouseClicked="#trnCellClick" prefHeight="387.0" prefWidth="350.0">
                           <columns>
                             <TableColumn fx:id="colTrnCode" prefWidth="115.0" text="강사코드" />

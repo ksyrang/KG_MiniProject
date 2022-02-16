@@ -101,7 +101,7 @@ public class TrainerMgtController implements Initializable{
 	
 	// 강사 수정 버튼 클릭 시
 	public void trnUpdateProc() {
-		
+		trainerMgtSvc.trnUpdateProc(trainerMgtForm);
 	}
 	
 	

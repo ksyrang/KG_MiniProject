@@ -52,41 +52,37 @@ public class TrainerEnrollService {
 		String trnPw = trnPwTxt.getText();
 		String trnPwComfrim = trnPwComfrimTxt.getText();
 		String trnName = trnNameTxt.getText();
-		String trnAddr1 = trnAddrTxt1.getText();
-		String trnAddr2 = trnAddrTxt2.getText();
-		String trnAaddr = trnAddr1 + "/" + trnAddr2;
+		String trnAaddr = trnAddrTxt1.getText() + "/" + trnAddrTxt2.getText();
 		
-		String birth = trnBirthTxt.getText();
 		int trnBirth;
-		if (birth.isEmpty()) {
+		if (trnBirthTxt.getText().isEmpty()) {
 			trnBirth = 0;
 		} else {
-			trnBirth = Integer.parseInt(birth);
+			trnBirth = Integer.parseInt(trnBirthTxt.getText());
 		}
 
-		String mobile = trnMobileTxt.getText();
 		int trnMobile;
-		if (mobile.isEmpty()) {
+		if (trnMobileTxt.getText().isEmpty()) {
 			trnMobile = 0;
 		} else {
-			trnMobile = Integer.parseInt(mobile);
+			trnMobile = Integer.parseInt(trnMobileTxt.getText());
 		}
 		
-		String career = trnCareerTxt.getText();
 		int trnCareer;
-		
-		if (career.isEmpty()) {
+		if (trnCareerTxt.getText().isEmpty()) {
 			trnCareer = 0;
 		} else {
-			trnCareer = Integer.parseInt(career);
+			trnCareer = Integer.parseInt(trnCareerTxt.getText());
 		}
 		
 		String trnCode = trnId + trnBirth;
 		String trnGender;
 		if(trnMenRadio.isSelected()) {
 			trnGender = "남";
-		} else {
+		} else if (trnWomenRadio.isSelected()){
 			trnGender = "여";
+		} else {
+			trnGender = null;
 		}
 		
 		if (trnId.isEmpty() || trnPw.isEmpty() || trnPwComfrim.isEmpty() || trnName.isEmpty()) {

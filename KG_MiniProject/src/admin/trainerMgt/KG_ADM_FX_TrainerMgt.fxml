@@ -96,9 +96,9 @@
                                     <Insets left="55.0" />
                                  </HBox.margin>
                               </TextField>
-                              <Label text="이름">
+                              <Label text="*이름">
                                  <HBox.margin>
-                                    <Insets left="70.0" />
+                                    <Insets left="68.0" />
                                  </HBox.margin>
                               </Label>
                               <TextField fx:id="trnNameTxt" prefHeight="29.0" prefWidth="125.0">
@@ -113,10 +113,10 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
-                              <Label text="PW" />
+                              <Label text="*PW" />
                               <TextField fx:id="trnPwTxt" prefWidth="197.0">
                                  <HBox.margin>
-                                    <Insets left="49.0" />
+                                    <Insets left="40.0" />
                                  </HBox.margin>
                               </TextField>
                            </children>

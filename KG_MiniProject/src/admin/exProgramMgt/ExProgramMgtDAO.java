@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import admin.helthProgramMgt.HelthProgramMgtDTO;
 import common.CmnPrmDAO;
 import common.CmnPrmDTO;
+import common.CmnPrmScheDAO;
+import common.CmnPrmScheDTO;
 import common.CmnTrainerDAO;
 import common.CmnTrainerDTO;
 import javafx.collections.FXCollections;
@@ -65,8 +67,8 @@ public class ExProgramMgtDAO {
 				ExProgramMgtDTO exProgramMgtDto = new ExProgramMgtDTO();
 				exProgramMgtDto.setPRMSCHE_Code(rs.getString("PRMSCHE_Code"));
 				exProgramMgtDto.setPRMSCHE_Price(rs.getInt("PRMSCHE_Price"));
-				exProgramMgtDto.setPRMSCHE_Strdate(rs.getDate("PRMSCHE_Strdate"));
-				exProgramMgtDto.setPRMSCHE_Enddate(rs.getDate("PRMSCHE_Enddate"));
+				exProgramMgtDto.setPRMSCHE_Strdate(rs.getString("PRMSCHE_Strdate"));
+				exProgramMgtDto.setPRMSCHE_Enddate(rs.getString("PRMSCHE_Enddate"));
 				exProgramMgtDto.setPRMSCHE_Time(rs.getString("PRMSCHE_Time"));
 				exProgramMgtDto.setPRMSCHE_LimitP(rs.getInt("PRMSCHE_LimitP"));
 				exProgramMgtDto.setPRMSCHE_CurrentP(rs.getInt("PRMSCHE_CurrentP"));
@@ -114,6 +116,31 @@ public class ExProgramMgtDAO {
 		return null;
 	}
 	
+	
+	//ex프로그램 세부사항 수정 시 중복체크
+	public int selectModifyExProgram(ExProgramMgtDTO exProgramMgtDto, CmnPrmScheDTO cmnPrmScheDto) {
+		String sql = "SELECT * FROM PRMSCHE_TB WHERE PRMSCHE_CODE=?";
+		PreparedStatement ps;
+		int result = 0;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, cmnPrmScheDto.getPRMSCHE_Code());
+			result = ps.executeUpdate();
+			if (exProgramMgtDto.getPRMSCHE_Code().equals(cmnPrmScheDto.getPRMSCHE_Code()) &
+				(exProgramMgtDto.getPRMSCHE_Strdate().equals(cmnPrmScheDto.getPRMSCHE_Strdate())) &
+				(exProgramMgtDto.getPRMSCHE_Enddate().equals(cmnPrmScheDto.getPRMSCHE_Enddate())) &
+				(exProgramMgtDto.getPRMSCHE_Time().equals(cmnPrmScheDto.getPRMSCHE_Time())) &
+//				(exProgramMgtDto.getTRAINER_Code().equals(cmnPrmScheDto.getTRAINER_Code())) &
+				(exProgramMgtDto.getPRMSCHE_Price() == cmnPrmScheDto.getPRMSCHE_Price())) {
+				result = 0;
+			}else {
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	//ex프로그램 등록
 	public int insertExProgram(ExProgramMgtDTO exprogramDto) {
 		String sql = "INSERT INTO PRM_TB VALUES(?,?)";
@@ -131,6 +158,7 @@ public class ExProgramMgtDAO {
 		return result;
 	}
 
+	//ex프로그램 삭제
 	public int selectDelete(String selectData) {
 		String sql = "DELETE FROM PRM_TB WHERE PRM_Name=?";
 		PreparedStatement ps;
@@ -147,6 +175,32 @@ public class ExProgramMgtDAO {
 		
 	}
 
+	//ex프로그램 세부사항 수정
+	public int setProgramModify(ExProgramMgtDTO exProgramMgtDto) {
+		String sql = "UPDATE PRMSCHE_TB SET PRMSCHE_STRDATE=?, PRMSCHE_ENDDATE=?, PRMSCHE_TIME=?, PRMSCHE_LIMITP=?, PRMSCHE_PRICE=? WHERE PRMSCHE_CODE=?";
+		PreparedStatement ps;
+		int result = 0;
+		
+		try {
+//			exProgramMgtDto.setPRM_Name(kind);
+			ps = con.prepareStatement(sql);
+			ps.setString(1, exProgramMgtDto.getPRMSCHE_Strdate());
+			ps.setString(2, exProgramMgtDto.getPRMSCHE_Enddate());
+			ps.setString(3, exProgramMgtDto.getPRMSCHE_Time());
+			ps.setInt(4, exProgramMgtDto.getPRMSCHE_LimitP());
+			ps.setInt(5, exProgramMgtDto.getPRMSCHE_Price());
+			ps.setString(6, exProgramMgtDto.getPRMSCHE_Code());
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	
+	
+	
 
 
 

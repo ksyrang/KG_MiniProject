@@ -31,7 +31,7 @@ public class CmnPrmScheDAO {
 				"(PRMSCHE_Code, PRMSCHE_Strdate, PRMSCHE_Enddate, PRMSCHE_Time, PRMSCHE_LimitP, "+
 				"PRMSCHE_CurrentP, PRMSCHE_Price, PRMSCHE_Name, "+
 				"PRM_Code, TRAINER_Code)"+
-				"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,)";
+				"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?,)";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, DTO.getPRMSCHE_Code());
@@ -41,9 +41,8 @@ public class CmnPrmScheDAO {
 			ps.setInt(5, DTO.getPRMSCHE_LimitP());
 			ps.setInt(6, DTO.getPRMSCHE_CurrentP());
 			ps.setInt(7, DTO.getPRMSCHE_Price());
-			ps.setString(8, DTO.getPRMSCHE_Name());
-			ps.setString(9, DTO.getPRM_Code());
-			ps.setString(10, DTO.getTRAINER_Code());
+			ps.setString(8, DTO.getPRM_Code());
+			ps.setString(9, DTO.getTRAINER_Code());
 			result = ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -74,7 +73,6 @@ public class CmnPrmScheDAO {
 					rs.getInt("PRMSCHE_LimitP"),
 					rs.getInt("PRMSCHE_CurrentP"),
 					rs.getInt("PRMSCHE_Price"),
-					rs.getString("PRMSCHE_Name"),
 					rs.getString("PRM_Code"),
 					rs.getString("TRAINER_Code")
 				);
@@ -97,7 +95,7 @@ public class CmnPrmScheDAO {
 		int result = 0;
 		sql = "UPDATE PRMSCHE_TB SET "+
 				"PRMSCHE_Strdate=?, PRMSCHE_Enddate=?, PRMSCHE_Time=?, PRMSCHE_LimitP=?, "+
-				"PRMSCHE_CurrentP=?, PRMSCHE_Price=?, PRMSCHE_Name=?, "+
+				"PRMSCHE_CurrentP=?, PRMSCHE_Price=?, "+
 				"PRM_Code=?, TRAINER_Code=? WHERE PRMSCHE_Code=?";
 		try {
 			ps = con.prepareStatement(sql);
@@ -107,10 +105,9 @@ public class CmnPrmScheDAO {
 			ps.setInt(4, DTO.getPRMSCHE_LimitP());
 			ps.setInt(5, DTO.getPRMSCHE_CurrentP());
 			ps.setInt(6, DTO.getPRMSCHE_Price());
-			ps.setString(7, DTO.getPRMSCHE_Name());
-			ps.setString(8, DTO.getPRM_Code());
-			ps.setString(9, DTO.getTRAINER_Code());
-			ps.setString(10, DTO.getPRMSCHE_Code());
+			ps.setString(7, DTO.getPRM_Code());
+			ps.setString(8, DTO.getTRAINER_Code());
+			ps.setString(9, DTO.getPRMSCHE_Code());
 			result = ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -161,7 +158,6 @@ public class CmnPrmScheDAO {
 					rs.getInt("PRMSCHE_LimitP"),
 					rs.getInt("PRMSCHE_CurrentP"),
 					rs.getInt("PRMSCHE_Price"),
-					rs.getString("PRMSCHE_Name"),
 					rs.getString("PRM_Code"),
 					rs.getString("TRAINER_Code")
 				);
@@ -196,7 +192,6 @@ public class CmnPrmScheDAO {
 					rs.getInt("PRMSCHE_LimitP"),
 					rs.getInt("PRMSCHE_CurrentP"),
 					rs.getInt("PRMSCHE_Price"),
-					rs.getString("PRMSCHE_Name"),
 					rs.getString("PRM_Code"),
 					rs.getString("TRAINER_Code")
 				);
@@ -232,7 +227,6 @@ public class CmnPrmScheDAO {
 					rs.getInt("PRMSCHE_LimitP"),
 					rs.getInt("PRMSCHE_CurrentP"),
 					rs.getInt("PRMSCHE_Price"),
-					rs.getString("PRMSCHE_Name"),
 					rs.getString("PRM_Code"),
 					rs.getString("TRAINER_Code")
 				);

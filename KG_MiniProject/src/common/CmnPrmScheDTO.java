@@ -11,7 +11,6 @@ public class CmnPrmScheDTO {
 	private int PRMSCHE_LimitP;
 	private int PRMSCHE_CurrentP;
 	private int PRMSCHE_Price;
-	private String PRMSCHE_Name;
 	//FK
 	private String PRM_Code;
 	private String TRAINER_Code;
@@ -28,13 +27,11 @@ public class CmnPrmScheDTO {
 		PRMSCHE_LimitP = dTO.getPRMSCHE_LimitP();
 		PRMSCHE_CurrentP = dTO.getPRMSCHE_CurrentP();
 		PRMSCHE_Price = dTO.getPRMSCHE_Price();
-		PRMSCHE_Name = dTO.getPRMSCHE_Name();
 		PRM_Code = dTO.getPRM_Code();
 		TRAINER_Code = dTO.getTRAINER_Code();
 	}
 	public CmnPrmScheDTO(String pRMSCHE_Code, Date pRMSCHE_Strdate, Date pRMSCHE_Enddate, String pRMSCHE_Time,
-			int pRMSCHE_LimitP, int pRMSCHE_CurrentP, int pRMSCHE_Price, String pRMSCHE_Name, String pRM_Code,
-			String tRAINER_Code) {
+			int pRMSCHE_LimitP, int pRMSCHE_CurrentP, int pRMSCHE_Price, String pRM_Code,String tRAINER_Code) {
 		super();
 		PRMSCHE_Code = pRMSCHE_Code;
 		PRMSCHE_Strdate = pRMSCHE_Strdate;
@@ -43,7 +40,6 @@ public class CmnPrmScheDTO {
 		PRMSCHE_LimitP = pRMSCHE_LimitP;
 		PRMSCHE_CurrentP = pRMSCHE_CurrentP;
 		PRMSCHE_Price = pRMSCHE_Price;
-		PRMSCHE_Name = pRMSCHE_Name;
 		PRM_Code = pRM_Code;
 		TRAINER_Code = tRAINER_Code;
 	}
@@ -102,14 +98,6 @@ public class CmnPrmScheDTO {
 
 	public void setPRM_Price(int pRMSCHE_Price) {
 		PRMSCHE_Price = pRMSCHE_Price;
-	}
-
-	public String getPRMSCHE_Name() {
-		return PRMSCHE_Name;
-	}
-
-	public void setPRMSCHE_Name(String pRMSCHE_Name) {
-		PRMSCHE_Name = pRMSCHE_Name;
 	}
 
 	public String getPRM_Code() {

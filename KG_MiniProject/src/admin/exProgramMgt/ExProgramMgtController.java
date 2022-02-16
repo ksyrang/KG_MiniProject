@@ -1,6 +1,7 @@
 package admin.exProgramMgt;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -18,6 +19,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -32,7 +35,10 @@ public class ExProgramMgtController implements Initializable{
 	private ExProgramMgtService exProgramSvc;
 	private String selectData;
 	private ExProTable codeTable;
-
+	private ObservableList<String> allProgram;
+	@FXML private ComboBox<String> kindComboBox;
+	@FXML private DatePicker startDatePicker;
+	@FXML private DatePicker endDatePicker;
 	
 	@FXML public ListView<String> programListView;
 	@FXML public TableView<ExProTable> exProgramTableView;
@@ -41,10 +47,11 @@ public class ExProgramMgtController implements Initializable{
 	@FXML public TableColumn<ExProTable, String> trainerName;
 	@FXML public TableColumn<ExProTable, Integer> limtPerson;
 	@FXML public TableColumn<ExProTable, Integer> currentPerson;
-	@FXML public TableColumn<ExProTable, Date> strDate;
-	@FXML public TableColumn<ExProTable, Date> endDate;
+	@FXML public TableColumn<ExProTable, String> strDate;
+	@FXML public TableColumn<ExProTable, String> endDate;
 	@FXML public TableColumn<ExProTable, Integer> price;
 	@FXML public TableColumn<ExProTable, String> timeC;
+
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -52,6 +59,7 @@ public class ExProgramMgtController implements Initializable{
 		exProgramSvc = new ExProgramMgtService();
 		//리스트 창 
 		exProgramSvc.listUp(this.programListView);
+		
 		//테이블 창
 		programName.setCellValueFactory(new PropertyValueFactory<>("programName"));
 		code.setCellValueFactory(new PropertyValueFactory<>("code"));
@@ -64,15 +72,14 @@ public class ExProgramMgtController implements Initializable{
 		price.setCellValueFactory(new PropertyValueFactory<>("price"));
 		timeC.setCellValueFactory(new PropertyValueFactory<>("timeC"));
 		this.exProgramSvc.tableUp(exProgramTableView);
+		
+		
 		//수정창
+		allProgram = exProgramSvc.getAllProgram();
+		kindComboBox.setItems(allProgram);
 		
 		
-		
-		
-		
-		
-		
-		
+
 		//listview 클릭 시
 		programListView.setOnMouseClicked(new EventHandler<MouseEvent>() { 
 			
@@ -88,6 +95,7 @@ public class ExProgramMgtController implements Initializable{
 				codeTable = exProgramTableView.getSelectionModel().getSelectedItem();
 				exProgramSvc.setCodeTable(codeTable);
 				exProgramSvc.modifyTableUp(exProgramMgtForm);
+				
 				}
 			});
 	}
@@ -102,12 +110,16 @@ public class ExProgramMgtController implements Initializable{
 	public void insertProc() {
 		System.out.println("프로그램 등록");
 		exProgramSvc.insertProc(exProgramMgtForm);
+		this.allProgram = exProgramSvc.getAllProgram();
+		kindComboBox.setItems(this.allProgram);
 	}
 	
 	// 삭제 버튼 클릭 시
 	public void deleteProc() {
 		System.out.println("프로그램 삭제");
 		exProgramSvc.deleteProc(exProgramMgtForm);
+		this.allProgram = exProgramSvc.getAllProgram();
+		kindComboBox.setItems(this.allProgram);
 	}
 	
 	
@@ -128,4 +140,14 @@ public class ExProgramMgtController implements Initializable{
 		CommonService.WindowClose(exProgramMgtForm);
 	}
 
+	public void getStrDateProc() {
+		LocalDate startDate = startDatePicker.getValue();
+		String StrStartDate = startDate.toString();
+		exProgramSvc.setStrStartDate(StrStartDate);
+	}
+	public void getEndDateProc() {
+		LocalDate endDate = endDatePicker.getValue();
+		String StrEndDate = endDate.toString();
+		exProgramSvc.setStrEndDate(StrEndDate);
+	}
 }

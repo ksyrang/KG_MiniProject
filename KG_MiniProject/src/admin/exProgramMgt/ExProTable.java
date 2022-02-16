@@ -10,15 +10,15 @@ public class ExProTable {
 	private String trainerName;
 	private int limtPerson;
 	private int currentPerson;
-	private Date strDate;
-	private Date endDate;
+	private String strDate;
+	private String endDate;
 	private int price;
 	private String timeC;
 	
 	
 	
 	public ExProTable(String programName, String code, String trainerName, int limtPerson, int currentPerson,
-			Date strDate, Date endDate, int price, String timeC) {
+			String strDate, String endDate, int price, String timeC) {
 		super();
 		this.programName = programName;
 		this.code = code;
@@ -61,16 +61,16 @@ public class ExProTable {
 	public void setCurrentPerson(int currentPerson) {
 		this.currentPerson = currentPerson;
 	}
-	public Date getStrDate() {
+	public String getStrDate() {
 		return strDate;
 	}
-	public void setStrDate(Date strDate) {
+	public void setStrDate(String strDate) {
 		this.strDate = strDate;
 	}
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 	public int getPrice() {

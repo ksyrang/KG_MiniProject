@@ -21,7 +21,7 @@ public class CmnPrmScheDTO {
 	}
 
 	public CmnPrmScheDTO(String pRMSCHE_Code, Date pRMSCHE_Strdate, Date pRMSCHE_Enddate, String pRMSCHE_Time,
-			int pRMSCHE_LimitP, int pRMSCHE_CurrentP, int PRMSCHE_Price, String pRMSCHE_Name, String pRM_Code,
+			int pRMSCHE_LimitP, int pRMSCHE_CurrentP, int pRMSCHE_Price, String pRMSCHE_Name, String pRM_Code,
 			String tRAINER_Code) {
 		super();
 		PRMSCHE_Code = pRMSCHE_Code;
@@ -30,7 +30,7 @@ public class CmnPrmScheDTO {
 		PRMSCHE_Time = pRMSCHE_Time;
 		PRMSCHE_LimitP = pRMSCHE_LimitP;
 		PRMSCHE_CurrentP = pRMSCHE_CurrentP;
-		PRMSCHE_Price = PRMSCHE_Price;
+		PRMSCHE_Price = pRMSCHE_Price;
 		PRMSCHE_Name = pRMSCHE_Name;
 		PRM_Code = pRM_Code;
 		TRAINER_Code = tRAINER_Code;

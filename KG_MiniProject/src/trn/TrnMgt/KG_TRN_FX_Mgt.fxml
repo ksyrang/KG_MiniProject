@@ -67,7 +67,7 @@
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
                         <Label text="이      름" />
-                        <TextField fx:id="TrnNameField1" prefHeight="25.0" prefWidth="125.0" />
+                        <TextField fx:id="TrnNameField" prefHeight="25.0" prefWidth="125.0" />
                      </children>
                   </HBox>
                </children>
@@ -117,7 +117,6 @@
                <children>
                   <Label text="전화번호" />
                   <TextField fx:id="TrnMobileField" prefHeight="25.0" prefWidth="125.0" />
-                  <Label fx:id="MobileCheck" text="중복여부 검사중" />
                </children>
                <VBox.margin>
                   <Insets />

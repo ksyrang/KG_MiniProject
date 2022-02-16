@@ -16,6 +16,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import trn.DBDAO.TrnTrainerDAO;
@@ -76,12 +77,24 @@ public class TrnWelcomeService {
 			//ID Sector
 			IDField.setText(tmpTrnDto.getTRAINER_ID());
 			IDField.setEditable(false);//false:입력 불가
-			//Name Sector
+			//Name Sector			
 			NameField.setText(tmpTrnDto.getTRAINER_Name());
 			//PW Sector :초기 미표시
-			
 			//Birth Sector
-//			BirthField.setText(tmpTrnDto.getTRAINER_Birth());
+			BirthField.setText(Integer.toString(tmpTrnDto.getTRAINER_Birth()));
+			//Gender Sector
+			ToggleGroup group = new ToggleGroup();
+			maleBtn.setToggleGroup(group);
+			FeMaleBtn.setToggleGroup(group);
+			if(tmpTrnDto.getTRAINER_Gender().equals("남성")) maleBtn.setSelected(true);
+			else if(tmpTrnDto.getTRAINER_Gender().equals("여성")) FeMaleBtn.setSelected(true);
+			else maleBtn.setSelected(true);
+			//Addr Sector
+			Addr1Field.setText(tmpTrnDto.getTRAINER_Addr());
+			Addr2Field.setText(tmpTrnDto.getTRAINER_Addr());
+			//Career Sector
+			CareerField.setText(Integer.toString(tmpTrnDto.getTRAINER_Career()));
+			
 			
 			
 			Stage stage = new Stage();

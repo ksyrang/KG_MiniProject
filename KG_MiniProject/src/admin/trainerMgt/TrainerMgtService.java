@@ -14,7 +14,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class TrainerMgtService {
@@ -262,6 +261,22 @@ public class TrainerMgtService {
 		} catch (NullPointerException e) {
 			CommonService.Msg(" 강사를 선택해주세요.");
 		}
+	}
+
+	public void refreshProc(Parent trainerMgtForm) {
+		ObservableList<TrainerMgtTable> tableView = FXCollections.observableArrayList();
+		TableView<TrainerMgtTable> newTable = (TableView<TrainerMgtTable>) trainerMgtForm.lookup("#trnTable");
+		try {
+			ObservableList<CmnTrainerDTO> list = dao.OLSltTrnAll();
+			for(CmnTrainerDTO t : list) {
+				tableView.add(new TrainerMgtTable(t.getTRAINER_Code(), t.getTRAINER_Name(), t.getTRAINER_Mobile()));
+			}
+			newTable.setItems(tableView);
+		} catch (NullPointerException e) {
+			CommonService.Msg("테이블 클릭 후 새로고침해주세요.");
+		}
+		
+		
 	}
 
 }

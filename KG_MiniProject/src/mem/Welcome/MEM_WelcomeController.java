@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-
+import Main.main.MainService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -147,6 +147,8 @@ public class MEM_WelcomeController implements Initializable {
 		memWelcomeSvc.cancelProc();
 	}
 	
+	
+
 	public void setHealthProgramBuyingForm(Parent healthProgramBuyingForm) {
 		this.healthProgramBuyingForm = healthProgramBuyingForm;
 	}

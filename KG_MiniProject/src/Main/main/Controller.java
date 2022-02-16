@@ -27,6 +27,8 @@ public class Controller {
 	private Parent memberFindPWForm;
 	private Stage stage;
 	private Scene scene;
+	private MgtController mgtController;
+	private Parent memberMgtForm;
 	
 	public Stage getStage() {
 		return stage;
@@ -111,7 +113,7 @@ public class Controller {
 		this.findPWController.setFindPWForm(this.memberFindPWForm);
 	}
 	
-	
+
 	
 	public void open(String division) {
 		if("adminWelcome".equals(division)) {

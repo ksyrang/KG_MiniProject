@@ -56,7 +56,6 @@ public class MemberMgtController implements Initializable{
 		for(MemberMgtDTO m : memberMgtDto) {
 			obserList.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), m.getMem_approve()));
 		}
-		//obserList.add(new MemberMgtTable("mem1", "회원1", "false"));
 		
 		memTable.setItems(obserList);
 	}
@@ -79,7 +78,6 @@ public class MemberMgtController implements Initializable{
 			} catch (NullPointerException e2) {
 				CommonService.Msg("회원을 선택해주세요.");
 			}
-			
 		});
 	}
 	

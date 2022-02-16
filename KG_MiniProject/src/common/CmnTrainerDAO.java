@@ -127,6 +127,38 @@ public class CmnTrainerDAO {
 		return tmpdata;		
 	}
 	
+	public int UptTrn(CmnTrainerDTO DTO) {
+		int result = 0;
+		sql = "UPDATE TRAINER_TB  SET "+
+				"TRAINER_Name=?, TRAINER_ID=?, TRAINER_PW=?, "+
+				"TRAINER_Gender=?, TRAINER_Birth=?, TRAINER_Mobile=?, "+
+				"TRAINER_Career=?, TRAINER_Addr=? "+
+				"WHERE TRAINER_Code=?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, DTO.getTRAINER_Name());
+			ps.setString(2, DTO.getTRAINER_ID());
+			ps.setString(3, DTO.getTRAINER_PW());
+			ps.setString(4, DTO.getTRAINER_Gender());
+			ps.setInt(5, DTO.getTRAINER_Birth());
+			ps.setInt(6, DTO.getTRAINER_Mobile());
+			ps.setInt(7, DTO.getTRAINER_Career());
+			ps.setString(8, DTO.getTRAINER_Addr());
+			ps.setString(9, DTO.getTRAINER_Code());
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try { 
+				if(ps != null) ps.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
 	public ArrayList<CmnTrainerDTO> SltTrnAll(){
 		ArrayList<CmnTrainerDTO> Datalist = new ArrayList<>();
 		CmnTrainerDTO tmpdata = null;

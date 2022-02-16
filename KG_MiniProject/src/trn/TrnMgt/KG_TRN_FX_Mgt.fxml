@@ -31,7 +31,7 @@
                   <Font size="20.0" />
                </font>
                <HBox.margin>
-                  <Insets left="180.0" />
+                  <Insets left="165.0" />
                </HBox.margin>
             </Label>
             <Button mnemonicParsing="false" text="logout">
@@ -93,11 +93,6 @@
                         </HBox>
                      </children>
                   </HBox>
-                  <Label text="비밀번호가 다릅니다.">
-                     <padding>
-                        <Insets left="28.0" />
-                     </padding>
-                  </Label>
                </children>
             </VBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
@@ -163,7 +158,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="70.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="TnrMgtbtn" mnemonicParsing="false" onAction="#TnrMgtProc" prefHeight="35.0" prefWidth="100.0" text="프로필 수정" />
+            <Button fx:id="TnrMgtbtn" mnemonicParsing="false" onAction="#TnrModifyProc" prefHeight="35.0" prefWidth="100.0" text="프로필 수정" />
             <Button fx:id="Backbtn" mnemonicParsing="false" onAction="#BackProc" prefHeight="35.0" prefWidth="100.0" text="이전" />
          </children>
       </HBox>

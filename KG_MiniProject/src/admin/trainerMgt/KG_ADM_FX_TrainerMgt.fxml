@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.trainerMgt.TrainerMgtController">
    <top>
       <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
@@ -45,10 +45,10 @@
    <bottom>
       <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="100.0" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="강사 등록" />
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="강사 수정" />
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="강사 삭제" />
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="이전" />
+            <Button fx:id="trnInsertBtn" mnemonicParsing="false" onAction="#trnInsertProc" prefHeight="30.0" prefWidth="100.0" text="강사 등록" />
+            <Button fx:id="trnUpdateBtn" mnemonicParsing="false" onAction="#trnUpdateProc" prefHeight="30.0" prefWidth="100.0" text="강사 수정" />
+            <Button fx:id="trnDeleteBtn" mnemonicParsing="false" onAction="#trnDeleteProc" prefHeight="30.0" prefWidth="100.0" text="강사 삭제" />
+            <Button fx:id="trnCloseBtn" mnemonicParsing="false" onAction="#trnCloseProc" prefHeight="30.0" prefWidth="100.0" text="이전" />
          </children>
       </FlowPane>
    </bottom>
@@ -67,10 +67,11 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TableView prefHeight="387.0" prefWidth="350.0">
+                        <TableView fx:id="trnTable" prefHeight="387.0" prefWidth="350.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
+                            <TableColumn fx:id="trnCode" prefWidth="84.0" text="강사코드" />
+                            <TableColumn fx:id="trnName" prefWidth="87.0" text="이름" />
+                              <TableColumn fx:id="trnMobile" prefWidth="178.0" text="전화번호" />
                           </columns>
                         </TableView>
                      </children>
@@ -91,7 +92,7 @@
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin></Label>
-                              <TextField prefWidth="160.0">
+                              <TextField fx:id="trnIdTxt" prefWidth="160.0">
                                  <HBox.margin>
                                     <Insets left="55.0" />
                                  </HBox.margin>
@@ -101,7 +102,7 @@
                                     <Insets left="70.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField prefHeight="29.0" prefWidth="125.0">
+                              <TextField fx:id="trnNameTxt" prefHeight="29.0" prefWidth="125.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -114,7 +115,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Label text="PW" />
-                              <PasswordField prefHeight="29.0" prefWidth="189.0">
+                              <PasswordField fx:id="trnPwTxt" prefHeight="29.0" prefWidth="197.0">
                                  <HBox.margin>
                                     <Insets left="50.0" />
                                  </HBox.margin>
@@ -126,58 +127,21 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
-                              <Label text="PW 확인">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Label>
-                              <VBox prefHeight="48.0" prefWidth="207.0" spacing="5.0">
-                                 <children>
-                                    <PasswordField prefHeight="29.0" prefWidth="197.0">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </PasswordField>
-                                    <Label text="비밀번호가 다릅니다.">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </Label>
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets left="15.0" />
-                                 </HBox.margin>
-                              </VBox>
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="20.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
-                           <children>
-                              <Label text="전화번호" />
-                              <VBox prefHeight="30.0" prefWidth="209.0" spacing="5.0">
-                                 <children>
-                                    <TextField prefWidth="0.0">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </TextField>
-                                    <Label text="동일한 전화번호가 있습니다." />
-                                 </children>
+                              <Label fx:id="trnMobiletxt" text="전화번호" />
+                              <TextField prefWidth="197.0">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
-                              </VBox>
+                              </TextField>
                               <Label text="성별">
                                  <HBox.margin>
-                                    <Insets left="20.0" />
+                                    <Insets left="30.0" />
                                  </HBox.margin>
                               </Label>
                               <VBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="99.0" spacing="5.0">
                                  <children>
-                                    <RadioButton mnemonicParsing="false" text="남" />
-                                    <RadioButton mnemonicParsing="false" text="여" />
+                                    <RadioButton fx:id="trnMenRadio" mnemonicParsing="false" text="남" />
+                                    <RadioButton fx:id="trnWomenRadio" mnemonicParsing="false" text="여" />
                                  </children>
                                  <HBox.margin>
                                     <Insets left="10.0" />
@@ -193,7 +157,7 @@
                               <Label text="주소" />
                               <VBox prefHeight="58.0" prefWidth="321.0" spacing="5.0">
                                  <children>
-                                    <TextField />
+                                    <TextField fx:id="trnAddrTxt" />
                                     <TextField />
                                  </children>
                                  <HBox.margin>
@@ -208,7 +172,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Label text="경력" />
-                              <TextField prefHeight="29.0" prefWidth="36.0">
+                              <TextField fx:id="trnCareerTxt" prefHeight="29.0" prefWidth="36.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>

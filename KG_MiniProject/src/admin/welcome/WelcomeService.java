@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 
 public class WelcomeService {
 	private WelcomeController welcomeController;
-	private TableView<MemberMgtTable> memberMgtTabel;
 	
 	public void setWelcomeController(WelcomeController welcomeController) {
 		this.welcomeController = welcomeController;

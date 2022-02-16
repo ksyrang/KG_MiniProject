@@ -13,6 +13,7 @@ public class FindIDService {
 		TextField birthTxt1 = (TextField) memberFindIDForm.lookup("#birthTxt1");
 		TextField mobileTxt1 = (TextField) memberFindIDForm.lookup("#mobileTxt1");
 		
+		String id = null;
 		String name = nameTxt1.getText();
 		String birth = birthTxt1.getText();
 		String mobile = mobileTxt1.getText();
@@ -22,11 +23,12 @@ public class FindIDService {
 			return;
 		}else {
 			FindIDDAO findIDDAO = new FindIDDAO();
-			FindIDDTO findIDDTO = findIDDAO.FindID(name, birth, mobile);
+			FindIDDTO findIDDTO = findIDDAO.FindID(id, name, Integer.parseInt(birth), Integer.parseInt(mobile));
 			if(findIDDTO == null) {
 				CommonService.Msg(name + "의 계정은 없는 계정 입니다.");
 			}else {
-				CommonService.Msg(name + "의 계정은" + findIDDTO + "입니다.");
+				String Id = findIDDTO.getId();
+				CommonService.Msg(name + "의 계정은" + Id + "입니다.");
 			}
 		}
 		

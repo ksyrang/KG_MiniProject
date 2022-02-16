@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
@@ -37,9 +38,6 @@ public class TrnWelcomeService {
 	public void programclickProc(Parent welcomeForm) {
 	
 		TableView<TrnTbVDTO> CurrentProgramTableList = (TableView<TrnTbVDTO>)welcomeForm.lookup("#CurrentProgramTableList");
-//		TableColumn<TrnTableView, String> PCodeColumn;
-//		TableColumn<TrnTableView, String> PNameColumn;
-//		TableColumn<TrnTableView, String> MembersColumn;
 		CurrentProgramTableList.setItems(list);
 		
 
@@ -145,6 +143,20 @@ public class TrnWelcomeService {
 			Label titleUserName = (Label)trnExPMgtFrom.lookup("#TitleUserNameLabel");
 			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnCode));
 			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
+			
+			//초기 선언
+			Label TrnName = (Label)trnExPMgtFrom.lookup("#TrnName");
+			TextField ExPNameField = (TextField)trnExPMgtFrom.lookup("#ExPNameField");
+			DatePicker SrtDate = (DatePicker)trnExPMgtFrom.lookup("#SrtDate");
+			DatePicker EndDate = (DatePicker)trnExPMgtFrom.lookup("#EndDate");
+			RadioButton AMRBtn = (RadioButton)trnExPMgtFrom.lookup("#AMRBtn");
+			RadioButton PMRBtn = (RadioButton)trnExPMgtFrom.lookup("#PMRBtn");
+			TextField LimitMemsField= (TextField)trnExPMgtFrom.lookup("#LimitMemsField");
+			
+			
+			
+			
+			
 			
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnExPMgtFrom));

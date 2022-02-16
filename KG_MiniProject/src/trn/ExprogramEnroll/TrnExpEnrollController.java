@@ -16,32 +16,32 @@ import javafx.scene.control.TextField;
 
 public class TrnExpEnrollController implements Initializable {
 	
-	@FXML
-    private Label TitleUserNameLabel;
-
-    @FXML
-    private Button ExPErllBtn;
-
-    @FXML
-    private Button Backbtn;
-
-    @FXML
-    private ComboBox<String> ExPTypeBox;
-
-    @FXML
-    private TextField  ExPNameFeild;
-
-    @FXML
-    private RadioButton PMRBtn;
-
-    @FXML
-    private DatePicker SrtDate;
-
-    @FXML
-    private DatePicker EndDate;
-
-    @FXML
-    private RadioButton AMRBtn;
+//	@FXML
+//    private Label TitleUserNameLabel;
+//
+//    @FXML
+//    private Button ExPErllBtn;
+//
+//    @FXML
+//    private Button Backbtn;
+//
+//    @FXML
+//    private ComboBox<String> ExPTypeBox;
+//
+//    @FXML
+//    private TextField ExPNameFeild;
+//
+//    @FXML
+//    private RadioButton PMRBtn;
+//
+//    @FXML
+//    private DatePicker SrtDate;
+//
+//    @FXML
+//    private DatePicker EndDate;
+//
+//    @FXML
+//    private RadioButton AMRBtn;
 	
 	
 	
@@ -66,6 +66,10 @@ public class TrnExpEnrollController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {		
 	
 	}
+	public void ExPErllProc(){
+		
+	}
+	
 	public void BackProc() {
 		trnExPEnrollService.BackProc(trnExpEnrollForm);
 	}

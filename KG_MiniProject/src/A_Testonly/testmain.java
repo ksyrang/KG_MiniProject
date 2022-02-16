@@ -21,7 +21,9 @@ public class testmain {
 		
 		String Trn_Code = "0";
 //		String Trn_Code = "All";
-		testTrnTB(Trn_Code);
+//		testTrnTB(Trn_Code);
+		String PrmSche_Code = "0";
+		testPrmScheTB(PrmSche_Code);
 		
 //		CmnMemDAO CmnMemDAO = new CmnMemDAO();
 //		CmnMemDTO CmnMemDTO = new CmnMemDTO(CmnMemDAO.SltResOne(Mem_Code));
@@ -40,6 +42,38 @@ public class testmain {
 //		System.out.println("Istpay result: "+CmnPayDAO.Istpay(CmnPayDTO));
 		
 		
+	}
+	private static void testPrmScheTB(String Code) {
+		CmnPrmScheDAO DAO = new CmnPrmScheDAO();
+		if(Code.equals("All")) {
+			System.out.println("==allpaylis==");
+			for(CmnPrmScheDTO dto : DAO.SltPrmScheAll()) {
+				System.out.println(dto.getPRMSCHE_Code());
+				System.out.println(dto.getPRMSCHE_Strdate());
+				System.out.println(dto.getPRMSCHE_Enddate());
+				System.out.println(dto.getPRMSCHE_Time());
+				System.out.println(dto.getPRMSCHE_LimitP());	
+				System.out.println(dto.getPRMSCHE_CurrentP());
+				System.out.println(dto.getPRMSCHE_Price());
+				System.out.println(dto.getPRMSCHE_Name());
+				System.out.println(dto.getPRM_Code());
+				System.out.println(dto.getTRAINER_Code());
+				System.out.println("=split line=");
+			}
+		}
+		else {
+			CmnPrmScheDTO dto = new CmnPrmScheDTO(DAO.SltPrmScheOne(Code));
+			System.out.println(dto.getPRMSCHE_Code());
+			System.out.println(dto.getPRMSCHE_Strdate());
+			System.out.println(dto.getPRMSCHE_Enddate());
+			System.out.println(dto.getPRMSCHE_Time());
+			System.out.println(dto.getPRMSCHE_LimitP());	
+			System.out.println(dto.getPRMSCHE_CurrentP());
+			System.out.println(dto.getPRMSCHE_Price());
+			System.out.println(dto.getPRMSCHE_Name());
+			System.out.println(dto.getPRM_Code());
+			System.out.println(dto.getTRAINER_Code());
+		}
 	}
 	private static void testTrnTB(String Code) {
 		CmnTrainerDAO DAO = new CmnTrainerDAO();

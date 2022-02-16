@@ -19,7 +19,19 @@ public class CmnPrmScheDTO {
 	public CmnPrmScheDTO() {
 		// TODO Auto-generated constructor stub
 	}
-
+	public CmnPrmScheDTO(CmnPrmScheDTO dTO) {
+		super();
+		PRMSCHE_Code = dTO.getPRMSCHE_Code();
+		PRMSCHE_Strdate = dTO.getPRMSCHE_Strdate();
+		PRMSCHE_Enddate = dTO.getPRMSCHE_Enddate();
+		PRMSCHE_Time = dTO.getPRMSCHE_Time();
+		PRMSCHE_LimitP = dTO.getPRMSCHE_LimitP();
+		PRMSCHE_CurrentP = dTO.getPRMSCHE_CurrentP();
+		PRMSCHE_Price = dTO.getPRMSCHE_Price();
+		PRMSCHE_Name = dTO.getPRMSCHE_Name();
+		PRM_Code = dTO.getPRM_Code();
+		TRAINER_Code = dTO.getTRAINER_Code();
+	}
 	public CmnPrmScheDTO(String pRMSCHE_Code, Date pRMSCHE_Strdate, Date pRMSCHE_Enddate, String pRMSCHE_Time,
 			int pRMSCHE_LimitP, int pRMSCHE_CurrentP, int pRMSCHE_Price, String pRMSCHE_Name, String pRM_Code,
 			String tRAINER_Code) {

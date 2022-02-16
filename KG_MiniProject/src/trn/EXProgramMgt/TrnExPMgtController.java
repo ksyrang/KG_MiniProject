@@ -18,28 +18,28 @@ import trn.DBDTO.TrnTrainerDTO;
 
 public class TrnExPMgtController implements Initializable {
 	
-	@FXML
-    private Label TitleUserNameLabel;
-    @FXML
-    private Button ExPMdyBtn;
-    @FXML
-    private Button ExPDltBtn;
-    @FXML
-    private Button Backbtn;
-    @FXML
-    private Label TrnName;
-    @FXML
-    private TextField ExPName;
-    @FXML
-    private DatePicker SrtDate;
-    @FXML
-    private DatePicker EndDate;
-    @FXML
-    private RadioButton AMRBtn;
-    @FXML
-    private RadioButton PMRBtn;
-    @FXML
-    private TextField LimitMemsField;
+//	  @FXML
+//    private Label TitleUserNameLabel;
+//    @FXML
+//    private Button ExPMdyBtn;
+//    @FXML
+//    private Button ExPDltBtn;
+//    @FXML
+//    private Button Backbtn;
+//    @FXML
+//    private Label TrnName;
+//    @FXML
+//    private TextField ExPNameField;
+//    @FXML
+//    private DatePicker SrtDate;
+//    @FXML
+//    private DatePicker EndDate;
+//    @FXML
+//    private RadioButton AMRBtn;
+//    @FXML
+//    private RadioButton PMRBtn;
+//    @FXML
+//    private TextField LimitMemsField;
 	
 	private TrnExPMgtService trnExPMgtService;
 	private Parent trnExProgramMgtForm;

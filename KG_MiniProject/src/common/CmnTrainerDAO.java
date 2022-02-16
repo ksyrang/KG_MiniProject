@@ -31,7 +31,7 @@ public class CmnTrainerDAO {
 				"(TRAINER_Code, TRAINER_Name, TRAINER_ID, TRAINER_PW, "+
 				"TRAINER_Gender, TRAINER_Birth, TRAINER_Mobile, "+
 				"TRAINER_Career, TRAINER_Addr) "+
-				"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, DTO.getTRAINER_Code());

@@ -47,23 +47,6 @@ public class EnrollController implements Initializable{
 		CommonService.WindowClose(memberJoinForm);
 	}
 	
-//	public final void setOnInputMethodTextChanged1(EventHandler<? super InputMethodEvent> value) {
-//		EnrollDTO enrollDTOC = new EnrollDTO();
-//		EnrollService enrollService = new EnrollService();
-//		Label colorLabel1 = (Label) KG_MEM_FX_Enroll.lookup("#colorLabel1");
-//		if(enrollDTOC.getMobile().equals(enrollService)) {
-//			colorLabel1.setTextFill(Color.RED);
-//		}
-//	}
-		
-	
-//	public final void setOnInputMethodTextChanged2(EventHandler<? super InputMethodEvent> value) {
-//		EnrollDTO enrollDTOC = new EnrollDTO();
-//		EnrollService enrollService = new EnrollService();
-//		Label colorLabel2 = (Label) KG_MEM_FX_Enroll.lookup("#colorLabel2");
-//		if(enrollDTOC.getMobile().equals(enrollService)) {
-//			colorLabel2.setTextFill(Color.RED);
-//		}
-//	}
+
 }
 

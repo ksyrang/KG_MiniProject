@@ -146,15 +146,15 @@ public class MemberMgtDAO {
 	}
 	
 	// 회원 수정
-	public void memberUpdate(String mem_id, String mem_name, String mem_pw, String mem_mobile, String mem_gender, String mem_addr) {
-		String sql = "UPDATE mem_tb SET mem_name = ?, mem_pw = ?, mem_mobile = ?, mem_gender = ?, mem_addr = ?  WHERE mem_id = ?";
+	public void memberUpdate(String mem_id, String mem_name, String mem_pw, String mem_gender, String mem_birth, String mem_addr) {
+		String sql = "UPDATE mem_tb SET mem_name = ?, mem_pw = ?, mem_gender = ?, mem_birth = ?, mem_addr = ?  WHERE mem_id = ?";
 		PreparedStatement ps;
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, mem_name);
 			ps.setString(2, mem_pw);
-			ps.setString(3, mem_mobile);
-			ps.setString(4, mem_gender);
+			ps.setString(3, mem_gender);
+			ps.setString(4, mem_birth);
 			ps.setString(5, mem_addr);
 			ps.setString(6, mem_id);
 			ps.executeUpdate();

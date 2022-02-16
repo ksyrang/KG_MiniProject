@@ -21,6 +21,7 @@ import javafx.scene.control.ToggleGroup;
 		TextField namefield = (TextField) memberMgtForm.lookup("#nametxt");
 		TextField pwfield = (TextField) memberMgtForm.lookup("#pwtxt");
 		TextField mobilefield = (TextField) memberMgtForm.lookup("#mobiletxt");
+		TextField birthfield = (TextField) memberMgtForm.lookup("#birthtxt");
 		TextField addrfield = (TextField) memberMgtForm.lookup("#addrtxt");
 		RadioButton men = (RadioButton) memberMgtForm.lookup("#menradio");
 		RadioButton women = (RadioButton) memberMgtForm.lookup("#womenradio");
@@ -44,6 +45,7 @@ import javafx.scene.control.ToggleGroup;
 			namefield.setText(null);
 			pwfield.setText(null);
 			mobilefield.setText(null);
+			birthfield.setText(null);
 			addrfield.setText(null);
 			men.setSelected(false);
 			women.setSelected(false);
@@ -61,6 +63,7 @@ import javafx.scene.control.ToggleGroup;
 			namefield.setText(null);
 			pwfield.setText(null);
 			mobilefield.setText(null);
+			birthfield.setText(null);
 			addrfield.setText(null);
 			men.setSelected(false);
 			women.setSelected(false);
@@ -77,6 +80,7 @@ import javafx.scene.control.ToggleGroup;
 		TextField namefield = (TextField) memberMgtForm.lookup("#nametxt");
 		TextField pwfield = (TextField) memberMgtForm.lookup("#pwtxt");
 		TextField mobilefield = (TextField) memberMgtForm.lookup("#mobiletxt");
+		TextField birthfield = (TextField) memberMgtForm.lookup("#birthtxt");
 		TextField addrfield = (TextField) memberMgtForm.lookup("#addrtxt");
 		RadioButton men = (RadioButton) memberMgtForm.lookup("#menradio");
 		RadioButton women = (RadioButton) memberMgtForm.lookup("#womenradio");
@@ -101,6 +105,11 @@ import javafx.scene.control.ToggleGroup;
 		} else {
 			mobilefield.setText(null);
 		}
+		if(memberMgtDto.getMem_birth() != null) {
+			birthfield.setText(memberMgtDto.getMem_birth());
+		}else {
+			birthfield.setText(null);
+		}
 		if(memberMgtDto.getMem_addr() != null) {
 			addrfield.setText(memberMgtDto.getMem_addr());
 		} else {
@@ -113,6 +122,8 @@ import javafx.scene.control.ToggleGroup;
 	public void approve(Parent memberMgtForm) {
 		TextField idfield = (TextField) memberMgtForm.lookup("#idtxt");
 		String id = idfield.getText();
+		TextField namefield = (TextField) memberMgtForm.lookup("#nametxt");
+		String name = namefield.getText();
 		
 		try {
 			MemberMgtDTO memberMgtDto = memberMgtDao.selectId(id);
@@ -120,7 +131,7 @@ import javafx.scene.control.ToggleGroup;
 				if (memberMgtDto.getMem_approve().equals("false")) {
 					memberMgtDao.approveUpdate(id);
 
-					CommonService.Msg(id + " 회원님 가입 승인 완료");
+					CommonService.Msg(name + "(" + id + ") 회원님 가입 승인 완료");
 					ComboBox<String> comboBox = (ComboBox<String>) memberMgtForm.lookup("#filterCombo");
 					comboBox.setValue("전체보기");
 					ObservableList<MemberMgtTable> tableView = FXCollections.observableArrayList();
@@ -148,6 +159,7 @@ import javafx.scene.control.ToggleGroup;
 		TextField namefield = (TextField) memberMgtForm.lookup("#nametxt");
 		TextField pwfield = (TextField) memberMgtForm.lookup("#pwtxt");
 		TextField mobilefield = (TextField) memberMgtForm.lookup("#mobiletxt");
+		TextField birthfield = (TextField) memberMgtForm.lookup("#birthtxt");
 		TextField addrfield = (TextField) memberMgtForm.lookup("#addrtxt");
 		RadioButton men = (RadioButton) memberMgtForm.lookup("#menradio");
 		RadioButton women = (RadioButton) memberMgtForm.lookup("#womenradio");
@@ -158,7 +170,8 @@ import javafx.scene.control.ToggleGroup;
 		String id = idfield.getText();
 		String name = namefield.getText();
 		String pw = pwfield.getText();
-		String mobile = mobilefield.getText();
+		//String mobile = mobilefield.getText();
+		String birth = birthfield.getText();
 		String addr = addrfield.getText();
 		String gender = null;
 		if(men.isSelected()) {
@@ -173,8 +186,8 @@ import javafx.scene.control.ToggleGroup;
 			}else {
 				MemberMgtDTO memberMgtDto = memberMgtDao.selectId(id);
 				if (memberMgtDto != null) {
-					memberMgtDao.memberUpdate(id, name, pw, mobile, gender, addr);
-					CommonService.Msg(id + " 회원 수정 완료");
+					memberMgtDao.memberUpdate(id, name, pw, gender, birth, addr);
+					CommonService.Msg(name + "(" + id + ") 회원 수정 완료");
 
 					ComboBox<String> comboBox = (ComboBox<String>) memberMgtForm.lookup("#filterCombo");
 					comboBox.setValue("전체보기");
@@ -190,6 +203,7 @@ import javafx.scene.control.ToggleGroup;
 					namefield.setText(null);
 					pwfield.setText(null);
 					mobilefield.setText(null);
+					birthfield.setText(null);
 					addrfield.setText(null);
 					men.setSelected(false);
 					women.setSelected(false);
@@ -211,17 +225,19 @@ import javafx.scene.control.ToggleGroup;
 		TextField namefield = (TextField) memberMgtForm.lookup("#nametxt");
 		TextField pwfield = (TextField) memberMgtForm.lookup("#pwtxt");
 		TextField mobilefield = (TextField) memberMgtForm.lookup("#mobiletxt");
+		TextField birthfield = (TextField) memberMgtForm.lookup("#birthtxt");
 		TextField addrfield = (TextField) memberMgtForm.lookup("#addrtxt");
 		RadioButton men = (RadioButton) memberMgtForm.lookup("#menradio");
 		RadioButton women = (RadioButton) memberMgtForm.lookup("#womenradio");
 		
 		String id = idfield.getText();
+		String name = namefield.getText();
 		
 		try {
 			MemberMgtDTO memberMgtDto = memberMgtDao.selectId(id);
 			if (memberMgtDto != null) {
 				memberMgtDao.memberDelete(id);
-				CommonService.Msg(id + " 회원 삭제 완료");
+				CommonService.Msg(name + "(" + id + ") 회원 삭제 완료");
 
 				ComboBox<String> comboBox = (ComboBox<String>) memberMgtForm.lookup("#filterCombo");
 				comboBox.setValue("전체보기");
@@ -237,6 +253,7 @@ import javafx.scene.control.ToggleGroup;
 				namefield.setText(null);
 				pwfield.setText(null);
 				mobilefield.setText(null);
+				birthfield.setText(null);
 				addrfield.setText(null);
 				men.setSelected(false);
 				women.setSelected(false);

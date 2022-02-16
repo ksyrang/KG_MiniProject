@@ -14,6 +14,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class TrainerMgtService {
@@ -23,7 +24,7 @@ public class TrainerMgtService {
 	public void setTrainerMgtController(TrainerMgtController trainerMgtController) {
 		this.trainerMgtController = trainerMgtController;
 	}
-
+	
 	// 강사 등록
 	public void trnInsertProc() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/trainerEnroll/KG_ADM_FX_TrainerEnroll.fxml"));
@@ -67,23 +68,37 @@ public class TrainerMgtService {
 		trnNameTxt.setText(dto.getTRAINER_Name());
 		trnPwTxt.setText(dto.getTRAINER_PW());
 
-		String trnMobile = Integer.toString(dto.getTRAINER_Mobile());
-		trnMobileTxt.setText(trnMobile);
-		String trnBirth = Integer.toString(dto.getTRAINER_Birth());
-		trnBirthTxt.setText(trnBirth);
-		String trnCarer = Integer.toString(dto.getTRAINER_Career());
-		trnCareerTxt.setText(trnCarer);
+		if(dto.getTRAINER_Mobile() == 0) {
+			trnMobileTxt.setText("");
+		}else {
+			String trnMobile = Integer.toString(dto.getTRAINER_Mobile());
+			trnMobileTxt.setText(trnMobile);
+		}
+		
+		if(dto.getTRAINER_Birth() == 0) {
+			trnBirthTxt.setText("");
+		}else {
+			String trnBirth = Integer.toString(dto.getTRAINER_Birth());
+			trnBirthTxt.setText(trnBirth);
+		}
+		
+		if(dto.getTRAINER_Career() == 0) {
+			trnCareerTxt.setText("");
+		}else {
+			String trnCarer = Integer.toString(dto.getTRAINER_Career());
+			trnCareerTxt.setText(trnCarer);
+		}
 		
 		String[] trnAddr = dto.getTRAINER_Addr().split("/");
 		if (trnAddr.length == 1) {
 			trnAddrTxt1.setText(trnAddr[0]);
-			trnAddrTxt2.setText(null);
+			trnAddrTxt2.setText("");
 		} else if (trnAddr.length == 2) {
 			trnAddrTxt1.setText(trnAddr[0]);
 			trnAddrTxt2.setText(trnAddr[1]);
 		} else {
-			trnAddrTxt1.setText(null);
-			trnAddrTxt2.setText(null);
+			trnAddrTxt1.setText("");
+			trnAddrTxt2.setText("");
 		}
 		
 		if(dto.getTRAINER_Gender() != null) {

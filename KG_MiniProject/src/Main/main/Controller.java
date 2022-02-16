@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import mem.Enroll.EnrollController;
 import mem.FindID.FindIDController;
+import mem.FindPW.FindPWController;
 import trn.Welcome.TrnWelcomeController;
 
 //컨트롤러들의 참조 값을 저장하는 기능.
@@ -13,6 +14,7 @@ public class Controller {
 	private LoginController loginController;
 	private EnrollController enrollController;
 	private FindIDController findIDController;
+	private FindPWController findPWController;
 	private TrnWelcomeController trnWelcomeController;
 	private MainService mainService;
 	private Parent adminWelcomeForm;
@@ -21,6 +23,7 @@ public class Controller {
 	private Parent memberJoinForm;
 	private String UserCode;
 	private Parent memberFindIDForm;
+	private Parent memberFindPWForm;
 	private Stage stage;
 	private Scene scene;
 	
@@ -78,12 +81,13 @@ public class Controller {
 		this.memberJoinForm = memberJoinForm;
 	}
 	
-	public void setMemberFindIDForm(Parent memberFindIDForm) {
-		this.memberFindIDForm = memberFindIDForm;
-	}
 	
 	public void settingEnroll() {
 		this.enrollController.setEnrollForm(this.memberJoinForm);
+	}
+	
+	public void setMemberFindIDForm(Parent memberFindIDForm) {
+		this.memberFindIDForm = memberFindIDForm;
 	}
 	
 	public void setFindIDController(FindIDController findIDController) {
@@ -92,6 +96,18 @@ public class Controller {
 	
 	public void settingFindID() {
 		this.findIDController.setFindIDForm(this.memberFindIDForm);
+	}
+	
+	public void setMemberFindPWForm(Parent memberFindPWForm) {
+		this.memberFindPWForm = memberFindPWForm;
+	}
+	
+	public void setFindPWController(FindPWController findPWController) {
+		this.findPWController = findPWController;
+	}
+	
+	public void settingFindPW() {
+		this.findPWController.setFindPWForm(this.memberFindPWForm);
 	}
 	
 	public void open(String division) {
@@ -105,6 +121,8 @@ public class Controller {
 			mainService.memberJoinOpen();
 		}else if("memberFindID".equals(division)) {
 			mainService.memberFindIDOpen();
+		}else if("memberFindPW".equals(division)) {
+			mainService.memberFindPWOpen();
 		}
 	}
 

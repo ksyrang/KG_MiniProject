@@ -123,7 +123,25 @@ public class MainService {
 		}
 
 
+		public void memberFindPWOpen() {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/FindPW/KG_MEM_FX_FindPW.fxml"));
+			Parent memberFindPWForm;
+			try {
+				memberFindPWForm = loader.load();
+				controller.setMemberFindPWForm(memberFindPWForm);
+				controller.setFindPWController(loader.getController());
+				controller.settingFindPW();
+				
+				Scene scene = new Scene(memberFindPWForm);
+				Stage primaryStage = new Stage();
+				primaryStage.setTitle("memberFindPW");
+				primaryStage.setScene(scene);
+				primaryStage.show();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		
+		}
 		
 		
 }

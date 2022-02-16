@@ -70,5 +70,9 @@ public class LoginController implements Initializable{
 	//		CommonService.WindowClose(mainForm);
 			controller.open("memberFindID");
 	}
-
+	//비밀번호찾기 클릭 시 호출
+	public void findPWProc() {
+	//		CommonService.WindowClose(mainForm);
+			controller.open("memberFindPW");
+	}
 }

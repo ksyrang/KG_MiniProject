@@ -24,31 +24,7 @@ public class FindIDDAO {
 		}
 
 	}
-
-/*	public FindIDDTO SelectName(String name) {
-		String sql = "SELECT * FROM MEM_TB WHERE MEM_Name=?";
-		PreparedStatement ps;
-		ResultSet rs;
-		
-		try {
-			ps = con.prepareStatement(sql);
-			ps.setString(1, name);
-			rs = ps.executeQuery();
-			if(rs.next()) {
-				FindIDDTO findIDDTO = new FindIDDTO();
-				
-
-				findIDDTO.setName(rs.getString("mem_Name"));
-				findIDDTO.setBirth(rs.getString("mem_Birth"));
-				findIDDTO.setMobile(rs.getString("mem_Mobile"));
-				return findIDDTO;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-*/	
+	
 	public FindIDDTO FindID(String id, String name, int birth, int mobile) {
 		String sql = "select mem_id from mem_tb where mem_name= ? and mem_birth= ? and mem_mobile = ?";
 		FindIDDTO findIDDTO = null;

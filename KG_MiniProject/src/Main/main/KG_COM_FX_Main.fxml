@@ -123,7 +123,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="findPWLabel" prefHeight="18.0" prefWidth="94.0" text="비밀번호 찾기">
+                  <Label fx:id="findPWLabel" onMouseClicked="#findPWProc" prefHeight="18.0" prefWidth="94.0" text="비밀번호 찾기">
                      <font>
                         <Font size="14.0" />
                      </font>

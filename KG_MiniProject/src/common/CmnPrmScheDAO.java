@@ -93,6 +93,58 @@ public class CmnPrmScheDAO {
 		return tmpdata;		
 	}
 	
+	public int UptPrmSche(CmnPrmScheDTO DTO) {
+		int result = 0;
+		sql = "UPDATE PRMSCHE_TB SET "+
+				"PRMSCHE_Strdate=?, PRMSCHE_Enddate=?, PRMSCHE_Time=?, PRMSCHE_LimitP=?, "+
+				"PRMSCHE_CurrentP=?, PRMSCHE_Price=?, PRMSCHE_Name=?, "+
+				"PRM_Code=?, TRAINER_Code=? WHERE PRMSCHE_Code=?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setDate(1, DTO.getPRMSCHE_Strdate());
+			ps.setDate(2, DTO.getPRMSCHE_Enddate());
+			ps.setString(3, DTO.getPRMSCHE_Time());
+			ps.setInt(4, DTO.getPRMSCHE_LimitP());
+			ps.setInt(5, DTO.getPRMSCHE_CurrentP());
+			ps.setInt(6, DTO.getPRMSCHE_Price());
+			ps.setString(7, DTO.getPRMSCHE_Name());
+			ps.setString(8, DTO.getPRM_Code());
+			ps.setString(9, DTO.getTRAINER_Code());
+			ps.setString(10, DTO.getPRMSCHE_Code());
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try { 
+				if(ps != null) ps.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	public int DltPrmSche(String PRMSCHE_Code) {
+		int result = 0;
+		sql = "DELETE FROM PRMSCHE_TB WHERE PRMSCHE_Code=?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, PRMSCHE_Code);
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try { 
+				if(ps != null) ps.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
 	public ArrayList<CmnPrmScheDTO> SltPrmScheAll(){
 		ArrayList<CmnPrmScheDTO> Datalist = new ArrayList<>();
 		CmnPrmScheDTO tmpdata = null;
@@ -199,5 +251,7 @@ public class CmnPrmScheDAO {
 		}
 		return Datalist;
 	}
+	
+	
 	
 }//class end

@@ -82,6 +82,8 @@ public class TrnWelcomeService {
 			//PW Sector :초기 미표시
 			//Birth Sector
 			BirthField.setText(Integer.toString(tmpTrnDto.getTRAINER_Birth()));
+			//Mobile Sector
+			MobileField.setText(Integer.toString(tmpTrnDto.getTRAINER_Mobile()));
 			//Gender Sector
 			ToggleGroup group = new ToggleGroup();
 			maleBtn.setToggleGroup(group);
@@ -94,9 +96,7 @@ public class TrnWelcomeService {
 			Addr2Field.setText(tmpTrnDto.getTRAINER_Addr());
 			//Career Sector
 			CareerField.setText(Integer.toString(tmpTrnDto.getTRAINER_Career()));
-			
-			
-			
+		
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnMgtForm));
 			stage.setTitle("강사 정보수정 페이지");

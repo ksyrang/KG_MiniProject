@@ -67,11 +67,11 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TableView fx:id="trnTable" prefHeight="387.0" prefWidth="350.0">
+                        <TableView fx:id="trnTable" onMouseClicked="#trnCellClick" prefHeight="387.0" prefWidth="350.0">
                           <columns>
-                            <TableColumn fx:id="trnCode" prefWidth="84.0" text="강사코드" />
-                            <TableColumn fx:id="trnName" prefWidth="87.0" text="이름" />
-                              <TableColumn fx:id="trnMobile" prefWidth="178.0" text="전화번호" />
+                            <TableColumn fx:id="colTrnCode" prefWidth="84.0" text="강사코드" />
+                            <TableColumn fx:id="colTrnName" prefWidth="87.0" text="이름" />
+                              <TableColumn fx:id="colTrnMobile" prefWidth="178.0" text="전화번호" />
                           </columns>
                         </TableView>
                      </children>

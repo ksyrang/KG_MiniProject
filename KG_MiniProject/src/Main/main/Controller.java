@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import mem.Enroll.EnrollController;
 import mem.FindID.FindIDController;
 import mem.FindPW.FindPWController;
+import mem.Mgt.MgtController;
 import trn.Welcome.TrnWelcomeController;
 
 //컨트롤러들의 참조 값을 저장하는 기능.
@@ -109,6 +110,8 @@ public class Controller {
 	public void settingFindPW() {
 		this.findPWController.setFindPWForm(this.memberFindPWForm);
 	}
+	
+	
 	
 	public void open(String division) {
 		if("adminWelcome".equals(division)) {

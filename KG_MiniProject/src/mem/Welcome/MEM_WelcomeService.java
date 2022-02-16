@@ -54,6 +54,7 @@ public class MEM_WelcomeService {
 		}
 	}
 	
+
 	public void logoutProc() {
 		// TODO Auto-generated method stub
 		
@@ -63,4 +64,6 @@ public class MEM_WelcomeService {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 }

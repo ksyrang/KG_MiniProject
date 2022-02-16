@@ -50,7 +50,7 @@ public class EnrollService {
 		else if (womanRadio.isSelected())
 			gender += "여";
 
-		if(name.isEmpty() || id.isEmpty() || pw.isEmpty() || confirm.isEmpty() ) {
+		if(name.isEmpty() || id.isEmpty() || pw.isEmpty() || confirm.isEmpty() || birth.isEmpty() || mobile.isEmpty() ) {
 			CommonService.Msg("필수 데이터 입니다.");
 			return;
 		}

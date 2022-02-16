@@ -69,12 +69,12 @@
    <bottom>
       <HBox prefHeight="50.0" prefWidth="335.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="80.0" text="찾기">
+            <Button fx:id="findIDButton" mnemonicParsing="false" onAction="#findIDProc" prefHeight="29.0" prefWidth="80.0" text="찾기">
                <HBox.margin>
                   <Insets left="50.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="80.0" text="취소">
+            <Button fx:id="cancelFindIDButoon" mnemonicParsing="false" onAction="#findIDCancelProc" prefHeight="29.0" prefWidth="80.0" text="취소">
                <HBox.margin>
                   <Insets left="78.0" top="10.0" />
                </HBox.margin>

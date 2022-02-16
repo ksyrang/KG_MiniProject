@@ -69,13 +69,13 @@
                         </Label>
                      </children>
                   </FlowPane>
-                  <TableView fx:id="memProgramTable" onMouseClicked="#selecttableView1" prefHeight="430.0" prefWidth="375.0">
+                  <TableView fx:id="memProgramTable" onMouseClicked="#selectPrmDetail" prefHeight="430.0" prefWidth="375.0">
                     <columns>
-                      <TableColumn fx:id="colCode" minWidth="20.0" prefWidth="200.0" text="강의명" />
-                      <TableColumn fx:id="colPrmsche_code" prefWidth="40.0" text="타입" />
-                        <TableColumn fx:id="colMemshipsche_code" prefWidth="100.0" text="가격" />
-                        <TableColumn fx:id="colID" prefWidth="100.0" text="시작일" />
-                        <TableColumn fx:id="colName" prefWidth="100.0" text="종료일" />
+                      <TableColumn fx:id="colPrmName" minWidth="20.0" prefWidth="200.0" text="강의명" />
+                      <TableColumn fx:id="colPrmscheTime" prefWidth="40.0" text="타입" />
+                        <TableColumn fx:id="colPrmschePrice" prefWidth="100.0" text="가격" />
+                        <TableColumn fx:id="colPrmscheStrdate" prefWidth="100.0" text="시작일" />
+                        <TableColumn fx:id="colPrmscheEnddate" prefWidth="100.0" text="종료일" />
                     </columns>
                   </TableView>
                </children>
@@ -108,7 +108,7 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0">
                      <children>
                         <Label text="강의코드 : " />
-                        <TextField fx:id="programcodeTextField" prefHeight="25.0">
+                        <TextField fx:id="prm_codeTxtFld" prefHeight="25.0">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
@@ -124,7 +124,7 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0">
                      <children>
                         <Label text="강 사  명 : " />
-                        <TextField fx:id="trainernameTextField" prefHeight="25.0">
+                        <TextField fx:id="trainer_nameTxtFld" prefHeight="25.0">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
@@ -140,7 +140,7 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0">
                      <children>
                         <Label text="강사경력 : " />
-                        <TextField fx:id="trainercareerTextField" prefHeight="25.0">
+                        <TextField fx:id="trainer_careerTxtFld" prefHeight="25.0">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
@@ -161,7 +161,7 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0">
                      <children>
                         <Label text="시  작  일 : " />
-                        <TextField fx:id="prmsche_strdateTextField" prefHeight="25.0">
+                        <TextField fx:id="prmsche_strdateTxtFld" prefHeight="25.0">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
@@ -177,7 +177,7 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0">
                      <children>
                         <Label text="종  료  일 : " />
-                        <TextField fx:id="prmsche_enddateTextField" prefHeight="25.0">
+                        <TextField fx:id="prmsche_enddateTxtFld" prefHeight="25.0">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
@@ -193,7 +193,7 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0">
                      <children>
                         <Label text="시       간 : " />
-                        <TextField fx:id="prmschetimeTextField" prefHeight="25.0">
+                        <TextField fx:id="prmsche_timeTxtFld" prefHeight="25.0">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>

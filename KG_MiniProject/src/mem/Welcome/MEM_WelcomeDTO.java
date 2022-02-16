@@ -1,17 +1,16 @@
 package mem.Welcome;
 
+import java.util.Date;
+
 public class MEM_WelcomeDTO {
-	private String mem_code;
-	private String mem_id;
-	private String mem_pw;
-	private String mem_name;
-	private String mem_gender;
-	private String mem_birth;
-	private String mem_mobile;
-	private String mem_addr;
-	private String mem_approve;
+	private String prm_name;
+	private String prmsche_time;
+	private int prmsche_price;
+	private Date prmsche_strdate;
+	private Date prmsche_enddate;
 	private String prmsche_code;
 	private String memshipsche_code;
+	private String trainer_code;
 	
 	public String getPrmsche_code() {
 		return prmsche_code;
@@ -25,63 +24,42 @@ public class MEM_WelcomeDTO {
 	public void setMemshipsche_code(String memshipsche_code) {
 		this.memshipsche_code = memshipsche_code;
 	}
-	public String getMem_code() {
-		return mem_code;
+	public String getTrainer_code() {
+		return trainer_code;
 	}
-	public void setMem_code(String mem_code) {
-		this.mem_code = mem_code;
+	public void setTrainer_code(String trainer_code) {
+		this.trainer_code = trainer_code;
 	}
-	public String getMem_id() {
-		return mem_id;
+	public String getPrm_name() {
+		return prm_name;
 	}
-	public void setMem_id(String mem_id) {
-		this.mem_id = mem_id;
+	public void setPrm_name(String prm_name) {
+		this.prm_name = prm_name;
 	}
-	public String getMem_pw() {
-		return mem_pw;
+	public String getPrmsche_time() {
+		return prmsche_time;
 	}
-	public void setMem_pw(String mem_pw) {
-		this.mem_pw = mem_pw;
+	public void setPrmsche_time(String prmsche_time) {
+		this.prmsche_time = prmsche_time;
 	}
-	public String getMem_name() {
-		return mem_name;
+	public int getPrmsche_price() {
+		return prmsche_price;
 	}
-	public void setMem_name(String mem_name) {
-		this.mem_name = mem_name;
+	public void setPrmsche_price(int prmsche_price) {
+		this.prmsche_price = prmsche_price;
 	}
-	public String getMem_gender() {
-		return mem_gender;
+	public Date getPrmsche_strdate() {
+		return prmsche_strdate;
 	}
-	public void setMem_gender(String mem_gender) {
-		this.mem_gender = mem_gender;
+	public void setPrmsche_strdate(Date prmsche_strdate) {
+		this.prmsche_strdate = prmsche_strdate;
 	}
-	public String getMem_birth() {
-		return mem_birth;
+	public Date getPrmsche_enddate() {
+		return prmsche_enddate;
 	}
-	public void setMem_birth(String mem_birth) {
-		this.mem_birth = mem_birth;
-	}
-	public String getMem_mobile() {
-		return mem_mobile;
-	}
-	public void setMem_mobile(String mem_mobile) {
-		this.mem_mobile = mem_mobile;
-	}
-	public String getMem_addr() {
-		return mem_addr;
-	}
-	public void setMem_addr(String mem_addr) {
-		this.mem_addr = mem_addr;
+	public void setPrmsche_enddate(Date prmsche_enddate) {
+		this.prmsche_enddate = prmsche_enddate;
 	}
 	
-	public String getMem_approve() {
-		return mem_approve;
-	}
-	
-	public void setMem_approve(String mem_approve) {
-		this.mem_approve = mem_approve;
-	}
-	
-
 }
 	

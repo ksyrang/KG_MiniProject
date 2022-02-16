@@ -1,60 +1,65 @@
 package mem.Welcome;
 
+import java.util.Date;
+
 public class MEM_WelcomeMgtTable {
 	
-	private String colCode;
-	private String colPrmsche_code;
-	private String colMemshipsche_code;
-	private String colID;
-	private String colName;
+	private String colPrmName;
+	private String colPrmscheTime;
+	private int colPrmschePrice;
+	private Date colPrmscheStrdate;
+	private Date colPrmscheEnddate;
+	private String colMemshipscheCode;
+	private String colTrainerCode;
 	
-	public String getColID() {
-		return colID;
+	public MEM_WelcomeMgtTable(String colPrmName, String colPrmscheTime, int colPrmschePrice,Date colPrmscheStrdate,Date colPrmscheEnddate) {
+		this.colPrmName = colPrmName;
+		this.colPrmscheTime = colPrmscheTime;
+		this.colPrmschePrice = colPrmschePrice;
+		this.colPrmscheStrdate = colPrmscheStrdate;
+		this.colPrmscheEnddate = colPrmscheEnddate;
 	}
 
-	public void setColID(String colID) {
-		this.colID = colID;
+	public String getColPrmName() {
+		return colPrmName;
 	}
 
-	public String getColName() {
-		return colName;
+	public void setColPrmName(String colPrmName) {
+		this.colPrmName = colPrmName;
 	}
 
-	public void setColName(String colName) {
-		this.colName = colName;
+	public String getColPrmscheTime() {
+		return colPrmscheTime;
 	}
 
-	public MEM_WelcomeMgtTable(String colCode, String colPrmsche_code, String colMemshipsche_code,String colID,String colName) {
-		this.colCode = colCode;
-		this.colPrmsche_code = colPrmsche_code;
-		this.colMemshipsche_code = colMemshipsche_code;
-		this.colID = colID;
-		this.colName = colName;
+	public void setColPrmscheTime(String colPrmscheTime) {
+		this.colPrmscheTime = colPrmscheTime;
 	}
 
-	public String getColCode() {
-		return colCode;
+	public int getColPrmschePrice() {
+		return colPrmschePrice;
 	}
 
-	public void setColCode(String colCode) {
-		this.colCode = colCode;
+	public void setColPrmschePrice(int colPrmschePrice) {
+		this.colPrmschePrice = colPrmschePrice;
 	}
 
-	public String getcolPrmsche_code() {
-		return colPrmsche_code;
+	public Date getColPrmscheStrdate() {
+		return colPrmscheStrdate;
 	}
 
-	public void setPrmsche_code(String colPrmsche_code) {
-		this.colPrmsche_code = colPrmsche_code;
+	public void setColPrmscheStrdate(Date colPrmscheStrdate) {
+		this.colPrmscheStrdate = colPrmscheStrdate;
 	}
 
-	public String getcolMemshipsche_code() {
-		return colMemshipsche_code;
+	public Date getColPrmscheEnddate() {
+		return colPrmscheEnddate;
 	}
 
-	public void setColMemshipsche_code(String colMemshipsche_code) {
-		this.colMemshipsche_code = colMemshipsche_code;
+	public void setColPrmscheEnddate(Date colPrmscheEnddate) {
+		this.colPrmscheEnddate = colPrmscheEnddate;
 	}
 
+	
 	
 }

@@ -6,6 +6,11 @@ public class CmnPrmDTO {
 	public CmnPrmDTO() {
 		// TODO Auto-generated constructor stub
 	}
+	public CmnPrmDTO(CmnPrmDTO DTO) {
+		super();
+		PRM_Code = DTO.getPRM_Code();
+		PRM_Name = DTO.getPRM_Name();
+	}
 	public CmnPrmDTO(String pRM_Code, String pRM_Name) {
 		super();
 		PRM_Code = pRM_Code;

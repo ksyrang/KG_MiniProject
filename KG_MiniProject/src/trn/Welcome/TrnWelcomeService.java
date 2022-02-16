@@ -1,7 +1,12 @@
 package trn.Welcome;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
+import common.CmnPrmDAO;
+import common.CmnPrmDTO;
+import common.CmnPrmScheDAO;
+import common.CmnPrmScheDTO;
 import common.CmnTrainerDAO;
 import common.CmnTrainerDTO;
 import common.CommonService;
@@ -120,6 +125,8 @@ public class TrnWelcomeService {
 			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnCode));
 			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
 			
+			
+			
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnExPEnrollFrom));
 			stage.setTitle("trnExPEnroll");
@@ -145,17 +152,36 @@ public class TrnWelcomeService {
 			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
 			
 			//초기 선언
-			Label TrnName = (Label)trnExPMgtFrom.lookup("#TrnName");
-			TextField ExPNameField = (TextField)trnExPMgtFrom.lookup("#ExPNameField");
+			Label PrmScheCodeLabel = (Label)trnExPMgtFrom.lookup("#PrmScheCodeLabel");
+			Label ExPTypeLabel = (Label)trnExPMgtFrom.lookup("#ExPTypeLabel");
+			TextField ExPNameFeild = (TextField)trnExPMgtFrom.lookup("#ExPNameFeild");
 			DatePicker SrtDate = (DatePicker)trnExPMgtFrom.lookup("#SrtDate");
 			DatePicker EndDate = (DatePicker)trnExPMgtFrom.lookup("#EndDate");
 			RadioButton AMRBtn = (RadioButton)trnExPMgtFrom.lookup("#AMRBtn");
 			RadioButton PMRBtn = (RadioButton)trnExPMgtFrom.lookup("#PMRBtn");
-			TextField LimitMemsField= (TextField)trnExPMgtFrom.lookup("#LimitMemsField");
+			TextField LimitMemsField = (TextField)trnExPMgtFrom.lookup("#LimitMemsField");
 			
+			CmnPrmScheDTO ScheDto = new CmnPrmScheDAO().SltPrmScheOne("0");		
+			CmnPrmDTO PrmDto = new CmnPrmDAO().SltPrmOne(ScheDto.getPRM_Code());
+		
+			//Type
+			ExPTypeLabel.setText(PrmDto.getPRM_Name());
+			//Name
+			ExPNameFeild.setText(ScheDto.getPRMSCHE_Name());
+			//Date
+//			System.out.println(CommonService.DateCnvt(ScheDto.getPRMSCHE_Strdate()));
+			SrtDate.setValue(CommonService.DateCnvt(ScheDto.getPRMSCHE_Strdate()));
+			EndDate.setValue(CommonService.DateCnvt(ScheDto.getPRMSCHE_Enddate()));
+			//Time
+			ToggleGroup group = new ToggleGroup();
+			AMRBtn.setToggleGroup(group);
+			PMRBtn.setToggleGroup(group);
+			if(ScheDto.getPRMSCHE_Time().equals("오전")) AMRBtn.setSelected(true);
+			else if(ScheDto.getPRMSCHE_Time().equals("오후")) PMRBtn.setSelected(true);
+			else AMRBtn.setSelected(true);
 			
-			
-			
+			LimitMemsField.setText(Integer.toString(ScheDto.getPRMSCHE_LimitP()));
+						
 			
 			
 			Stage stage = new Stage();

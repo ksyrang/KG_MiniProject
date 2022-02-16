@@ -63,33 +63,32 @@
    <center>
       <VBox prefHeight="330.0" prefWidth="720.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="EX 프로그램 관리">
+            <Label text="강의일정 관리">
                <font>
                   <Font size="34.0" />
                </font>
             </Label>
             <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Label prefHeight="25.0" text="프로그램 종류 : ">
+                  <Label layoutX="10.0" layoutY="22.0" prefHeight="25.0" text="강의일정 코드 : ">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="35.0" text="선택된 프로그램">
+                  <Label fx:id="PrmScheCodeLabel" layoutX="10.0" layoutY="22.0" prefHeight="25.0" text="PRMSCHE_Code">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Label>
-               </children>
-            </HBox>
-            <HBox spacing="10.0">
-               <children>
-                  <Label text="프로그램 강사 : ">
+                  <Label prefHeight="25.0" text="프로그램 타입 : ">
                      <font>
                         <Font size="17.0" />
                      </font>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
                   </Label>
-                  <Label fx:id="TrnName" layoutX="10.0" layoutY="10.0" prefHeight="25.0" text="???">
+                  <Label fx:id="ExPTypeLabel" prefHeight="35.0" text="선택된 프로그램">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -103,7 +102,7 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="ExPName" prefHeight="35.0" prefWidth="300.0" />
+                  <TextField fx:id="ExPNameFeild" prefHeight="35.0" prefWidth="300.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="200.0" spacing="10.0">

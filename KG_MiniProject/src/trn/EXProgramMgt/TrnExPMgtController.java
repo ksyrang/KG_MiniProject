@@ -41,36 +41,36 @@ public class TrnExPMgtController implements Initializable {
 //    @FXML
 //    private TextField LimitMemsField;
 	
-	private TrnExPMgtService trnExPMgtService;
-	private Parent trnExProgramMgtForm;
+	private TrnExPMgtService trnExPMgtsvc;
+	private Parent trnExPMgtForm;
 	private String trnCode;
 	
 	public TrnExPMgtController() {
-		trnExPMgtService = new TrnExPMgtService();
+		trnExPMgtsvc = new TrnExPMgtService();
 	}
 	public void setTrnCode(String trnCode) {
 		this.trnCode = trnCode;
 	}
 
-	public void setTrnExProgramMgtForm(Parent trnExProgramMgtForm) {
-		this.trnExProgramMgtForm = trnExProgramMgtForm;
+	public void setTrnExProgramMgtForm(Parent trnExPMgtForm) {
+		this.trnExPMgtForm = trnExPMgtForm;
+		trnExPMgtsvc.SetFxId(trnExPMgtForm);
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		
 	}
 	
 	public void ExPDltProc() {//삭제
-		
+		trnExPMgtsvc.ExPDltProc(trnExPMgtForm);
 	}
 	
 	public void ExPMdyProc() {//수정
-		
+		trnExPMgtsvc.ExPMdyProc(trnExPMgtForm);
 	}
 	
 	public void BackProc() {
-		trnExPMgtService.backClose(trnExProgramMgtForm);
+		trnExPMgtsvc.backClose(trnExPMgtForm);
 	}
 }

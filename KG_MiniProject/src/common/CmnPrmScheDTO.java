@@ -34,7 +34,8 @@ public class CmnPrmScheDTO {
 		PRMSCHE_Name = dTO.getPRMSCHE_Name();
 	}
 	public CmnPrmScheDTO(String pRMSCHE_Code, Date pRMSCHE_Strdate, Date pRMSCHE_Enddate, String pRMSCHE_Time,
-			int pRMSCHE_LimitP, int pRMSCHE_CurrentP, int pRMSCHE_Price, String pRM_Code,String tRAINER_Code) {
+			int pRMSCHE_LimitP, int pRMSCHE_CurrentP, int pRMSCHE_Price,
+			String pRM_Code,String tRAINER_Code, String pRMSCHE_Name) {
 		super();
 		PRMSCHE_Code = pRMSCHE_Code;
 		PRMSCHE_Strdate = pRMSCHE_Strdate;
@@ -45,6 +46,7 @@ public class CmnPrmScheDTO {
 		PRMSCHE_Price = pRMSCHE_Price;
 		PRM_Code = pRM_Code;
 		TRAINER_Code = tRAINER_Code;
+		PRMSCHE_Name = pRMSCHE_Name;
 	}
 
 	public String getPRMSCHE_Code() {

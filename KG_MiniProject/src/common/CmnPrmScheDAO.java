@@ -36,7 +36,7 @@ public class CmnPrmScheDAO {
 				"(PRMSCHE_Code, PRMSCHE_Strdate, PRMSCHE_Enddate, PRMSCHE_Time, PRMSCHE_LimitP, "+
 				"PRMSCHE_CurrentP, PRMSCHE_Price, PRMSCHE_Name, "+
 				"PRM_Code, TRAINER_Code)"+
-				"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?,)";
+				"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, DTO.getPRMSCHE_Code());
@@ -48,6 +48,7 @@ public class CmnPrmScheDAO {
 			ps.setInt(7, DTO.getPRMSCHE_Price());
 			ps.setString(8, DTO.getPRM_Code());
 			ps.setString(9, DTO.getTRAINER_Code());
+			ps.setString(10, DTO.getPRMSCHE_Name());
 			result = ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -79,7 +80,8 @@ public class CmnPrmScheDAO {
 					rs.getInt("PRMSCHE_CurrentP"),
 					rs.getInt("PRMSCHE_Price"),
 					rs.getString("PRM_Code"),
-					rs.getString("TRAINER_Code")
+					rs.getString("TRAINER_Code"),
+					rs.getString("PRMSCHE_Name")
 				);
 			}
 		} catch (SQLException e) {
@@ -101,7 +103,7 @@ public class CmnPrmScheDAO {
 		sql = "UPDATE PRMSCHE_TB SET "+
 				"PRMSCHE_Strdate=?, PRMSCHE_Enddate=?, PRMSCHE_Time=?, PRMSCHE_LimitP=?, "+
 				"PRMSCHE_CurrentP=?, PRMSCHE_Price=?, "+
-				"PRM_Code=?, TRAINER_Code=? WHERE PRMSCHE_Code=?";
+				"PRM_Code=?, TRAINER_Code=?, PRMSCHE_Name=? WHERE PRMSCHE_Code=?";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setDate(1, DTO.getPRMSCHE_Strdate());
@@ -113,6 +115,7 @@ public class CmnPrmScheDAO {
 			ps.setString(7, DTO.getPRM_Code());
 			ps.setString(8, DTO.getTRAINER_Code());
 			ps.setString(9, DTO.getPRMSCHE_Code());
+			ps.setString(10, DTO.getPRMSCHE_Name());
 			result = ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -150,7 +153,7 @@ public class CmnPrmScheDAO {
 	public ArrayList<CmnPrmScheDTO> SltPrmScheAll(){
 		ArrayList<CmnPrmScheDTO> Datalist = new ArrayList<>();
 		CmnPrmScheDTO tmpdata = null;
-		sql = "SELECT * FROM MEM_TB";
+		sql = "SELECT * FROM PRMSCHE_TB";
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -164,7 +167,8 @@ public class CmnPrmScheDAO {
 					rs.getInt("PRMSCHE_CurrentP"),
 					rs.getInt("PRMSCHE_Price"),
 					rs.getString("PRM_Code"),
-					rs.getString("TRAINER_Code")
+					rs.getString("TRAINER_Code"),
+					rs.getString("PRMSCHE_Name")
 				);
 				Datalist.add(tmpdata);
 			}
@@ -184,7 +188,7 @@ public class CmnPrmScheDAO {
 	public ArrayList<CmnPrmScheDTO> SltPrmScheAllbyPrm(String PRM_Code){
 		ArrayList<CmnPrmScheDTO> Datalist = new ArrayList<>();
 		CmnPrmScheDTO tmpdata = null;
-		sql = "SELECT * FROM MEM_TB WHERE PRM_Code=?";
+		sql = "SELECT * FROM PRMSCHE_TB WHERE PRM_Code=?";
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -198,7 +202,8 @@ public class CmnPrmScheDAO {
 					rs.getInt("PRMSCHE_CurrentP"),
 					rs.getInt("PRMSCHE_Price"),
 					rs.getString("PRM_Code"),
-					rs.getString("TRAINER_Code")
+					rs.getString("TRAINER_Code"),
+					rs.getString("PRMSCHE_Name")
 				);
 				Datalist.add(tmpdata);
 			}
@@ -219,7 +224,7 @@ public class CmnPrmScheDAO {
 	public ArrayList<CmnPrmScheDTO> SltPrmScheAllbyTrn(String TRAINER_Code){
 		ArrayList<CmnPrmScheDTO> Datalist = new ArrayList<>();
 		CmnPrmScheDTO tmpdata = null;
-		sql = "SELECT * FROM MEM_TB WHERE TRAINER_Code=?";
+		sql = "SELECT * FROM PRMSCHE_TB WHERE TRAINER_Code=?";
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -233,7 +238,8 @@ public class CmnPrmScheDAO {
 					rs.getInt("PRMSCHE_CurrentP"),
 					rs.getInt("PRMSCHE_Price"),
 					rs.getString("PRM_Code"),
-					rs.getString("TRAINER_Code")
+					rs.getString("TRAINER_Code"),
+					rs.getString("PRMSCHE_Name")
 				);
 				Datalist.add(tmpdata);
 			}
@@ -254,15 +260,15 @@ public class CmnPrmScheDAO {
 	public ObservableList<TrnTbVDTO> SltPrmScheAllforTable(){
 		ObservableList<TrnTbVDTO> Datalist = FXCollections.observableArrayList();
 		TrnTbVDTO tmpTvDtO = null;
-		sql = "SELECT * FROM MEM_TB";
+		sql = "SELECT * FROM PRMSCHE_TB";
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				tmpTvDtO = new TrnTbVDTO(rs.getString("PRMSCHE_Code"),
-						rs.getString("PRMSCHE_Name"),
+				tmpTvDtO = new TrnTbVDTO(rs.getString("PRMSCHE_Code"), rs.getString("PRMSCHE_Name"),
 						Integer.toString(rs.getInt("PRMSCHE_CurrentP"))
 						);
+				System.out.println(tmpTvDtO.getMembersColumn());
 				Datalist.add(tmpTvDtO);
 			}
 		} catch (SQLException e) {

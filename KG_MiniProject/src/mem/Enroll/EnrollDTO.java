@@ -6,8 +6,8 @@ public class EnrollDTO {
 	private String PW;
 	private String Name;
 	private String Gender;
-	private String Birth;
-	private String Mobile;
+	private int Birth;
+	private int Mobile;
 	private String Addr;
 	private String approve;
 	
@@ -35,16 +35,16 @@ public class EnrollDTO {
 	public void setGender(String gender) {
 		this.Gender = gender;
 	}
-	public String getBirth() {
+	public int getBirth() {
 		return Birth;
 	}
-	public void setBirth(String birth) {
+	public void setBirth(int birth) {
 		this.Birth = birth;
 	}
-	public String getMobile() {
+	public int getMobile() {
 		return Mobile;
 	}
-	public void setMobile(String mobile) {
+	public void setMobile(int mobile) {
 		this.Mobile = mobile;
 	}
 	public String getAddr() {

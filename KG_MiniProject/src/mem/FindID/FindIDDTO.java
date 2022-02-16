@@ -2,8 +2,9 @@ package mem.FindID;
 
 public class FindIDDTO {
 	private String Name;
-	private String Birth;
-	private String Mobile;
+	private int Birth;
+	private int Mobile;
+	
 	
 	public String getName() {
 		return Name;
@@ -11,16 +12,16 @@ public class FindIDDTO {
 	public void setName(String name) {
 		Name = name;
 	}
-	public String getBirth() {
+	public int getBirth() {
 		return Birth;
 	}
-	public void setBirth(String birth) {
+	public void setBirth(int birth) {
 		Birth = birth;
 	}
-	public String getMobile() {
+	public int getMobile() {
 		return Mobile;
 	}
-	public void setMobile(String mobile) {
+	public void setMobile(int mobile) {
 		Mobile = mobile;
 	}
 	

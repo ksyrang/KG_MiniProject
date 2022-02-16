@@ -18,7 +18,7 @@ public class FindIDController implements Initializable{
 		findIDService = new FindIDService();
 	}
 
-	public void setMemberFindIDForm(Parent memberFindIDForm) {
+	public void setFindIDForm(Parent memberFindIDForm) {
 		this.memberFindIDForm = memberFindIDForm;
 	}
 	
@@ -31,5 +31,5 @@ public class FindIDController implements Initializable{
 	public void findIDCancelProc() {
 		CommonService.WindowClose(memberFindIDForm);
 	}
-	
+
 }

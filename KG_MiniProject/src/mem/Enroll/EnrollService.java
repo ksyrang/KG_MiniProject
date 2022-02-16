@@ -71,8 +71,8 @@ public class EnrollService {
 				enrollDTO.setPW(pw);
 				enrollDTO.setName(name);
 				enrollDTO.setGender(gender);
-				enrollDTO.setBirth(birth);
-				enrollDTO.setMobile(mobile);
+				enrollDTO.setBirth(Integer.parseInt(birth));
+				enrollDTO.setMobile(Integer.parseInt(mobile));
 				enrollDTO.setAddr(addr);
 				enrollDTO.setApprove(approve);
 				

@@ -69,22 +69,21 @@ public class Controller {
 		this.memberJoinForm = memberJoinForm;
 	}
 	
-	public void settingEnroll() {
-		this.enrollController.setEnrollForm(this.memberJoinForm);
-	}
-	
-	public void settingFindID() {
-		this.findIDController.setMemberFindIDForm(this.memberFindIDForm);
-	}
-	
 	public void setMemberFindIDForm(Parent memberFindIDForm) {
 		this.memberFindIDForm = memberFindIDForm;
+	}
+	
+	public void settingEnroll() {
+		this.enrollController.setEnrollForm(this.memberJoinForm);
 	}
 	
 	public void setFindIDController(FindIDController findIDController) {
 		this.findIDController = findIDController;
 	}
 	
+	public void settingFindID() {
+		this.findIDController.setFindIDForm(this.memberFindIDForm);
+	}
 	
 	public void open(String division) {
 		if("adminWelcome".equals(division)) {

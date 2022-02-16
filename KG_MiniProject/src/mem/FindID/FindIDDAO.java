@@ -5,11 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import mem.Enroll.EnrollDTO;
-
 public class FindIDDAO {
+	
 	private Connection con;
-
+	PreparedStatement ps;
+	ResultSet rs;
+	
 	public FindIDDAO() {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "KGGYM";
@@ -48,29 +49,26 @@ public class FindIDDAO {
 		return null;
 	}
 */	
-	public String FindID(String name, String birth, String mobile) {
-		String id = null;
-
-		String sql = "select mem_id from mem_tb where mem_name= ? and mem_birth= ? and mem_mobile = ?;";
-		PreparedStatement ps;
-		ResultSet rs;
-
+	public FindIDDTO FindID(String name, String birth, String mobile) {
+		String sql = "select * from mem_tb where mem_name= '?' and mem_birth= ? and mem_mobile = ?;";
+		FindIDDTO findIDDTO = null;
 		try {
-
+			
 			ps = con.prepareStatement(sql);
 			ps.setString(1, name);
 			ps.setString(2, birth);
 			ps.setString(3, mobile);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-
-				id = rs.getString("mem_tb.mem_id");
-
+				findIDDTO = new FindIDDTO();
+				findIDDTO.setName(name);
+				findIDDTO.setBirth(rs.getInt("mem_birth"));
+				findIDDTO.setMobile(rs.getInt("mem_mobile"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return id;
+		return findIDDTO;
 	}
 
 }

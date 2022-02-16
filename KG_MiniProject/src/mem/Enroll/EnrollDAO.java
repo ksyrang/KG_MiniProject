@@ -43,8 +43,8 @@ public class EnrollDAO {
 				enrDTO.setPW(rs.getString("mem_PW"));
 				enrDTO.setName(rs.getString("mem_Name"));
 				enrDTO.setGender(rs.getString("mem_gender"));
-				enrDTO.setBirth(rs.getString("mem_Birth"));
-				enrDTO.setMobile(rs.getString("mem_Mobile"));
+				enrDTO.setBirth(rs.getInt("mem_Birth"));
+				enrDTO.setMobile(rs.getInt("mem_Mobile"));
 				enrDTO.setAddr(rs.getString("mem_Addr"));
 				enrDTO.setApprove(rs.getString("mem_approve"));
 				return enrDTO;
@@ -65,8 +65,8 @@ public class EnrollDAO {
 			ps.setString(3, enrDTO.getPW());
 			ps.setString(4, enrDTO.getName());
 			ps.setString(5, enrDTO.getGender());
-			ps.setString(6, enrDTO.getBirth());
-			ps.setString(7, enrDTO.getMobile());
+			ps.setLong(6, enrDTO.getBirth());
+			ps.setLong(7, enrDTO.getMobile());
 			ps.setString(8, enrDTO.getAddr());
 			ps.setString(9, enrDTO.getApprove());
 			

@@ -91,6 +91,7 @@ public class TrnWelcomeController implements Initializable {
 	public Parent getTrnWelcomeForm() {
 		return WelcomeForm;
 	}
+	
 //
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {	

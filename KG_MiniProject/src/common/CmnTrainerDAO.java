@@ -190,6 +190,27 @@ public class CmnTrainerDAO {
 		return result;
 	}
 	
+	public int DelTrnId(String TRAINER_ID) {
+		int result = 0;
+		String sql = "DELETE FROM TRAINER_TB WHERE TRAINER_ID = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, TRAINER_ID);
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try { 
+				if(ps != null) ps.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
+		
+	
 	public ArrayList<CmnTrainerDTO> SltTrnAll(){
 		ArrayList<CmnTrainerDTO> Datalist = new ArrayList<>();
 		CmnTrainerDTO tmpdata = null;

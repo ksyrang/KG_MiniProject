@@ -166,8 +166,11 @@ public class TrainerMgtService {
 					dto.setTRAINER_Mobile(trnMobile);
 					dto.setTRAINER_Career(trnCareer);
 					dto.setTRAINER_Addr(trnAddr);
-					dao.UptTrnId(dto);
-					CommonService.Msg(trnId + " 강사 수정 완료");
+					if(dao.UptTrnId(dto) == 1) {
+						CommonService.Msg(trnId + " 강사 수정 완료");
+					}else {
+						CommonService.Msg(trnId + " 강사 수정 실패");
+					}
 					
 					ObservableList<TrainerMgtTable> tableView = FXCollections.observableArrayList();
 					TableView<TrainerMgtTable> newTable = (TableView<TrainerMgtTable>) trainerMgtForm.lookup("#trnTable");
@@ -199,7 +202,51 @@ public class TrainerMgtService {
 
 	// 강사 삭제
 	public void trnDeleteProc(Parent trainerMgtForm) {
+		TextField trnIdTxt = (TextField) trainerMgtForm.lookup("#trnIdTxt");
+		TextField trnNameTxt = (TextField) trainerMgtForm.lookup("#trnNameTxt");
+		TextField trnPwTxt = (TextField) trainerMgtForm.lookup("#trnPwTxt");
+		TextField trnMobileTxt = (TextField) trainerMgtForm.lookup("#trnMobileTxt");
+		TextField trnAddrTxt1 = (TextField) trainerMgtForm.lookup("#trnAddrTxt1");
+		TextField trnAddrTxt2 = (TextField) trainerMgtForm.lookup("#trnAddrTxt2");
+		TextField trnBirthTxt = (TextField) trainerMgtForm.lookup("#trnBirthTxt");
+		TextField trnCareerTxt = (TextField) trainerMgtForm.lookup("#trnCareerTxt");
+		RadioButton trnMenRadio = (RadioButton) trainerMgtForm.lookup("#trnMenRadio");
+		RadioButton trnWomenRadio = (RadioButton) trainerMgtForm.lookup("#trnWomenRadio");
 
+		String trnId = trnIdTxt.getText();
+		
+		try {
+			CmnTrainerDTO dto = dao.SltTrnId(trnId);
+			if(dto != null) {
+				if(dao.DelTrnId(trnId) == 1) {
+					CommonService.Msg(trnId + " 강사 삭제 완료");
+					ObservableList<TrainerMgtTable> tableView = FXCollections.observableArrayList();
+					TableView<TrainerMgtTable> newTable = (TableView<TrainerMgtTable>) trainerMgtForm.lookup("#trnTable");
+					ObservableList<CmnTrainerDTO> list = dao.OLSltTrnAll();
+					for(CmnTrainerDTO t : list) {
+						tableView.add(new TrainerMgtTable(t.getTRAINER_Code(), t.getTRAINER_Name(), t.getTRAINER_Mobile()));
+					}
+					newTable.setItems(tableView);
+					
+					trnIdTxt.setText(null);
+					trnNameTxt.setText(null);
+					trnPwTxt.setText(null);
+					trnMobileTxt.setText(null);
+					trnAddrTxt1.setText(null);
+					trnAddrTxt2.setText(null);
+					trnBirthTxt.setText(null);
+					trnCareerTxt.setText(null);
+					trnMenRadio.setSelected(false);
+					trnWomenRadio.setSelected(false);
+				}else {
+					CommonService.Msg(trnId + " 강사 삭제 실패");
+				}
+			}else {
+				CommonService.Msg(" 강사를 선택해주세요.");
+			}
+		} catch (NullPointerException e) {
+			CommonService.Msg(" 강사를 선택해주세요.");
+		}
 	}
 
 }

@@ -26,6 +26,35 @@ public class EnrollDAO {
 		
 	}
 	
+	public EnrollDTO SelectMobile(int mobile) {
+		String sql = "SELECT * FROM MEM_TB WHERE MEM_MOBILE=?";
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, mobile);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				EnrollDTO enrDTO = new EnrollDTO();
+				
+
+				enrDTO.setID(rs.getString("mem_ID"));
+				enrDTO.setPW(rs.getString("mem_PW"));
+				enrDTO.setName(rs.getString("mem_Name"));
+				enrDTO.setGender(rs.getString("mem_gender"));
+				enrDTO.setBirth(rs.getInt("mem_Birth"));
+				enrDTO.setMobile(rs.getInt("mem_Mobile"));
+				enrDTO.setAddr(rs.getString("mem_Addr"));
+				enrDTO.setApprove(rs.getString("mem_approve"));
+				return enrDTO;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public EnrollDTO SelectId(String id) {
 		String sql = "SELECT * FROM MEM_TB WHERE MEM_ID=?";
 		PreparedStatement ps;

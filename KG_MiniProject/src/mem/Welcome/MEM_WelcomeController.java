@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,12 +16,19 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import mem.Mgt.MgtController;
 
 public class MEM_WelcomeController implements Initializable {
 	private Parent memWelcomeForm;
 	private Parent healthProgramBuyingForm;
 	private Parent exProgramBuyingForm;
 	private MEM_WelcomeService memWelcomeSvc;
+	private MgtController mgtController;
+	private Parent memberMgtForm;
+	private MEM_WelcomeController memWelcomeController;
+	
+	
+	
 	
 	@FXML private TextField prm_codeTxtFld;
 	@FXML private TextField trainer_nameTxtFld;
@@ -38,10 +46,22 @@ public class MEM_WelcomeController implements Initializable {
 	
 	ObservableList<MEM_WelcomeMgtTable> obserList;
 	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+	public MEM_WelcomeController() {
 		memWelcomeSvc = new MEM_WelcomeService();
 		memWelcomeSvc.setWelcomeController(this);
+	}
+	
+	public MEM_WelcomeController getMem_WelcomeController() {
+		return memWelcomeController;
+	}
+	
+	public void setMem_WelcomeController(MEM_WelcomeController memWelcomeController) {
+		this.memWelcomeController = memWelcomeController;
+	}
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+	
 		
 		MEM_WelcomeDAO memWelcomeDao = new MEM_WelcomeDAO();
 		obserList = FXCollections.observableArrayList();
@@ -110,6 +130,7 @@ public class MEM_WelcomeController implements Initializable {
 		return null;
 	}
 
+	
 	public void setMemWelcomeForm(Parent memWelcomeForm) {
 		this.memWelcomeForm = memWelcomeForm;
 	}
@@ -125,7 +146,7 @@ public class MEM_WelcomeController implements Initializable {
 	public void cancelProc() {
 		memWelcomeSvc.cancelProc();
 	}
-
+	
 	public void setHealthProgramBuyingForm(Parent healthProgramBuyingForm) {
 		this.healthProgramBuyingForm = healthProgramBuyingForm;
 	}
@@ -133,5 +154,6 @@ public class MEM_WelcomeController implements Initializable {
 	public void setExProgramBuyingForm(Parent exProgramBuyingForm) {
 		this.exProgramBuyingForm = exProgramBuyingForm;
 	}
+	
 	
 }

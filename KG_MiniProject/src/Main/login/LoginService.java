@@ -34,17 +34,18 @@ public class LoginService {
 		
 		if(job.equals("관리자") || job.equals("회원")) {
 			loginDto = loginDao.SelectMemberId(idText.getText());
+			System.out.println("Mcode: "+loginDto.getMEM_Code());
 			if(loginDto != null && loginDto.getMEM_PW().equals(pwText.getText())) {
 				if(job.equals("관리자"))
 					welcomepage = "adminWelcome"; //관리자
-				else if(job.equals("회원"))
-//					controller.setUserCode(loginDto.getMEM_Code());
+				else if(job.equals("회원"))	
 					welcomepage = "memberWelcome";	//회원
 			}else {
 				CommonService.Msg("로그인 실패");
 			}
 		}else if(job.equals("강사")) {
 			loginDto = loginDao.SelectTrainerId(idText.getText());
+//			System.out.println("Tcode: "+loginDto.getTRAINER_Code());
 			if(loginDto != null && loginDto.getTRAINER_PW().equals(pwText.getText())) {
 				welcomepage = "trainerWelcome";//강사
 			}else {

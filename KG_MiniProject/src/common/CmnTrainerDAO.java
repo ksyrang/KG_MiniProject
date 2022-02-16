@@ -25,7 +25,7 @@ public class CmnTrainerDAO {
 			e.printStackTrace();
 		}
 	}
-	public int IstMem(CmnTrainerDTO DTO) {
+	public int IstTrn(CmnTrainerDTO DTO) {
 		int result = 0;
 		sql = "INSERT INTO TRAINER_TB "+
 				"(TRAINER_Code, TRAINER_Name, TRAINER_ID, TRAINER_PW, "+
@@ -56,7 +56,7 @@ public class CmnTrainerDAO {
 		}
 		return result;
 	}
-	public CmnTrainerDTO SltResOne(String TRAINER_Code) {
+	public CmnTrainerDTO SltTrnOne(String TRAINER_Code) {
 		CmnTrainerDTO tmpdata = null;
 		sql = "SELECT * FROM TRAINER_TB WHERE TRAINER_Code = ?" ;
 		try {
@@ -90,7 +90,7 @@ public class CmnTrainerDAO {
 		return tmpdata;		
 	}
 	
-	public ArrayList<CmnTrainerDTO> SltResAll(){
+	public ArrayList<CmnTrainerDTO> SltTrnAll(){
 		ArrayList<CmnTrainerDTO> Datalist = new ArrayList<>();
 		CmnTrainerDTO tmpdata = null;
 		sql = "SELECT * FROM TRAINER_TB";

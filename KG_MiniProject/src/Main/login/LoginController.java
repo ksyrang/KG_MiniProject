@@ -20,6 +20,7 @@ public class LoginController implements Initializable{
 	}
 	public void setUserCode(String userCode) {
 		UserCode = userCode;
+		controller.setUserCode(userCode);
 	}
 
 

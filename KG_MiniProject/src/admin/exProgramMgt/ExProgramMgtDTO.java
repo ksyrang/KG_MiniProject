@@ -1,22 +1,26 @@
 package admin.exProgramMgt;
 
-import java.util.Date;
 
 public class ExProgramMgtDTO {
 	
 
-	private String PRM_Code;
-	private String PRM_Name;
+	//PRMSCHE_TB
 	private String PRMSCHE_Code;
-	private String TRAINER_Code;
-	private Date PRMSCHE_Strdate;
-	private Date PRMSCHE_Enddate;
+	private String PRMSCHE_Strdate;
+	private String PRMSCHE_Enddate;
 	private String PRMSCHE_Time;
-	private int PRMSCHE_LimitP;
-	private int PRMSCHE_CurrentP;
-	private int PRMSCHE_Price;
+	private String PRMSCHE_LimitP;
+	private String PRMSCHE_CurrentP;
+	private String PRMSCHE_Price;
+//	private String PRMSHE_Name;
 	
-
+	//FK
+	private String TRAINER_Code;
+	private String PRM_Code;
+	
+	//가져올 데이터
+	private String TRAINER_Name;
+	private String PRM_Name;
 	
 	
 	public String getPRMSCHE_Code() {
@@ -43,22 +47,22 @@ public class ExProgramMgtDTO {
 	public void setPRM_Name(String pRM_Name) {
 		PRM_Name = pRM_Name;
 	}
-	public int getPRMSCHE_Price() {
+	public String getPRMSCHE_Price() {
 		return PRMSCHE_Price;
 	}
-	public void setPRMSCHE_Price(int pRMSCHE_Price) {
+	public void setPRMSCHE_Price(String pRMSCHE_Price) {
 		PRMSCHE_Price = pRMSCHE_Price;
 	}
-	public Date getPRMSCHE_Strdate() {
+	public String getPRMSCHE_Strdate() {
 		return PRMSCHE_Strdate;
 	}
-	public void setPRMSCHE_Strdate(Date pRMSCHE_Strdate) {
+	public void setPRMSCHE_Strdate(String pRMSCHE_Strdate) {
 		PRMSCHE_Strdate = pRMSCHE_Strdate;
 	}
-	public Date getPRMSCHE_Enddate() {
+	public String getPRMSCHE_Enddate() {
 		return PRMSCHE_Enddate;
 	}
-	public void setPRMSCHE_Enddate(Date pRMSCHE_Enddate) {
+	public void setPRMSCHE_Enddate(String pRMSCHE_Enddate) {
 		PRMSCHE_Enddate = pRMSCHE_Enddate;
 	}
 	public String getPRMSCHE_Time() {
@@ -67,17 +71,23 @@ public class ExProgramMgtDTO {
 	public void setPRMSCHE_Time(String pRMSCHE_Time) {
 		PRMSCHE_Time = pRMSCHE_Time;
 	}
-	public int getPRMSCHE_LimitP() {
+	public String getPRMSCHE_LimitP() {
 		return PRMSCHE_LimitP;
 	}
-	public void setPRMSCHE_LimitP(int pRMSCHE_LimitP) {
+	public void setPRMSCHE_LimitP(String pRMSCHE_LimitP) {
 		PRMSCHE_LimitP = pRMSCHE_LimitP;
 	}
-	public int getPRMSCHE_CurrentP() {
+	public String getPRMSCHE_CurrentP() {
 		return PRMSCHE_CurrentP;
 	}
-	public void setPRMSCHE_CurrentP(int pRMSCHE_CurrentP) {
+	public void setPRMSCHE_CurrentP(String pRMSCHE_CurrentP) {
 		PRMSCHE_CurrentP = pRMSCHE_CurrentP;
+	}
+	public String getTRAINER_Name() {
+		return TRAINER_Name;
+	}
+	public void setTRAINER_Name(String tRAINER_Name) {
+		TRAINER_Name = tRAINER_Name;
 	}
 	
 

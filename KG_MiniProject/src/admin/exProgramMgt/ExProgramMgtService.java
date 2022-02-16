@@ -1,7 +1,6 @@
 package admin.exProgramMgt;
 
 import java.util.ArrayList;
-
 import admin.helthProgramMgt.HelthProTable;
 import admin.helthProgramMgt.HelthProgramMgtDTO;
 import common.CommonService;
@@ -37,14 +36,15 @@ public class ExProgramMgtService {
 		this.exProgramTableView = exProgramTableView;
 		ObservableList<ExProTable> tableItems = FXCollections.observableArrayList();
 		ObservableList<ExProgramMgtDTO> allList = exprogramDao.getAllInfo();
-		String trainerName = "김코치";//강사 코드로 get해야함
-		String programName = "필라테스";//프로그램 코드로 get 해야함
-		for(ExProgramMgtDTO i : allList) {
-			tableItems.add(new ExProTable(i.getPRM_Code(), programName, trainerName,
-					i.getPRMSCHE_LimitP(), i.getPRMSCHE_CurrentP(), i.getPRMSCHE_Strdate(),
-					i.getPRMSCHE_Enddate(), i.getPRMSCHE_Price(), i.getPRMSCHE_Time()));
-		}
-		this.exProgramTableView.setItems(tableItems);
+		System.out.println("allList"+allList);
+//		for(ExProgramMgtDTO i : allList) {
+//			tableItems.add(new ExProTable(i.getPRM_Name(), i.getPRM_Code(), i.getTRAINER_Name(),
+//					i.getPRMSCHE_LimitP(), i.getPRMSCHE_CurrentP(), i.getPRMSCHE_Strdate(),
+//					i.getPRMSCHE_Enddate(), i.getPRMSCHE_Price(), i.getPRMSCHE_Time()));
+//		}
+//		
+//		exProgramTableView.setItems(tableItems);
+//		return tableItems;
 	}
 	
 	
@@ -88,6 +88,17 @@ public class ExProgramMgtService {
 		}
 		programListView.getItems().remove(this.selectData);
 		
+		
+		//이ㅏㅁ시
+		ObservableList<ExProTable> tableItems = FXCollections.observableArrayList();
+		ObservableList<ExProgramMgtDTO> allList = exprogramDao.getAllInfo();
+		for(ExProgramMgtDTO i : allList) {
+			tableItems.add(new ExProTable(i.getPRM_Name(), i.getPRM_Code(), i.getTRAINER_Name(),
+					i.getPRMSCHE_LimitP(), i.getPRMSCHE_CurrentP(), i.getPRMSCHE_Strdate(),
+					i.getPRMSCHE_Enddate(), i.getPRMSCHE_Price(), i.getPRMSCHE_Time()));
+		}
+//		exProgramTableView.setItems(tableItems);
+		System.out.println(tableItems);
 		
 	}
 	

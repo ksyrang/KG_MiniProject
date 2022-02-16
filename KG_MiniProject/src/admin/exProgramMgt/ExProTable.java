@@ -7,17 +7,17 @@ public class ExProTable {
 	private String programName;
 	private String code;
 	private String trainerName;
-	private int limtPerson;
-	private int currentPerson;
-	private Date strDate;
-	private Date endDate;
-	private int price;
+	private String limtPerson;
+	private String currentPerson;
+	private String strDate;
+	private String endDate;
+	private String price;
 	private String timeC;
 	
 	
 	
-	public ExProTable(String programName, String code, String trainerName, int limtPerson, int currentPerson,
-			Date strDate, Date endDate, int price, String timeC) {
+	public ExProTable(String programName, String code, String trainerName, String limtPerson, String currentPerson,
+			String strDate, String endDate, String price, String timeC) {
 		super();
 		this.programName = programName;
 		this.code = code;
@@ -48,40 +48,40 @@ public class ExProTable {
 	public void setTrainerName(String trainerName) {
 		this.trainerName = trainerName;
 	}
-	public int getLimtPerson() {
+	public String getLimtPerson() {
 		return limtPerson;
 	}
-	public void setLimtPerson(int limtPerson) {
+	public void setLimtPerson(String limtPerson) {
 		this.limtPerson = limtPerson;
 	}
-	public int getCurrentPerson() {
+	public String getCurrentPerson() {
 		return currentPerson;
 	}
-	public void setCurrentPerson(int currentPerson) {
+	public void setCurrentPerson(String currentPerson) {
 		this.currentPerson = currentPerson;
 	}
-	public Date getStrDate() {
+	public String getStrDate() {
 		return strDate;
 	}
-	public void setStrDate(Date strDate) {
+	public void setStrDate(String strDate) {
 		this.strDate = strDate;
 	}
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
-	public String getTime() {
+	public String getTimeC() {
 		return timeC;
 	}
-	public void setTime(String time) {
+	public void setTimeC(String timeC) {
 		this.timeC = timeC;
 	}
 

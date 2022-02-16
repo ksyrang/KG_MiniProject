@@ -2,8 +2,11 @@ package admin.exProgramMgt;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
+import admin.helthProgramMgt.HelthProTable;
+import admin.helthProgramMgt.HelthProgramMgtDTO;
 import admin.memberMgt.MemberMgtDAO;
 import admin.memberMgt.MemberMgtDTO;
 import admin.memberMgt.MemberMgtTable;
@@ -56,12 +59,26 @@ public class ExProgramMgtController implements Initializable{
 		endDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
 		price.setCellValueFactory(new PropertyValueFactory<>("price"));
 		timeC.setCellValueFactory(new PropertyValueFactory<>("timeC"));
-//
-//		ExProgramMgtDAO exProgramMgtDao = new ExProgramMgtDAO();
-//		ObservableList<ExProgramMgtDTO> exProgramMgtDto = exProgramMgtDao.getAllInfo();
-
-		exProgramSvc.tableUp(this.exProgramTableView);
-
+		
+//		ExProgramMgtDAO exProgramDao = new ExProgramMgtDAO();
+//		ObservableList<ExProTable> tableItems = FXCollections.observableArrayList();
+//		ObservableList<ExProgramMgtDTO> allList = exProgramDao.getAllInfo();
+//		
+//		for(ExProgramMgtDTO i : allList) {
+//			tableItems.add(new ExProTable(i.getPRM_Name(), i.getPRM_Code(), i.getTRAINER_Name(),
+//					i.getPRMSCHE_LimitP(), i.getPRMSCHE_CurrentP(), i.getPRMSCHE_Strdate(),
+//					i.getPRMSCHE_Enddate(), i.getPRMSCHE_Price(), i.getPRMSCHE_Time()));
+//		}
+//		System.out.println(allList);
+//		
+//		this.exProgramTableView.setItems(tableItems);
+//		ObservableList<ExProTable> tableItems = exProgramSvc.tableUp(exProgramTableView);
+		this.exProgramSvc.tableUp(exProgramTableView);
+		
+		
+		
+		
+		//listview 클릭 시
 		programListView.setOnMouseClicked(new EventHandler<MouseEvent>() { 
 			@Override public void handle(MouseEvent event) { 
 				selectData = programListView.getSelectionModel().getSelectedItem(); 

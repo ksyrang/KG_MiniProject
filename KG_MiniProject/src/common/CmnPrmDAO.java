@@ -56,7 +56,7 @@ public class CmnPrmDAO {
 			ps.setString(1, PRM_Code);
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				tmpdata = new CmnPrmDTO(rs.getString("PAY_CODE"), rs.getString("PAY_TYPE"));
+				tmpdata = new CmnPrmDTO(rs.getString("PRM_Code"), rs.getString("PRM_Name"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -80,7 +80,7 @@ public class CmnPrmDAO {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				tmpdata = new CmnPrmDTO(rs.getString("PAY_CODE"), rs.getString("PAY_TYPE"));
+				tmpdata = new CmnPrmDTO(rs.getString("PRM_Code"), rs.getString("PRM_Name"));
 				Datalist.add(tmpdata);
 			}
 		} catch (SQLException e) {

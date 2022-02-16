@@ -94,25 +94,14 @@
                         <TableView fx:id="exProgramTableView" prefHeight="374.0" prefWidth="440.0" tableMenuButtonVisible="true">
                           <columns>
                             <TableColumn fx:id="programName" minWidth="0.0" prefWidth="38.33332824707031" text="프로그램 종류" />
-                            <TableColumn fx:id="code" minWidth="0.0" prefWidth="131.6666717529297" text="고유번호">
-                                 <columns>
-                                    <TableColumn fx:id="trainerName" minWidth="4.333343505859375" prefWidth="7.66668701171875" text="강사" />
-                                 </columns></TableColumn>
-                              <TableColumn fx:id="limtPerson" minWidth="0.0" prefWidth="47.0" resizable="false" text="최대인원">
-                                 <columns>
-                                    <TableColumn fx:id="currentPerson" minWidth="0.0" prefWidth="0.0" text="현재인원" />
-                                 </columns>
-                              </TableColumn>
-                              <TableColumn fx:id="strDate" minWidth="0.0" prefWidth="0.0" text="시작일">
-                                 <columns>
-                                    <TableColumn fx:id="endDate" minWidth="0.0" prefWidth="0.0" text="마감일" />
-                                 </columns>
-                              </TableColumn>
-                              <TableColumn fx:id="price" minWidth="0.0" prefWidth="70.0" text="가격">
-                                 <columns>
-                                    <TableColumn fx:id="timeC" minWidth="0.0" prefWidth="0.0" text="오전/오후" />
-                                 </columns>
-                              </TableColumn>
+                              <TableColumn fx:id="trainerName" minWidth="4.333343505859375" prefWidth="7.66668701171875" text="강사" />
+                            <TableColumn fx:id="code" minWidth="0.0" prefWidth="131.6666717529297" text="고유번호" />
+                              <TableColumn fx:id="currentPerson" minWidth="0.0" prefWidth="0.0" text="현재인원" />
+                              <TableColumn fx:id="limtPerson" minWidth="0.0" prefWidth="47.0" resizable="false" text="최대인원" />
+                              <TableColumn fx:id="endDate" minWidth="0.0" prefWidth="0.0" text="마감일" />
+                              <TableColumn fx:id="strDate" minWidth="0.0" prefWidth="0.0" text="시작일" />
+                              <TableColumn fx:id="timeC" minWidth="0.0" prefWidth="0.0" text="오전/오후" />
+                              <TableColumn fx:id="price" minWidth="0.0" prefWidth="70.0" text="가격" />
                           </columns>
                            <VBox.margin>
                               <Insets />

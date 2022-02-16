@@ -25,7 +25,7 @@ public class MemberMgtController implements Initializable{
 	private Parent memberMgtForm;
 	private MemberMgtService memberMgtSvc;
 	
-	@FXML private TextField idtxt, nametxt, pwtxt, mobiletxt, addrtxt;
+	@FXML private TextField idtxt, nametxt, pwtxt, mobiletxt, addrtxt, birthtxt;
 	@FXML private ComboBox<String> filterCombo; 
 	
 	@FXML private TableView<MemberMgtTable> memTable;
@@ -41,7 +41,8 @@ public class MemberMgtController implements Initializable{
 		
 		//TextField 편집 붉가능
 		idtxt.setEditable(false);
-		
+		birthtxt.setEditable(false);
+				
 		filterCombo.setValue("전체보기");
 		
 		// tableview

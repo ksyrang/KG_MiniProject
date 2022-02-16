@@ -91,11 +91,9 @@ public class TrainerMgtController implements Initializable{
 			try {
 				TrainerMgtTable tt = trnTable.getSelectionModel().getSelectedItem();
 				trainerMgtSvc.trnCellClick(trainerMgtForm, tt.getColTrnCode());
-			} catch (Exception e2) {
+			} catch (NullPointerException e2) {
 				CommonService.Msg("강사를 선택해주세요.");
-				e2.printStackTrace();
 			}
-			
 		});
 	}
 	

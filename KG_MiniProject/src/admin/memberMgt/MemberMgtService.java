@@ -169,7 +169,7 @@ import javafx.scene.control.ToggleGroup;
 		
 		try {
 			if(name.isEmpty() || pw.isEmpty()) {
-				CommonService.Msg("이름과 비밀번호는 필수입니다.");
+				CommonService.Msg("* 필수 입력란을 입력해주세요.");
 			}else {
 				MemberMgtDTO memberMgtDto = memberMgtDao.selectId(id);
 				if (memberMgtDto != null) {

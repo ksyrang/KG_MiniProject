@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" 
-fx:controller="trn.EXProgramMgt.TrnExPMgtController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trn.EXProgramMgt.TrnExPMgtController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
@@ -63,7 +62,7 @@ fx:controller="trn.EXProgramMgt.TrnExPMgtController">
       </HBox>
    </bottom>
    <center>
-      <VBox prefHeight="330.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="330.0" prefWidth="720.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="EX 프로그램 관리">
                <font>
@@ -115,31 +114,27 @@ fx:controller="trn.EXProgramMgt.TrnExPMgtController">
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="514.0" spacing="10.0">
-                     <children>
-                        <DatePicker prefHeight="35.0">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </DatePicker>
-                        <Label prefHeight="35.0" prefWidth="30.0" text=" ~ ">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <DatePicker prefHeight="35.0" />
-                        <RadioButton mnemonicParsing="false" prefHeight="35.0" text="오전">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </RadioButton>
-                        <RadioButton mnemonicParsing="false" prefHeight="35.0" text="오후">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </RadioButton>
-                     </children>
-                  </HBox>
+                  <DatePicker prefHeight="35.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </DatePicker>
+                  <Label prefHeight="35.0" prefWidth="30.0" text=" ~ ">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <DatePicker prefHeight="35.0" />
+                  <RadioButton mnemonicParsing="false" prefHeight="35.0" text="오전">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" prefHeight="35.0" text="오후">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </RadioButton>
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="200.0" spacing="10.0">

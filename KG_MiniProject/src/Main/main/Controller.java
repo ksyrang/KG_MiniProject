@@ -35,9 +35,6 @@ public class Controller {
 		UserCode = userCode;
 	}
 	   
-	   public void setFindIDController(FindIDController findIDController) {
-	      this.findIDController = findIDController;
-	   }
 
 	public void setLoginController(LoginController loginController) {
 		this.loginController = loginController;
@@ -76,10 +73,17 @@ public class Controller {
 		this.enrollController.setEnrollForm(this.memberJoinForm);
 	}
 	
+	public void settingFindID() {
+		this.findIDController.setMemberFindIDForm(this.memberFindIDForm);
+	}
+	
 	public void setMemberFindIDForm(Parent memberFindIDForm) {
 		this.memberFindIDForm = memberFindIDForm;
 	}
 	
+	public void setFindIDController(FindIDController findIDController) {
+		this.findIDController = findIDController;
+	}
 	
 	
 	public void open(String division) {

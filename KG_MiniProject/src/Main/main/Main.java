@@ -25,8 +25,10 @@ public class Main extends Application{
 		loginController.setmainForm(mainForm);
 		
 		Scene scene = new Scene(mainForm);
+		
 		primaryStage.setTitle("MainPage");
 		primaryStage.setScene(scene);
+		controller.setStage(primaryStage);
 		primaryStage.show();
 	}
 	

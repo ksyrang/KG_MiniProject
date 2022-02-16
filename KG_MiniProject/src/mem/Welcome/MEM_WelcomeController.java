@@ -25,6 +25,7 @@ public class MEM_WelcomeController implements Initializable {
 	@FXML private TextField trainernameTextField;
 	@FXML private TextField trainercareerTextField;
 	@FXML private TextField prmsche_strdateTextField;
+	
 	@FXML private TextField prmsche_enddateTextField;
 	@FXML private TextField prmschetimeTextField;
 	
@@ -43,7 +44,7 @@ public class MEM_WelcomeController implements Initializable {
 		memWelcomeSvc.setWelcomeController(this);
 		
 		MEM_WelcomeDAO memWelcomeDao = new MEM_WelcomeDAO();
-		ObservableList<MEM_WelcomeDTO> memWelcomeDto = memWelcomeDao.selectMemAllProgram("user1");
+		
 		obserList = FXCollections.observableArrayList();
 		
 		colCode.setCellValueFactory(new PropertyValueFactory<>("colCode"));
@@ -51,6 +52,8 @@ public class MEM_WelcomeController implements Initializable {
 		colMemshipsche_code.setCellValueFactory(new PropertyValueFactory<>("colMemshipsche_code"));
 		colID.setCellValueFactory(new PropertyValueFactory<>("colID"));
 		colName.setCellValueFactory(new PropertyValueFactory<>("colName"));
+		
+		ObservableList<MEM_WelcomeDTO> memWelcomeDto = memWelcomeDao.selectMemAllProgram("admin");
 		for(MEM_WelcomeDTO m : memWelcomeDto) {
 			obserList.add(new MEM_WelcomeMgtTable(m.getMem_code(), m.getPrmsche_code(), m.getMemshipsche_code(),m.getMem_id(),m.getMem_name()));
 		}

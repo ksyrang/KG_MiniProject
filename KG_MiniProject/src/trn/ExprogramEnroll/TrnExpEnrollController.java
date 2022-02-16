@@ -3,10 +3,49 @@ package trn.ExprogramEnroll;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import common.CmnTrainerDAO;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 
 public class TrnExpEnrollController implements Initializable {
+	
+	@FXML
+    private Label TitleUserNameLabel;
+
+    @FXML
+    private Button ExPErllBtn;
+
+    @FXML
+    private Button Backbtn;
+
+    @FXML
+    private ComboBox<String> ExPTypeBox;
+
+    @FXML
+    private TextField  ExPNameFeild;
+
+    @FXML
+    private RadioButton PMRBtn;
+
+    @FXML
+    private DatePicker SrtDate;
+
+    @FXML
+    private DatePicker EndDate;
+
+    @FXML
+    private RadioButton AMRBtn;
+	
+	
+	
+	
 	private TrnExPEnrollService trnExPEnrollService;
 	private Parent trnExpEnrollForm;
 	private String trnCode;
@@ -24,9 +63,8 @@ public class TrnExpEnrollController implements Initializable {
 	}
 	
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+	public void initialize(URL location, ResourceBundle resources) {		
+	
 	}
 	public void BackProc() {
 		trnExPEnrollService.BackProc(trnExpEnrollForm);

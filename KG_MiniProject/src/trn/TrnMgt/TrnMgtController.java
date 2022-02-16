@@ -4,14 +4,35 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import common.CommonService;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import trn.DBDTO.TrnTrainerDTO;
 
 public class TrnMgtController implements Initializable {
-
+	
+	@FXML private Label TitleUserNameLabel;
+    @FXML private HBox TrnIDDIs;
+    @FXML private TextField TrnIDField;
+    @FXML private TextField TrnNameField;
+    @FXML private PasswordField TrnPWField;
+    @FXML private PasswordField TrnPWCField;
+    @FXML private TextField TrnBirthField;
+    @FXML private RadioButton MaleRbtn;
+    @FXML private RadioButton FeMaleRbtn;
+    @FXML private TextField TrnMobileField;
+    @FXML private TextField TrnAddr1;
+    @FXML private TextField TrnAddr2;
+    @FXML private TextField TrnCareer;
+    @FXML private Button TnrMgtbtn;
+    @FXML private Button Backbtn;
+	    
 	private TrnMgtService TrnMgtSvc;
 	private String trnCode;
 	private Parent trnMgtForm;
@@ -32,39 +53,10 @@ public class TrnMgtController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 	}
-	public void TnrMgtProc() {
-		TrnTrainerDTO tmpTrnDto = TrnMgtSvc.getTrnInfo(trnCode);
-		PasswordField CPwField = (PasswordField)trnMgtForm.lookup("#TrnPWField");
-		PasswordField CPwCField = (PasswordField)trnMgtForm.lookup("#TrnPWCField");
-		
-		if(CPwField.getText().equals(CPwCField.getText())){
-			//변경사항 업데이트
-			TextField NameField = (TextField)trnMgtForm.lookup("#TrnNameField");//변경 이름
-			tmpTrnDto.setTRAINER_Name(NameField.getText());
-			PasswordField PwField = (PasswordField)trnMgtForm.lookup("#TrnPWField");
-			tmpTrnDto.setTRAINER_PW(PwField.getText());
-			TextField BirthField = (TextField)trnMgtForm.lookup("#TrnBirthField");//변경 생일
-			tmpTrnDto.setTRAINER_Birth(Integer.parseInt(BirthField.getText()));
-			TextField MobileField = (TextField)trnMgtForm.lookup("#TrnMobileField");//변경 전번
-			tmpTrnDto.setTRAINER_Mobile(Integer.parseInt(MobileField.getText()));
-			TextField AddrField = (TextField)trnMgtForm.lookup("#TrnAddr1");//변경 주소
-			tmpTrnDto.setTRAINER_Addr(AddrField.getText());
-			TextField CareerField = (TextField)trnMgtForm.lookup("#TrnCareer");//변경 커리어
-			tmpTrnDto.setTRAINER_Career(Integer.parseInt(CareerField.getText()));
-
-			int result = TrnMgtSvc.TrnMgtUpdate(tmpTrnDto);
-			if(result == 1) {
-				CommonService.Msg("수정완료");
-				CommonService.WindowClose(trnMgtForm);
-			}
-			else CommonService.Msg("이상 발생");
-		}else {
-			CommonService.Msg("비밀번호를 확인해주세요");
-			CPwField.clear();
-			CPwCField.clear();
-			CPwField.requestFocus();
-		}
+	public void TnrModifyProc() {
+		TrnMgtSvc.TnrModifyProc(trnMgtForm, trnCode);		
 	}
+
 	
 	public void BackProc() {
 		TrnMgtSvc.BackProc(trnMgtForm);

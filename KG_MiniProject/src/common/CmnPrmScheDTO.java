@@ -10,7 +10,7 @@ public class CmnPrmScheDTO {
 	private String PRMSCHE_Time;
 	private int PRMSCHE_LimitP;
 	private int PRMSCHE_CurrentP;
-	private int PRM_Price;
+	private int PRMSCHE_Price;
 	private String PRMSCHE_Name;
 	//FK
 	private String PRM_Code;
@@ -21,7 +21,7 @@ public class CmnPrmScheDTO {
 	}
 
 	public CmnPrmScheDTO(String pRMSCHE_Code, Date pRMSCHE_Strdate, Date pRMSCHE_Enddate, String pRMSCHE_Time,
-			int pRMSCHE_LimitP, int pRMSCHE_CurrentP, int pRM_Price, String pRMSCHE_Name, String pRM_Code,
+			int pRMSCHE_LimitP, int pRMSCHE_CurrentP, int pRMSCHE_Price, String pRMSCHE_Name, String pRM_Code,
 			String tRAINER_Code) {
 		super();
 		PRMSCHE_Code = pRMSCHE_Code;
@@ -30,7 +30,7 @@ public class CmnPrmScheDTO {
 		PRMSCHE_Time = pRMSCHE_Time;
 		PRMSCHE_LimitP = pRMSCHE_LimitP;
 		PRMSCHE_CurrentP = pRMSCHE_CurrentP;
-		PRM_Price = pRM_Price;
+		PRMSCHE_Price = pRMSCHE_Price;
 		PRMSCHE_Name = pRMSCHE_Name;
 		PRM_Code = pRM_Code;
 		TRAINER_Code = tRAINER_Code;
@@ -84,12 +84,12 @@ public class CmnPrmScheDTO {
 		PRMSCHE_CurrentP = pRMSCHE_CurrentP;
 	}
 
-	public int getPRM_Price() {
-		return PRM_Price;
+	public int getPRMSCHE_Price() {
+		return PRMSCHE_Price;
 	}
 
-	public void setPRM_Price(int pRM_Price) {
-		PRM_Price = pRM_Price;
+	public void setPRM_Price(int pRMSCHE_Price) {
+		PRMSCHE_Price = pRMSCHE_Price;
 	}
 
 	public String getPRMSCHE_Name() {

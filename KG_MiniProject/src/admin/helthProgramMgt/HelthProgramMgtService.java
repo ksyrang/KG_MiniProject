@@ -1,7 +1,5 @@
 package admin.helthProgramMgt;
 
-import java.text.DecimalFormat;
-
 import common.CommonService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -8,6 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import admin.helthProgramMgt.HelthProgramMgtDTO;
+import common.CmnPrmDAO;
+import common.CmnPrmDTO;
+import common.CmnTrainerDAO;
+import common.CmnTrainerDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -27,6 +31,8 @@ public class ExProgramMgtDAO {
 		}
 	}
 
+	
+	//listView 모든 정보
 	public ObservableList<String> getAllProgram() {	
 		String sql = "SELECT PRM_Name FROM PRM_TB";
 		PreparedStatement ps;
@@ -44,6 +50,8 @@ public class ExProgramMgtDAO {
 		return allProgram;
 	}
 	
+	
+	//tableView 모든 정보
 	public ObservableList<ExProgramMgtDTO> getAllInfo() {
 		String sql = "SELECT * FROM PRMSCHE_TB";
 		PreparedStatement ps;
@@ -53,25 +61,36 @@ public class ExProgramMgtDAO {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
+				
 				ExProgramMgtDTO exProgramMgtDto = new ExProgramMgtDTO();
 				exProgramMgtDto.setPRMSCHE_Code(rs.getString("PRMSCHE_Code"));
-				exProgramMgtDto.setPRM_Code(rs.getString("PRM_Code"));
-				exProgramMgtDto.setTRAINER_Code(rs.getString("TRAINER_Code"));
 				exProgramMgtDto.setPRMSCHE_Price(rs.getInt("PRMSCHE_Price"));
 				exProgramMgtDto.setPRMSCHE_Strdate(rs.getDate("PRMSCHE_Strdate"));
 				exProgramMgtDto.setPRMSCHE_Enddate(rs.getDate("PRMSCHE_Enddate"));
 				exProgramMgtDto.setPRMSCHE_Time(rs.getString("PRMSCHE_Time"));
 				exProgramMgtDto.setPRMSCHE_LimitP(rs.getInt("PRMSCHE_LimitP"));
 				exProgramMgtDto.setPRMSCHE_CurrentP(rs.getInt("PRMSCHE_CurrentP"));
+				exProgramMgtDto.setTRAINER_Code(rs.getString("TRAINER_Code"));
+				exProgramMgtDto.setPRM_Code(rs.getString("PRM_Code"));
+
+				
+				CmnTrainerDAO cmnTrainerDao = new CmnTrainerDAO();
+				CmnTrainerDTO cmnTrainerDto = cmnTrainerDao.SltTrnOne(rs.getString("TRAINER_Code"));
+				exProgramMgtDto.setTRAINER_Name(cmnTrainerDto.getTRAINER_Name());
+				CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
+				CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(rs.getString("PRM_Code"));
+				exProgramMgtDto.setPRM_Name(cmnPrmDto.getPRM_Name());
+
 				allList.add(exProgramMgtDto);
 			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return allList;
 	}
 		
-
+	
 	
 	//ex프로그램 중복체크
 	public ExProgramMgtDTO selectExProgram(String addProgram) {

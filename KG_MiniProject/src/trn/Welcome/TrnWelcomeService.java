@@ -16,6 +16,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import trn.DBDAO.TrnTrainerDAO;
@@ -55,7 +56,6 @@ public class TrnWelcomeService {
 			trnWelcomeController.getTrnMgtController().setTrnCode(trnCode);
 		
 			//강사 정보 get
-			
 			//tilte sector set
 			Label titleUserName = (Label)trnMgtForm.lookup("#TitleUserNameLabel");
 			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnCode));
@@ -76,13 +76,26 @@ public class TrnWelcomeService {
 			//ID Sector
 			IDField.setText(tmpTrnDto.getTRAINER_ID());
 			IDField.setEditable(false);//false:입력 불가
-			//Name Sector
+			//Name Sector			
 			NameField.setText(tmpTrnDto.getTRAINER_Name());
 			//PW Sector :초기 미표시
-			
 			//Birth Sector
-//			BirthField.setText(tmpTrnDto.getTRAINER_Birth());
-			
+			BirthField.setText(Integer.toString(tmpTrnDto.getTRAINER_Birth()));
+			//Mobile Sector
+			MobileField.setText(Integer.toString(tmpTrnDto.getTRAINER_Mobile()));
+			//Gender Sector
+			ToggleGroup group = new ToggleGroup();
+			maleBtn.setToggleGroup(group);
+			FeMaleBtn.setToggleGroup(group);
+			if(tmpTrnDto.getTRAINER_Gender().equals("남성")) maleBtn.setSelected(true);
+			else if(tmpTrnDto.getTRAINER_Gender().equals("여성")) FeMaleBtn.setSelected(true);
+			else maleBtn.setSelected(true);
+			//Addr Sector
+			Addr1Field.setText(tmpTrnDto.getTRAINER_Addr());
+			Addr2Field.setText(tmpTrnDto.getTRAINER_Addr());
+			//Career Sector
+			CareerField.setText(Integer.toString(tmpTrnDto.getTRAINER_Career()));
+		
 			
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnMgtForm));
@@ -100,10 +113,15 @@ public class TrnWelcomeService {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/trn/ExprogramEnroll/KG_TRN_FX_EXProgramEnroll.fxml"));
 		Parent trnExPEnrollFrom;
 		try {
-			trnExPEnrollFrom= loader.load();
+			trnExPEnrollFrom = loader.load();
 			trnWelcomeController.setTrnExpEnrollController(loader.getController());
 			trnWelcomeController.getTrnExpEnrollController().setTrnExpEnrollForm(trnExPEnrollFrom);
-			trnWelcomeController.getTrnExpEnrollController().setTrnCode(trnCode);			
+			trnWelcomeController.getTrnExpEnrollController().setTrnCode(trnCode);	
+			
+			Label titleUserName = (Label)trnExPEnrollFrom.lookup("#TitleUserNameLabel");
+			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnCode));
+			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
+			
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnExPEnrollFrom));
 			stage.setTitle("trnExPEnroll");
@@ -118,10 +136,16 @@ public class TrnWelcomeService {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/trn/EXProgramMgt/KG_TRN_FX_EXProgramMgt.fxml"));
 		Parent trnExPMgtFrom;
 		try {
+			
 			trnExPMgtFrom = loader.load();
 			trnWelcomeController.setTrnExpMgtController(loader.getController());
 			trnWelcomeController.getTrnExpMgtController().setTrnExProgramMgtForm(trnExPMgtFrom);
 			trnWelcomeController.getTrnExpMgtController().setTrnCode(trnCode);
+			
+			Label titleUserName = (Label)trnExPMgtFrom.lookup("#TitleUserNameLabel");
+			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnCode));
+			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
+			
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnExPMgtFrom));
 			stage.setTitle("trnExPEnroll");
@@ -131,8 +155,12 @@ public class TrnWelcomeService {
 		}	
 	}
 
-	public void backClose(Parent back) {
+	public void ShutDown(Parent back) {
 		CommonService.WindowClose(back);
+	}
+	
+	public void LogOut() {
+//		LogOut();
 	}
 	
 

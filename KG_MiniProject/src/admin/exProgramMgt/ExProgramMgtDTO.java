@@ -1,22 +1,28 @@
 package admin.exProgramMgt;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class ExProgramMgtDTO {
 	
 
-	private String PRM_Code;
-	private String PRM_Name;
+	//PRMSCHE_TB
 	private String PRMSCHE_Code;
-	private String TRAINER_Code;
 	private Date PRMSCHE_Strdate;
 	private Date PRMSCHE_Enddate;
 	private String PRMSCHE_Time;
 	private int PRMSCHE_LimitP;
 	private int PRMSCHE_CurrentP;
 	private int PRMSCHE_Price;
+//	private String PRMSHE_Name;
 	
-
+	//FK
+	private String TRAINER_Code;
+	private String PRM_Code;
+	
+	//가져올 데이터
+	private String TRAINER_Name;
+	private String PRM_Name;
 	
 	
 	public String getPRMSCHE_Code() {
@@ -78,6 +84,12 @@ public class ExProgramMgtDTO {
 	}
 	public void setPRMSCHE_CurrentP(int pRMSCHE_CurrentP) {
 		PRMSCHE_CurrentP = pRMSCHE_CurrentP;
+	}
+	public String getTRAINER_Name() {
+		return TRAINER_Name;
+	}
+	public void setTRAINER_Name(String tRAINER_Name) {
+		TRAINER_Name = tRAINER_Name;
 	}
 	
 

@@ -135,7 +135,14 @@ public class TrnWelcomeController implements Initializable {
 	}
 	
 	public void BackProc() {
-		WelcomeService.backClose(WelcomeForm);
+		WelcomeService.ShutDown(WelcomeForm);
+		
+	}
+	public void LogOutProc(){
+		System.out.println("logout");
+		WelcomeService.LogOut();
+//		WelcomeService.ShutDown(WelcomeForm);
+		
 	}
 
 }

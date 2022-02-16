@@ -1,5 +1,6 @@
 package admin.exProgramMgt;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class ExProTable {
@@ -78,10 +79,10 @@ public class ExProTable {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public String getTime() {
+	public String getTimeC() {
 		return timeC;
 	}
-	public void setTime(String time) {
+	public void setTimeC(String timeC) {
 		this.timeC = timeC;
 	}
 

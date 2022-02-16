@@ -25,12 +25,12 @@
                   <Insets />
                </HBox.margin>
             </Label>
-            <Label text="-강사님">
+            <Label fx:id="TitleUserNameLabel" text="-강사님">
                <font>
                   <Font size="20.0" />
                </font>
                <HBox.margin>
-                  <Insets left="450.0" />
+                  <Insets left="400.0" />
                </HBox.margin>
             </Label>
             <Button mnemonicParsing="false" text="logout">
@@ -50,7 +50,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="프로그램 개설">
+            <Button fx:id="ExPErllBtn" mnemonicParsing="false" onAction="#ExPErllProc" prefHeight="50.0" prefWidth="150.0" text="프로그램 개설">
                <font>
                   <Font size="17.0" />
                </font>
@@ -78,7 +78,7 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <ComboBox prefHeight="35.0" prefWidth="300.0" />
+                  <ComboBox fx:id="ExPTypeBox" prefHeight="35.0" prefWidth="300.0" />
                </children>
             </HBox>
             <HBox spacing="10.0">
@@ -102,17 +102,17 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="35.0" prefWidth="300.0" />
+                  <TextField fx:id="ExPNameFeild" prefHeight="35.0" prefWidth="300.0" />
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="70.0" spacing="10.0">
+            <HBox fx:id="PMRBtn" alignment="CENTER_LEFT" prefHeight="70.0" spacing="10.0">
                <children>
                   <Label prefHeight="25.0" text="프로그램 기간 : ">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <DatePicker prefHeight="35.0">
+                  <DatePicker fx:id="SrtDate" prefHeight="35.0" prefWidth="175.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -122,13 +122,16 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <DatePicker prefHeight="35.0" />
-                  <RadioButton mnemonicParsing="false" prefHeight="35.0" text="오전">
+                  <DatePicker fx:id="EndDate" prefHeight="35.0" />
+                  <RadioButton fx:id="AMRBtn" mnemonicParsing="false" prefHeight="35.0" text="오전">
                      <font>
                         <Font size="13.0" />
                      </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" prefHeight="35.0" text="오후">
+                  <RadioButton fx:id="PMRBtn" mnemonicParsing="false" prefHeight="35.0" text="오후">
                      <font>
                         <Font size="13.0" />
                      </font>

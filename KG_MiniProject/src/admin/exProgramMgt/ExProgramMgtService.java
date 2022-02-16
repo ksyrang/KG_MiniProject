@@ -1,20 +1,12 @@
 package admin.exProgramMgt;
 
+import java.sql.Date;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-
-import admin.helthProgramMgt.HelthProTable;
-import admin.helthProgramMgt.HelthProgramMgtDTO;
 import common.CmnPrmScheDAO;
 import common.CmnPrmScheDTO;
-import common.CmnTrainerDAO;
-import common.CmnTrainerDTO;
 import common.CommonService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -23,7 +15,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+
 
 public class ExProgramMgtService {
 	private ExProgramMgtDTO exprogramDto;
@@ -33,8 +25,7 @@ public class ExProgramMgtService {
 	private ExProTable codeTable;
 	private ObservableList<String> allProgram;
 	private String selectData;
-	private String StrStartDate;
-	private String StrEndDate;
+
 	
 	//실행 시 리스트뷰 업
 	public void listUp(ListView<String> programListView) {
@@ -55,19 +46,17 @@ public class ExProgramMgtService {
 					i.getPRMSCHE_LimitP(), i.getPRMSCHE_CurrentP(), i.getPRMSCHE_Strdate(),
 					i.getPRMSCHE_Enddate(), i.getPRMSCHE_Price(), i.getPRMSCHE_Time()));
 		}
-		
 		exProgramTableView.setItems(tableItems);
 	}
 	
 	
-	//등록
+	//ex프로그램 종류 등록
 	public void insertProc(Parent exProgramMgtForm) {
 		ListView<String> listView = this.programListView;
 		TextField addProgramText = (TextField) exProgramMgtForm.lookup("#addProgramText");
 		String addProgram= addProgramText.getText();
 		
-		
-		//프로그램 중복 체크
+		//ex프로그램 종류 중복 체크
 		if(addProgram.length()>0) {
 			exprogramDao = new ExProgramMgtDAO();
 			exprogramDto = exprogramDao.selectExProgram(addProgram);
@@ -90,7 +79,7 @@ public class ExProgramMgtService {
 
 	}
 	
-	//프로그램 삭제
+	//ex프로그램 종류 삭제
 	public void deleteProc(Parent exProgramMgtForm) {
 		exprogramDao = new ExProgramMgtDAO();
 		if(exprogramDao.selectDelete(this.selectData)==1) {
@@ -100,21 +89,10 @@ public class ExProgramMgtService {
 		}
 		programListView.getItems().remove(this.selectData);
 		
-		
-//		//임시
-//		ObservableList<ExProTable> tableItems = FXCollections.observableArrayList();
-//		ObservableList<ExProgramMgtDTO> allList = exprogramDao.getAllInfo();
-//		for(ExProgramMgtDTO i : allList) {
-//			tableItems.add(new ExProTable(i.getPRM_Name(), i.getPRM_Code(), i.getTRAINER_Name(),
-//					i.getPRMSCHE_LimitP(), i.getPRMSCHE_CurrentP(), i.getPRMSCHE_Strdate(),
-//					i.getPRMSCHE_Enddate(), i.getPRMSCHE_Price(), i.getPRMSCHE_Time()));
-//		}
-//		exProgramTableView.setItems(tableItems);
-//		System.out.println(tableItems);
-		
 	}
 
-	//클릭 시 테이블내용 업데이트
+	
+	//테이블뷰 항목 클릭 시 테이블 내용 업데이트
 	public void modifyTableUp(Parent exProgramMgtForm) {
 		ComboBox<String> kindComboBox = (ComboBox<String>)exProgramMgtForm.lookup("#kindComboBox");
 		Label exnameText = (Label) exProgramMgtForm.lookup("#exnameText");
@@ -124,12 +102,9 @@ public class ExProgramMgtService {
 		RadioButton amRadioButton = (RadioButton)exProgramMgtForm.lookup("#amRadioButton");
 		RadioButton pmRadioButton = (RadioButton)exProgramMgtForm.lookup("#pmRadioButton");
 		
-		
 		kindComboBox.setValue(codeTable.getProgramName());
-		
-		exnameText.setText(": "+codeTable.getProgramName()+"-"+codeTable.getTimeC()+"반");
-		
-		currnentDateText.setText("현재기간 : " + codeTable.getStrDate() + "~" 
+		exnameText.setText(": "+codeTable.getProgramName()+" - "+codeTable.getTimeC()+"반");
+		currnentDateText.setText("현재기간 : " + codeTable.getStrDate() + " ~ " 
 												+ codeTable.getEndDate());
 		
 		if(codeTable.getTimeC().equals("오전")) {
@@ -141,6 +116,7 @@ public class ExProgramMgtService {
 		priceText.setText(Integer.toString(codeTable.getPrice()));
 		personLimitText.setText(Integer.toString(codeTable.getLimtPerson()));
 
+		
 	}
 	
 	
@@ -156,13 +132,16 @@ public class ExProgramMgtService {
 		RadioButton pmRadioButton = (RadioButton)exProgramMgtForm.lookup("#pmRadioButton");
 		ComboBox<String> kindComboBox = (ComboBox<String>)exProgramMgtForm.lookup("#kindComboBox");
 		
-		
-		
 		String kind = kindComboBox.getValue();
 		exnameText.setText(": 프로그램명");
 		currnentDateText.setText("현재 기간");
-		String strDate = this.StrStartDate;
-		String endDate = this.StrEndDate;
+		
+		LocalDate lStrDate = startDatePicker.getValue();
+		LocalDate lEndDate = endDatePicker.getValue();
+		Date strDate = (Date)CommonService.LocalDateCnvt(lStrDate);
+		Date endDate = (Date)CommonService.LocalDateCnvt(lEndDate);
+		
+	
 		String timeC ="";
 		if(amRadioButton.isSelected())
 			timeC = "오전";
@@ -194,6 +173,8 @@ public class ExProgramMgtService {
 			CommonService.Msg("수정 실패: 모든사항이 중복됨");
 		}
 		
+		//테이블 리로드
+		this.tableUp(this.exProgramTableView);
 		
 		
 		
@@ -201,11 +182,19 @@ public class ExProgramMgtService {
 	}
 	//프로그램 세부삭제
 	public void exProgramDeleteProc(Parent exProgramMgtForm) {
-		// TODO Auto-generated method stub
+		String code = this.codeTable.getCode();
+		CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
+		CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheOne(codeTable.getCode());
+		ExProgramMgtDAO exProgramMgtDao = new ExProgramMgtDAO();
+		exProgramMgtDao.exProgramDeleteProc(cmnPrmScheDto);
 		
+		//테이블 리로드
+		this.tableUp(this.exProgramTableView);
+
 	}
 
-
+	
+	
 	public void setSelectData(String selectData) {
 		this.selectData = selectData;
 		
@@ -222,21 +211,6 @@ public class ExProgramMgtService {
 		this.allProgram = exprogramDao.getAllProgram();
 		return this.allProgram;
 	}
-
-	public void setStrStartDate(String StrStartDate) {
-		this.StrStartDate = StrStartDate;
-		
-	}
-
-	public void setStrEndDate(String StrEndDate) {
-		this.StrEndDate = StrEndDate;
-		
-	}
-
-
-
-
-
 
 
 }

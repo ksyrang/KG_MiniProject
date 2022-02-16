@@ -5,19 +5,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
-
-import admin.helthProgramMgt.HelthProTable;
-import admin.helthProgramMgt.HelthProgramMgtDTO;
-import admin.memberMgt.MemberMgtDAO;
-import admin.memberMgt.MemberMgtDTO;
-import admin.memberMgt.MemberMgtTable;
 import common.CommonService;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -40,18 +32,24 @@ public class ExProgramMgtController implements Initializable{
 	@FXML private DatePicker startDatePicker;
 	@FXML private DatePicker endDatePicker;
 	
-	@FXML public ListView<String> programListView;
-	@FXML public TableView<ExProTable> exProgramTableView;
-	@FXML public TableColumn<ExProTable, String> programName;
-	@FXML public TableColumn<ExProTable, String> code;
-	@FXML public TableColumn<ExProTable, String> trainerName;
-	@FXML public TableColumn<ExProTable, Integer> limtPerson;
-	@FXML public TableColumn<ExProTable, Integer> currentPerson;
-	@FXML public TableColumn<ExProTable, String> strDate;
-	@FXML public TableColumn<ExProTable, String> endDate;
-	@FXML public TableColumn<ExProTable, Integer> price;
-	@FXML public TableColumn<ExProTable, String> timeC;
+	@FXML private ListView<String> programListView;
+	@FXML private TableView<ExProTable> exProgramTableView;
+	@FXML private TableColumn<ExProTable, String> programName;
+	@FXML private TableColumn<ExProTable, String> code;
+	@FXML private TableColumn<ExProTable, String> trainerName;
+	@FXML private TableColumn<ExProTable, Integer> limtPerson;
+	@FXML private TableColumn<ExProTable, Integer> currentPerson;
+	@FXML private TableColumn<ExProTable, Date> strDate;
+	@FXML private TableColumn<ExProTable, Date> endDate;
+	@FXML private TableColumn<ExProTable, Integer> price;
+	@FXML private TableColumn<ExProTable, String> timeC;
 
+	
+	/*
+	 * 1.ex프로그램 combobox 선택 후 수정 연동
+	 * 2.아무것도 없을때 수정 누르면 에러처리
+	 * 3.DatePicker에 날짜 뜨게
+	*/
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -71,15 +69,14 @@ public class ExProgramMgtController implements Initializable{
 		endDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
 		price.setCellValueFactory(new PropertyValueFactory<>("price"));
 		timeC.setCellValueFactory(new PropertyValueFactory<>("timeC"));
-		this.exProgramSvc.tableUp(exProgramTableView);
+		
+		exProgramSvc.tableUp(exProgramTableView);
 		
 		
 		//수정창
 		allProgram = exProgramSvc.getAllProgram();
 		kindComboBox.setItems(allProgram);
 		
-		
-
 		//listview 클릭 시
 		programListView.setOnMouseClicked(new EventHandler<MouseEvent>() { 
 			
@@ -140,14 +137,5 @@ public class ExProgramMgtController implements Initializable{
 		CommonService.WindowClose(exProgramMgtForm);
 	}
 
-	public void getStrDateProc() {
-		LocalDate startDate = startDatePicker.getValue();
-		String StrStartDate = startDate.toString();
-		exProgramSvc.setStrStartDate(StrStartDate);
-	}
-	public void getEndDateProc() {
-		LocalDate endDate = endDatePicker.getValue();
-		String StrEndDate = endDate.toString();
-		exProgramSvc.setStrEndDate(StrEndDate);
-	}
+
 }

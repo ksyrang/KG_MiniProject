@@ -1,15 +1,16 @@
 package admin.exProgramMgt;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
+
+
 
 public class ExProgramMgtDTO {
 	
 
 	//PRMSCHE_TB
 	private String PRMSCHE_Code;
-	private String PRMSCHE_Strdate;
-	private String PRMSCHE_Enddate;
+	private Date PRMSCHE_Strdate;
+	private Date PRMSCHE_Enddate;
 	private String PRMSCHE_Time;
 	private int PRMSCHE_LimitP;
 	private int PRMSCHE_CurrentP;
@@ -55,16 +56,16 @@ public class ExProgramMgtDTO {
 	public void setPRMSCHE_Price(int pRMSCHE_Price) {
 		PRMSCHE_Price = pRMSCHE_Price;
 	}
-	public String getPRMSCHE_Strdate() {
+	public Date getPRMSCHE_Strdate() {
 		return PRMSCHE_Strdate;
 	}
-	public void setPRMSCHE_Strdate(String pRMSCHE_Strdate) {
+	public void setPRMSCHE_Strdate(Date pRMSCHE_Strdate) {
 		PRMSCHE_Strdate = pRMSCHE_Strdate;
 	}
-	public String getPRMSCHE_Enddate() {
+	public Date getPRMSCHE_Enddate() {
 		return PRMSCHE_Enddate;
 	}
-	public void setPRMSCHE_Enddate(String pRMSCHE_Enddate) {
+	public void setPRMSCHE_Enddate(Date pRMSCHE_Enddate) {
 		PRMSCHE_Enddate = pRMSCHE_Enddate;
 	}
 	public String getPRMSCHE_Time() {

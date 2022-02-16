@@ -1,7 +1,6 @@
 package admin.exProgramMgt;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
 
 public class ExProTable {
 	
@@ -10,15 +9,15 @@ public class ExProTable {
 	private String trainerName;
 	private int limtPerson;
 	private int currentPerson;
-	private String strDate;
-	private String endDate;
+	private Date strDate;
+	private Date endDate;
 	private int price;
 	private String timeC;
 	
 	
 	
 	public ExProTable(String programName, String code, String trainerName, int limtPerson, int currentPerson,
-			String strDate, String endDate, int price, String timeC) {
+			Date strDate, Date endDate, int price, String timeC) {
 		super();
 		this.programName = programName;
 		this.code = code;
@@ -61,16 +60,16 @@ public class ExProTable {
 	public void setCurrentPerson(int currentPerson) {
 		this.currentPerson = currentPerson;
 	}
-	public String getStrDate() {
+	public Date getStrDate() {
 		return strDate;
 	}
-	public void setStrDate(String strDate) {
+	public void setStrDate(Date strDate) {
 		this.strDate = strDate;
 	}
-	public String getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 	public int getPrice() {

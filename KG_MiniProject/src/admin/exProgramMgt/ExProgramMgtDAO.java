@@ -67,15 +67,14 @@ public class ExProgramMgtDAO {
 				ExProgramMgtDTO exProgramMgtDto = new ExProgramMgtDTO();
 				exProgramMgtDto.setPRMSCHE_Code(rs.getString("PRMSCHE_Code"));
 				exProgramMgtDto.setPRMSCHE_Price(rs.getInt("PRMSCHE_Price"));
-				exProgramMgtDto.setPRMSCHE_Strdate(rs.getString("PRMSCHE_Strdate"));
-				exProgramMgtDto.setPRMSCHE_Enddate(rs.getString("PRMSCHE_Enddate"));
+				exProgramMgtDto.setPRMSCHE_Strdate(rs.getDate("PRMSCHE_Strdate"));
+				exProgramMgtDto.setPRMSCHE_Enddate(rs.getDate("PRMSCHE_Enddate"));
 				exProgramMgtDto.setPRMSCHE_Time(rs.getString("PRMSCHE_Time"));
 				exProgramMgtDto.setPRMSCHE_LimitP(rs.getInt("PRMSCHE_LimitP"));
 				exProgramMgtDto.setPRMSCHE_CurrentP(rs.getInt("PRMSCHE_CurrentP"));
 				exProgramMgtDto.setTRAINER_Code(rs.getString("TRAINER_Code"));
 				exProgramMgtDto.setPRM_Code(rs.getString("PRM_Code"));
 
-				
 				CmnTrainerDAO cmnTrainerDao = new CmnTrainerDAO();
 				CmnTrainerDTO cmnTrainerDto = cmnTrainerDao.SltTrnOne(rs.getString("TRAINER_Code"));
 				exProgramMgtDto.setTRAINER_Name(cmnTrainerDto.getTRAINER_Name());
@@ -117,6 +116,42 @@ public class ExProgramMgtDAO {
 	}
 	
 	
+	//ex프로그램 PRM_Name 리스트뷰 등록
+	public int insertExProgram(ExProgramMgtDTO exprogramDto) {
+		String sql = "INSERT INTO PRM_TB VALUES(?,?)";
+		PreparedStatement ps;
+		int result = 0;
+
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, exprogramDto.getPRM_Code());
+			ps.setString(2, exprogramDto.getPRM_Name());
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	
+	//ex프로그램 PRM_Name 리스트뷰 삭제
+	public int selectDelete(String selectData) {
+		String sql = "DELETE FROM PRM_TB WHERE PRM_Name=?";
+		PreparedStatement ps;
+		int result = 0;
+
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, selectData);
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
+	
+	
 	//ex프로그램 세부사항 수정 시 중복체크
 	public int selectModifyExProgram(ExProgramMgtDTO exProgramMgtDto, CmnPrmScheDTO cmnPrmScheDto) {
 		String sql = "SELECT * FROM PRMSCHE_TB WHERE PRMSCHE_CODE=?";
@@ -140,52 +175,18 @@ public class ExProgramMgtDAO {
 		}
 		return result;
 	}
+
 	
-	//ex프로그램 등록
-	public int insertExProgram(ExProgramMgtDTO exprogramDto) {
-		String sql = "INSERT INTO PRM_TB VALUES(?,?)";
-		PreparedStatement ps;
-		int result = 0;
-
-		try {
-			ps = con.prepareStatement(sql);
-			ps.setString(1, exprogramDto.getPRM_Code());
-			ps.setString(2, exprogramDto.getPRM_Name());
-			result = ps.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	//ex프로그램 삭제
-	public int selectDelete(String selectData) {
-		String sql = "DELETE FROM PRM_TB WHERE PRM_Name=?";
-		PreparedStatement ps;
-		int result = 0;
-
-		try {
-			ps = con.prepareStatement(sql);
-			ps.setString(1, selectData);
-			result = ps.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return result;
-		
-	}
-
-	//ex프로그램 세부사항 수정
+	//클릭한 ex프로그램 세부사항 수정
 	public int setProgramModify(ExProgramMgtDTO exProgramMgtDto) {
 		String sql = "UPDATE PRMSCHE_TB SET PRMSCHE_STRDATE=?, PRMSCHE_ENDDATE=?, PRMSCHE_TIME=?, PRMSCHE_LIMITP=?, PRMSCHE_PRICE=? WHERE PRMSCHE_CODE=?";
 		PreparedStatement ps;
 		int result = 0;
 		
 		try {
-//			exProgramMgtDto.setPRM_Name(kind);
 			ps = con.prepareStatement(sql);
-			ps.setString(1, exProgramMgtDto.getPRMSCHE_Strdate());
-			ps.setString(2, exProgramMgtDto.getPRMSCHE_Enddate());
+			ps.setDate(1, exProgramMgtDto.getPRMSCHE_Strdate());
+			ps.setDate(2, exProgramMgtDto.getPRMSCHE_Enddate());
 			ps.setString(3, exProgramMgtDto.getPRMSCHE_Time());
 			ps.setInt(4, exProgramMgtDto.getPRMSCHE_LimitP());
 			ps.setInt(5, exProgramMgtDto.getPRMSCHE_Price());
@@ -194,8 +195,23 @@ public class ExProgramMgtDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return result;
+		//PRM_Name변경 쿼리문 작성필요
+
+	}
+
+	
+	//클릭한 세부항목삭제
+	public void exProgramDeleteProc(CmnPrmScheDTO cmnPrmScheDto) {
+		String sql = "DELETE FROM PRMSCHE_TB WHERE PRMSCHE_CODE = ?";
+		PreparedStatement ps;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, cmnPrmScheDto.getPRMSCHE_Code());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	

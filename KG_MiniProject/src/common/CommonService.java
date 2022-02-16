@@ -4,7 +4,6 @@ package common;
 
 import java.util.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
@@ -55,4 +54,16 @@ public class CommonService {
 		return localDate;
 	}
 	
+	
+	//sql.LocalDate -> sql.Date
+	public static Date LocalDateCnvt(LocalDate dateToConvert) {
+		
+		Date utilDate = java.sql.Date.valueOf(dateToConvert);
+		long timeInMilliSeconds = utilDate.getTime();
+		java.sql.Date sqlDate = new java.sql.Date(timeInMilliSeconds);
+		
+		return sqlDate;
+		
+	}
 }
+

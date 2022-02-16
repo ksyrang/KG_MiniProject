@@ -42,12 +42,12 @@
    <bottom>
       <HBox prefHeight="49.0" prefWidth="335.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="90.0" text="강사 등록">
+            <Button fx:id="trnEnrollBtn" mnemonicParsing="false" onAction="#trnEnrollProc" prefHeight="29.0" prefWidth="90.0" text="강사 등록">
                <HBox.margin>
                   <Insets left="170.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="90.0" text="취소">
+            <Button fx:id="trnEnrollCloseBtn" mnemonicParsing="false" onAction="#trnEnrollCloseProc" prefHeight="29.0" prefWidth="90.0" text="취소">
                <HBox.margin>
                   <Insets left="130.0" top="10.0" />
                </HBox.margin>
@@ -65,52 +65,40 @@
                         <Insets left="25.0" top="40.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField maxWidth="160.0" prefHeight="29.0" prefWidth="177.0">
+                  <TextField fx:id="trnIdTxt" maxWidth="160.0" prefHeight="29.0" prefWidth="177.0">
                      <HBox.margin>
                         <Insets left="45.0" top="37.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button mnemonicParsing="false" text="중복확인">
+                  <Button fx:id="overlapBtn" mnemonicParsing="false" onAction="#overlapProc" text="중복확인">
                      <HBox.margin>
                         <Insets left="97.0" top="37.0" />
                      </HBox.margin>
                   </Button>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="655.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="655.0">
                <children>
                   <Label prefHeight="19.0" prefWidth="30.0" text="PW">
                      <HBox.margin>
-                        <Insets left="25.0" top="40.0" />
+                        <Insets left="25.0" />
                      </HBox.margin>
                   </Label>
-                  <PasswordField maxWidth="160.0" prefHeight="29.0" prefWidth="177.0">
+                  <PasswordField fx:id="trnPwTxt" maxWidth="160.0" prefHeight="29.0" prefWidth="177.0">
                      <HBox.margin>
-                        <Insets left="45.0" top="37.0" />
+                        <Insets left="45.0" />
                      </HBox.margin>
                   </PasswordField>
                   <Label prefHeight="19.0" prefWidth="60.0" text="PW확인">
                      <HBox.margin>
-                        <Insets left="100.0" top="40.0" />
+                        <Insets left="100.0" />
                      </HBox.margin>
                   </Label>
-                  <VBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <PasswordField maxWidth="160.0" prefHeight="29.0" prefWidth="177.0">
-                           <VBox.margin>
-                              <Insets top="37.0" />
-                           </VBox.margin>
-                        </PasswordField>
-                        <Label text="X : 비밀번호가 다릅니다" textFill="#fbefef">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Label>
-                     </children>
+                  <PasswordField fx:id="trnPwComfrimTxt" maxWidth="160.0" prefHeight="29.0" prefWidth="177.0">
                      <HBox.margin>
                         <Insets left="31.0" />
                      </HBox.margin>
-                  </VBox>
+                  </PasswordField>
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
@@ -120,7 +108,7 @@
                         <Insets left="25.0" top="40.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField maxWidth="160.0" prefHeight="29.0" prefWidth="177.0">
+                  <TextField fx:id="trnNameTxt" maxWidth="160.0" prefHeight="29.0" prefWidth="177.0">
                      <HBox.margin>
                         <Insets left="45.0" top="37.0" />
                      </HBox.margin>
@@ -130,52 +118,40 @@
                         <Insets left="108.0" top="40.0" />
                      </HBox.margin>
                   </Label>
-                  <RadioButton mnemonicParsing="false" prefHeight="19.0" text="남">
+                  <RadioButton fx:id="trnMenRadio" mnemonicParsing="false" prefHeight="19.0" text="남">
                      <HBox.margin>
                         <Insets left="46.0" top="40.0" />
                      </HBox.margin>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" prefHeight="19.0" text="여">
+                  <RadioButton fx:id="trnWomenRadio" mnemonicParsing="false" prefHeight="19.0" text="여">
                      <HBox.margin>
                         <Insets left="25.0" top="40.0" />
                      </HBox.margin>
                   </RadioButton>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="564.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="564.0">
                <children>
                   <Label prefHeight="19.0" prefWidth="60.0" text="생년월일">
                      <HBox.margin>
-                        <Insets left="10.0" top="40.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField maxWidth="160.0" prefHeight="29.0" prefWidth="177.0" promptText="(ex:19900101)">
+                  <TextField fx:id="trnBirthTxt" maxWidth="160.0" prefHeight="29.0" prefWidth="177.0" promptText="(ex:19900101)">
                      <HBox.margin>
-                        <Insets left="30.0" right="71.0" top="37.0" />
+                        <Insets left="30.0" right="71.0" />
                      </HBox.margin>
                   </TextField>
                   <Label prefHeight="19.0" prefWidth="60.0" text="전화번호">
                      <HBox.margin>
-                        <Insets left="24.0" top="40.0" />
+                        <Insets left="24.0" />
                      </HBox.margin>
                   </Label>
-                  <VBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <TextField maxWidth="160.0" prefHeight="29.0" prefWidth="177.0" promptText="(ex:01012341234)">
-                           <VBox.margin>
-                              <Insets top="37.0" />
-                           </VBox.margin>
-                        </TextField>
-                        <Label text="X : 전화번호가 다릅니다" textFill="#fbefef">
-                           <VBox.margin>
-                              <Insets left="2.0" />
-                           </VBox.margin>
-                        </Label>
-                     </children>
+                  <TextField fx:id="trnMobileTxt" maxWidth="160.0" prefHeight="29.0" prefWidth="177.0" promptText="(ex:01012341234)">
                      <HBox.margin>
-                        <Insets left="31.0" />
+                        <Insets left="32.0" />
                      </HBox.margin>
-                  </VBox>
+                  </TextField>
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
@@ -187,7 +163,7 @@
                   </Label>
                   <VBox prefHeight="109.0" prefWidth="504.0">
                      <children>
-                        <TextField alignment="CENTER" maxWidth="488.0" prefHeight="29.0" prefWidth="488.0" promptText="도로명주소 or 지번주소">
+                        <TextField fx:id="trnAddrTxt" alignment="CENTER" maxWidth="488.0" prefHeight="29.0" prefWidth="488.0" promptText="도로명주소 or 지번주소">
                            <VBox.margin>
                               <Insets top="26.0" />
                            </VBox.margin>
@@ -211,7 +187,7 @@
                         <Insets left="25.0" top="40.0" />
                      </HBox.margin>
                   </Label>
-                  <PasswordField maxWidth="160.0" prefHeight="29.0" prefWidth="54.0">
+                  <PasswordField fx:id="trnCareerTxt" maxWidth="160.0" prefHeight="29.0" prefWidth="54.0">
                      <HBox.margin>
                         <Insets left="45.0" top="37.0" />
                      </HBox.margin>

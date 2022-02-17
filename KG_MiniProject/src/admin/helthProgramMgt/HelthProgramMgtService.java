@@ -11,6 +11,23 @@ public class HelthProgramMgtService {
 	
 	private HelthProgramMgtDAO helthProgramDao;
 	
+	// 테이블 뷰 불러오기 & 텍스트 필드 내용 비우기
+	public void refreshTable(Parent helthProgramMgtForm) {
+		TextField typetxt = (TextField) helthProgramMgtForm.lookup("#memshipType");
+		TextField pricetxt = (TextField) helthProgramMgtForm.lookup("#memshipPrice");
+		
+		ObservableList<HelthProTable> tableView = FXCollections.observableArrayList();
+		TableView<HelthProTable> allTable = (TableView<HelthProTable>) helthProgramMgtForm.lookup("#memshipTable");
+		ObservableList<HelthProgramMgtDTO> allList = helthProgramDao.getAllPro();
+		for(HelthProgramMgtDTO m : allList) {
+			tableView.add(new HelthProTable(m.getMemship_code(), "헬스 회원권 " + m.getMemship_type() + "개월", m.getMemship_price()));
+		}
+		allTable.setItems(tableView);
+		
+		typetxt.setText(null);
+		pricetxt.setText(null);
+	}
+	
 	// 테이블뷰 행 클릭 시
 	public void cellClick(Parent helthProgramMgtForm, String colCode) {
 		helthProgramDao = new HelthProgramMgtDAO();
@@ -48,18 +65,11 @@ public class HelthProgramMgtService {
 					helthProgramDto.setMemship_type(type);
 					helthProgramDto.setMemship_price(hprice);
 					helthProgramDao.memshipInsert(helthProgramDto);
+					
+					
 					CommonService.Msg("회원권 등록이 완료되었습니다.");
-					
-					ObservableList<HelthProTable> tableView = FXCollections.observableArrayList();
-					TableView<HelthProTable> allTable = (TableView<HelthProTable>) helthProgramMgtForm.lookup("#memshipTable");
-					ObservableList<HelthProgramMgtDTO> allList = helthProgramDao.getAllPro();
-					for(HelthProgramMgtDTO m : allList) {
-						tableView.add(new HelthProTable(m.getMemship_code(), "헬스 회원권 " + m.getMemship_type() + "개월", m.getMemship_price()));
-					}
-					allTable.setItems(tableView);
-					
-					typetxt.setText(null);
-					pricetxt.setText(null);
+					refreshTable(helthProgramMgtForm);
+
 				} else {
 					CommonService.Msg("이미 등록된 회원권입니다.");
 				}
@@ -73,6 +83,7 @@ public class HelthProgramMgtService {
 		
 	}
 	
+	//헬스 회원권 삭제
 	public void memshipDelete(Parent helthProgramMgtForm) {
 		TextField typetxt = (TextField) helthProgramMgtForm.lookup("#memshipType");
 		TextField pricetxt = (TextField) helthProgramMgtForm.lookup("#memshipPrice");
@@ -82,18 +93,7 @@ public class HelthProgramMgtService {
 			if(helthProgramDao.selectType(type) != null) {
 			helthProgramDao.memshipDelete(type);
 			CommonService.Msg("헬스 이용권 " + type + " 개월 회원권 삭제");
-
-			ObservableList<HelthProTable> tableView = FXCollections.observableArrayList();
-			TableView<HelthProTable> allTable = (TableView<HelthProTable>) helthProgramMgtForm.lookup("#memshipTable");
-			ObservableList<HelthProgramMgtDTO> allList = helthProgramDao.getAllPro();
-			for (HelthProgramMgtDTO m : allList) {
-				tableView.add(new HelthProTable(m.getMemship_code(), "헬스 회원권 " + m.getMemship_type() + "개월",
-						m.getMemship_price()));
-			}
-			allTable.setItems(tableView);
-
-			typetxt.setText(null);
-			pricetxt.setText(null);
+			refreshTable(helthProgramMgtForm);
 			} else {
 				CommonService.Msg("회원권을 선택해주세요.");
 			}

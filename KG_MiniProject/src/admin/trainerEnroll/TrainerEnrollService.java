@@ -1,7 +1,5 @@
 package admin.trainerEnroll;
 
-import admin.trainerMgt.TrainerMgtController;
-import admin.trainerMgt.TrainerMgtService;
 import common.CmnTrainerDAO;
 import common.CmnTrainerDTO;
 import common.CommonService;

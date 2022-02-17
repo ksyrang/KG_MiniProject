@@ -182,28 +182,10 @@ public class TrainerMgtService {
 					dto.setTRAINER_Addr(trnAddr);
 					if(dao.UptTrnId(dto) == 1) {
 						CommonService.Msg(trnId + " 강사 수정 완료");
+						refreshTable(trainerMgtForm);
 					}else {
 						CommonService.Msg(trnId + " 강사 수정 실패");
 					}
-					
-					ObservableList<TrainerMgtTable> tableView = FXCollections.observableArrayList();
-					TableView<TrainerMgtTable> newTable = (TableView<TrainerMgtTable>) trainerMgtForm.lookup("#trnTable");
-					ObservableList<CmnTrainerDTO> list = dao.OLSltTrnAll();
-					for(CmnTrainerDTO t : list) {
-						tableView.add(new TrainerMgtTable(t.getTRAINER_Code(), t.getTRAINER_Name(), t.getTRAINER_Mobile()));
-					}
-					newTable.setItems(tableView);
-					
-					trnIdTxt.setText(null);
-					trnNameTxt.setText(null);
-					trnPwTxt.setText(null);
-					trnMobileTxt.setText(null);
-					trnAddrTxt1.setText(null);
-					trnAddrTxt2.setText(null);
-					trnBirthTxt.setText(null);
-					trnCareerTxt.setText(null);
-					trnMenRadio.setSelected(false);
-					trnWomenRadio.setSelected(false);
 				}else {
 					CommonService.Msg("강사를 선택해주세요.");
 				}
@@ -217,16 +199,6 @@ public class TrainerMgtService {
 	// 강사 삭제
 	public void trnDeleteProc(Parent trainerMgtForm) {
 		TextField trnIdTxt = (TextField) trainerMgtForm.lookup("#trnIdTxt");
-		TextField trnNameTxt = (TextField) trainerMgtForm.lookup("#trnNameTxt");
-		TextField trnPwTxt = (TextField) trainerMgtForm.lookup("#trnPwTxt");
-		TextField trnMobileTxt = (TextField) trainerMgtForm.lookup("#trnMobileTxt");
-		TextField trnAddrTxt1 = (TextField) trainerMgtForm.lookup("#trnAddrTxt1");
-		TextField trnAddrTxt2 = (TextField) trainerMgtForm.lookup("#trnAddrTxt2");
-		TextField trnBirthTxt = (TextField) trainerMgtForm.lookup("#trnBirthTxt");
-		TextField trnCareerTxt = (TextField) trainerMgtForm.lookup("#trnCareerTxt");
-		RadioButton trnMenRadio = (RadioButton) trainerMgtForm.lookup("#trnMenRadio");
-		RadioButton trnWomenRadio = (RadioButton) trainerMgtForm.lookup("#trnWomenRadio");
-
 		String trnId = trnIdTxt.getText();
 		
 		try {
@@ -234,24 +206,7 @@ public class TrainerMgtService {
 			if(dto != null) {
 				if(dao.DelTrnId(trnId) == 1) {
 					CommonService.Msg(trnId + " 강사 삭제 완료");
-					ObservableList<TrainerMgtTable> tableView = FXCollections.observableArrayList();
-					TableView<TrainerMgtTable> newTable = (TableView<TrainerMgtTable>) trainerMgtForm.lookup("#trnTable");
-					ObservableList<CmnTrainerDTO> list = dao.OLSltTrnAll();
-					for(CmnTrainerDTO t : list) {
-						tableView.add(new TrainerMgtTable(t.getTRAINER_Code(), t.getTRAINER_Name(), t.getTRAINER_Mobile()));
-					}
-					newTable.setItems(tableView);
-					
-					trnIdTxt.setText(null);
-					trnNameTxt.setText(null);
-					trnPwTxt.setText(null);
-					trnMobileTxt.setText(null);
-					trnAddrTxt1.setText(null);
-					trnAddrTxt2.setText(null);
-					trnBirthTxt.setText(null);
-					trnCareerTxt.setText(null);
-					trnMenRadio.setSelected(false);
-					trnWomenRadio.setSelected(false);
+					refreshTable(trainerMgtForm);
 				}else {
 					CommonService.Msg(trnId + " 강사 삭제 실패");
 				}
@@ -263,7 +218,8 @@ public class TrainerMgtService {
 		}
 	}
 
-	public void refreshProc(Parent trainerMgtForm) {
+	// 테이블 뷰 불러오기
+	public void refreshTable(Parent trainerMgtForm) {
 		ObservableList<TrainerMgtTable> tableView = FXCollections.observableArrayList();
 		TableView<TrainerMgtTable> newTable = (TableView<TrainerMgtTable>) trainerMgtForm.lookup("#trnTable");
 		try {
@@ -272,11 +228,35 @@ public class TrainerMgtService {
 				tableView.add(new TrainerMgtTable(t.getTRAINER_Code(), t.getTRAINER_Name(), t.getTRAINER_Mobile()));
 			}
 			newTable.setItems(tableView);
+			removeTxt(trainerMgtForm);
 		} catch (NullPointerException e) {
 			CommonService.Msg("테이블 클릭 후 새로고침해주세요.");
 		}
+	}
+	
+	// 텍스트 필드 비우기
+	public void removeTxt(Parent trainerMgtForm) {
+		TextField trnIdTxt = (TextField) trainerMgtForm.lookup("#trnIdTxt");
+		TextField trnNameTxt = (TextField) trainerMgtForm.lookup("#trnNameTxt");
+		TextField trnPwTxt = (TextField) trainerMgtForm.lookup("#trnPwTxt");
+		TextField trnMobileTxt = (TextField) trainerMgtForm.lookup("#trnMobileTxt");
+		TextField trnAddrTxt1 = (TextField) trainerMgtForm.lookup("#trnAddrTxt1");
+		TextField trnAddrTxt2 = (TextField) trainerMgtForm.lookup("#trnAddrTxt2");
+		TextField trnBirthTxt = (TextField) trainerMgtForm.lookup("#trnBirthTxt");
+		TextField trnCareerTxt = (TextField) trainerMgtForm.lookup("#trnCareerTxt");
+		RadioButton trnMenRadio = (RadioButton) trainerMgtForm.lookup("#trnMenRadio");
+		RadioButton trnWomenRadio = (RadioButton) trainerMgtForm.lookup("#trnWomenRadio");
 		
-		
+		trnIdTxt.setText(null);
+		trnNameTxt.setText(null);
+		trnPwTxt.setText(null);
+		trnMobileTxt.setText(null);
+		trnAddrTxt1.setText(null);
+		trnAddrTxt2.setText(null);
+		trnBirthTxt.setText(null);
+		trnCareerTxt.setText(null);
+		trnMenRadio.setSelected(false);
+		trnWomenRadio.setSelected(false);
 	}
 
 }

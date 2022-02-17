@@ -25,7 +25,7 @@ public class TrainerMgtService {
 	}
 	
 	// 강사 등록
-	public void trnInsertProc() {
+	public void trnInsertProc(Parent trainerMgtForm) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/trainerEnroll/KG_ADM_FX_TrainerEnroll.fxml"));
 		Parent trainerEnrollForm;
 		try {

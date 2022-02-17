@@ -74,7 +74,7 @@ public class MEM_WelcomeService {
 			//회원 정보 get
 			//title sector set
 			Label titleUserName = (Label)memMgtForm.lookup("#TitleMemNameLabel");
-			CmnMemDTO tmpMemDto = new CmnMemDTO(new CmnMemDAO().SltResOne(memCode));
+			CmnMemDTO tmpMemDto = new CmnMemDTO(new CmnMemDAO().SltMemOne(memCode));
 			titleUserName.setText(tmpMemDto.getMEM_Name()+" 회원님");
 			//초기 표시 설정
 			TextField IDField = (TextField)memMgtForm.lookup("#MemIDField");//기존 아이디 표시

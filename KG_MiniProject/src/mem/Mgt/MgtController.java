@@ -44,9 +44,9 @@ public class MgtController implements Initializable{
 	}
 	
 	// 아이디중복 체크 클릭 시
-//	public void TnrModifyProc() {
-//		mgtService.MemModifyProc(memMgtForm, memCode);
-//	}
+	public void TnrModifyProc() {
+		mgtService.MemModifyProc(memMgtForm, memCode);
+	}
 		
 	public void BackMgtProc() {
 		mgtService.BackMgtProc(memMgtForm);

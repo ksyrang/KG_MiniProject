@@ -13,10 +13,10 @@ import javafx.scene.control.TextField;
 
 
 public class MgtService {
-/*	
-	public void TnrModifyProc(Parent memMgtForm, String memCode) {
+	
+	public void MemModifyProc(Parent memMgtForm, String memCode) {
 		CmnMemDAO tmpDAO = new CmnMemDAO();
-		CmnMemDTO tmpDto = new CmnMemDTO(tmpDAO.SltResOne(memCode));
+		CmnMemDTO tmpDto = new CmnMemDTO(tmpDAO.SltMemOne(memCode));
 		
 		PasswordField PWField = (PasswordField)memMgtForm.lookup("#MemPWField");
 		PasswordField PWCField = (PasswordField)memMgtForm.lookup("#MemPWCField");
@@ -38,7 +38,7 @@ public class MgtService {
 				tmpDto.setMEM_Birth(Integer.parseInt(BirthField.getText()));
 				tmpDto.setMEM_Mobile(Integer.parseInt(MobileField.getText()));
 				tmpDto.setMEM_Addr(Addr1Field.getText()+"/"+Addr2Field.getText());
-				int result = tmpDAO.UptTrn(tmpDto);
+				int result = tmpDAO.UptMem(tmpDto);
 				if(result == 1) {
 					CommonService.Msg("수정완료");
 					CommonService.WindowClose(memMgtForm);
@@ -61,7 +61,7 @@ public class MgtService {
 			CommonService.Msg("비밀번호칸들을 채워 주세요");
 		}
 	}
-*/	
+	
 	
 	public void BackMgtProc(Parent memMgtForm) {
 		CommonService.WindowClose(memMgtForm);

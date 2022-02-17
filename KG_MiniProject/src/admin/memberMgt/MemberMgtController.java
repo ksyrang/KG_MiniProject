@@ -38,33 +38,36 @@ public class MemberMgtController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		memberMgtSvc = new MemberMgtService();
-		
-		//TextField 편집 붉가능
-		idtxt.setEditable(false);
-		mobiletxt.setEditable(false);
-				
-		filterCombo.setValue("전체보기");
-		
-		// tableview
-		MemberMgtDAO memberMgtDao = new MemberMgtDAO();
-		ObservableList<MemberMgtDTO> memberMgtDto = memberMgtDao.getAllMemberList();
-		
-		obserList = FXCollections.observableArrayList();
-		
-		colCode.setCellValueFactory(new PropertyValueFactory<>("colCode"));
-		colName.setCellValueFactory(new PropertyValueFactory<>("colName"));
-		colApprove.setCellValueFactory(new PropertyValueFactory<>("colApprove"));
-		for(MemberMgtDTO m : memberMgtDto) {
-			obserList.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), m.getMem_approve()));
-		}
-		
-		memTable.setItems(obserList);
+		initSetting();
 	}
 	
 	public void setMemberMgtForm(Parent memberMgtForm) {
 		this.memberMgtForm = memberMgtForm;
 	}
 	
+	//초기세팅
+	public void initSetting() {
+		// TextField 편집 붉가능
+		idtxt.setEditable(false);
+		mobiletxt.setEditable(false);
+
+		filterCombo.setValue("전체보기");
+
+		// tableview
+		MemberMgtDAO memberMgtDao = new MemberMgtDAO();
+		ObservableList<MemberMgtDTO> memberMgtDto = memberMgtDao.getAllMemberList();
+
+		obserList = FXCollections.observableArrayList();
+
+		colCode.setCellValueFactory(new PropertyValueFactory<>("colCode"));
+		colName.setCellValueFactory(new PropertyValueFactory<>("colName"));
+		colApprove.setCellValueFactory(new PropertyValueFactory<>("colApprove"));
+		for (MemberMgtDTO m : memberMgtDto) {
+			obserList.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), m.getMem_approve()));
+		}
+
+		memTable.setItems(obserList);
+	}
 	// 필터 콤보 박스
 	public void memberMgtFilterCombo() {
 		memberMgtSvc.filter(memberMgtForm);

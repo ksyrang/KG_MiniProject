@@ -27,30 +27,32 @@ public class HelthProgramMgtController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		healthSvc = new HelthProgramMgtService();
-		
-		//테이블뷰
-		HelthProgramMgtDAO helthProMgtDao = new HelthProgramMgtDAO();
-		ObservableList<HelthProgramMgtDTO> helthProMgtDto = helthProMgtDao.getAllPro();
-		
-		obserList = FXCollections.observableArrayList();
-		
-		colCode.setCellValueFactory(new PropertyValueFactory<>("colCode"));
-		colType.setCellValueFactory(new PropertyValueFactory<>("colType"));
-		colPrice.setCellValueFactory(new PropertyValueFactory<>("colPrice"));
-
-		for(HelthProgramMgtDTO m : helthProMgtDto) {
-			obserList.add(new HelthProTable(m.getMemship_code(), 
-					"헬스 회원권 " + m.getMemship_type() + "개월", m.getMemship_price()));
-		}
-		
-		memshipTable.setItems(obserList);
-		
+		initSetting();
 	}
 	
 	public void setHelthMgtForm(Parent helthProgramMgtForm) {
 		this.helthProgramMgtForm = helthProgramMgtForm;
 	}
 	
+	//초기세팅
+	public void initSetting()  {
+		// 테이블뷰
+		HelthProgramMgtDAO helthProMgtDao = new HelthProgramMgtDAO();
+		ObservableList<HelthProgramMgtDTO> helthProMgtDto = helthProMgtDao.getAllPro();
+
+		obserList = FXCollections.observableArrayList();
+
+		colCode.setCellValueFactory(new PropertyValueFactory<>("colCode"));
+		colType.setCellValueFactory(new PropertyValueFactory<>("colType"));
+		colPrice.setCellValueFactory(new PropertyValueFactory<>("colPrice"));
+
+		for (HelthProgramMgtDTO m : helthProMgtDto) {
+			obserList.add(new HelthProTable(m.getMemship_code(), "헬스 회원권 " + m.getMemship_type() + "개월",
+					m.getMemship_price()));
+		}
+
+		memshipTable.setItems(obserList);
+	}
 	// 테이블 뷰 클릭 시 
 	public void tableClick() {
 		memshipTable.setOnMouseClicked((MouseEvent e) -> {

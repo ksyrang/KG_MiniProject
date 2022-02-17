@@ -31,7 +31,17 @@ public class StatisticsController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		statisticsSvc = new StatisticsService();
 		
-		//남녀 성비 Pie 차트
+		genderPieChart();
+		programCPiehart();
+
+	}
+	
+	public void setStatisticsForm(Parent statisticsForm) {
+		this.statisticsForm = statisticsForm;
+	}
+	
+	// 남녀성비 PieChart
+	public void genderPieChart() {
 		CmnMemDAO memDao = new CmnMemDAO();
 		ArrayList<CmnMemDTO> member = memDao.SltMemAll();
 		int menCnt = 0;
@@ -56,35 +66,32 @@ public class StatisticsController implements Initializable{
 				new PieChart.Data("여", womenCnt),
 				new PieChart.Data("선택안함", noGender)
 				));
-		
-		// 회원권, 각 프로그램 별 Pie 차트
+	}
+	
+	// 회원권, 각 프로그램 종류 별 PieChart
+	public void programCPiehart() {
 		// 회원권 갯수
 		CmnMemShipScheDAO memShipScheDao = new CmnMemShipScheDAO();
 		int memshipSche = memShipScheDao.CntMemShipSche();
-		
+
 		// 각 프로그램 갯수
 		CmnPrmDAO prmDao = new CmnPrmDAO();
 		ArrayList<CmnPrmDTO> prmDto = prmDao.SltPrmAll();
-		
+
 		CmnPrmScheDAO prmScheDao = new CmnPrmScheDAO();
 		ArrayList<CmnPrmScheDTO> prmScheDto;
-		
+
 		int prmSche;
-		
+
 		ObservableList<Data> list = FXCollections.observableArrayList();
 		list.add(new PieChart.Data("회원권", memshipSche));
-		for(CmnPrmDTO m : prmDto) {
+		for (CmnPrmDTO m : prmDto) {
 			System.out.println(m.getPRM_Name());
 			prmSche = prmScheDao.CntPrmSche(m.getPRM_Code());
 			System.out.println(prmSche);
 			list.add(new PieChart.Data(m.getPRM_Name(), prmSche));
 		}
 		proPie.setData(list);
-		
-	}
-	
-	public void setStatisticsForm(Parent statisticsForm) {
-		this.statisticsForm = statisticsForm;
 	}
 	
 	public void staCloseProc() {

@@ -15,6 +15,8 @@ public class HelthProgramMgtService {
 	public void refreshTable(Parent helthProgramMgtForm) {
 		TextField typetxt = (TextField) helthProgramMgtForm.lookup("#memshipType");
 		TextField pricetxt = (TextField) helthProgramMgtForm.lookup("#memshipPrice");
+		typetxt.setText(null);
+		pricetxt.setText(null);
 		
 		ObservableList<HelthProTable> tableView = FXCollections.observableArrayList();
 		TableView<HelthProTable> allTable = (TableView<HelthProTable>) helthProgramMgtForm.lookup("#memshipTable");
@@ -23,9 +25,6 @@ public class HelthProgramMgtService {
 			tableView.add(new HelthProTable(m.getMemship_code(), "헬스 회원권 " + m.getMemship_type() + "개월", m.getMemship_price()));
 		}
 		allTable.setItems(tableView);
-		
-		typetxt.setText(null);
-		pricetxt.setText(null);
 	}
 	
 	// 테이블뷰 행 클릭 시
@@ -47,40 +46,37 @@ public class HelthProgramMgtService {
 		
 		String type = typetxt.getText();
 		String price = pricetxt.getText();
-		int hprice;
-		if(price.isEmpty()) {
-			hprice = 0;
-		} else {
+		int hprice = 0;
+		try {
 			hprice = Integer.parseInt(price);
-		}
+		} catch (NumberFormatException e) {}
 		
 		try {
-			if(type.isEmpty() || price.isEmpty()) {
+			if (type.isEmpty() || price.isEmpty()) {
 				CommonService.Msg("입력란을 채워주세요.");
-			}else {
-				helthProgramDao = new HelthProgramMgtDAO();
-				HelthProgramMgtDTO helthProgramDto = helthProgramDao.selectType(type);
-				if (helthProgramDto == null) {
-					helthProgramDto = new HelthProgramMgtDTO();
-					helthProgramDto.setMemship_type(type);
-					helthProgramDto.setMemship_price(hprice);
-					helthProgramDao.memshipInsert(helthProgramDto);
-					
-					
-					CommonService.Msg("회원권 등록이 완료되었습니다.");
-					refreshTable(helthProgramMgtForm);
+			} else {
+				if (hprice != 0) {
+					helthProgramDao = new HelthProgramMgtDAO();
+					HelthProgramMgtDTO helthProgramDto = helthProgramDao.selectType(type);
+					if (helthProgramDto == null) {
+						helthProgramDto = new HelthProgramMgtDTO();
+						helthProgramDto.setMemship_type(type);
+						helthProgramDto.setMemship_price(hprice);
+						helthProgramDao.memshipInsert(helthProgramDto);
 
+						CommonService.Msg("회원권 등록이 완료되었습니다.");
+						refreshTable(helthProgramMgtForm);
+					} else {
+						CommonService.Msg("이미 등록된 회원권입니다.");
+					}
 				} else {
-					CommonService.Msg("이미 등록된 회원권입니다.");
+					CommonService.Msg("가격란엔 숫자만 입력 가능합니다.");
+					pricetxt.setText("");
 				}
 			}
-
 		} catch (NullPointerException e) {
 			CommonService.Msg("입력란을 채워주세요.");
 		}
-		
-		
-		
 	}
 	
 	//헬스 회원권 삭제

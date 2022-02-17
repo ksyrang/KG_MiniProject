@@ -152,7 +152,7 @@ import javafx.scene.control.ToggleGroup;
 					memberMgtDao.approveUpdate(id);
 
 					CommonService.Msg(name + "(" + id + ") 회원님 가입 승인 완료");
-					refreshTable(memberMgtForm);
+					filter(memberMgtForm);
 				} else {
 					CommonService.Msg("이미 승인된 회원입니다.");
 				}
@@ -208,7 +208,7 @@ import javafx.scene.control.ToggleGroup;
 				if (memberMgtDto != null) {
 					memberMgtDao.memberUpdate(id, name, pw, gender, memBirth, addr);
 					CommonService.Msg(name + "(" + id + ") 회원 수정 완료");
-					refreshTable(memberMgtForm);
+					filter(memberMgtForm);
 				} else {
 					CommonService.Msg("회원을 선택해주세요.");
 				}
@@ -233,7 +233,7 @@ import javafx.scene.control.ToggleGroup;
 			if (memberMgtDto != null) {
 				memberMgtDao.memberDelete(id);
 				CommonService.Msg(name + "(" + id + ") 회원 삭제 완료");
-				refreshTable(memberMgtForm);
+				filter(memberMgtForm);
 			} else {
 				CommonService.Msg("회원을 선택해주세요.");
 			}

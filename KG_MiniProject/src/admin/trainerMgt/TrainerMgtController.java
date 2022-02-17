@@ -37,10 +37,18 @@ public class TrainerMgtController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		trainerMgtSvc = new TrainerMgtService();
 		trainerMgtSvc.setTrainerMgtController(this);
-		
+		initSetting();
+	}
+	
+	public void setTrainerMgtForm(Parent trainerMgtForm) {
+		this.trainerMgtForm = trainerMgtForm;
+	}
+	
+	//초기세팅
+	public void initSetting() {
 		// id textfield 입력 불가
 		trnIdTxt.setEditable(false);
-		
+
 		// trnTable
 		CmnTrainerDAO dao = new CmnTrainerDAO();
 		ObservableList<CmnTrainerDTO> dto = dao.OLSltTrnAll();
@@ -55,10 +63,6 @@ public class TrainerMgtController implements Initializable{
 		}
 
 		trnTable.setItems(obserList);
-	}
-	
-	public void setTrainerMgtForm(Parent trainerMgtForm) {
-		this.trainerMgtForm = trainerMgtForm;
 	}
 	
 	//  set 강사 등록 폼

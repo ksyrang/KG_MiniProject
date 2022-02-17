@@ -8,7 +8,7 @@ public class CmnPayDTO {
 	private Date PAY_Date;
 	//FK
 	private String MEMSHIPSCHE_Code;
-	private String RES_Code;
+	private String MEM_Code;
 	private String PRMSCHE_Code;
 	
 	public CmnPayDTO() {
@@ -19,18 +19,18 @@ public class CmnPayDTO {
 		PAY_Type = DTO.getPAY_Type();
 		PAY_Date = DTO.getPAY_Date();
 		MEMSHIPSCHE_Code = DTO.getMEMSHIPSCHE_Code();
-		RES_Code = DTO.getRES_Code();
+		MEM_Code = DTO.getMEM_Code();
 		PRMSCHE_Code = DTO.getPRMSCHE_Code();
 	}
 	public CmnPayDTO(String pAY_Code, String pAY_Type, 
 			Date pAY_Date, String mEMSHIPSCHE_Code, 
-			String rES_Code, String pRMSCHE_Code) {
+			String mEM_Code, String pRMSCHE_Code) {
 		super();
 		PAY_Code = pAY_Code;
 		PAY_Type = pAY_Type;
 		PAY_Date = pAY_Date;
 		MEMSHIPSCHE_Code = mEMSHIPSCHE_Code;
-		RES_Code = rES_Code;
+		MEM_Code = mEM_Code;
 		PRMSCHE_Code = pRMSCHE_Code;
 	}
 
@@ -66,12 +66,12 @@ public class CmnPayDTO {
 		MEMSHIPSCHE_Code = mEMSHIPSCHE_Code;
 	}
 
-	public String getRES_Code() {
-		return RES_Code;
+	public String getMEM_Code() {
+		return MEM_Code;
 	}
 
-	public void setRES_Code(String rES_Code) {
-		RES_Code = rES_Code;
+	public void setMEM_Code(String mEM_Code) {
+		MEM_Code = mEM_Code;
 	}
 	public String getPRMSCHE_Code() {
 		return PRMSCHE_Code;

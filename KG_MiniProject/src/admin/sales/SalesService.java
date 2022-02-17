@@ -24,10 +24,9 @@ public class SalesService {
 	
 	//실행 및 전체선택 시 테이블뷰 업(전체 매출)
 	public void tableUp(TableView<SalesTable> salesTableView) {
-		
+		SalesDAO salesDao = new SalesDAO();
 		this.salesTableView = salesTableView;
 		ObservableList<SalesTable> tableItems = FXCollections.observableArrayList();
-		SalesDAO salesDao = new SalesDAO();
 		salesDao.getAllInfo();
 		ObservableList<SalesDTO> allList = salesDao.getAllInfo();
 		for(SalesDTO i : allList) {
@@ -57,9 +56,9 @@ public class SalesService {
 	
 	//헬스 회원권 매출 선택 시 테이블뷰 로딩
 	public void memSalesTableUp(TableView<SalesTable> salesTableView) {
+		SalesDAO salesDao = new SalesDAO();
 		this.salesTableView = salesTableView;
 		ObservableList<SalesTable> tableItems = FXCollections.observableArrayList();
-		SalesDAO salesDao = new SalesDAO();
 		ObservableList<SalesDTO> allList = salesDao.getAllInfo();
 		for(SalesDTO i : allList) {
 			int price;
@@ -113,9 +112,10 @@ public class SalesService {
 
 	//각 EXprogram 종류 매출 선택 시 테이블뷰 로딩
 	public void exProgramTypeSalesTableUp(TableView<SalesTable> salesTableView, String exProgramType) {
+		System.out.println("여기까지옴=========================");
+		SalesDAO salesDao = new SalesDAO();
 		this.salesTableView = salesTableView;
 		ObservableList<SalesTable> tableItems = FXCollections.observableArrayList();
-		SalesDAO salesDao = new SalesDAO();
 		ObservableList<SalesDTO> allList = salesDao.getAllInfo();
 		for(SalesDTO i : allList) {
 			int price;
@@ -127,7 +127,7 @@ public class SalesService {
 				tableItems.add(new SalesTable(i.getMEM_Code(), programName, programType,
 						price, i.getPAY_Type(), i.getPAY_Date(), i.getTRAINER_NAME()));
 			}else {
-				continue;
+				System.out.println("else오류발생");
 			}
 		}
 		salesTableView.setItems(tableItems);
@@ -136,9 +136,9 @@ public class SalesService {
 	
 	//EXprogram 강사별 매출 선택 시 테이블뷰 로딩
 	public void trainerTypeTableUp(TableView<SalesTable> salesTableView, String TrainerName) {
+		SalesDAO salesDao = new SalesDAO();
 		this.salesTableView = salesTableView;
 		ObservableList<SalesTable> tableItems = FXCollections.observableArrayList();
-		SalesDAO salesDao = new SalesDAO();
 		ObservableList<SalesDTO> allList = salesDao.getAllInfo();
 		for(SalesDTO i : allList) {
 			int price;
@@ -151,8 +151,6 @@ public class SalesService {
 				programType = i.getPRM_Name();
 				tableItems.add(new SalesTable(i.getMEM_Code(), programName, programType,
 						price, i.getPAY_Type(), i.getPAY_Date(),i.getTRAINER_NAME()));
-			}else {
-				continue;
 			}
 		}
 		salesTableView.setItems(tableItems);

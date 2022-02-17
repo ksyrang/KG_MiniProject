@@ -38,7 +38,7 @@ public class HelthProgramMgtDAO {
 				HelthProgramMgtDTO helthProMgtDto = new HelthProgramMgtDTO();
 				helthProMgtDto.setMemship_code(rs.getString("memship_code"));
 				helthProMgtDto.setMemship_type(rs.getString("memship_type"));
-				helthProMgtDto.setMemship_price(rs.getString("memship_price"));
+				helthProMgtDto.setMemship_price(rs.getInt("memship_price"));
 				helthPro.add(helthProMgtDto);
 			}
 		} catch (SQLException e) {
@@ -62,7 +62,7 @@ public class HelthProgramMgtDAO {
 				
 				helthProgramMgtDto.setMemship_code(rs.getString("memship_code"));
 				helthProgramMgtDto.setMemship_type(rs.getString("memship_type"));
-				helthProgramMgtDto.setMemship_price(rs.getString("memship_price"));
+				helthProgramMgtDto.setMemship_price(rs.getInt("memship_price"));
 				return helthProgramMgtDto;
 			}
 		} catch (SQLException e) {
@@ -87,7 +87,7 @@ public class HelthProgramMgtDAO {
 				
 				helthProgramMgtDto.setMemship_code(rs.getString("memship_code"));
 				helthProgramMgtDto.setMemship_type(rs.getString("memship_type"));
-				helthProgramMgtDto.setMemship_price(rs.getString("memship_price"));
+				helthProgramMgtDto.setMemship_price(rs.getInt("memship_price"));
 				return helthProgramMgtDto;
 			}
 		} catch (SQLException e) {
@@ -105,7 +105,7 @@ public class HelthProgramMgtDAO {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, helthProgramDto.getMemship_type() + "memship");
 			ps.setString(2, helthProgramDto.getMemship_type());
-			ps.setString(3, helthProgramDto.getMemship_price());
+			ps.setInt(3, helthProgramDto.getMemship_price());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

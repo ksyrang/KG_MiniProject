@@ -4,7 +4,7 @@ public class HelthProgramMgtDTO {
 	
 	private String memship_code;
 	private String memship_type;
-	private String memship_price;
+	private int memship_price;
 	
 	public String getMemship_code() {
 		return memship_code;
@@ -18,10 +18,10 @@ public class HelthProgramMgtDTO {
 	public void setMemship_type(String memship_type) {
 		this.memship_type = memship_type;
 	}
-	public String getMemship_price() {
+	public int getMemship_price() {
 		return memship_price;
 	}
-	public void setMemship_price(String memship_price) {
+	public void setMemship_price(int memship_price) {
 		this.memship_price = memship_price;
 	}
 	

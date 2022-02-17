@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 
 import common.CmnMemDAO;
 import common.CmnMemDTO;
+import common.CmnMemShipScheDAO;
+import common.CmnMemShipScheDTO;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +20,7 @@ public class StatisticsController implements Initializable{
 	private StatisticsService statisticsSvc;
 	
 	@FXML private PieChart genderPie;
+	@FXML private PieChart proPie;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -49,6 +52,20 @@ public class StatisticsController implements Initializable{
 				new PieChart.Data("선택안함", noGender)
 				));
 		genderPie.setLegendSide(Side.LEFT);
+		
+		// 회원권, 각 프로그램 별 Pie 차트
+		CmnMemShipScheDAO memShipScheDao = new CmnMemShipScheDAO();
+		ArrayList<CmnMemShipScheDTO> memShipSche = memShipScheDao.SltMemShipScheAll();
+		int memShip = 0;
+		for(CmnMemShipScheDTO m : memShipSche) {
+			System.out.println(m.getMEMSHIPSCHE_Code());
+			memShip++;
+		}
+		System.out.println(memShip);
+//		proPie.setData(FXCollections.observableArrayList(
+//				new PieChart.Data("회원권", memShip),
+//				new PieChart.Data("필라테스", 10)
+//				));
 		
 	}
 	

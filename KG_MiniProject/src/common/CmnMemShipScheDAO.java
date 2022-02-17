@@ -35,7 +35,7 @@ public class CmnMemShipScheDAO {
 			rs = ps.executeQuery();
 			CmnMemShipScheDTO tmpdata = new CmnMemShipScheDTO();
 			while (rs.next()) {
-				tmpdata.setMEM_Code(rs.getString("MEMSHIPSCHE_Code"));
+				tmpdata.setMEMSHIPSCHE_Code(rs.getString("MEMSHIPSCHE_Code"));
 				Datalist.add(tmpdata);
 			}
 		} catch (SQLException e) {

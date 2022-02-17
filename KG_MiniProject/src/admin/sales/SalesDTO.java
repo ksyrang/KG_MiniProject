@@ -20,11 +20,24 @@ public class SalesDTO {
 	private String PRMSCHE_Name; //2. 프로그램명
 	private String PRM_Name; //3. ex프로그램 종류 이름
 	private String MEMSHIP_Type; //3. 회원권 개월 수 숫자만 있음.
+	private String TRAINER_NAME; //7.강사이름
 	
 	
 	
 	
 	
+	public int getPRMSCHE_Price() {
+		return PRMSCHE_Price;
+	}
+	public void setPRMSCHE_Price(int pRMSCHE_Price) {
+		PRMSCHE_Price = pRMSCHE_Price;
+	}
+	public String getTRAINER_NAME() {
+		return TRAINER_NAME;
+	}
+	public void setTRAINER_NAME(String tRAINER_NAME) {
+		TRAINER_NAME = tRAINER_NAME;
+	}
 	public String getPAY_Code() {
 		return PAY_Code;
 	}
@@ -66,12 +79,6 @@ public class SalesDTO {
 	}
 	public void setMEMSHIP_Price(int mEMSHIP_Price) {
 		MEMSHIP_Price = mEMSHIP_Price;
-	}
-	public int getPRMSCHE_PRICE() {
-		return PRMSCHE_Price;
-	}
-	public void setPRMSCHE_PRICE(int pRMSCHE_Price) {
-		PRMSCHE_Price = pRMSCHE_Price;
 	}
 	public String getMEM_Code() {
 		return MEM_Code;

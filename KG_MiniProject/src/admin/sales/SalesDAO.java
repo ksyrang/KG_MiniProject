@@ -63,7 +63,7 @@ public class SalesDAO {
 				//가져올데이터
 				CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
 				CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheOne(rs.getString("PRMSCHE_Code"));
-				salesDto.setPRMSCHE_PRICE(cmnPrmScheDto.getPRMSCHE_Price());
+				salesDto.setPRMSCHE_Price(cmnPrmScheDto.getPRMSCHE_Price());
 				salesDto.setPRMSCHE_Name(cmnPrmScheDto.getPRMSCHE_Name());
 				
 				CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
@@ -79,7 +79,11 @@ public class SalesDAO {
 				CmnMemShipDTO cmnMemshipDto = cmnMemshipDao.SltMemShipOne(cmnMemShipScheDto.getMEMSHIP_Code());
 				salesDto.setMEMSHIP_Price(cmnMemshipDto.getMEMSHIP_Price());
 				salesDto.setMEMSHIP_Type("헬스 회원권" + cmnMemshipDto.getMEMSHIP_Type());
-
+				
+				CmnTrainerDAO cmnTrainerDao = new CmnTrainerDAO();
+				CmnTrainerDTO cmnTrainerDto = cmnTrainerDao.SltTrnOne(cmnPrmScheDto.getTRAINER_Code());
+				cmnTrainerDto.getTRAINER_Name();
+				
 				allList.add(salesDto);
 			}
 
@@ -88,6 +92,8 @@ public class SalesDAO {
 		}
 		return allList;
 	}
+
+
 	
 	
 	

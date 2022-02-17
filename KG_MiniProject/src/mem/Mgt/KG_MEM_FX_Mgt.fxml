@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mem.Mgt.MgtController">
    <top>
       <HBox prefHeight="50.0" prefWidth="500.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
@@ -49,16 +49,11 @@
                         <Insets left="10.0" top="13.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField maxWidth="160.0" prefHeight="20.0" prefWidth="120.0">
+                  <TextField fx:id="MemIDField" maxWidth="160.0" prefHeight="20.0" prefWidth="120.0">
                      <HBox.margin>
                         <Insets left="25.0" top="13.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button mnemonicParsing="false" text="중복확인">
-                     <HBox.margin>
-                        <Insets left="25.0" top="13.0" />
-                     </HBox.margin>
-                  </Button>
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="655.0">
@@ -68,7 +63,7 @@
                         <Insets left="10.0" top="13.0" />
                      </HBox.margin>
                   </Label>
-                  <PasswordField maxWidth="150.0" prefHeight="20.0" prefWidth="120.0">
+                  <PasswordField fx:id="MemPWField" maxWidth="150.0" prefHeight="20.0" prefWidth="120.0">
                      <HBox.margin>
                         <Insets left="25.0" top="13.0" />
                      </HBox.margin>
@@ -80,7 +75,7 @@
                   </Label>
                   <VBox prefHeight="60.0" prefWidth="200.0">
                      <children>
-                        <PasswordField maxWidth="150.0" prefHeight="20.0" prefWidth="150.0">
+                        <PasswordField fx:id="MemPWCField" maxWidth="150.0" prefHeight="20.0" prefWidth="150.0">
                            <VBox.margin>
                               <Insets left="25.0" top="10.0" />
                            </VBox.margin>
@@ -99,7 +94,7 @@
                         <Insets left="10.0" top="13.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField maxWidth="160.0" prefHeight="20.0" prefWidth="120.0">
+                  <TextField fx:id="MemNameField" maxWidth="160.0" prefHeight="20.0" prefWidth="120.0">
                      <HBox.margin>
                         <Insets left="25.0" top="13.0" />
                      </HBox.margin>
@@ -111,19 +106,11 @@
                   </Label>
                   <VBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField maxWidth="150.0" prefHeight="29.0" prefWidth="150.0" promptText="(ex:01012341234)">
+                        <TextField fx:id="MemMobileField" maxWidth="150.0" prefHeight="29.0" prefWidth="150.0" promptText="(ex:01012341234)">
                            <VBox.margin>
                               <Insets left="25.0" top="13.0" />
                            </VBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" text="중복확인">
-                           <font>
-                              <Font size="12.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="68.0" />
-                           </VBox.margin>
-                        </Button>
                      </children>
                   </VBox>
                </children>
@@ -135,7 +122,7 @@
                         <Insets left="10.0" top="13.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField maxWidth="160.0" prefHeight="20.0" prefWidth="120.0" promptText="(ex:19900101)">
+                  <TextField fx:id="MemBirthField" maxWidth="160.0" prefHeight="20.0" prefWidth="120.0" promptText="(ex:19900101)">
                      <HBox.margin>
                         <Insets left="25.0" top="13.0" />
                      </HBox.margin>
@@ -145,12 +132,12 @@
                         <Insets left="25.0" top="13.0" />
                      </HBox.margin>
                   </Label>
-                  <RadioButton mnemonicParsing="false" prefHeight="20.0" text="남">
+                  <RadioButton fx:id="MaleRabtn" mnemonicParsing="false" prefHeight="20.0" text="남">
                      <HBox.margin>
                         <Insets left="25.0" top="13.0" />
                      </HBox.margin>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" prefHeight="20.0" text="여">
+                  <RadioButton fx:id="FeMaleRabtn" mnemonicParsing="false" prefHeight="20.0" text="여">
                      <HBox.margin>
                         <Insets left="25.0" top="13.0" />
                      </HBox.margin>
@@ -166,12 +153,12 @@
                   </Label>
                   <VBox prefHeight="81.0" prefWidth="400.0">
                      <children>
-                        <TextField alignment="CENTER" maxWidth="350.0" prefHeight="20.0" prefWidth="350.0" promptText="도로명주소 or 지번주소">
+                        <TextField fx:id="MemAddr1" alignment="CENTER" maxWidth="350.0" prefHeight="20.0" prefWidth="350.0" promptText="도로명주소 or 지번주소">
                            <VBox.margin>
                               <Insets left="25.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField alignment="CENTER" maxWidth="350.0" prefHeight="20.0" prefWidth="350.0" promptText="상세주소">
+                        <TextField fx:id="MemAddr2" alignment="CENTER" maxWidth="350.0" prefHeight="20.0" prefWidth="350.0" promptText="상세주소">
                            <VBox.margin>
                               <Insets left="25.0" />
                            </VBox.margin>

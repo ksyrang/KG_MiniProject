@@ -9,7 +9,10 @@ import java.sql.SQLException;
 import admin.exProgramMgt.ExProgramMgtDTO;
 import common.CmnMemDAO;
 import common.CmnMemDTO;
+import common.CmnMemShipDAO;
 import common.CmnMemShipDTO;
+import common.CmnMemShipScheDAO;
+import common.CmnMemShipScheDTO;
 import common.CmnPrmDAO;
 import common.CmnPrmDTO;
 import common.CmnPrmScheDAO;
@@ -37,9 +40,9 @@ public class SalesDAO {
 	}
 	
 	
-	//tableView 모든 정보 업로드
+	//tableView 모든 정보 리턴
 	public ObservableList<SalesDTO> getAllInfo() {
-		String sql = "SELECT * FROM PRMSCHE_TB";
+		String sql = "SELECT * FROM PAY_TB";
 		PreparedStatement ps;
 		ResultSet rs;
 		ObservableList<SalesDTO> allList = FXCollections.observableArrayList();
@@ -65,21 +68,19 @@ public class SalesDAO {
 				
 				CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
 				CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(cmnPrmScheDto.getPRM_Code());
-				salesDto.setPRM_Name(sql);
+				salesDto.setPRM_Name(cmnPrmDto.getPRM_Name());
 				
-
-//				cmnMemshipDao = cmnMemshipDao = new CmnMemshipDAO();
-//				MEMSHIP_CODE = 
-//				CmnMemShipDTO = cmnMemshipDto = cmnMemshipDao.SltTrnOne("MEMSHIP_CODE");
-				salesDto.setMEMSHIP_Price(0);
-				salesDto.setMEMSHIP_Type(sql);
-
+				CmnMemShipScheDAO cmnMemShipScheDao = new CmnMemShipScheDAO();
+				CmnMemShipScheDTO cmnMemShipScheDto = cmnMemShipScheDao.SltMemShipScheOne(rs.getString("MEMSHIPSCHE_CODE"));
+				salesDto.setMEM_Code(cmnMemShipScheDto.getMEM_Code());
 				
-				CmnMemDAO cmnMemDao = new CmnMemDAO();
-//				CmnMemDTO cmnMemDto = cmnMemDao.SltMemOne();
-				salesDto.setMEM_Code(sql);
+				
+				CmnMemShipDAO cmnMemshipDao = new CmnMemShipDAO();
+				CmnMemShipDTO cmnMemshipDto = cmnMemshipDao.SltMemShipOne(cmnMemShipScheDto.getMEMSHIP_Code());
+				salesDto.setMEMSHIP_Price(cmnMemshipDto.getMEMSHIP_Price());
+				salesDto.setMEMSHIP_Type("헬스 회원권" + cmnMemshipDto.getMEMSHIP_Type());
 
-//				allList.add(exProgramMgtDto);
+				allList.add(salesDto);
 			}
 
 		} catch (SQLException e) {
@@ -87,5 +88,7 @@ public class SalesDAO {
 		}
 		return allList;
 	}
+	
+	
 	
 }

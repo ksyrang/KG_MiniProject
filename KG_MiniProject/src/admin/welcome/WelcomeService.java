@@ -122,7 +122,7 @@ public class WelcomeService {
 			
 			Scene scene = new Scene(salesForm);
 			Stage primaryStage = new Stage();
-			primaryStage.setTitle("adminWelcome");
+			primaryStage.setTitle("salesWelcome");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (IOException e) {

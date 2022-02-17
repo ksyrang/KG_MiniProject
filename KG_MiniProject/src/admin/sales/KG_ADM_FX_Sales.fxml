@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.sales.SalesController">
    <top>
       <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
@@ -43,7 +43,7 @@
    <bottom>
       <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" hgap="100.0" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="이전" />
+            <Button fx:id="cancelButton" alignment="CENTER" mnemonicParsing="false" onAction="#cancelButtonProc" prefHeight="30.0" prefWidth="100.0" text="이전" />
          </children>
          <BorderPane.margin>
             <Insets right="20.0" />
@@ -53,10 +53,16 @@
    <center>
       <VBox prefHeight="400.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="900.0" spacing="30.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="900.0" spacing="10.0">
                <children>
-                  <Label text="필터" />
-                  <ComboBox prefWidth="150.0" promptText="전체" />
+                  <Label text="필터 :" />
+                  <ComboBox fx:id="filterCombo" onAction="#filterComboProc" prefHeight="23.0" prefWidth="117.0" promptText="전체" />
+                  <Label text="세부항목 :">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </Label>
+                  <ComboBox fx:id="detailCombo" prefHeight="23.0" prefWidth="125.0" promptText="필터 선택 필요" />
                </children>
                <VBox.margin>
                   <Insets />
@@ -78,7 +84,7 @@
             <HBox prefHeight="30.0" prefWidth="200.0" spacing="5.0">
                <children>
                   <Label text="합계 금액 : " />
-                  <Label text="금액" />
+                  <Label fx:id="totalPriceLabel" text="금액" />
                   <Label text="원" />
                </children>
             </HBox>

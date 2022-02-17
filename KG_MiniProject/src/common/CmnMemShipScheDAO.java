@@ -51,6 +51,39 @@ public class CmnMemShipScheDAO {
 		}
 		return Datalist;
 	}
+	
+	public CmnMemShipScheDTO SltMemShipScheOne(String MEMSHIPSCHE_Code) {
+		CmnMemShipScheDTO tmpdata = null;
+		sql = "SELECT * FROM MEMSHIPSCHE_TB WHERE MEMSHIPSCHE_Code = ?" ;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, MEMSHIPSCHE_Code);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				tmpdata = new CmnMemShipScheDTO(
+				rs.getString("MEMSHIPSCHE_Code"),
+				rs.getDate("MEMSHIPSCHE_Strdate"),
+				rs.getDate("MEMSHIPSCHE_Enddate"),
+				rs.getString("MEMSHIP_Code"),
+				rs.getString("MEM_Code")
+				);
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		return tmpdata;		
+	}
+	
+	
+	//
 
 }
 

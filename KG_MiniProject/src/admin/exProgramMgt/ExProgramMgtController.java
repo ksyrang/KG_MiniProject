@@ -31,7 +31,6 @@ public class ExProgramMgtController implements Initializable{
 	@FXML private ComboBox<String> kindComboBox;
 	@FXML private DatePicker startDatePicker;
 	@FXML private DatePicker endDatePicker;
-	
 	@FXML private ListView<String> programListView;
 	@FXML private TableView<ExProTable> exProgramTableView;
 	@FXML private TableColumn<ExProTable, String> programName;

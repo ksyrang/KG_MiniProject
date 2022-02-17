@@ -56,7 +56,7 @@ public class CommonService {
 	
 	
 	//sql.LocalDate -> sql.Date
-	public static Date LocalDateCnvt(LocalDate dateToConvert) {
+	public static java.sql.Date LocalDateCnvt(LocalDate dateToConvert) {
 		
 		Date utilDate = java.sql.Date.valueOf(dateToConvert);
 		long timeInMilliSeconds = utilDate.getTime();

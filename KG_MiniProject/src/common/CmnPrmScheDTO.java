@@ -101,7 +101,7 @@ public class CmnPrmScheDTO {
 		return PRMSCHE_Price;
 	}
 
-	public void getPRMSCHE_Price(int pRMSCHE_Price) {
+	public void setPRMSCHE_Price(int pRMSCHE_Price) {
 		PRMSCHE_Price = pRMSCHE_Price;
 	}
 

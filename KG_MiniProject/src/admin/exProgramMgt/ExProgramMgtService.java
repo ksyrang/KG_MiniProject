@@ -138,8 +138,8 @@ public class ExProgramMgtService {
 		
 		LocalDate lStrDate = startDatePicker.getValue();
 		LocalDate lEndDate = endDatePicker.getValue();
-		Date strDate = (Date)CommonService.LocalDateCnvt(lStrDate);
-		Date endDate = (Date)CommonService.LocalDateCnvt(lEndDate);
+		Date strDate = CommonService.LocalDateCnvt(lStrDate);
+		Date endDate = CommonService.LocalDateCnvt(lEndDate);
 		
 	
 		String timeC ="";

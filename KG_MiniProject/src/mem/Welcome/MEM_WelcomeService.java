@@ -2,18 +2,18 @@ package mem.Welcome;
 
 import java.io.IOException;
 
-import common.CmnMemDAO;
-import common.CmnMemDTO;
+import common.CommonService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
+import mem.Mgt.MgtDAO;
+import mem.Mgt.MgtDTO;
 
 public class MEM_WelcomeService {
 	private MEM_WelcomeController memWelcomeController;
@@ -71,11 +71,11 @@ public class MEM_WelcomeService {
 			memWelcomeController.getMgtController().setMemberMgtForm(memMgtForm);
 			memWelcomeController.getMgtController().setMembCode(membCode);
 			
-		/*
+		
 			//회원 정보 get
 			//title sector set
 			Label titleUserName = (Label)memMgtForm.lookup("#TitleMemNameLabel");
-			CmnMemDTO tmpMemDto = new CmnMemDTO(new CmnMemDAO().SltMemOne(membCode));
+			MgtDTO tmpMemDto = new MgtDTO(new MgtDAO().selectCode(membCode));
 			titleUserName.setText(tmpMemDto.getMEM_Name()+" 회원님");
 			//초기 표시 설정
 			TextField IDField = (TextField)memMgtForm.lookup("#MemIDField");//기존 아이디 표시
@@ -111,7 +111,7 @@ public class MEM_WelcomeService {
 			Addr1Field.setText(tmpMemDto.getMEM_Addr());
 			Addr2Field.setText(tmpMemDto.getMEM_Addr());
 			
-		*/
+		
 			
 			Stage stage = new Stage();
 			stage.setScene(new Scene(memMgtForm));
@@ -124,8 +124,10 @@ public class MEM_WelcomeService {
 		
 	}
 	
-	public void logoutProc() {
-		// TODO Auto-generated method stub
+	public void logoutProc(Parent memWelcomeForm) {
+		CommonService.Msg("로그아웃 되셨습니다.");
+		CommonService.WindowClose(memWelcomeForm);
+		
 		
 	}
 

@@ -28,14 +28,9 @@
                   <Font size="20.0" />
                </font>
                <HBox.margin>
-                  <Insets left="200.0" top="10.0" />
+                  <Insets left="300.0" top="10.0" />
                </HBox.margin>
             </Label>
-            <Button fx:id="LogoutMgtbtn" mnemonicParsing="false" prefHeight="30.0" text="logout">
-               <HBox.margin>
-                  <Insets left="20.0" top="10.0" />
-               </HBox.margin>
-            </Button>
          </children>
       </HBox>
    </top>
@@ -176,7 +171,7 @@
    <bottom>
       <HBox prefHeight="49.0" prefWidth="335.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="MemMgtbtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="수정">
+            <Button fx:id="MemModifybtn" mnemonicParsing="false" onAction="#TnrModifyProc" prefHeight="30.0" prefWidth="100.0" text="수정">
                <HBox.margin>
                   <Insets left="34.0" />
                </HBox.margin>
@@ -186,7 +181,7 @@
                   <Insets left="66.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="MemBackbtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="취소">
+            <Button fx:id="MemBackbtn" mnemonicParsing="false" onAction="#BackMgtProc" prefHeight="30.0" prefWidth="100.0" text="취소">
                <HBox.margin>
                   <Insets left="66.0" />
                </HBox.margin>

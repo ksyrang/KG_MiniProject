@@ -67,6 +67,6 @@ public class MgtService {
 		CommonService.WindowClose(memMgtForm);
 	}
 	
-
+	
 
 }

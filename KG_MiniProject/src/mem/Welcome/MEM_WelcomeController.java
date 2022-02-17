@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import Main.main.MainService;
+import common.CommonService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -168,7 +169,9 @@ public class MEM_WelcomeController implements Initializable {
 		memWelcomeSvc.exProgramBuyingProc();
 	}
 	public void logoutProc() {
-		memWelcomeSvc.logoutProc();
+		memWelcomeSvc.logoutProc(memWelcomeForm);
+		CommonService.WindowClose(memWelcomeForm);
+
 	}
 	public void cancelProc() {
 		memWelcomeSvc.cancelProc();

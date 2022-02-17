@@ -62,7 +62,7 @@ public class MgtController implements Initializable{
 	public void BackMgtProc() {
 		mgtService.BackMgtProc(memMgtForm);
 	}
-		
+	
 	
 
 

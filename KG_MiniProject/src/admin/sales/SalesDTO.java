@@ -23,6 +23,8 @@ public class SalesDTO {
 	
 	
 	
+	
+	
 	public String getPAY_Code() {
 		return PAY_Code;
 	}

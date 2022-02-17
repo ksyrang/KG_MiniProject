@@ -1,6 +1,6 @@
 package trn.EXProgramMgt;
 
-import java.awt.TextField;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -41,9 +41,27 @@ public class TrnExPMgtController implements Initializable {
 //    @FXML
 //    private TextField LimitMemsField;
 	
+	
 	private TrnExPMgtService trnExPMgtsvc;
+	private Parent trnWelcomForm;
 	private Parent trnExPMgtForm;
 	private String trnCode;
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+
+	}
+	public void ExPDltProc() {//삭제
+		trnExPMgtsvc.ExPDltProc(trnExPMgtForm, trnWelcomForm);
+	}
+	
+	public void ExPMdyProc() {//수정
+		trnExPMgtsvc.ExPMdyProc(trnExPMgtForm, trnWelcomForm);
+	}
+	
+	public void BackProc() {
+		trnExPMgtsvc.backClose(trnExPMgtForm);
+	}
 	
 	public TrnExPMgtController() {
 		trnExPMgtsvc = new TrnExPMgtService();
@@ -56,21 +74,11 @@ public class TrnExPMgtController implements Initializable {
 		this.trnExPMgtForm = trnExPMgtForm;
 		trnExPMgtsvc.SetFxId(trnExPMgtForm);
 	}
-	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-
+	public Parent getTrnWelcomForm() {
+		return trnWelcomForm;
 	}
+	public void setTrnWelcomForm(Parent trnWelcomForm) {
+		this.trnWelcomForm = trnWelcomForm;
+	}	
 	
-	public void ExPDltProc() {//삭제
-		trnExPMgtsvc.ExPDltProc(trnExPMgtForm);
-	}
-	
-	public void ExPMdyProc() {//수정
-		trnExPMgtsvc.ExPMdyProc(trnExPMgtForm);
-	}
-	
-	public void BackProc() {
-		trnExPMgtsvc.backClose(trnExPMgtForm);
-	}
 }

@@ -68,18 +68,18 @@ public class SalesDAO {
 				salesDto.setPRM_Name(sql);
 				
 
-				cmnMemshipDao = cmnMemshipDao = new CmnMemshipDAO();
-				MEMSHIP_CODE = 
-				CmnMemShipDTO = cmnMemshipDto = cmnMemshipDao.SltTrnOne("MEMSHIP_CODE");
+//				cmnMemshipDao = cmnMemshipDao = new CmnMemshipDAO();
+//				MEMSHIP_CODE = 
+//				CmnMemShipDTO = cmnMemshipDto = cmnMemshipDao.SltTrnOne("MEMSHIP_CODE");
 				salesDto.setMEMSHIP_Price(0);
 				salesDto.setMEMSHIP_Type(sql);
 
 				
 				CmnMemDAO cmnMemDao = new CmnMemDAO();
-				CmnMemDTO cmnMemDto = cmnMemDao.SltMemOne();
+//				CmnMemDTO cmnMemDto = cmnMemDao.SltMemOne();
 				salesDto.setMEM_Code(sql);
 
-				allList.add(exProgramMgtDto);
+//				allList.add(exProgramMgtDto);
 			}
 
 		} catch (SQLException e) {

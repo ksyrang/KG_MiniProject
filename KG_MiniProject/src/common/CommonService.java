@@ -8,6 +8,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
@@ -53,8 +54,7 @@ public class CommonService {
 //		System.out.println(localDateTime); // 2021-06-20T21:09:20.461
 		return localDate;
 	}
-	
-	
+
 	//sql.LocalDate -> sql.Date
 	public static java.sql.Date LocalDateCnvt(LocalDate dateToConvert) {
 		
@@ -65,5 +65,14 @@ public class CommonService {
 		return sqlDate;
 		
 	}
+//	public static void OpenPage(Parent Form) {
+//		Stage  stage = new Stage();
+//		
+//		
+//		stage.setScene(new Scene(Form));
+//		stage.show();		
+//	}
+	
+	
 }
 

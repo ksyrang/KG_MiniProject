@@ -104,8 +104,8 @@ public class CmnPrmScheDAO {
 				+ "PRMSCHE_Strdate=?, PRMSCHE_Enddate=?, "
 				+ "PRMSCHE_Time=?, PRMSCHE_LimitP=?, "
 				+ "PRMSCHE_CurrentP=?, PRMSCHE_Price=?, "
-				+ "PRM_Code=?, TRAINER_Code=?, "
-				+ "PRMSCHE_Name=? WHERE PRMSCHE_Code=?";
+				+ "PRM_Code=?, TRAINER_Code=?, PRMSCHE_Name=? "
+				+ "WHERE PRMSCHE_Code=?";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setDate(1, DTO.getPRMSCHE_Strdate());

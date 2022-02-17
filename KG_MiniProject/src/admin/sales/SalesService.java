@@ -22,12 +22,12 @@ public class SalesService {
 		ObservableList<SalesTable> tableItems = FXCollections.observableArrayList();
 		ObservableList<SalesDTO> allList = salesDao.getAllInfo();
 		System.out.println("allList"+allList);
-		for(SalesDTO i : allList) {
-			tableItems.add(new ExProTable(i.getPRM_Name(), i.getPRMSCHE_Code(), i.getTRAINER_Name(),
-					i.getPRMSCHE_LimitP(), i.getPRMSCHE_CurrentP(), i.getPRMSCHE_Strdate(),
-					i.getPRMSCHE_Enddate(), i.getPRMSCHE_Price(), i.getPRMSCHE_Time()));
-		}
-		salesTableView.setItems(tableItems);
+//		for(SalesDTO i : allList) {
+//			tableItems.add(new ExProTable(i.getPRM_Name(), i.getPRMSCHE_Code(), i.getTRAINER_Name(),
+////					i.getPRMSCHE_LimitP(), i.getPRMSCHE_CurrentP(), i.getPRMSCHE_Strdate(),
+////					i.getPRMSCHE_Enddate(), i.getPRMSCHE_Price(), i.getPRMSCHE_Time()));
+//		}
+//		salesTableView.setItems(tableItems);
 		
 	}
 

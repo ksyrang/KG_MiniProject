@@ -79,6 +79,9 @@ public class TrnWelcomeController implements Initializable {
 	    MemsColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("MembersColumn"));
 //	    WelcomeSvc.InitTable(CurrentProgramTableList);
 	}
+	public void SortProc() {
+		System.out.println("손!");
+	}
 	
 	public void TrnClickProc() {
 		WelcomeSvc.TrnMgtOpen(trnCode);

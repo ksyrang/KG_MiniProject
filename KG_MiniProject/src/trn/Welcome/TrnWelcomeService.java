@@ -142,7 +142,7 @@ public class TrnWelcomeService {
 			trnWelcomeController.setTrnExpMgtController(loader.getController());
 			trnWelcomeController.getTrnExpMgtController().setTrnExProgramMgtForm(trnExPMgtFrom);
 			trnWelcomeController.getTrnExpMgtController().setTrnCode(trnWelcomeController.getTrnCode());
-
+			trnWelcomeController.getTrnExpMgtController().setTrnWelcomForm(form);
 			Label titleUserName = (Label)trnExPMgtFrom.lookup("#TitleUserNameLabel");
 			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnWelcomeController.getTrnCode()));
 			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");

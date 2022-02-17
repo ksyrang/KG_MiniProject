@@ -54,7 +54,7 @@
                   </Label>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <TableView fx:id="CurrentProgramTableList" onMouseClicked="#programclickPro" prefHeight="200.0" prefWidth="200.0">
+                        <TableView fx:id="CurrentProgramTableList" onInputMethodTextChanged="#SortProc" onMouseClicked="#programclickPro" prefHeight="200.0" prefWidth="200.0">
                            <columns>
                               <TableColumn fx:id="CodeColumn" minWidth="70.0" prefWidth="-1.0" text="코드번호" />
                               <TableColumn fx:id="NameColumn" minWidth="100.0" prefWidth="-1.0" text="프로그램 이름" />

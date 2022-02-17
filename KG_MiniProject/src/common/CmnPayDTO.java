@@ -20,7 +20,7 @@ public class CmnPayDTO {
 		PAY_Date = DTO.getPAY_Date();
 		MEMSHIPSCHE_Code = DTO.getMEMSHIPSCHE_Code();
 		RES_Code = DTO.getRES_Code();
-		PRMSCHE_Code = DTO.getMEMSHIPSCHE_Code();
+		PRMSCHE_Code = DTO.getPRMSCHE_Code();
 	}
 	public CmnPayDTO(String pAY_Code, String pAY_Type, 
 			Date pAY_Date, String mEMSHIPSCHE_Code, 

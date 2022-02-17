@@ -97,40 +97,37 @@
                   </Button>
                </children>
             </HBox>
-            <HBox alignment="CENTER" fillHeight="false" prefHeight="50.0" prefWidth="900.0">
+            <HBox alignment="CENTER" fillHeight="false" prefHeight="50.0" prefWidth="900.0" spacing="5.0">
                <children>
-                  <RadioButton fx:id="memberRadio" mnemonicParsing="false" prefHeight="20.0" prefWidth="70.0" text="회원">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <toggleGroup>
-                        <ToggleGroup fx:id="job" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="trainerRadio" mnemonicParsing="false" prefHeight="20.0" prefWidth="70.0" text="강사" toggleGroup="$job">
-                     <HBox.margin>
-                        <Insets left="30.0" />
-                     </HBox.margin>
-                  </RadioButton>
-                  <RadioButton fx:id="adminRadio" mnemonicParsing="false" prefHeight="20.0" prefWidth="70.0" text="관리자" toggleGroup="$job">
-                     <HBox.margin>
-                        <Insets left="30.0" />
-                     </HBox.margin>
-                  </RadioButton>
-                  <Label fx:id="FindIDLabel" onMouseClicked="#findIDProc" text="아이디 찾기" />
-                  <Label text="/">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label fx:id="findPWLabel" onMouseClicked="#findPWProc" prefHeight="18.0" prefWidth="94.0" text="비밀번호 찾기">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Label>
+                  <HBox spacing="200.0">
+                     <children>
+                        <HBox spacing="20.0">
+                           <children>
+                              <RadioButton fx:id="memberRadio" mnemonicParsing="false" prefHeight="20.0" prefWidth="70.0" text="회원">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="job" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="trainerRadio" mnemonicParsing="false" prefHeight="20.0" prefWidth="70.0" text="강사" toggleGroup="$job" />
+                              <RadioButton fx:id="adminRadio" mnemonicParsing="false" prefHeight="20.0" prefWidth="70.0" text="관리자" toggleGroup="$job" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="10.0">
+                           <children>
+                              <Label fx:id="FindIDLabel" onMouseClicked="#findIDProc" text="아이디 찾기" />
+                              <Label text="/" />
+                              <Label fx:id="findPWLabel" onMouseClicked="#findPWProc" prefHeight="18.0" prefWidth="94.0" text="비밀번호 찾기">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="60.0" />
+                     </padding>
+                  </HBox>
                </children>
                <FlowPane.margin>
                   <Insets />

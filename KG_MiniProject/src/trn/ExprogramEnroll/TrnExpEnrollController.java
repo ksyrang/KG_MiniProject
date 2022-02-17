@@ -26,7 +26,7 @@ public class TrnExpEnrollController implements Initializable {
 //    private Button Backbtn;
 //
 //    @FXML
-//    private ComboBox<String> ExPTypeBox;
+//    private ComboBox<?> ExPTypeBox;
 //
 //    @FXML
 //    private TextField ExPNameFeild;
@@ -42,36 +42,45 @@ public class TrnExpEnrollController implements Initializable {
 //
 //    @FXML
 //    private RadioButton AMRBtn;
+//
+//    @FXML
+//    private TextField LimitMemField;
+
 	
-	
-	
-	
-	private TrnExPEnrollService trnExPEnrollService;
+	private TrnExPEnrollService trnExPEnrollSvc;
 	private Parent trnExpEnrollForm;
 	private String trnCode;
 	
 	public TrnExpEnrollController() {
-		trnExPEnrollService = new TrnExPEnrollService();
+		trnExPEnrollSvc = new TrnExPEnrollService();
+		trnExPEnrollSvc.setTrnExpEnrollController(this);
 	}
-	
-	public void setTrnCode(String trnCode) {
-		this.trnCode = trnCode;
-	}
-	
-	public void setTrnExpEnrollForm(Parent trnExpEnrollForm) {
-		this.trnExpEnrollForm = trnExpEnrollForm;
-	}
+
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {		
 	
 	}
 	public void ExPErllProc(){
+		trnExPEnrollSvc.ExPErllProc(trnExpEnrollForm, trnCode);
 		
 	}
 	
 	public void BackProc() {
-		trnExPEnrollService.BackProc(trnExpEnrollForm);
+		trnExPEnrollSvc.BackProc(trnExpEnrollForm);
 	}
 	
+	
+	
+	public void setTrnCode(String trnCode) {
+		this.trnCode = trnCode;
+	}
+	
+	public String getTrnCode() {
+		return trnCode;
+	}
+	public void setTrnExpEnrollForm(Parent trnExpEnrollForm) {
+		this.trnExpEnrollForm = trnExpEnrollForm;
+		trnExPEnrollSvc.SetFxId(trnExpEnrollForm);
+	}
 }

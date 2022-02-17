@@ -17,6 +17,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -124,6 +126,27 @@ public class TrnWelcomeService {
 			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnWelcomeController.getTrnCode()));
 			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
 
+			ComboBox<String> ExPTypeBox = (ComboBox<String>)trnExPEnrollFrom.lookup("#ExPTypeBox");
+			TextField ExPNameFeild = (TextField)trnExPEnrollFrom.lookup("#ExPNameFeild");
+			RadioButton AMRBtn = (RadioButton)trnExPEnrollFrom.lookup("#AMRBtn");
+			RadioButton PMRBtn = (RadioButton)trnExPEnrollFrom.lookup("#PMRBtn");
+			DatePicker SrtDate = (DatePicker)trnExPEnrollFrom.lookup("#SrtDate");
+			DatePicker EndDate = (DatePicker)trnExPEnrollFrom.lookup("#EndDate");
+			TextField LimitMemField = (TextField)trnExPEnrollFrom.lookup("#LimitMemField");
+			
+			//set PRMType
+			ArrayList<CmnPrmDTO> TypeBoxList = new CmnPrmDAO().SltPrmAll();
+			for(CmnPrmDTO DTO : TypeBoxList) {
+				ExPTypeBox.getItems().add(DTO.getPRM_Name());
+			}
+			//Set Time Button
+			ToggleGroup group = new ToggleGroup();
+			AMRBtn.setToggleGroup(group);
+			PMRBtn.setToggleGroup(group);
+			AMRBtn.setSelected(true);
+			
+			
+			
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnExPEnrollFrom));
 			stage.setTitle("trnExPEnroll");
@@ -285,9 +308,9 @@ public class TrnWelcomeService {
 		CommonService.WindowClose(form);
 	}
 	
-	public void LogOut() {
+//	public void LogOut() {
 //		LogOut();
-	}
+//	}
 	
 	//NotUse
 //	private String getPrmScheData(String data) {

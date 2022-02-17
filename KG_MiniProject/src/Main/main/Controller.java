@@ -8,6 +8,7 @@ import mem.Enroll.EnrollController;
 import mem.FindID.FindIDController;
 import mem.FindPW.FindPWController;
 import mem.Mgt.MgtController;
+import mem.Welcome.MEM_WelcomeController;
 import trn.Welcome.TrnWelcomeController;
 
 //컨트롤러들의 참조 값을 저장하는 기능.
@@ -19,6 +20,7 @@ public class Controller {
 	private TrnWelcomeController trnWelcomeController;
 	private MainService mainService;
 	private Parent adminWelcomeForm;
+	private MEM_WelcomeController memWelcomeController;
 	private Parent memberWelcomeForm;
 	private Parent trainerWelcomeForm;
 	private Parent memberJoinForm;
@@ -66,6 +68,14 @@ public class Controller {
 		return trnWelcomeController;
 	}
 	
+	public MEM_WelcomeController getMEM_WelcomeController() {
+		return memWelcomeController;
+	}
+	
+	public void setMEM_WelcomeController(MEM_WelcomeController memWelcomeController) {
+		this.memWelcomeController = memWelcomeController;
+	}
+	
 	public void setEnrollController(EnrollController enrollController) {
 		this.enrollController = enrollController;
 	}
@@ -82,6 +92,8 @@ public class Controller {
 	public void setMemberJoinForm(Parent memberJoinForm) {
 		this.memberJoinForm = memberJoinForm;
 	}
+	
+	
 	
 	
 	public void settingEnroll() {

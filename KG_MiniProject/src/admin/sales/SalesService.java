@@ -153,10 +153,10 @@ public class SalesService {
 	
 	//DetailComboBox setting
 	public void detailComboSetting(String string, ComboBox<String> detailCombo) {
-<<<<<<< HEAD
+
 //		detailCombo.
 //		detailCombo.setValue(string);
-=======
+
 		detailCombo.getItems().removeAll();
 		if(string.equals("EXProgram")) {
 			CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
@@ -172,7 +172,7 @@ public class SalesService {
 			}
 		}
 		
->>>>>>> branch 'develop' of https://github.com/ksyrang/KG_MiniProject.git
+
 		
 	}
 	

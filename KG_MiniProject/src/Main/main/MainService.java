@@ -52,6 +52,9 @@ public class MainService {
 		try {
 			memberWelcomeForm = loader.load();
 			controller.setmemberWelcomeForm(memberWelcomeForm);
+			controller.setMEM_WelcomeController(loader.getController());
+			controller.getMEM_WelcomeController().setMemWelcomeForm(memberWelcomeForm);
+			controller.getMEM_WelcomeController().setMembCode(UserCode);
 			
 			Scene scene = new Scene(memberWelcomeForm);
 			Stage primaryStage = new Stage();

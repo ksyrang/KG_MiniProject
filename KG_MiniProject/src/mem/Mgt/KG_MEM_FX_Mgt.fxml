@@ -171,12 +171,12 @@
    <bottom>
       <HBox prefHeight="49.0" prefWidth="335.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="MemModifybtn" mnemonicParsing="false" onAction="#TnrModifyProc" prefHeight="30.0" prefWidth="100.0" text="수정">
+            <Button fx:id="MemModifybtn" mnemonicParsing="false" onAction="#MemModifyProc" prefHeight="30.0" prefWidth="100.0" text="수정">
                <HBox.margin>
                   <Insets left="34.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="Deletebtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="탈퇴">
+            <Button fx:id="Deletebtn" mnemonicParsing="false" onAction="#MemDeleteProc" prefHeight="30.0" prefWidth="100.0" text="탈퇴">
                <HBox.margin>
                   <Insets left="66.0" />
                </HBox.margin>

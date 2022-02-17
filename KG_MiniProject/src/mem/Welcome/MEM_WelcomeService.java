@@ -61,7 +61,7 @@ public class MEM_WelcomeService {
 		}
 	}
 	
-	//강사정보페이지
+	//회원정보페이지
 	public void memMgtOpen(String membCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/Mgt/KG_MEM_FX_Mgt.fxml"));
 		Parent memMgtForm;

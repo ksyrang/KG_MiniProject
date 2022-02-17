@@ -25,7 +25,7 @@ public class StatisticsController implements Initializable{
 		
 		//남녀 성비 Pie 차트
 		CmnMemDAO memDao = new CmnMemDAO();
-		ArrayList<CmnMemDTO> member = memDao.SltResAll();
+		ArrayList<CmnMemDTO> member = memDao.SltMemAll();
 		int menCnt = 0;
 		int womenCnt = 0;
 		int noGender = 0;

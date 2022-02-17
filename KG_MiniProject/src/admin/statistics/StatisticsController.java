@@ -8,6 +8,7 @@ import common.CmnMemDAO;
 import common.CmnMemDTO;
 import common.CmnMemShipScheDAO;
 import common.CmnMemShipScheDTO;
+import common.CommonService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,15 +63,21 @@ public class StatisticsController implements Initializable{
 			memShip++;
 		}
 		System.out.println(memShip);
-//		proPie.setData(FXCollections.observableArrayList(
-//				new PieChart.Data("회원권", memShip),
-//				new PieChart.Data("필라테스", 10)
-//				));
+		
+		proPie.setData(FXCollections.observableArrayList(
+				new PieChart.Data("회원권", memShip),
+				new PieChart.Data("필라테스", 10),
+				new PieChart.Data("요가", 7)
+				));
 		
 	}
 	
 	public void setStatisticsForm(Parent statisticsForm) {
 		this.statisticsForm = statisticsForm;
+	}
+	
+	public void staCloseProc() {
+		CommonService.WindowClose(statisticsForm);
 	}
 
 }

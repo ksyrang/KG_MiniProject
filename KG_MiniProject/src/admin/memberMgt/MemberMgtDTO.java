@@ -6,8 +6,8 @@ public class MemberMgtDTO {
 	private String mem_pw;
 	private String mem_name;
 	private String mem_gender;
-	private String mem_birth;
-	private String mem_mobile;
+	private int mem_birth;
+	private int mem_mobile;
 	private String mem_addr;
 	private String mem_approve;
 	
@@ -41,16 +41,16 @@ public class MemberMgtDTO {
 	public void setMem_gender(String mem_gender) {
 		this.mem_gender = mem_gender;
 	}
-	public String getMem_birth() {
+	public int getMem_birth() {
 		return mem_birth;
 	}
-	public void setMem_birth(String mem_birth) {
+	public void setMem_birth(int mem_birth) {
 		this.mem_birth = mem_birth;
 	}
-	public String getMem_mobile() {
+	public int getMem_mobile() {
 		return mem_mobile;
 	}
-	public void setMem_mobile(String mem_mobile) {
+	public void setMem_mobile(int mem_mobile) {
 		this.mem_mobile = mem_mobile;
 	}
 	public String getMem_addr() {

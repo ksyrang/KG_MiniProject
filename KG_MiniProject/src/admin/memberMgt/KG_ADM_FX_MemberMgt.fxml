@@ -180,8 +180,8 @@
                               <Label text="주소" />
                               <VBox prefHeight="58.0" prefWidth="321.0" spacing="5.0">
                                  <children>
-                                    <TextField fx:id="addrtxt" />
-                                    <TextField />
+                                    <TextField fx:id="addrtxt1" />
+                                    <TextField fx:id="addrtxt2" />
                                  </children>
                                  <HBox.margin>
                                     <Insets left="40.0" />

@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 import common.CmnMemDAO;
 import common.CmnMemDTO;
 import common.CmnMemShipScheDAO;
-import common.CmnMemShipScheDTO;
 import common.CmnPrmDAO;
 import common.CmnPrmDTO;
 import common.CmnPrmScheDAO;
@@ -17,7 +16,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Side;
 import javafx.scene.Parent;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.PieChart.Data;
@@ -58,14 +56,13 @@ public class StatisticsController implements Initializable{
 				new PieChart.Data("여", womenCnt),
 				new PieChart.Data("선택안함", noGender)
 				));
-		genderPie.setLegendSide(Side.LEFT);
 		
 		// 회원권, 각 프로그램 별 Pie 차트
 		// 회원권 갯수
 		CmnMemShipScheDAO memShipScheDao = new CmnMemShipScheDAO();
 		int memshipSche = memShipScheDao.CntMemShipSche();
 		
-		// 각 프로그램
+		// 각 프로그램 갯수
 		CmnPrmDAO prmDao = new CmnPrmDAO();
 		ArrayList<CmnPrmDTO> prmDto = prmDao.SltPrmAll();
 		
@@ -83,12 +80,6 @@ public class StatisticsController implements Initializable{
 			list.add(new PieChart.Data(m.getPRM_Name(), prmSche));
 		}
 		proPie.setData(list);
-		
-//		proPie.setData(FXCollections.observableArrayList(
-//				new PieChart.Data("회원권", memShip),
-//				new PieChart.Data("필라테스", 10),
-//				new PieChart.Data("요가", 7)
-//				));
 		
 	}
 	

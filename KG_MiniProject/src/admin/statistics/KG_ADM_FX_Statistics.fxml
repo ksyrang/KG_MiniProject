@@ -62,7 +62,7 @@
                   <VBox prefHeight="200.0" prefWidth="435.0">
                      <children>
                         <Label text="남여 성비" />
-                        <PieChart fx:id="genderPie" />
+                        <PieChart fx:id="genderPie" legendVisible="false" />
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="435.0">

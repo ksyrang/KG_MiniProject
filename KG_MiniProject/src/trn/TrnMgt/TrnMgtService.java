@@ -10,20 +10,20 @@ import javafx.scene.control.TextField;
 
 public class TrnMgtService {
 
-	public void TnrModifyProc(Parent Form, String TrnCode) {
+	public void TnrModifyProc(Parent trnMgtForm, String TrnCode) {
 		CmnTrainerDAO tmpDAO = new CmnTrainerDAO();
 		CmnTrainerDTO tmpDto = new CmnTrainerDTO(tmpDAO.SltTrnOne(TrnCode));
 		
-		PasswordField PWField = (PasswordField)Form.lookup("#TrnPWField");
-		PasswordField PWCField = (PasswordField)Form.lookup("#TrnPWCField");
-		TextField NameField = (TextField)Form.lookup("#TrnNameField");//변경 이름
-		TextField BirthField = (TextField)Form.lookup("#TrnBirthField");//변경 생일
-		TextField MobileField = (TextField)Form.lookup("#TrnMobileField");//변경 전번
-		RadioButton MaleRtn = (RadioButton)Form.lookup("#MaleRbtn");//남자버튼
-		RadioButton FeMaleRtn = (RadioButton)Form.lookup("#FeMaleRbtn");//여자버튼
-		TextField Addr1Field = (TextField)Form.lookup("#TrnAddr1");//변경 주소
-		TextField Addr2Field = (TextField)Form.lookup("#TrnAddr2");//변경 주소
-		TextField CareerField = (TextField)Form.lookup("#TrnCareer");//변경 커리어
+		PasswordField PWField = (PasswordField)trnMgtForm.lookup("#TrnPWField");
+		PasswordField PWCField = (PasswordField)trnMgtForm.lookup("#TrnPWCField");
+		TextField NameField = (TextField)trnMgtForm.lookup("#TrnNameField");//변경 이름
+		TextField BirthField = (TextField)trnMgtForm.lookup("#TrnBirthField");//변경 생일
+		TextField MobileField = (TextField)trnMgtForm.lookup("#TrnMobileField");//변경 전번
+		RadioButton MaleRtn = (RadioButton)trnMgtForm.lookup("#MaleRbtn");//남자버튼
+		RadioButton FeMaleRtn = (RadioButton)trnMgtForm.lookup("#FeMaleRbtn");//여자버튼
+		TextField Addr1Field = (TextField)trnMgtForm.lookup("#TrnAddr1");//변경 주소
+		TextField Addr2Field = (TextField)trnMgtForm.lookup("#TrnAddr2");//변경 주소
+		TextField CareerField = (TextField)trnMgtForm.lookup("#TrnCareer");//변경 커리어
 		//변경사항 업데이트
 		if(!PWField.getText().isEmpty() && !PWCField.getText().isEmpty()) {//정상 입력 조건
 			if(PWField.getText().equals(PWCField.getText())){//입력 값이 동일하다는 조건
@@ -38,7 +38,7 @@ public class TrnMgtService {
 				int result = tmpDAO.UptTrn(tmpDto);
 				if(result == 1) {
 					CommonService.Msg("수정완료");
-					CommonService.WindowClose(Form);
+					CommonService.WindowClose(trnMgtForm);
 				}
 				else CommonService.Msg("이상 발생");
 			}else {

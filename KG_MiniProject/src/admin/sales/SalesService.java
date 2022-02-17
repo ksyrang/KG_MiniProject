@@ -121,7 +121,7 @@ public class SalesService {
 	//DetailComboBox setting
 
 	public void detailComboSetting(String string, ComboBox<String> detailCombo) {
-		detailCombo.
+//		detailCombo.
 //		detailCombo.setValue(string);
 		
 	}

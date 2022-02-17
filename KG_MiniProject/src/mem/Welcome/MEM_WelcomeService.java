@@ -62,19 +62,20 @@ public class MEM_WelcomeService {
 	}
 	
 	//강사정보페이지
-	public void memMgtOpen(String memCode) {
+	public void memMgtOpen(String membCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/Mgt/KG_MEM_FX_Mgt.fxml"));
 		Parent memMgtForm;
 		try {
 			memMgtForm = loader.load();
 			memWelcomeController.setMgtController(loader.getController());
 			memWelcomeController.getMgtController().setMemberMgtForm(memMgtForm);
-			memWelcomeController.getMgtController().setMemCode(memCode);
-		
+			memWelcomeController.getMgtController().setMembCode(membCode);
+			
+		/*
 			//회원 정보 get
 			//title sector set
 			Label titleUserName = (Label)memMgtForm.lookup("#TitleMemNameLabel");
-			CmnMemDTO tmpMemDto = new CmnMemDTO(new CmnMemDAO().SltMemOne(memCode));
+			CmnMemDTO tmpMemDto = new CmnMemDTO(new CmnMemDAO().SltMemOne(membCode));
 			titleUserName.setText(tmpMemDto.getMEM_Name()+" 회원님");
 			//초기 표시 설정
 			TextField IDField = (TextField)memMgtForm.lookup("#MemIDField");//기존 아이디 표시
@@ -110,7 +111,7 @@ public class MEM_WelcomeService {
 			Addr1Field.setText(tmpMemDto.getMEM_Addr());
 			Addr2Field.setText(tmpMemDto.getMEM_Addr());
 			
-		
+		*/
 			
 			Stage stage = new Stage();
 			stage.setScene(new Scene(memMgtForm));

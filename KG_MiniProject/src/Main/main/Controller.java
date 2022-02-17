@@ -27,7 +27,6 @@ public class Controller {
 	private Parent memberFindPWForm;
 	private Stage stage;
 	private Scene scene;
-	private MgtController mgtController;
 	private Parent memberMgtForm;
 	
 	public Stage getStage() {

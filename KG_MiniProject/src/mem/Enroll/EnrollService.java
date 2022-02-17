@@ -104,14 +104,14 @@ public class EnrollService {
 			if(enrollDTO == null) {
 				enrollDTO = new EnrollDTO();
 				enrollDTO.setMEM_Code("mem" + id);
-				enrollDTO.setID(id);
-				enrollDTO.setPW(pw);
-				enrollDTO.setName(name);
-				enrollDTO.setGender(gender);
-				enrollDTO.setBirth(Integer.parseInt(birth));
-				enrollDTO.setMobile(Integer.parseInt(mobile));
-				enrollDTO.setAddr(addr);
-				enrollDTO.setApprove(approve);
+				enrollDTO.setMEM_ID(id);
+				enrollDTO.setMEM_PW(pw);
+				enrollDTO.setMEM_Name(name);
+				enrollDTO.setMEM_Gender(gender);
+				enrollDTO.setMEM_Birth(Integer.parseInt(birth));
+				enrollDTO.setMEM_Mobile(Integer.parseInt(mobile));
+				enrollDTO.setMEM_Addr(addr);
+				enrollDTO.setMEM_Approve(approve);
 				
 				enrollDAO.insert(enrollDTO);
 				CommonService.Msg(id + " 계정이 등록되었습니다.");			

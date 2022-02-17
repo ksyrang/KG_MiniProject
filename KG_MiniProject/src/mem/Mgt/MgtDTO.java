@@ -1,6 +1,6 @@
-package common;
+package mem.Mgt;
 
-public class CmnMemDTO {
+public class MgtDTO {
 	private String MEM_Code; //PK
 	private String MEM_ID;
 	private String MEM_PW;
@@ -15,11 +15,11 @@ public class CmnMemDTO {
 	private String MEMSHIPSCHE_Code;
 	private String MEM_Approve;
 	
-	public CmnMemDTO() {
+	public MgtDTO() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public CmnMemDTO(CmnMemDTO cmnMemDTO) {
+	
+	public MgtDTO(MgtDTO cmnMemDTO) {
 		MEM_Code = cmnMemDTO.getMEM_Code();
 		MEM_ID = cmnMemDTO.getMEM_ID();
 		MEM_PW = cmnMemDTO.getMEM_PW();
@@ -33,7 +33,7 @@ public class CmnMemDTO {
 		MEM_Approve = cmnMemDTO.getMEM_Approve();
 	}
 	
-	public CmnMemDTO(String mEM_Code, String mEM_ID, String mEM_PW, String mEM_Name, String mEM_Gender, int mEM_Birth,
+	public MgtDTO(String mEM_Code, String mEM_ID, String mEM_PW, String mEM_Name, String mEM_Gender, int mEM_Birth,
 			int mEM_Mobile, String mEM_Addr, String pRMSCHE_Code, String mEMSHIPSCHE_Code, String mEM_Approve) {
 		super();
 		MEM_Code = mEM_Code;

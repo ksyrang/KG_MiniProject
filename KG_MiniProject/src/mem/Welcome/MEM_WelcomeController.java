@@ -26,7 +26,7 @@ public class MEM_WelcomeController implements Initializable {
 	private MEM_WelcomeController memWelcomeController;
 	private MgtController memMgtController;
 	private Parent memWelcomeForm;
-	private String memCode;
+	private String membCode;
 	
 	
 	
@@ -47,6 +47,7 @@ public class MEM_WelcomeController implements Initializable {
 	
 	ObservableList<MEM_WelcomeMgtTable> obserList;
 	
+	
 	public MEM_WelcomeController() {
 		memWelcomeSvc = new MEM_WelcomeService();
 		memWelcomeSvc.setMEM_WelcomeController(this);
@@ -60,12 +61,12 @@ public class MEM_WelcomeController implements Initializable {
 		this.memWelcomeController = memWelcomeController;
 	}
 	
-	public String getMemCode() {
-		return this.memCode;
+	public String getMembCode() {
+		return this.membCode;
 	}
 	
-	public void setMemCode(String memCode) {
-		this.memCode = memCode;
+	public void setMembCode(String membCode) {
+		this.membCode = membCode;
 	}
 	
 	public MgtController getMgtController() {
@@ -83,7 +84,8 @@ public class MEM_WelcomeController implements Initializable {
 	}
 	
 	public void MemClickProc() {
-		memWelcomeSvc.memMgtOpen(memCode);
+		System.out.println(membCode);
+		memWelcomeSvc.memMgtOpen(membCode);
 	}
 	
 	@Override

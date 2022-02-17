@@ -39,14 +39,14 @@ public class EnrollDAO {
 				EnrollDTO enrDTO = new EnrollDTO();
 				
 
-				enrDTO.setID(rs.getString("mem_ID"));
-				enrDTO.setPW(rs.getString("mem_PW"));
-				enrDTO.setName(rs.getString("mem_Name"));
-				enrDTO.setGender(rs.getString("mem_gender"));
-				enrDTO.setBirth(rs.getInt("mem_Birth"));
-				enrDTO.setMobile(rs.getInt("mem_Mobile"));
-				enrDTO.setAddr(rs.getString("mem_Addr"));
-				enrDTO.setApprove(rs.getString("mem_approve"));
+				enrDTO.setMEM_ID(rs.getString("mem_ID"));
+				enrDTO.setMEM_PW(rs.getString("mem_PW"));
+				enrDTO.setMEM_Name(rs.getString("mem_Name"));
+				enrDTO.setMEM_Gender(rs.getString("mem_gender"));
+				enrDTO.setMEM_Birth(rs.getInt("mem_Birth"));
+				enrDTO.setMEM_Mobile(rs.getInt("mem_Mobile"));
+				enrDTO.setMEM_Addr(rs.getString("mem_Addr"));
+				enrDTO.setMEM_Approve(rs.getString("mem_approve"));
 				return enrDTO;
 			}
 		} catch (Exception e) {
@@ -68,14 +68,14 @@ public class EnrollDAO {
 				EnrollDTO enrDTO = new EnrollDTO();
 				
 
-				enrDTO.setID(rs.getString("mem_ID"));
-				enrDTO.setPW(rs.getString("mem_PW"));
-				enrDTO.setName(rs.getString("mem_Name"));
-				enrDTO.setGender(rs.getString("mem_gender"));
-				enrDTO.setBirth(rs.getInt("mem_Birth"));
-				enrDTO.setMobile(rs.getInt("mem_Mobile"));
-				enrDTO.setAddr(rs.getString("mem_Addr"));
-				enrDTO.setApprove(rs.getString("mem_approve"));
+				enrDTO.setMEM_ID(rs.getString("mem_ID"));
+				enrDTO.setMEM_PW(rs.getString("mem_PW"));
+				enrDTO.setMEM_Name(rs.getString("mem_Name"));
+				enrDTO.setMEM_Gender(rs.getString("mem_gender"));
+				enrDTO.setMEM_Birth(rs.getInt("mem_Birth"));
+				enrDTO.setMEM_Mobile(rs.getInt("mem_Mobile"));
+				enrDTO.setMEM_Addr(rs.getString("mem_Addr"));
+				enrDTO.setMEM_Approve(rs.getString("mem_approve"));
 				return enrDTO;
 			}
 		} catch (Exception e) {
@@ -84,20 +84,22 @@ public class EnrollDAO {
 		return null;
 	}
 	public int insert(EnrollDTO enrDTO) {
-		String sql = "INSERT INTO MEM_TB(MEM_CODE, mem_id, mem_pw,mem_name,mem_gender, mem_birth, mem_mobile,mem_addr, mem_approve) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO MEM_TB VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps;
 		int result = 0;
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, enrDTO.getMEM_Code());
-			ps.setString(2, enrDTO.getID());
-			ps.setString(3, enrDTO.getPW());
-			ps.setString(4, enrDTO.getName());
-			ps.setString(5, enrDTO.getGender());
-			ps.setLong(6, enrDTO.getBirth());
-			ps.setLong(7, enrDTO.getMobile());
-			ps.setString(8, enrDTO.getAddr());
-			ps.setString(9, enrDTO.getApprove());
+			ps.setString(2, enrDTO.getMEM_ID());
+			ps.setString(3, enrDTO.getMEM_PW());
+			ps.setString(4, enrDTO.getMEM_Name());
+			ps.setString(5, enrDTO.getMEM_Gender());
+			ps.setLong(6, enrDTO.getMEM_Birth());
+			ps.setLong(7, enrDTO.getMEM_Mobile());
+			ps.setString(8, enrDTO.getMEM_Addr());
+			ps.setString(9, enrDTO.getPRMSCHE_Code());
+			ps.setString(10, enrDTO.getMEMSHIPSCHE_Code());
+			ps.setString(11, enrDTO.getMEM_Approve());
 			
 			result = ps.executeUpdate();
 		} catch (SQLException e) {

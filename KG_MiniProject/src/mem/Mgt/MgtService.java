@@ -14,9 +14,9 @@ import javafx.scene.control.TextField;
 
 public class MgtService {
 	
-	public void MemModifyProc(Parent memMgtForm, String memCode) {
-		CmnMemDAO tmpDAO = new CmnMemDAO();
-		CmnMemDTO tmpDto = new CmnMemDTO(tmpDAO.SltMemOne(memCode));
+	public void MemModifyProc(Parent memMgtForm, String MemCode) {
+		MgtDAO tmpDAO = new MgtDAO();
+		MgtDTO tmpDto = new MgtDTO(tmpDAO.selectCode(MemCode));
 		
 		PasswordField PWField = (PasswordField)memMgtForm.lookup("#MemPWField");
 		PasswordField PWCField = (PasswordField)memMgtForm.lookup("#MemPWCField");

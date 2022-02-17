@@ -33,9 +33,16 @@ public class CmnPrmScheDAO {
 	public int IstPrmSche(CmnPrmScheDTO DTO) {
 		int result = 0;
 		sql = "INSERT INTO PRMSCHE_TB "+
-				"(PRMSCHE_Code, PRMSCHE_Strdate, PRMSCHE_Enddate, PRMSCHE_Time, PRMSCHE_LimitP, "+
-				"PRMSCHE_CurrentP, PRMSCHE_Price, PRMSCHE_Name, "+
-				"PRM_Code, TRAINER_Code)"+
+				"(PRMSCHE_Code, "
+				+ "PRMSCHE_Strdate, "
+				+ "PRMSCHE_Enddate, "
+				+ "PRMSCHE_Time, "
+				+ "PRMSCHE_LimitP, "
+				+ "PRMSCHE_CurrentP, "
+				+ "PRMSCHE_Price, "
+				+ "PRM_Code, "
+				+ "TRAINER_Code, "
+				+ "PRMSCHE_Name)"+
 				"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			ps = con.prepareStatement(sql);
@@ -187,25 +194,26 @@ public class CmnPrmScheDAO {
 		}
 		return Datalist;
 	}
-	public ArrayList<CmnPrmScheDTO> SltPrmScheAllbyPrm(String PRM_Code){
+	public ArrayList<CmnPrmScheDTO> SltPrmScheAllbyPrm(String PRM_CODE){
 		ArrayList<CmnPrmScheDTO> Datalist = new ArrayList<>();
 		CmnPrmScheDTO tmpdata = null;
-		sql = "SELECT * FROM PRMSCHE_TB WHERE PRM_Code=?";
+		sql = "SELECT * FROM PRMSCHE_TB WHERE PRM_CODE = ?";
 		try {
 			ps = con.prepareStatement(sql);
+			ps.setString(1, PRM_CODE);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				tmpdata = new CmnPrmScheDTO(
-					rs.getString("PRMSCHE_Code"),
-					rs.getDate("PRMSCHE_Strdate"),
-					rs.getDate("PRMSCHE_Enddate"),
-					rs.getString("PRMSCHE_Time"),
-					rs.getInt("PRMSCHE_LimitP"),
-					rs.getInt("PRMSCHE_CurrentP"),
-					rs.getInt("PRMSCHE_Price"),
-					rs.getString("PRM_Code"),
-					rs.getString("TRAINER_Code"),
-					rs.getString("PRMSCHE_Name")
+					rs.getString("PRMSCHE_CODE"),
+					rs.getDate("PRMSCHE_STRDATE"),
+					rs.getDate("PRMSCHE_ENDDATE"),
+					rs.getString("PRMSCHE_TIME"),
+					rs.getInt("PRMSCHE_LIMITP"),
+					rs.getInt("PRMSCHE_CURRENTP"),
+					rs.getInt("PRMSCHE_PRICE"),
+					rs.getString("PRM_CODE"),
+					rs.getString("TRAINER_CODE"),
+					rs.getString("PRMSCHE_NAME")
 				);
 				Datalist.add(tmpdata);
 			}

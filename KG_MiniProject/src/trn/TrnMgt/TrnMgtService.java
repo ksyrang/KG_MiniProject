@@ -7,9 +7,16 @@ import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import trn.Welcome.TrnWelcomeController;
 
 public class TrnMgtService {
 
+	private TrnMgtController TrnMgtController;
+	
+	public void setTrnMgtController(TrnMgtController trnMgtController) {
+		this.TrnMgtController = trnMgtController;
+	}
+	
 	public void TnrModifyProc(Parent trnMgtForm, String TrnCode) {
 		CmnTrainerDAO tmpDAO = new CmnTrainerDAO();
 		CmnTrainerDTO tmpDto = new CmnTrainerDTO(tmpDAO.SltTrnOne(TrnCode));

@@ -79,9 +79,6 @@ public class TrnWelcomeController implements Initializable {
 	    MemsColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("MembersColumn"));
 //	    WelcomeSvc.InitTable(CurrentProgramTableList);
 	}
-	public void SortProc() {
-		System.out.println("손!");
-	}
 	
 	public void TrnClickProc() {
 		WelcomeSvc.TrnMgtOpen(trnCode);
@@ -105,7 +102,7 @@ public class TrnWelcomeController implements Initializable {
 	}
 	public void LogOutProc(){
 		System.out.println("logout");
-		WelcomeSvc.LogOut();
+//		WelcomeSvc.LogOut();
 //		WelcomeSvc.ShutDown(WelcomeForm);
 		
 	}
@@ -114,7 +111,7 @@ public class TrnWelcomeController implements Initializable {
 	}
 
 	public void setTrnCode(String trnCode) {
-		this.trnCode = trnCode;
+		this.trnCode = trnCode;		
 	}
 
 	public TrnWelcomeController getTrnWelcomeController() {

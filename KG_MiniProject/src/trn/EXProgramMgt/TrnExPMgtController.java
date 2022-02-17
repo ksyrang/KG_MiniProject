@@ -47,6 +47,11 @@ public class TrnExPMgtController implements Initializable {
 	private Parent trnExPMgtForm;
 	private String trnCode;
 
+	public TrnExPMgtController() {
+		trnExPMgtsvc = new TrnExPMgtService();
+		trnExPMgtsvc.setTrnExPMgtController(this);
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -63,13 +68,15 @@ public class TrnExPMgtController implements Initializable {
 		trnExPMgtsvc.backClose(trnExPMgtForm);
 	}
 	
-	public TrnExPMgtController() {
-		trnExPMgtsvc = new TrnExPMgtService();
-	}
+	
+	
 	public void setTrnCode(String trnCode) {
 		this.trnCode = trnCode;
 	}
-
+	public String getTrnCode() {
+		return trnCode;
+	}
+	
 	public void setTrnExProgramMgtForm(Parent trnExPMgtForm) {
 		this.trnExPMgtForm = trnExPMgtForm;
 		trnExPMgtsvc.SetFxId(trnExPMgtForm);

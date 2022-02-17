@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class CmnPrmDAO {
 	//TB명 : PRM_TB
 	private String sql = "";
@@ -96,7 +99,31 @@ public class CmnPrmDAO {
 		}
 		return Datalist;
 	}
-	
+
+	public ObservableList<CmnPrmDTO> SltPrmAllOb(){
+		ObservableList<CmnPrmDTO> Datalist = FXCollections.observableArrayList();
+		CmnPrmDTO tmpdata = null;
+		sql = "SELECT * FROM PRM_TB" ;
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				tmpdata = new CmnPrmDTO(rs.getString("PRM_Code"), rs.getString("PRM_Name"));
+				Datalist.add(tmpdata);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		return Datalist;
+	}
 	
 	
 	

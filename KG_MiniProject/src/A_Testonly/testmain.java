@@ -1,6 +1,7 @@
 package A_Testonly;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 import common.*; 
 
@@ -23,6 +24,13 @@ public class testmain {
 //		String Trn_Code = "All";
 //		testTrnTB(Trn_Code);
 		String PrmSche_Code = "0";
+		
+//		ArrayList<CmnPrmScheDTO> test = new CmnPrmScheDAO().SltPrmScheAllbyPrm("강의코드");
+//		for(CmnPrmScheDTO E: test) {
+//			System.out.println("강의코드가 넣어져있는 코드들"+ E.getPRMSCHE_Code());
+//			
+//		}
+		
 //		testPrmScheTB(PrmSche_Code);
 		
 //		CmnMemDAO CmnMemDAO = new CmnMemDAO();
@@ -160,27 +168,27 @@ public class testmain {
 		}
 	}
 	
-	private static void testPayTB(String Code) {		
-		CmnPayDAO CmnPayDAO = new CmnPayDAO();
-		if(Code.equals("All")) {
-			System.out.println("==allpaylis==");
-			for(CmnPayDTO dto : CmnPayDAO.SltPayAll()) {
-				System.out.println("PAY_Code: "+dto.getPAY_Code());
-				System.out.println("PAY_Type: "+dto.getPAY_Type());
-				System.out.println("PAY_Date: "+dto.getPAY_Date());
-				System.out.println("MEMSHIPSCHE_Code: "+dto.getMEMSHIPSCHE_Code());
-				System.out.println("RES_Code: "+dto.getRES_Code());
-				System.out.println("=split line=");
-			}
-		}else {
-			CmnPayDTO CmnPayDTO = new CmnPayDTO(CmnPayDAO.SltPayOne(Code));
-			System.out.println("PAY_Code: "+CmnPayDTO.getPAY_Code());
-			System.out.println("PAY_Type: "+CmnPayDTO.getPAY_Type());
-			System.out.println("PAY_Date: "+CmnPayDTO.getPAY_Date());
-			System.out.println("MEMSHIPSCHE_Code: "+CmnPayDTO.getMEMSHIPSCHE_Code());
-			System.out.println("RES_Code: "+CmnPayDTO.getRES_Code());
-		}
-	}
+//	private static void testPayTB(String Code) {		
+//		CmnPayDAO CmnPayDAO = new CmnPayDAO();
+//		if(Code.equals("All")) {
+//			System.out.println("==allpaylis==");
+//			for(CmnPayDTO dto : CmnPayDAO.SltPayAll()) {
+//				System.out.println("PAY_Code: "+dto.getPAY_Code());
+//				System.out.println("PAY_Type: "+dto.getPAY_Type());
+//				System.out.println("PAY_Date: "+dto.getPAY_Date());
+//				System.out.println("MEMSHIPSCHE_Code: "+dto.getMEMSHIPSCHE_Code());
+//				System.out.println("RES_Code: "+dto.getRES_Code());
+//				System.out.println("=split line=");
+//			}
+//		}else {
+//			CmnPayDTO CmnPayDTO = new CmnPayDTO(CmnPayDAO.SltPayOne(Code));
+//			System.out.println("PAY_Code: "+CmnPayDTO.getPAY_Code());
+//			System.out.println("PAY_Type: "+CmnPayDTO.getPAY_Type());
+//			System.out.println("PAY_Date: "+CmnPayDTO.getPAY_Date());
+//			System.out.println("MEMSHIPSCHE_Code: "+CmnPayDTO.getMEMSHIPSCHE_Code());
+//			System.out.println("RES_Code: "+CmnPayDTO.getRES_Code());
+//		}
+//	}
 	
 	
 

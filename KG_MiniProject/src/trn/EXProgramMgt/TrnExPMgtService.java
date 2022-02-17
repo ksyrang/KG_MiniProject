@@ -22,6 +22,7 @@ public class TrnExPMgtService {
 	private CmnPrmScheDAO PRMSCHE;
 	
 	public void ExPDltProc(Parent Form) {//삭제
+		
 		PRMSCHE = new CmnPrmScheDAO();
 		int result = 0; 
 		result = PRMSCHE.DltPrmSche(PRMSCHE.SltPrmScheOne(PrmScheCodeLabel.getText()).getPRMSCHE_Code());

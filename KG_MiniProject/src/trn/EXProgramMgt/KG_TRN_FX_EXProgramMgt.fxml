@@ -145,7 +145,7 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                  <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="50.0" spacing="10.0">
                      <children>
                         <TextField fx:id="LimitMemsField" prefHeight="35.0" prefWidth="50.0" />
                         <Label text="명">
@@ -155,6 +155,24 @@
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
+                        </Label>
+                        <Label layoutX="70.0" layoutY="29.0" text="/">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" right="5.0" />
+                           </padding>
+                        </Label>
+                        <Label layoutX="70.0" layoutY="29.0" text="현재 수강인원 :">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="ExPMgtCrtMemDisLabel" layoutX="116.0" layoutY="29.0" text="명">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>

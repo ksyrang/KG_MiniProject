@@ -13,6 +13,7 @@ import common.CmnTrainerDTO;
 import common.CommonService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -146,7 +147,7 @@ public class TrnWelcomeService {
 			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnWelcomeController.getTrnCode()));
 			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
 			
-			//초기 선언
+			//표시용 컨트롤러(오브젝트) 초기 선언
 			Label PrmScheCodeLabel = (Label)trnExPMgtFrom.lookup("#PrmScheCodeLabel");
 			Label ExPTypeLabel = (Label)trnExPMgtFrom.lookup("#ExPTypeLabel");
 			TextField ExPNameFeild = (TextField)trnExPMgtFrom.lookup("#ExPNameFeild");
@@ -154,33 +155,51 @@ public class TrnWelcomeService {
 			DatePicker EndDate = (DatePicker)trnExPMgtFrom.lookup("#EndDate");//seteditalbe 존재
 			RadioButton AMRBtn = (RadioButton)trnExPMgtFrom.lookup("#AMRBtn");
 			RadioButton PMRBtn = (RadioButton)trnExPMgtFrom.lookup("#PMRBtn");
+			Label ExPMgtCrtMemDisLabel = (Label)trnExPMgtFrom.lookup("#ExPMgtCrtMemDisLabel");
 			TextField LimitMemsField = (TextField)trnExPMgtFrom.lookup("#LimitMemsField");
 			
-			//ListView 데이터 get
-			ListView<String> getPrmScheInfo = (ListView<String>)form.lookup("#Programinfo");
-			ObservableList<String> InfoList = getPrmScheInfo.getItems();
-			String[] WashingData = new String[InfoList.size()];
-			for(int i =0; i < InfoList.size();i++) {
-				WashingData[i] = getPrmScheData(InfoList.get(i));
-			}
-			//code
-			PrmScheCodeLabel.setText(WashingData[0]);
-			//type
-			ExPTypeLabel.setText(WashingData[1]);
-			//name
-			ExPNameFeild.setText(WashingData[2]);
-			//Date
-			SrtDate.setValue(CommonService.StringtoLocalDate(WashingData[3]));
-			EndDate.setValue(CommonService.StringtoLocalDate(WashingData[4]));
-			//Time
-			ToggleGroup group = new ToggleGroup();
-			AMRBtn.setToggleGroup(group);
-			PMRBtn.setToggleGroup(group);
-			if(WashingData[5].equals("오전")) AMRBtn.setSelected(true);
-			else if(WashingData[6].equals("오후")) PMRBtn.setSelected(true);
-			else AMRBtn.setSelected(true);
-			LimitMemsField.setText(WashingData[7]);
-			
+			//데이터 인풋용 컨트롤러(오브젝트) 초기 선언
+			Label ExPCodeDisLabel= (Label)form.lookup("#ExPCodeDisLabel");
+			Label ExPTypeDisLabel= (Label)form.lookup("#ExPTypeDisLabel");
+		    Label ExPNameDisLabel= (Label)form.lookup("#ExPNameDisLabel");
+		    DatePicker ExpSrtDateDisPicker= (DatePicker)form.lookup("#ExpSrtDateDisPicker");
+		    DatePicker ExpEndDateDisPicker= (DatePicker)form.lookup("#ExpEndDateDisPicker");
+		    Label ExPTimeDisLabel= (Label)form.lookup("#ExPTimeDisLabel");
+		    Label ExPCrtMemsDisLabel= (Label)form.lookup("#ExPCrtMemsDisLabel");
+		    Label ExPLmtMemsDisLabel= (Label)form.lookup("#ExPLmtMemsDisLabel");
+			//Set the get Info data
+		    PrmScheCodeLabel.setText(ExPCodeDisLabel.getText());
+		    ExPTypeLabel.setText(ExPTypeDisLabel.getText());
+		    ExPNameFeild.setText(ExPNameDisLabel.getText());
+		    SrtDate.setValue(ExpSrtDateDisPicker.getValue());
+		    EndDate.setValue(ExpEndDateDisPicker.getValue());
+		    if(ExPTimeDisLabel.equals("오전"))AMRBtn.setSelected(true);
+		    else if(ExPTimeDisLabel.equals("오후"))PMRBtn.setSelected(true);
+		    else AMRBtn.setSelected(true);		    
+		    LimitMemsField.setText(ExPLmtMemsDisLabel.getText());
+		    
+			//Not Use
+//			ListView<String> getPrmScheInfo = (ListView<String>)form.lookup("#Programinfo");
+//			ObservableList<String> InfoList = getPrmScheInfo.getItems();
+//			String[] WashingData = new String[InfoList.size()];
+//			for(int i =0; i < InfoList.size();i++) WashingData[i] = getPrmScheData(InfoList.get(i));
+//			//code
+//			PrmScheCodeLabel.setText(WashingData[0]);
+//			//type
+//			ExPTypeLabel.setText(WashingData[1]);
+//			//name
+//			ExPNameFeild.setText(WashingData[2]);
+//			//Date
+//			SrtDate.setValue(CommonService.StringtoLocalDate(WashingData[3]));
+//			EndDate.setValue(CommonService.StringtoLocalDate(WashingData[4]));
+//			//Time
+//			ToggleGroup group = new ToggleGroup();
+//			AMRBtn.setToggleGroup(group);
+//			PMRBtn.setToggleGroup(group);
+//			if(WashingData[5].equals("오전")) AMRBtn.setSelected(true);
+//			else if(WashingData[6].equals("오후")) PMRBtn.setSelected(true);
+//			else AMRBtn.setSelected(true);
+//			LimitMemsField.setText(WashingData[7]);
 //			CmnPrmScheDTO ScheDto = new CmnPrmScheDAO().SltPrmScheOne(trnCode);
 //			ArrayList<CmnPrmScheDTO> test = new CmnPrmScheDAO().SltPrmScheAllbyTrn(trnCode);
 //			CmnPrmDTO PrmDto = new CmnPrmDAO().SltPrmOne(ScheDto.getPRM_Code());
@@ -219,19 +238,47 @@ public class TrnWelcomeService {
 		TableView<TrnTbVDTO> TbVw = (TableView<TrnTbVDTO>)form.lookup("#CurrentProgramTableList");
 		TrnTbVDTO tmp = TbVw.getSelectionModel().getSelectedItem();
 		CmnPrmScheDTO getPrmSchetmpDto = new CmnPrmScheDAO().SltPrmScheOne(tmp.getPCodeColumn());
-		ListView<String> SetPrmScheInfo = (ListView<String>)form.lookup("#Programinfo");
-		System.out.println(CommonService.DateCnvt((getPrmSchetmpDto.getPRMSCHE_Strdate())).toString());
-		String[] Line =  new String[8];
-		Line[0] = "강의 코드 : "+getPrmSchetmpDto.getPRM_Code();
-		Line[1] = "강의 타입 : "+new CmnPrmDAO().SltPrmOne(getPrmSchetmpDto.getPRM_Code()).getPRM_Name();
-		Line[2] = "강의 이름 : "+getPrmSchetmpDto.getPRMSCHE_Name();
-		Line[3] = "시작 일자 : "+CommonService.DateCnvt((getPrmSchetmpDto.getPRMSCHE_Strdate())).toString();
-		Line[4] = "종료 일자 : "+CommonService.DateCnvt(getPrmSchetmpDto.getPRMSCHE_Enddate()).toString();
-		Line[5] = "강의 시간 : "+getPrmSchetmpDto.getPRMSCHE_Time();
-		Line[6] = "인원/정원 : "+getPrmSchetmpDto.getPRMSCHE_CurrentP()+"/"+getPrmSchetmpDto.getPRMSCHE_LimitP();
-		Line[7] = "강의 가격 : "+getPrmSchetmpDto.getPRMSCHE_Price()+"원";		
 		
-		for(int i = 0; i<Line.length; i++) SetPrmScheInfo.getItems().add(Line[i]);
+		Label ExPCodeDisLabel= (Label)form.lookup("#ExPCodeDisLabel");
+		Label ExPTypeDisLabel= (Label)form.lookup("#ExPTypeDisLabel");
+	    Label ExPNameDisLabel= (Label)form.lookup("#ExPNameDisLabel");
+	    DatePicker ExpSrtDateDisPicker= (DatePicker)form.lookup("#ExpSrtDateDisPicker");
+	    DatePicker ExpEndDateDisPicker= (DatePicker)form.lookup("#ExpEndDateDisPicker");
+	    Label ExPTimeDisLabel= (Label)form.lookup("#ExPTimeDisLabel");
+	    Label ExPCrtMemsDisLabel= (Label)form.lookup("#ExPCrtMemsDisLabel");
+	    Label ExPLmtMemsDisLabel= (Label)form.lookup("#ExPLmtMemsDisLabel");
+		
+	    //Dis PRMSCHE Code
+	    ExPCodeDisLabel.setText(getPrmSchetmpDto.getPRMSCHE_Code());
+	    //Dis ExPType
+	    ExPTypeDisLabel.setText(new CmnPrmDAO().SltPrmOne(getPrmSchetmpDto.getPRM_Code()).getPRM_Name());
+	    //Dis ExPName
+	    ExPNameDisLabel.setText(getPrmSchetmpDto.getPRMSCHE_Name());
+	    //Dis Date
+	    ExpSrtDateDisPicker.setEditable(false);//False : 입력 불가 상태
+	    ExpSrtDateDisPicker.setValue(CommonService.DateCnvt(getPrmSchetmpDto.getPRMSCHE_Strdate()));
+	    ExpEndDateDisPicker.setEditable(false);//False : 입력 불가 상태
+	    ExpEndDateDisPicker.setValue(CommonService.DateCnvt(getPrmSchetmpDto.getPRMSCHE_Enddate()));
+	    //Dis Time
+	    ExPTimeDisLabel.setText(getPrmSchetmpDto.getPRMSCHE_Time());
+	    //Dis Mems
+	    ExPCrtMemsDisLabel.setText(Integer.toString(getPrmSchetmpDto.getPRMSCHE_CurrentP()));
+	    ExPLmtMemsDisLabel.setText(Integer.toString(getPrmSchetmpDto.getPRMSCHE_LimitP()));
+	    
+	    //Not Use
+//		ListView<String> SetPrmScheInfo = (ListView<String>)form.lookup("#Programinfo");
+//		System.out.println(CommonService.DateCnvt((getPrmSchetmpDto.getPRMSCHE_Strdate())).toString());
+//		String[] Line =  new String[8];
+//		Line[0] = "강의 코드 : "+getPrmSchetmpDto.getPRM_Code();
+//		Line[1] = "강의 타입 : "+new CmnPrmDAO().SltPrmOne(getPrmSchetmpDto.getPRM_Code()).getPRM_Name();
+//		Line[2] = "강의 이름 : "+getPrmSchetmpDto.getPRMSCHE_Name();
+//		Line[3] = "시작 일자 : "+CommonService.DateCnvt((getPrmSchetmpDto.getPRMSCHE_Strdate())).toString();
+//		Line[4] = "종료 일자 : "+CommonService.DateCnvt(getPrmSchetmpDto.getPRMSCHE_Enddate()).toString();
+//		Line[5] = "강의 시간 : "+getPrmSchetmpDto.getPRMSCHE_Time();
+//		Line[6] = "인원/정원 : "+getPrmSchetmpDto.getPRMSCHE_CurrentP()+"/"+getPrmSchetmpDto.getPRMSCHE_LimitP();
+//		Line[7] = "강의 가격 : "+getPrmSchetmpDto.getPRMSCHE_Price()+"원";		
+//		
+//		for(int i = 0; i<Line.length; i++) SetPrmScheInfo.getItems().add(Line[i]);
 	}
 
 	public void ShutDown(Parent form) {
@@ -242,30 +289,27 @@ public class TrnWelcomeService {
 //		LogOut();
 	}
 	
-	private String getPrmScheData(String data) {
-		String Data = null;
-		if(data.startsWith("강의 코드 : ")) {
-			Data = data.replace("강의 코드 : ", null);	
-		}else if(data.startsWith("강의 타입 : ")) {
-			Data = data.replace("강의 타입 : ", null);
-		}else if(data.startsWith("강의 이름 : ")) {
-			Data = data.replace("강의 이름 : ", null);
-		}else if(data.startsWith("시작 일자 : ")) {
-			Data = data.replace("시작 일자 : ", null);
-		}else if(data.startsWith("종료 일자 : ")) {
-			Data = data.replace("종료 일자 : ", null);
-		}else if(data.startsWith("인원/정원 : ")) {
-			Data = data.replace("인원/정원 : ", null);
-		}else if(data.startsWith("강의 가격 : ")) {
-			Data = data.replace("강의 가격 : ", null);
-		}else {
-			Data = null;
-		}
-		return Data;
-	}
-	
-
-	
-
+	//NotUse
+//	private String getPrmScheData(String data) {
+//		String Data = null;
+//		if(data.startsWith("강의 코드 : ")) {
+//			Data = data.replace("강의 코드 : ", null);	
+//		}else if(data.startsWith("강의 타입 : ")) {
+//			Data = data.replace("강의 타입 : ", null);
+//		}else if(data.startsWith("강의 이름 : ")) {
+//			Data = data.replace("강의 이름 : ", null);
+//		}else if(data.startsWith("시작 일자 : ")) {
+//			Data = data.replace("시작 일자 : ", null);
+//		}else if(data.startsWith("종료 일자 : ")) {
+//			Data = data.replace("종료 일자 : ", null);
+//		}else if(data.startsWith("인원/정원 : ")) {
+//			Data = data.replace("인원/정원 : ", null);
+//		}else if(data.startsWith("강의 가격 : ")) {
+//			Data = data.replace("강의 가격 : ", null);
+//		}else {
+//			Data = null;
+//		}
+//		return Data;
+//	}
 
 }

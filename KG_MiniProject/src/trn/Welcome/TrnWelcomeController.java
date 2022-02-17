@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -28,15 +29,31 @@ import trn.TrnMgt.TrnMgtController;
 
 public class TrnWelcomeController implements Initializable {
 	
+	//Top Sector
 	@FXML private Label TitleUserNameLabel;
+	//Mid Sector
+	//Mid Sector TableViewPart
     @FXML private TableView<TrnTbVDTO> CurrentProgramTableList;
     @FXML private TableColumn<TrnTbVDTO, String> CodeColumn;
     @FXML private TableColumn<TrnTbVDTO, String> NameColumn;
     @FXML private TableColumn<TrnTbVDTO, String> MemsColumn;
-    @FXML private ListView<TrnTbVDTO> Programinfo;
+//    @FXML private ListView<TrnTbVDTO> Programinfo; // NotUse
+    
+    //Mid Sector Detail InfoPart
+    @FXML private Label ExPCodeDisLabel;
+    @FXML private Label ExPTypeDisLabel;
+    @FXML private Label ExPNameDisLabel;
+    @FXML private DatePicker ExpSrtDateDisPicker;
+    @FXML private DatePicker ExpEndDateDisPicker;
+    @FXML private Label ExPTimeDisLabel;
+    @FXML private Label ExPCrtMemsDisLabel;
+    @FXML private Label ExPLmtMemsDisLabel;
+    
+    //Bottom Sector
     @FXML private Button ExPEnrollbtn;
     @FXML private Button ExPMgtbtn;
     @FXML private Button Backbtn;
+    
     
 	private TrnWelcomeService WelcomeSvc;
 	private TrnWelcomeController trnWelcomeController;

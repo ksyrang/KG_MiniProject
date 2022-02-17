@@ -287,4 +287,31 @@ public class CmnPrmScheDAO {
 		return Datalist;
 	}
 	
+	public int CntPrmSche(String PRM_Code) {
+		int result = 0;
+		sql = "SELECT count(*) FROM PRMSCHE_TB WHERE PRM_Code = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, PRM_Code);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				result = rs.getInt("count(*)");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	
 }//class end

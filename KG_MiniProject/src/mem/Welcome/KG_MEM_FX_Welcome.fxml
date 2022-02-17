@@ -24,7 +24,7 @@
                   <Insets left="10.0" top="12.5" />
                </HBox.margin>
             </Label>
-            <Label text="-회원님">
+            <Label fx:id="memMgtButton" onMouseClicked="#MemClickProc" text="-회원님">
                <font>
                   <Font size="20.0" />
                </font>

@@ -3,49 +3,60 @@ package mem.Mgt;
 import java.net.URL;
 import java.util.ResourceBundle;
 import common.CommonService;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 
 
 public class MgtController implements Initializable{
 
-	private Parent memberMgtForm;
-	private MgtService mgtService;
+	@FXML private Label TitleMemNameLabel;
+    @FXML private TextField MemIDField;
+    @FXML private TextField MemNameField;
+    @FXML private PasswordField MemPWField;
+    @FXML private PasswordField MemPWCField;
+    @FXML private TextField MemBirthField;
+    @FXML private TextField MemMobileField;
+    @FXML private RadioButton MaleRabtn;
+    @FXML private RadioButton FeMaleRabtn;
+    @FXML private TextField MemAddr1;
+    @FXML private TextField MemAddr2;
 	
+	private Parent memMgtForm;
+	private MgtService mgtService;
+	private String memCode;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		mgtService = new MgtService();
 	}
 	
-
+	public void setMemCode(String memCode) {
+		this.memCode = memCode;
+	}
 	
 	public void setMemberMgtForm(Parent memberMgtForm) {
-		this.memberMgtForm = memberMgtForm;
+		this.memMgtForm = memberMgtForm;
 	}
 	
 	// 아이디중복 체크 클릭 시
-		public void idConfirmProcc() {
-			mgtService.idConfirmProc(memberMgtForm);
-		}
-	
-	//	전화번호 중복 체크 클릭 시
-		public void mobileConfirmProcc() {
-			mgtService.mobileConfirmProc(memberMgtForm);
-		}
+//	public void TnrModifyProc() {
+//		mgtService.MemModifyProc(memMgtForm, memCode);
+//	}
 		
-//	 회원 가입 버튼 클릭 시 동작.
-	public void enrollProcc() {
-		mgtService.insert(memberMgtForm);
-		CommonService.WindowClose(memberMgtForm);
+	public void BackMgtProc() {
+		mgtService.BackMgtProc(memMgtForm);
+	}
 		
-	}
+
+
+
+
 	
-	// 취소 버튼 클릭 시 동작.
-	public void enrollCancelProcc() {
-		CommonService.WindowClose(memberMgtForm);
-	}
 	
 
 }

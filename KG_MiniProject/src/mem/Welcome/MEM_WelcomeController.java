@@ -17,15 +17,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import mem.Mgt.MgtController;
+import trn.TrnMgt.TrnMgtController;
 
 public class MEM_WelcomeController implements Initializable {
-	private Parent memWelcomeForm;
 	private Parent healthProgramBuyingForm;
 	private Parent exProgramBuyingForm;
 	private MEM_WelcomeService memWelcomeSvc;
-	private MgtController mgtController;
-	private Parent memberMgtForm;
 	private MEM_WelcomeController memWelcomeController;
+	private MgtController memMgtController;
+	private Parent memWelcomeForm;
+	private String memCode;
 	
 	
 	
@@ -48,7 +49,7 @@ public class MEM_WelcomeController implements Initializable {
 	
 	public MEM_WelcomeController() {
 		memWelcomeSvc = new MEM_WelcomeService();
-		memWelcomeSvc.setWelcomeController(this);
+		memWelcomeSvc.setMEM_WelcomeController(this);
 	}
 	
 	public MEM_WelcomeController getMem_WelcomeController() {
@@ -57,6 +58,32 @@ public class MEM_WelcomeController implements Initializable {
 	
 	public void setMem_WelcomeController(MEM_WelcomeController memWelcomeController) {
 		this.memWelcomeController = memWelcomeController;
+	}
+	
+	public String getMemCode() {
+		return this.memCode;
+	}
+	
+	public void setMemCode(String memCode) {
+		this.memCode = memCode;
+	}
+	
+	public MgtController getMgtController() {
+		return memMgtController;
+	}
+	public void setMgtController(MgtController memMgtController) {
+		this.memMgtController = memMgtController;
+	}
+	
+	public void setMemWelcomeForm(Parent memWelcomeForm) {
+		this.memWelcomeForm = memWelcomeForm;	
+	}
+	public Parent getMemWelcomeForm() {
+		return memWelcomeForm;
+	}
+	
+	public void MemClickProc() {
+		memWelcomeSvc.memMgtOpen(memCode);
 	}
 	
 	@Override
@@ -131,9 +158,7 @@ public class MEM_WelcomeController implements Initializable {
 	}
 
 	
-	public void setMemWelcomeForm(Parent memWelcomeForm) {
-		this.memWelcomeForm = memWelcomeForm;
-	}
+
 	public void healthProgramBuyingProc() {
 		memWelcomeSvc.healthProgramBuyingProc();
 	}

@@ -56,7 +56,7 @@ public class CmnMemDAO {
 		return result;
 	}
 	
-	public CmnMemDTO SltResOne(String MEM_Code) {
+	public CmnMemDTO SltMemOne(String MEM_Code) {
 		CmnMemDTO tmpdata = null;
 		sql = "SELECT * FROM MEM_TB WHERE MEM_Code = ?" ;
 		try {
@@ -92,7 +92,44 @@ public class CmnMemDAO {
 		return tmpdata;		
 	}
 	
-	public ArrayList<CmnMemDTO> SltResAll(){
+	public int UptMem(CmnMemDTO DTO) {
+		int result = 0;
+
+		sql = "UPDATE MEM_TB SET MEM_ID=?, MEM_PW=?, "
+				+ "MEM_Name=?, MEM_Gender=?, MEM_Birth=?, "
+				+ "MEM_Mobile=?, MEM_Addr=?, PRMSCHE_Code=?, "
+				+ "MEMSHIPSCHE_Code=?, MEM_Approve=?"
+				+ "WHERE MEM_Code =? ";
+		
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, DTO.getMEM_ID());
+			ps.setString(2, DTO.getMEM_PW());
+			ps.setString(3, DTO.getMEM_Name());
+			ps.setString(4, DTO.getMEM_Gender());
+			ps.setInt(5, DTO.getMEM_Birth());
+			ps.setInt(6, DTO.getMEM_Mobile());
+			ps.setString(7, DTO.getMEM_Addr());
+			ps.setString(8, DTO.getPRMSCHE_Code());
+			ps.setString(9, DTO.getMEMSHIPSCHE_Code());
+			ps.setString(10, DTO.getMEM_Approve());
+			ps.setString(11, DTO.getMEM_Code());
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try { 
+				if(ps != null) ps.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	
+	public ArrayList<CmnMemDTO> SltMemAll(){
 		ArrayList<CmnMemDTO> Datalist = new ArrayList<>();
 		CmnMemDTO tmpdata = null;
 		sql = "SELECT * FROM MEM_TB";
@@ -129,7 +166,7 @@ public class CmnMemDAO {
 		return Datalist;
 	}
 	
-	public ArrayList<CmnMemDTO> SltResAllbyPrmSche(String PRMSCHE_Code){
+	public ArrayList<CmnMemDTO> SltMemAllbyPrmSche(String PRMSCHE_Code){
 		ArrayList<CmnMemDTO> Datalist = new ArrayList<>();
 		CmnMemDTO tmpdata = null;
 		sql = "SELECT * FROM MEM_TB WHERE PRMSCHE_Code = ?";
@@ -166,7 +203,7 @@ public class CmnMemDAO {
 		}
 		return Datalist;
 	}
-	public ArrayList<CmnMemDTO> SltResAllbyMemshipSche(String MEMSHIPSCHE_Code){
+	public ArrayList<CmnMemDTO> SltMemAllbyMemshipSche(String MEMSHIPSCHE_Code){
 		ArrayList<CmnMemDTO> Datalist = new ArrayList<>();
 		CmnMemDTO tmpdata = null;
 		sql = "SELECT * FROM MEM_TB WHERE PRMSCHE_Code = ?";

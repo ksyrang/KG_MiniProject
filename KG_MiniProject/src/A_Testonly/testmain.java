@@ -109,7 +109,7 @@ public class testmain {
 		CmnMemDAO CmnMemDAO = new CmnMemDAO();
 		if(Code.equals("All")) {
 			System.out.println("==allpaylis==");
-			for(CmnMemDTO dto : CmnMemDAO.SltResAll()) {
+			for(CmnMemDTO dto : CmnMemDAO.SltMemAll()) {
 				System.out.println(dto.getMEM_Code());
 				System.out.println(dto.getMEM_ID());
 				System.out.println(dto.getMEM_PW());
@@ -125,7 +125,7 @@ public class testmain {
 			}
 		}
 		else {
-			CmnMemDTO dto = new CmnMemDTO(CmnMemDAO.SltResOne(Code));
+			CmnMemDTO dto = new CmnMemDTO(CmnMemDAO.SltMemOne(Code));
 			System.out.println(dto.getMEM_Code());
 			System.out.println(dto.getMEM_ID());
 			System.out.println(dto.getMEM_PW());

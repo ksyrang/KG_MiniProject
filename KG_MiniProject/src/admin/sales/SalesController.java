@@ -70,11 +70,11 @@ public class SalesController implements Initializable{
 		}else if(selectFilter.equals("EX 프로그램 종류별 매출")) {
 			salesSvc.detailComboSetting("EXProgram",detailCombo);
 			String selectDetail = detailCombo.getValue();
-			salesSvc.exProgramTypeSalesTableUp(salesTableView);
+			salesSvc.exProgramTypeSalesTableUp(salesTableView, selectDetail);
 		}else if(selectFilter.equals("강사별 매출")) {
 			salesSvc.detailComboSetting("Trainer",detailCombo);
-			salesSvc.trainerTypeTableUp(salesTableView);
 			String selectDetail = detailCombo.getValue();
+			salesSvc.trainerTypeTableUp(salesTableView, selectDetail);
 		}
 
 	}
@@ -84,9 +84,6 @@ public class SalesController implements Initializable{
 	//각 EXprogram 강사별 매출 선택 시 테이블뷰 로딩
 	
 		
-		
-		
-	
 		// 이전 버튼 클릭 시
 	public void cancelButtonProc() {
 		CommonService.WindowClose(salesForm);

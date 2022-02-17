@@ -7,14 +7,18 @@ import java.util.ResourceBundle;
 import common.CmnMemDAO;
 import common.CmnMemDTO;
 import common.CmnMemShipScheDAO;
-import common.CmnMemShipScheDTO;
+import common.CmnPrmDAO;
+import common.CmnPrmDTO;
+import common.CmnPrmScheDAO;
+import common.CmnPrmScheDTO;
 import common.CommonService;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Side;
 import javafx.scene.Parent;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.PieChart.Data;
 
 public class StatisticsController implements Initializable{
 	private Parent statisticsForm;
@@ -52,23 +56,30 @@ public class StatisticsController implements Initializable{
 				new PieChart.Data("여", womenCnt),
 				new PieChart.Data("선택안함", noGender)
 				));
-		genderPie.setLegendSide(Side.LEFT);
 		
 		// 회원권, 각 프로그램 별 Pie 차트
+		// 회원권 갯수
 		CmnMemShipScheDAO memShipScheDao = new CmnMemShipScheDAO();
-		ArrayList<CmnMemShipScheDTO> memShipSche = memShipScheDao.SltMemShipScheAll();
-		int memShip = 0;
-		for(CmnMemShipScheDTO m : memShipSche) {
-			System.out.println(m.getMEMSHIPSCHE_Code());
-			memShip++;
-		}
-		System.out.println(memShip);
+		int memshipSche = memShipScheDao.CntMemShipSche();
 		
-		proPie.setData(FXCollections.observableArrayList(
-				new PieChart.Data("회원권", memShip),
-				new PieChart.Data("필라테스", 10),
-				new PieChart.Data("요가", 7)
-				));
+		// 각 프로그램 갯수
+		CmnPrmDAO prmDao = new CmnPrmDAO();
+		ArrayList<CmnPrmDTO> prmDto = prmDao.SltPrmAll();
+		
+		CmnPrmScheDAO prmScheDao = new CmnPrmScheDAO();
+		ArrayList<CmnPrmScheDTO> prmScheDto;
+		
+		int prmSche;
+		
+		ObservableList<Data> list = FXCollections.observableArrayList();
+		list.add(new PieChart.Data("회원권", memshipSche));
+		for(CmnPrmDTO m : prmDto) {
+			System.out.println(m.getPRM_Name());
+			prmSche = prmScheDao.CntPrmSche(m.getPRM_Code());
+			System.out.println(prmSche);
+			list.add(new PieChart.Data(m.getPRM_Name(), prmSche));
+		}
+		proPie.setData(list);
 		
 	}
 	

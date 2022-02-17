@@ -45,8 +45,8 @@ public class MemberMgtDAO {
 				memberMgtDto.setMem_name(rs.getString("mem_name"));
 				memberMgtDto.setMem_pw(rs.getString("mem_pw"));
 				memberMgtDto.setMem_gender(rs.getString("mem_gender"));
-				memberMgtDto.setMem_birth(rs.getString("mem_birth"));
-				memberMgtDto.setMem_mobile(rs.getString("mem_mobile"));
+				memberMgtDto.setMem_birth(rs.getInt("mem_birth"));
+				memberMgtDto.setMem_mobile(rs.getInt("mem_mobile"));
 				memberMgtDto.setMem_addr(rs.getString("mem_addr"));
 				memberMgtDto.setMem_approve(rs.getString("mem_approve"));
 				
@@ -75,8 +75,8 @@ public class MemberMgtDAO {
 				memberMgtDto.setMem_name(rs.getString("mem_name"));
 				memberMgtDto.setMem_pw(rs.getString("mem_pw"));
 				memberMgtDto.setMem_gender(rs.getString("mem_gender"));
-				memberMgtDto.setMem_birth(rs.getString("mem_birth"));
-				memberMgtDto.setMem_mobile(rs.getString("mem_mobile"));
+				memberMgtDto.setMem_birth(rs.getInt("mem_birth"));
+				memberMgtDto.setMem_mobile(rs.getInt("mem_mobile"));
 				memberMgtDto.setMem_addr(rs.getString("mem_addr"));
 				memberMgtDto.setMem_approve(rs.getString("mem_approve"));
 				
@@ -146,7 +146,7 @@ public class MemberMgtDAO {
 	}
 	
 	// 회원 수정
-	public void memberUpdate(String mem_id, String mem_name, String mem_pw, String mem_gender, String mem_birth, String mem_addr) {
+	public void memberUpdate(String mem_id, String mem_name, String mem_pw, String mem_gender, int mem_birth, String mem_addr) {
 		String sql = "UPDATE mem_tb SET mem_name = ?, mem_pw = ?, mem_gender = ?, mem_birth = ?, mem_addr = ?  WHERE mem_id = ?";
 		PreparedStatement ps;
 		try {
@@ -154,7 +154,7 @@ public class MemberMgtDAO {
 			ps.setString(1, mem_name);
 			ps.setString(2, mem_pw);
 			ps.setString(3, mem_gender);
-			ps.setString(4, mem_birth);
+			ps.setInt(4, mem_birth);
 			ps.setString(5, mem_addr);
 			ps.setString(6, mem_id);
 			ps.executeUpdate();

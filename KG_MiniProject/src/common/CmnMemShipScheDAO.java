@@ -26,16 +26,14 @@ public class CmnMemShipScheDAO {
 	}
 	
 	// 회원권스케줄 갯수
-	public ArrayList<CmnMemShipScheDTO> SltMemShipScheAll() {
-		ArrayList<CmnMemShipScheDTO> Datalist = new ArrayList<>();
-		sql = "SELECT MEMSHIPSCHE_Code FROM MEMSHIPSCHE_TB";
+	public int CntMemShipSche() {
+		int result = 0;
+		sql = "SELECT count(*) FROM MEMSHIPSCHE_TB";
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				CmnMemShipScheDTO tmpdata = new CmnMemShipScheDTO();
-				tmpdata.setMEMSHIPSCHE_Code(rs.getString("MEMSHIPSCHE_Code"));
-				Datalist.add(tmpdata);
+				result = rs.getInt("count(*)");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -49,7 +47,7 @@ public class CmnMemShipScheDAO {
 				e2.printStackTrace();
 			}
 		}
-		return Datalist;
+		return result;
 	}
 	
 	public CmnMemShipScheDTO SltMemShipScheOne(String MEMSHIPSCHE_Code) {

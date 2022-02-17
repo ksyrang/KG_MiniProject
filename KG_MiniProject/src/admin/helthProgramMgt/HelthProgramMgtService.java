@@ -19,7 +19,8 @@ public class HelthProgramMgtService {
 		TextField typetxt = (TextField) helthProgramMgtForm.lookup("#memshipType");
 		TextField pricetxt = (TextField) helthProgramMgtForm.lookup("#memshipPrice");
 		typetxt.setText(helthProgramDto.getMemship_type());
-		pricetxt.setText(helthProgramDto.getMemship_price());
+		String price = Integer.toString(helthProgramDto.getMemship_price());
+		pricetxt.setText(price);
 	}
 	
 	// 헬스 회원권 등록
@@ -29,6 +30,12 @@ public class HelthProgramMgtService {
 		
 		String type = typetxt.getText();
 		String price = pricetxt.getText();
+		int hprice;
+		if(price.isEmpty()) {
+			hprice = 0;
+		} else {
+			hprice = Integer.parseInt(price);
+		}
 		
 		try {
 			if(type.isEmpty() || price.isEmpty()) {
@@ -39,7 +46,7 @@ public class HelthProgramMgtService {
 				if (helthProgramDto == null) {
 					helthProgramDto = new HelthProgramMgtDTO();
 					helthProgramDto.setMemship_type(type);
-					helthProgramDto.setMemship_price(price);
+					helthProgramDto.setMemship_price(hprice);
 					helthProgramDao.memshipInsert(helthProgramDto);
 					CommonService.Msg("회원권 등록이 완료되었습니다.");
 					
@@ -47,7 +54,7 @@ public class HelthProgramMgtService {
 					TableView<HelthProTable> allTable = (TableView<HelthProTable>) helthProgramMgtForm.lookup("#memshipTable");
 					ObservableList<HelthProgramMgtDTO> allList = helthProgramDao.getAllPro();
 					for(HelthProgramMgtDTO m : allList) {
-						tableView.add(new HelthProTable(m.getMemship_code(), "헬스 회원권 " + m.getMemship_type() + "개월", m.getMemship_price() + "원"));
+						tableView.add(new HelthProTable(m.getMemship_code(), "헬스 회원권 " + m.getMemship_type() + "개월", m.getMemship_price()));
 					}
 					allTable.setItems(tableView);
 					
@@ -81,7 +88,7 @@ public class HelthProgramMgtService {
 			ObservableList<HelthProgramMgtDTO> allList = helthProgramDao.getAllPro();
 			for (HelthProgramMgtDTO m : allList) {
 				tableView.add(new HelthProTable(m.getMemship_code(), "헬스 회원권 " + m.getMemship_type() + "개월",
-						m.getMemship_price() + "원"));
+						m.getMemship_price()));
 			}
 			allTable.setItems(tableView);
 

@@ -22,7 +22,8 @@ import javafx.scene.control.ToggleGroup;
 		TextField pwfield = (TextField) memberMgtForm.lookup("#pwtxt");
 		TextField mobilefield = (TextField) memberMgtForm.lookup("#mobiletxt");
 		TextField birthfield = (TextField) memberMgtForm.lookup("#birthtxt");
-		TextField addrfield = (TextField) memberMgtForm.lookup("#addrtxt");
+		TextField addr1field = (TextField) memberMgtForm.lookup("#addrtxt1");
+		TextField addr2field = (TextField) memberMgtForm.lookup("#addrtxt2");
 		RadioButton men = (RadioButton) memberMgtForm.lookup("#menradio");
 		RadioButton women = (RadioButton) memberMgtForm.lookup("#womenradio");
 		
@@ -41,12 +42,13 @@ import javafx.scene.control.ToggleGroup;
 			}
 			allTable.setItems(tableView);
 			
-			idfield.setText(null);
-			namefield.setText(null);
-			pwfield.setText(null);
-			mobilefield.setText(null);
-			birthfield.setText(null);
-			addrfield.setText(null);
+			idfield.setText("");
+			namefield.setText("");
+			pwfield.setText("");
+			mobilefield.setText("");
+			birthfield.setText("");
+			addr1field.setText("");
+			addr2field.setText("");
 			men.setSelected(false);
 			women.setSelected(false);
 			
@@ -59,12 +61,13 @@ import javafx.scene.control.ToggleGroup;
 			}
 			notApproveTable.setItems(tableView);
 			
-			idfield.setText(null);
-			namefield.setText(null);
-			pwfield.setText(null);
-			mobilefield.setText(null);
-			birthfield.setText(null);
-			addrfield.setText(null);
+			idfield.setText("");
+			namefield.setText("");
+			pwfield.setText("");
+			mobilefield.setText("");
+			birthfield.setText("");
+			addr1field.setText("");
+			addr2field.setText("");
 			men.setSelected(false);
 			women.setSelected(false);
 			
@@ -81,12 +84,42 @@ import javafx.scene.control.ToggleGroup;
 		TextField pwfield = (TextField) memberMgtForm.lookup("#pwtxt");
 		TextField mobilefield = (TextField) memberMgtForm.lookup("#mobiletxt");
 		TextField birthfield = (TextField) memberMgtForm.lookup("#birthtxt");
-		TextField addrfield = (TextField) memberMgtForm.lookup("#addrtxt");
+		TextField addr1field = (TextField) memberMgtForm.lookup("#addrtxt1");
+		TextField addr2field = (TextField) memberMgtForm.lookup("#addrtxt2");
 		RadioButton men = (RadioButton) memberMgtForm.lookup("#menradio");
 		RadioButton women = (RadioButton) memberMgtForm.lookup("#womenradio");
 		ToggleGroup gender = new ToggleGroup();
 		men.setToggleGroup(gender);
 		women.setToggleGroup(gender);
+		
+		idfield.setText(memberMgtDto.getMem_id());
+		namefield.setText(memberMgtDto.getMem_name());
+		pwfield.setText(memberMgtDto.getMem_pw());
+		
+		if(memberMgtDto.getMem_mobile() != 0) {
+			String memMobile = Integer.toString(memberMgtDto.getMem_mobile());
+			mobilefield.setText(memMobile);
+		} else {
+			mobilefield.setText("");
+		}
+		if(memberMgtDto.getMem_birth() != 0) {
+			String memBirth = Integer.toString(memberMgtDto.getMem_birth());
+			birthfield.setText(memBirth);
+		}else {
+			birthfield.setText("");
+		}
+		
+		String[] memAddr = memberMgtDto.getMem_addr().split("/");
+		if (memAddr.length == 1) {
+			addr1field.setText(memAddr[0]);
+			addr2field.setText("");
+		} else if (memAddr.length == 2) {
+			addr1field.setText(memAddr[0]);
+			addr2field.setText(memAddr[1]);
+		} else {
+			addr1field.setText("");
+			addr2field.setText("");
+		}
 		
 		if(memberMgtDto.getMem_gender() != null) {
 			if(memberMgtDto.getMem_gender().equals("남")) {
@@ -94,26 +127,9 @@ import javafx.scene.control.ToggleGroup;
 			} else if(memberMgtDto.getMem_gender().equals("여")) {
 				women.setSelected(true);
 			} 
-		}
-		
-		idfield.setText(memberMgtDto.getMem_id());
-		namefield.setText(memberMgtDto.getMem_name());
-		pwfield.setText(memberMgtDto.getMem_pw());
-		
-		if(memberMgtDto.getMem_mobile() != null) {
-			mobilefield.setText(memberMgtDto.getMem_mobile());
-		} else {
-			mobilefield.setText(null);
-		}
-		if(memberMgtDto.getMem_birth() != null) {
-			birthfield.setText(memberMgtDto.getMem_birth());
 		}else {
-			birthfield.setText(null);
-		}
-		if(memberMgtDto.getMem_addr() != null) {
-			addrfield.setText(memberMgtDto.getMem_addr());
-		} else {
-			addrfield.setText(null);
+			men.setSelected(false);
+			women.setSelected(false);
 		}
 	}
 
@@ -160,7 +176,8 @@ import javafx.scene.control.ToggleGroup;
 		TextField pwfield = (TextField) memberMgtForm.lookup("#pwtxt");
 		TextField mobilefield = (TextField) memberMgtForm.lookup("#mobiletxt");
 		TextField birthfield = (TextField) memberMgtForm.lookup("#birthtxt");
-		TextField addrfield = (TextField) memberMgtForm.lookup("#addrtxt");
+		TextField addr1field = (TextField) memberMgtForm.lookup("#addrtxt1");
+		TextField addr2field = (TextField) memberMgtForm.lookup("#addrtxt2");
 		RadioButton men = (RadioButton) memberMgtForm.lookup("#menradio");
 		RadioButton women = (RadioButton) memberMgtForm.lookup("#womenradio");
 		ToggleGroup genderGroup = new ToggleGroup();
@@ -170,14 +187,29 @@ import javafx.scene.control.ToggleGroup;
 		String id = idfield.getText();
 		String name = namefield.getText();
 		String pw = pwfield.getText();
-		//String mobile = mobilefield.getText();
-		String birth = birthfield.getText();
-		String addr = addrfield.getText();
-		String gender = null;
+		
+//		int memMobile;
+//		if(mobilefield.getText().isEmpty()) {
+//			memMobile = 0;
+//		} else {
+//			memMobile = Integer.parseInt(mobilefield.getText());
+//		}
+		
+		int memBirth;
+		if(birthfield.getText().isEmpty()) {
+			memBirth = 0;
+		} else {
+			memBirth = Integer.parseInt(birthfield.getText());
+		}
+		
+		String addr = addr1field.getText() + "/" + addr2field.getText();
+		String gender;
 		if(men.isSelected()) {
 			gender = "남";
-		}else if(women.isSelected()) {
+		} else if(women.isSelected()) {
 			gender = "여";
+		} else {
+			gender = null;
 		}
 		
 		try {
@@ -186,7 +218,7 @@ import javafx.scene.control.ToggleGroup;
 			}else {
 				MemberMgtDTO memberMgtDto = memberMgtDao.selectId(id);
 				if (memberMgtDto != null) {
-					memberMgtDao.memberUpdate(id, name, pw, gender, birth, addr);
+					memberMgtDao.memberUpdate(id, name, pw, gender, memBirth, addr);
 					CommonService.Msg(name + "(" + id + ") 회원 수정 완료");
 
 					ComboBox<String> comboBox = (ComboBox<String>) memberMgtForm.lookup("#filterCombo");
@@ -199,12 +231,13 @@ import javafx.scene.control.ToggleGroup;
 					}
 					allTable.setItems(tableView);
 
-					idfield.setText(null);
-					namefield.setText(null);
-					pwfield.setText(null);
-					mobilefield.setText(null);
-					birthfield.setText(null);
-					addrfield.setText(null);
+					idfield.setText("");
+					namefield.setText("");
+					pwfield.setText("");
+					mobilefield.setText("");
+					birthfield.setText("");
+					addr1field.setText("");
+					addr2field.setText("");
 					men.setSelected(false);
 					women.setSelected(false);
 				} else {
@@ -226,7 +259,8 @@ import javafx.scene.control.ToggleGroup;
 		TextField pwfield = (TextField) memberMgtForm.lookup("#pwtxt");
 		TextField mobilefield = (TextField) memberMgtForm.lookup("#mobiletxt");
 		TextField birthfield = (TextField) memberMgtForm.lookup("#birthtxt");
-		TextField addrfield = (TextField) memberMgtForm.lookup("#addrtxt");
+		TextField addr1field = (TextField) memberMgtForm.lookup("#addrtxt1");
+		TextField addr2field = (TextField) memberMgtForm.lookup("#addrtxt2");
 		RadioButton men = (RadioButton) memberMgtForm.lookup("#menradio");
 		RadioButton women = (RadioButton) memberMgtForm.lookup("#womenradio");
 		
@@ -249,12 +283,13 @@ import javafx.scene.control.ToggleGroup;
 				}
 				allTable.setItems(tableView);
 
-				idfield.setText(null);
-				namefield.setText(null);
-				pwfield.setText(null);
-				mobilefield.setText(null);
-				birthfield.setText(null);
-				addrfield.setText(null);
+				idfield.setText("");
+				namefield.setText("");
+				pwfield.setText("");
+				mobilefield.setText("");
+				birthfield.setText("");
+				addr1field.setText("");
+				addr2field.setText("");
 				men.setSelected(false);
 				women.setSelected(false);
 			} else {

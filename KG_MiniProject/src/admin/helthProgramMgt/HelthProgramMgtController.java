@@ -21,7 +21,7 @@ public class HelthProgramMgtController implements Initializable{
 	@FXML private TableView<HelthProTable> memshipTable;
 	@FXML private TableColumn<HelthProTable, String> colCode;
 	@FXML private TableColumn<HelthProTable, String> colType;
-	@FXML private TableColumn<HelthProTable, String> colPrice;
+	@FXML private TableColumn<HelthProTable, Integer> colPrice;
 	
 	ObservableList<HelthProTable> obserList;
 	@Override
@@ -40,7 +40,7 @@ public class HelthProgramMgtController implements Initializable{
 
 		for(HelthProgramMgtDTO m : helthProMgtDto) {
 			obserList.add(new HelthProTable(m.getMemship_code(), 
-					"헬스 회원권 " + m.getMemship_type() + "개월", m.getMemship_price() + "원"));
+					"헬스 회원권 " + m.getMemship_type() + "개월", m.getMemship_price()));
 		}
 		
 		memshipTable.setItems(obserList);

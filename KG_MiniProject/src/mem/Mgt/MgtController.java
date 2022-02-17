@@ -54,11 +54,18 @@ public class MgtController implements Initializable{
 	}
 	
 	
-	// 수정중복 체크 클릭 시
-	public void TnrModifyProc() {
+	
+	// 수정버튼 클릭 시
+	public void MemModifyProc() {
 		mgtService.MemModifyProc(memMgtForm, membCode);
 	}
-		
+	
+	public void MemDeleteProc() {
+//		mgtService.MemDeleteProc(memMgtForm);
+	}
+	
+	
+	//취소버튼 클릭 시	
 	public void BackMgtProc() {
 		mgtService.BackMgtProc(memMgtForm);
 	}

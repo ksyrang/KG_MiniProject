@@ -1,18 +1,25 @@
 package mem.Mgt;
 
 
+import java.io.IOException;
+
 import common.CmnMemDAO;
 import common.CmnMemDTO;
 import common.CommonService;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 
 
 public class MgtService {
+	
+	private MgtController mgtcontroller;
 	
 	public void MemModifyProc(Parent memMgtForm, String MemCode) {
 		MgtDAO tmpDAO = new MgtDAO();
@@ -67,6 +74,23 @@ public class MgtService {
 		CommonService.WindowClose(memMgtForm);
 	}
 	
-	
+	public void MemDeleteProc() {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/Delete/KG_MEM_FX_Delete.fxml"));
+		Parent memberDeleteForm;
+		try {
+			memberDeleteForm = loader.load();
+//			mgtcontroller.setMemberDeleteForm(memberDeleteForm);
+	//		mgtcontroller.setEnrollController(loader.getController());
+//			mgtcontroller.settingEnroll();
+			
+			Scene scene = new Scene(memberDeleteForm);
+			Stage primaryStage = new Stage();
+			primaryStage.setTitle("memberJoin");
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}	
 
 }

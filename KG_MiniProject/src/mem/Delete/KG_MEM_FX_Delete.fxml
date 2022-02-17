@@ -57,7 +57,6 @@
                               <Insets top="36.0" />
                            </VBox.margin>
                         </PasswordField>
-                        <Label prefHeight="20.0" prefWidth="140.0" text="비밀번호가 다릅니다" />
                      </children>
                      <HBox.margin>
                         <Insets left="25.0" />

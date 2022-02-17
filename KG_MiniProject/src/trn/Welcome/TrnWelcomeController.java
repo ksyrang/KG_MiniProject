@@ -81,7 +81,7 @@ public class TrnWelcomeController implements Initializable {
 	}
 	
 	public void TrnClickProc() {
-		WelcomeSvc.TrnMgtOpen(trnCode);
+		WelcomeSvc.TrnMgtOpen();
 	}
 	//프로그램이 클릭될때
 	public void programclickPro() {

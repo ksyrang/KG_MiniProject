@@ -50,19 +50,19 @@ public class TrnWelcomeService {
 
 
 	//강사정보페이지
-	public void TrnMgtOpen(String trnCode) {
+	public void TrnMgtOpen() {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/trn/TrnMgt/KG_TRN_FX_Mgt.fxml"));
 		Parent trnMgtForm;
 		try {
 			trnMgtForm = loader.load();
 			trnWelcomeController.setTrnMgtController(loader.getController());
 			trnWelcomeController.getTrnMgtController().setTrnMgtForm(trnMgtForm);
-			trnWelcomeController.getTrnMgtController().setTrnCode(trnCode);
+			trnWelcomeController.getTrnMgtController().setTrnCode(trnWelcomeController.getTrnCode());
 		
 			//강사 정보 get
 			//tilte sector set
 			Label titleUserName = (Label)trnMgtForm.lookup("#TitleUserNameLabel");
-			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnCode));
+			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnWelcomeController.getTrnCode()));
 			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
 			//초기 표시 설정
 			TextField IDField = (TextField)trnMgtForm.lookup("#TrnIDField");//기존 이름 표시

@@ -68,10 +68,13 @@ public class SalesController implements Initializable{
 		detailCombo.getItems().clear();
 		selectFilter = filterCombo.getValue();
 		if(selectFilter.equals("전체 매출")) {
-			salesSvc.tableUp(salesTableView);
+			salesTableView.getItems().clear();
+			salesSvc.allSalesTable(salesTableView);
 		}else if(selectFilter.equals("헬스 회원권 전체 매출")) {
+			salesTableView.getItems().clear();
 			salesSvc.memSalesTableUp(salesTableView);
 		}else if(selectFilter.equals("EX 프로그램 전체 매출")) {
+			salesTableView.getItems().clear();
 			salesSvc.exProgramSalesTableUp(salesTableView);
 		}else if(selectFilter.equals("EX 프로그램 종류별 매출")) {
 			salesSvc.detailComboSetting("EXProgram",detailCombo);

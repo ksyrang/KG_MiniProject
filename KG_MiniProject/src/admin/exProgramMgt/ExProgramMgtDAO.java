@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import admin.helthProgramMgt.HelthProgramMgtDTO;
 import common.CmnPrmDAO;
 import common.CmnPrmDTO;
 import common.CmnPrmScheDAO;
@@ -85,7 +84,7 @@ public class ExProgramMgtDAO {
 				allList.add(exProgramMgtDto);
 			}
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return allList;
@@ -127,7 +126,7 @@ public class ExProgramMgtDAO {
 			ps.setString(1, exprogramDto.getPRM_Code());
 			ps.setString(2, exprogramDto.getPRM_Name());
 			result = ps.executeUpdate();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result;
@@ -144,7 +143,7 @@ public class ExProgramMgtDAO {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, selectData);
 			result = ps.executeUpdate();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result;
@@ -192,7 +191,7 @@ public class ExProgramMgtDAO {
 			ps.setInt(5, exProgramMgtDto.getPRMSCHE_Price());
 			ps.setString(6, exProgramMgtDto.getPRMSCHE_Code());
 			result = ps.executeUpdate();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result;
@@ -209,16 +208,10 @@ public class ExProgramMgtDAO {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, cmnPrmScheDto.getPRMSCHE_Code());
 			ps.executeUpdate();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
-	
-	
-	
-
-
 
 
 

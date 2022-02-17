@@ -79,13 +79,13 @@ public class CmnTrainerDAO {
 					rs.getString("TRAINER_Addr")
 				);
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			try {
 				if(rs != null) rs.close();
 				if(ps != null) ps.close();
-			} catch (SQLException e2) {
+			} catch (Exception e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
@@ -232,13 +232,13 @@ public class CmnTrainerDAO {
 				);
 				Datalist.add(tmpdata);
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			try {
 				if(rs != null) rs.close();
 				if(ps != null) ps.close();
-			} catch (SQLException e2) {
+			} catch (Exception e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}

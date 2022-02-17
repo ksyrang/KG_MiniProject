@@ -62,7 +62,7 @@
                         <Insets left="30.0" />
                      </padding>
                   </Label>
-                  <ComboBox fx:id="detailCombo" prefHeight="23.0" prefWidth="125.0" promptText="필터 선택 필요" />
+                  <ComboBox fx:id="detailCombo" onAction="#detailComboProc" prefHeight="23.0" prefWidth="125.0" promptText="필터 선택 필요" />
                </children>
                <VBox.margin>
                   <Insets />

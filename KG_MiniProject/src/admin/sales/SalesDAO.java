@@ -52,11 +52,12 @@ public class SalesDAO {
 			while(rs.next()) {
 				SalesDTO salesDto = new SalesDTO();
 				salesDto.setPAY_Code(rs.getString("PAY_CODE"));
-				salesDto.setPAY_Type(rs.getString("PAY_Type"));
+				System.out.println(rs.getString("PAY_CODE"));
+				salesDto.setPAY_Type(rs.getString("PAY_TYPE"));
 				salesDto.setPAY_Date(rs.getDate("PAY_DATE"));
 				
 				//FK
-				salesDto.setRES_Code(rs.getString("RES_Code"));
+				salesDto.setRES_Code(rs.getString("RES_CODE"));
 				salesDto.setMEMSHIPSCHE_Code(rs.getString("MEMSHIPSCHE_CODE"));
 				salesDto.setPRMSCHE_Code(rs.getString("PRMSCHE_Code"));
 
@@ -68,7 +69,10 @@ public class SalesDAO {
 				
 				CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
 				CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(cmnPrmScheDto.getPRM_Code());
-				salesDto.setPRM_Name(cmnPrmDto.getPRM_Name());
+				if(cmnPrmDto.getPRM_Name().isEmpty() != true)
+					salesDto.setPRM_Name(cmnPrmDto.getPRM_Name());
+				
+				
 				
 				CmnMemShipScheDAO cmnMemShipScheDao = new CmnMemShipScheDAO();
 				CmnMemShipScheDTO cmnMemShipScheDto = cmnMemShipScheDao.SltMemShipScheOne(rs.getString("MEMSHIPSCHE_CODE"));
@@ -82,19 +86,18 @@ public class SalesDAO {
 				
 				CmnTrainerDAO cmnTrainerDao = new CmnTrainerDAO();
 				CmnTrainerDTO cmnTrainerDto = cmnTrainerDao.SltTrnOne(cmnPrmScheDto.getTRAINER_Code());
-				cmnTrainerDto.getTRAINER_Name();
+				salesDto.setTRAINER_NAME(cmnTrainerDto.getTRAINER_Name());
+				
 				
 				allList.add(salesDto);
 			}
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return allList;
 	}
 
 
-	
-	
 	
 }

@@ -58,13 +58,13 @@ public class CmnPrmDAO {
 			if(rs.next()) {
 				tmpdata = new CmnPrmDTO(rs.getString("PRM_Code"), rs.getString("PRM_Name"));
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			try {
 				if(rs != null) rs.close();
 				if(ps != null) ps.close();
-			} catch (SQLException e2) {
+			} catch (Exception e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
@@ -83,13 +83,13 @@ public class CmnPrmDAO {
 				tmpdata = new CmnPrmDTO(rs.getString("PRM_Code"), rs.getString("PRM_Name"));
 				Datalist.add(tmpdata);
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			try {
 				if(rs != null) rs.close();
 				if(ps != null) ps.close();
-			} catch (SQLException e2) {
+			} catch (Exception e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}

@@ -84,13 +84,13 @@ public class CmnPrmScheDAO {
 					rs.getString("PRMSCHE_Name")
 				);
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			try {
 				if(rs != null) rs.close();
 				if(ps != null) ps.close();
-			} catch (SQLException e2) {
+			} catch (Exception e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}

@@ -18,7 +18,7 @@ import javafx.scene.control.TableView;
 public class SalesService {
 	
 	private TableView<SalesTable> salesTableView;
-	private SalesDAO salesDao;
+	
 
 	
 	
@@ -27,6 +27,8 @@ public class SalesService {
 		
 		this.salesTableView = salesTableView;
 		ObservableList<SalesTable> tableItems = FXCollections.observableArrayList();
+		SalesDAO salesDao = new SalesDAO();
+		salesDao.getAllInfo();
 		ObservableList<SalesDTO> allList = salesDao.getAllInfo();
 		for(SalesDTO i : allList) {
 			int price;
@@ -57,13 +59,17 @@ public class SalesService {
 	public void memSalesTableUp(TableView<SalesTable> salesTableView) {
 		this.salesTableView = salesTableView;
 		ObservableList<SalesTable> tableItems = FXCollections.observableArrayList();
+		SalesDAO salesDao = new SalesDAO();
 		ObservableList<SalesDTO> allList = salesDao.getAllInfo();
 		for(SalesDTO i : allList) {
 			int price;
 			String programName;
 			String programType;
 			String trainerName;
-			if(i.getPRM_Name().isEmpty()){
+			
+			
+			String splitData = i.getMEMSHIP_Type().substring(0,1);
+			if(splitData.equals("헬스")){
 				//헬스 회원권
 				price = i.getMEMSHIP_Price();
 				programName = "헬스 회원권" + i.getMEMSHIP_Type() + " 개월";
@@ -83,6 +89,7 @@ public class SalesService {
 	public void exProgramSalesTableUp(TableView<SalesTable> salesTableView) {
 		this.salesTableView = salesTableView;
 		ObservableList<SalesTable> tableItems = FXCollections.observableArrayList();
+		SalesDAO salesDao = new SalesDAO();
 		ObservableList<SalesDTO> allList = salesDao.getAllInfo();
 		for(SalesDTO i : allList) {
 			int price;
@@ -108,6 +115,7 @@ public class SalesService {
 	public void exProgramTypeSalesTableUp(TableView<SalesTable> salesTableView, String exProgramType) {
 		this.salesTableView = salesTableView;
 		ObservableList<SalesTable> tableItems = FXCollections.observableArrayList();
+		SalesDAO salesDao = new SalesDAO();
 		ObservableList<SalesDTO> allList = salesDao.getAllInfo();
 		for(SalesDTO i : allList) {
 			int price;
@@ -130,12 +138,13 @@ public class SalesService {
 	public void trainerTypeTableUp(TableView<SalesTable> salesTableView, String TrainerName) {
 		this.salesTableView = salesTableView;
 		ObservableList<SalesTable> tableItems = FXCollections.observableArrayList();
+		SalesDAO salesDao = new SalesDAO();
 		ObservableList<SalesDTO> allList = salesDao.getAllInfo();
 		for(SalesDTO i : allList) {
 			int price;
 			String programName;
 			String programType;
-			String trainerName = i.getTRAINER_NAME();
+			String trainerName = TrainerName;
 			if(trainerName.equals(i.getTRAINER_NAME())){
 				price = i.getPRMSCHE_Price();
 				programName = i.getPRMSCHE_Name();
@@ -153,26 +162,23 @@ public class SalesService {
 	
 	//DetailComboBox setting
 	public void detailComboSetting(String string, ComboBox<String> detailCombo) {
-
-//		detailCombo.
-//		detailCombo.setValue(string);
-
-		detailCombo.getItems().removeAll();
+		ObservableList<String> items = FXCollections.observableArrayList();
+		
 		if(string.equals("EXProgram")) {
 			CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
 			ArrayList<CmnPrmDTO> cmnPrmDto = cmnPrmDao.SltPrmAll();
 			for(CmnPrmDTO i: cmnPrmDto) {
-				detailCombo.getItems().add(i.getPRM_Name());
+				items.add(i.getPRM_Name());
 			}
-		}else {
+			detailCombo.setItems(items);
+		}else if(string.equals("Trainer")){
 			CmnTrainerDAO cmnTrainerDao = new CmnTrainerDAO();
 			ArrayList<CmnTrainerDTO> cmnTrainerDto = cmnTrainerDao.SltTrnAll();
 			for(CmnTrainerDTO i: cmnTrainerDto) {
-				detailCombo.getItems().add(i.getTRAINER_Name());
+				items.add(i.getTRAINER_Name());	
 			}
+			detailCombo.setItems(items);
 		}
-		
-
 		
 	}
 	

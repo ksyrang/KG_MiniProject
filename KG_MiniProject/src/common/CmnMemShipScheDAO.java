@@ -28,13 +28,12 @@ public class CmnMemShipScheDAO {
 	// 회원권스케줄 갯수
 	public ArrayList<CmnMemShipScheDTO> SltMemShipScheAll() {
 		ArrayList<CmnMemShipScheDTO> Datalist = new ArrayList<>();
-
 		sql = "SELECT MEMSHIPSCHE_Code FROM MEMSHIPSCHE_TB";
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
-			CmnMemShipScheDTO tmpdata = new CmnMemShipScheDTO();
 			while (rs.next()) {
+				CmnMemShipScheDTO tmpdata = new CmnMemShipScheDTO();
 				tmpdata.setMEMSHIPSCHE_Code(rs.getString("MEMSHIPSCHE_Code"));
 				Datalist.add(tmpdata);
 			}

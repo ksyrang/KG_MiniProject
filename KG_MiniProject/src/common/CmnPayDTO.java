@@ -9,24 +9,29 @@ public class CmnPayDTO {
 	//FK
 	private String MEMSHIPSCHE_Code;
 	private String RES_Code;
+	private String PRMSCHE_Code;
 	
 	public CmnPayDTO() {
 		// TODO Auto-generated constructor stub
 	}
-	public CmnPayDTO(CmnPayDTO cmnPayDTO) {
-		PAY_Code = cmnPayDTO.getPAY_Code();
-		PAY_Type = cmnPayDTO.getPAY_Type();
-		PAY_Date = cmnPayDTO.getPAY_Date();
-		MEMSHIPSCHE_Code = cmnPayDTO.getMEMSHIPSCHE_Code();
-		RES_Code = cmnPayDTO.getRES_Code();	
+	public CmnPayDTO(CmnPayDTO DTO) {
+		PAY_Code = DTO.getPAY_Code();
+		PAY_Type = DTO.getPAY_Type();
+		PAY_Date = DTO.getPAY_Date();
+		MEMSHIPSCHE_Code = DTO.getMEMSHIPSCHE_Code();
+		RES_Code = DTO.getRES_Code();
+		PRMSCHE_Code = DTO.getMEMSHIPSCHE_Code();
 	}
-	public CmnPayDTO(String pAY_Code, String pAY_Type, Date pAY_Date, String mEMSHIPSCHE_Code, String rES_Code) {
+	public CmnPayDTO(String pAY_Code, String pAY_Type, 
+			Date pAY_Date, String mEMSHIPSCHE_Code, 
+			String rES_Code, String pRMSCHE_Code) {
 		super();
 		PAY_Code = pAY_Code;
 		PAY_Type = pAY_Type;
 		PAY_Date = pAY_Date;
 		MEMSHIPSCHE_Code = mEMSHIPSCHE_Code;
 		RES_Code = rES_Code;
+		PRMSCHE_Code = pRMSCHE_Code;
 	}
 
 	public String getPAY_Code() {
@@ -67,6 +72,12 @@ public class CmnPayDTO {
 
 	public void setRES_Code(String rES_Code) {
 		RES_Code = rES_Code;
+	}
+	public String getPRMSCHE_Code() {
+		return PRMSCHE_Code;
+	}
+	public void setPRMSCHE_Code(String pRMSCHE_Code) {
+		PRMSCHE_Code = pRMSCHE_Code;
 	}
 	
 	

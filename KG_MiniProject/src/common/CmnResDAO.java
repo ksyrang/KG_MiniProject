@@ -28,8 +28,8 @@ public class CmnResDAO {
 	public int IstRes(CmnResDTO cmnResDTO) {
 		int result = 0;
 		sql = "INSERT INTO PAY_TB "+
-				"(RES_Code,MEM_Code,PRMSCHE_Code)"+
-				"VALUES(?,?,?)";
+				"(RES_Code, MEM_Code,PRMSCHE_Code, MEMSHIPSCHE_Code)"+
+				"VALUES(?,?,?,?)";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, cmnResDTO.getRES_Code());
@@ -59,7 +59,10 @@ public class CmnResDAO {
 			ps.setString(1, RES_Code);
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				tmpdata = new CmnResDTO(rs.getString("RES_Code"), rs.getString("MEM_Code"), rs.getString("PRMSCHE_Code"));
+				tmpdata = new CmnResDTO(rs.getString("RES_Code"), 
+						rs.getString("MEM_Code"), 
+						rs.getString("PRMSCHE_Code"), 
+						rs.getString("MEMSHIPSCHE_Code"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -83,7 +86,10 @@ public class CmnResDAO {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				tmpdata = new CmnResDTO(rs.getString("RES_Code"), rs.getString("MEM_Code"), rs.getString("PRMSCHE_Code"));
+				tmpdata = new CmnResDTO(rs.getString("RES_Code"), 
+						rs.getString("MEM_Code"), 
+						rs.getString("PRMSCHE_Code"), 
+						rs.getString("MEMSHIPSCHE_Code"));
 				Datalist.add(tmpdata);
 			}
 		} catch (SQLException e) {
@@ -109,7 +115,10 @@ public class CmnResDAO {
 			ps.setString(1, MEM_Code);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				tmpdata = new CmnResDTO(rs.getString("RES_Code"), rs.getString("MEM_Code"), rs.getString("PRMSCHE_Code"));
+				tmpdata = new CmnResDTO(rs.getString("RES_Code"), 
+						rs.getString("MEM_Code"), 
+						rs.getString("PRMSCHE_Code"), 
+						rs.getString("MEMSHIPSCHE_Code"));
 				Datalist.add(tmpdata);
 			}
 		} catch (SQLException e) {
@@ -135,7 +144,10 @@ public class CmnResDAO {
 			ps.setString(1, PRMSCHE_Code);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				tmpdata = new CmnResDTO(rs.getString("RES_Code"), rs.getString("MEM_Code"), rs.getString("PRMSCHE_Code"));
+				tmpdata = new CmnResDTO(rs.getString("RES_Code"), 
+						rs.getString("MEM_Code"), 
+						rs.getString("PRMSCHE_Code"), 
+						rs.getString("MEMSHIPSCHE_Code"));
 				Datalist.add(tmpdata);
 			}
 		} catch (SQLException e) {

@@ -151,7 +151,7 @@ public class TrnWelcomeService {
 			Label ExPTypeLabel = (Label)trnExPMgtFrom.lookup("#ExPTypeLabel");
 			TextField ExPNameFeild = (TextField)trnExPMgtFrom.lookup("#ExPNameFeild");
 			DatePicker SrtDate = (DatePicker)trnExPMgtFrom.lookup("#SrtDate");
-			DatePicker EndDate = (DatePicker)trnExPMgtFrom.lookup("#EndDate");
+			DatePicker EndDate = (DatePicker)trnExPMgtFrom.lookup("#EndDate");//seteditalbe 존재
 			RadioButton AMRBtn = (RadioButton)trnExPMgtFrom.lookup("#AMRBtn");
 			RadioButton PMRBtn = (RadioButton)trnExPMgtFrom.lookup("#PMRBtn");
 			TextField LimitMemsField = (TextField)trnExPMgtFrom.lookup("#LimitMemsField");
@@ -214,7 +214,7 @@ public class TrnWelcomeService {
 //	public void InitTable(TableView tableView) {
 //		CurrentProgramTableList = tableView;
 //	}
-	
+	//테이블뷰에 표시된 리스트 중 하나의 프로그램 선택 시
 	public void programclickProc(Parent form) {
 		TableView<TrnTbVDTO> TbVw = (TableView<TrnTbVDTO>)form.lookup("#CurrentProgramTableList");
 		TrnTbVDTO tmp = TbVw.getSelectionModel().getSelectedItem();

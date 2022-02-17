@@ -29,8 +29,9 @@ public class CmnPayDAO {
 	public int Istpay(CmnPayDTO cmnPayDTO) {
 		int result = 0;
 		sql = "INSERT INTO PAY_TB "+
-				"(PAY_Code, PAY_Type, PAY_Date, MEMSHIPSCHE_Code, RES_Code)"+
-				"VALUES(?,?,?,?,?)";
+				"(PAY_Code, PAY_Type, PAY_Date, "+
+				"MEMSHIPSCHE_Code, RES_Code, PRMSCHE_Code)"+
+				"VALUES(?,?,?,?,?,?)";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, cmnPayDTO.getPAY_Code());
@@ -38,6 +39,7 @@ public class CmnPayDAO {
 			ps.setDate(3, cmnPayDTO.getPAY_Date());
 			ps.setString(4, cmnPayDTO.getMEMSHIPSCHE_Code());
 			ps.setString(5, cmnPayDTO.getRES_Code());
+			ps.setString(6, cmnPayDTO.getMEMSHIPSCHE_Code());
 			result = ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -60,8 +62,12 @@ public class CmnPayDAO {
 			ps.setString(1, PAY_Code);
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				tmpdata = new CmnPayDTO(rs.getString("PAY_CODE"), rs.getString("PAY_TYPE"), 
-						rs.getDate("PAY_DATE"), rs.getString("MEMSHIPSCHE_CODE"), rs.getString("RES_CODE"));
+				tmpdata = new CmnPayDTO(rs.getString("PAY_CODE"), 
+						rs.getString("PAY_TYPE"), 
+						rs.getDate("PAY_DATE"), 
+						rs.getString("MEMSHIPSCHE_CODE"), 
+						rs.getString("RES_CODE"),
+						rs.getString("PRMSCHE_CODE"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -85,8 +91,12 @@ public class CmnPayDAO {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				tmpdata = new CmnPayDTO(rs.getString("PAY_Code"), rs.getString("PAY_Type"), 
-						rs.getDate("PAY_Date"), rs.getString("MEMSHIPSCHE_Code"), rs.getString("RES_Code"));
+				tmpdata = new CmnPayDTO(rs.getString("PAY_Code"), 
+						rs.getString("PAY_Type"), 
+						rs.getDate("PAY_Date"), 
+						rs.getString("MEMSHIPSCHE_Code"), 
+						rs.getString("RES_Code"),
+						rs.getString("PRMSCHE_CODE"));
 				Datalist.add(tmpdata);
 			}
 		} catch (SQLException e) {

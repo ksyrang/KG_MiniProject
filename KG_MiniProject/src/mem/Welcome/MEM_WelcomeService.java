@@ -106,7 +106,10 @@ public class MEM_WelcomeService {
          FeMaleBtn.setToggleGroup(group);
          if(tmpMemDto.getMEM_Gender().equals("남성")) maleBtn.setSelected(true);
          else if(tmpMemDto.getMEM_Gender().equals("여성")) FeMaleBtn.setSelected(true);
-         else maleBtn.setSelected(true);
+         else {
+        	 maleBtn.setSelected(false);
+        	 FeMaleBtn.setSelected(false);
+         }
          //Addr Sector
          Addr1Field.setText(tmpMemDto.getMEM_Addr());
          Addr2Field.setText(tmpMemDto.getMEM_Addr());

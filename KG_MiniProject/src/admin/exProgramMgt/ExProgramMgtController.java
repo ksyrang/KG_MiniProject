@@ -46,8 +46,6 @@ public class ExProgramMgtController implements Initializable{
 	
 	/*
 	 * 1.ex프로그램 combobox 선택 후 수정 연동
-	 * 2.아무것도 없을때 수정 누르면 에러처리
-	 * 3.DatePicker에 날짜 뜨게
 	*/
 	
 	@Override
@@ -86,6 +84,7 @@ public class ExProgramMgtController implements Initializable{
 				}
 			});
 		
+		//tabelView 클릭 시
 		exProgramTableView.setOnMouseClicked(new EventHandler<MouseEvent>() { 
 			@Override public void handle(MouseEvent event) { 
 				codeTable = exProgramTableView.getSelectionModel().getSelectedItem();
@@ -94,6 +93,12 @@ public class ExProgramMgtController implements Initializable{
 				
 				}
 			});
+		
+		//실행 시 DatePicker setting
+	    LocalDate strDateSetting = 	LocalDate.now();
+	    LocalDate endDateSetting = strDateSetting.plusMonths(1);
+		startDatePicker.setValue(strDateSetting);
+		endDatePicker.setValue(endDateSetting);
 	}
 	
 	public void setExProgramMgtForm(Parent exProgramMgtForm) {
@@ -112,7 +117,6 @@ public class ExProgramMgtController implements Initializable{
 	
 	// 삭제 버튼 클릭 시
 	public void deleteProc() {
-		System.out.println("프로그램 삭제");
 		exProgramSvc.deleteProc(exProgramMgtForm);
 		this.allProgram = exProgramSvc.getAllProgram();
 		kindComboBox.setItems(this.allProgram);
@@ -121,14 +125,21 @@ public class ExProgramMgtController implements Initializable{
 	
 	// 세부 수정 버튼 클릭 시
 	public void exProgramModifyProc() {
-		System.out.println("프로그램 수정");
-		exProgramSvc.exProgramModifyProc(exProgramMgtForm);
+		if (codeTable != null) {
+			exProgramSvc.exProgramModifyProc(exProgramMgtForm);
+		}else {
+			CommonService.Msg("항목을 선택하시오");
+		}
+		
 	}
 	
 	// 세부 삭제 버튼 클릭 시
 	public void exProgramDeleteProc() {
-		System.out.println("프로그램 삭제");
-		exProgramSvc.exProgramDeleteProc(exProgramMgtForm);
+		if (codeTable != null) {
+			exProgramSvc.exProgramDeleteProc(exProgramMgtForm);
+		}else {
+			CommonService.Msg("항목을 선택하시오");
+		}
 	}
 	
 	// 이전 버튼 클릭 시

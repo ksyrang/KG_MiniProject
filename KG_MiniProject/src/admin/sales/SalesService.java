@@ -107,7 +107,6 @@ public class SalesService {
 	public void exProgramSalesTableUp(TableView<SalesTable> salesTableView) {
 		ObservableList<SalesTable> tableItems = FXCollections.observableArrayList();
 		for(SalesDTO i : this.allList) {
-
 			//null처리
 			if(i.getPRMSCHE_Code() != null){
 				//ExProgram
@@ -186,14 +185,78 @@ public class SalesService {
 		}
 		
 	}
+
+	public int seles(String select) {
+		int allPrice= 0;
+		if(select.equals("전체 매출")) {
+			for(SalesDTO i : this.allList) {
+				//null처리
+				if(i.getPRMSCHE_Code() != null){
+					//ExProgram
+					allPrice += i.getPRMSCHE_Price();
+				}else {
+					//헬스 회원권
+					allPrice += i.getMEMSHIP_Price();
+				}
+			}
+		}else if(select.equals("헬스 회원권 전체 매출")) {
+			for(SalesDTO i : this.allList) {
+				//null처리
+				if(i.getPRMSCHE_Code() != null){
+				}else {
+					//헬스 회원권
+					allPrice += i.getMEMSHIP_Price();
+				}
+			}
+		}else if(select.equals("EX 프로그램 전체 매출")) {
+			for(SalesDTO i : this.allList) {
+				//null처리
+				if(i.getPRMSCHE_Code() != null){
+					//ExProgram
+					allPrice += i.getPRMSCHE_Price();
+				}
+			}
+		}else if(select.equals("EX 프로그램 종류별 매출")) {
+					allPrice = 0;
+			
+		}else if(select.equals("강사별 매출")) {
+					allPrice = 0;
+		}
+		return allPrice;
+	}
+	
+	
+	
+	public int seles(String select, String name) {
+		int allPrice= 0;
+		if(select.equals("EX 프로그램 종류별 매출")) {
+			for(SalesDTO i : this.allList) {
+				String programType = name;
+				//null처리
+				if(i.getPRMSCHE_Code() != null && programType != null){
+					if(programType.equals(i.getPRM_Name())){
+						allPrice += i.getPRMSCHE_Price();
+
+					}
+				}
+			}
+		}else if(select.equals("강사별 매출")) {
+			for(SalesDTO i : this.allList) {
+				String trainerName = name;
+				//null처리
+				if(i.getPRMSCHE_Code() != null && trainerName != null){
+					if(trainerName.equals(i.getTRAINER_NAME())){
+						allPrice += i.getPRMSCHE_Price();
+					}
+				}
+			}
+		}
+		
+		
+		return allPrice;
+	}
 	
 
-
-
-	
-	
-	
-	
 	
 	
 

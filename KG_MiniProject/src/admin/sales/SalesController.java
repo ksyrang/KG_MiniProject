@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,8 +19,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class SalesController implements Initializable{
 	private Parent salesForm;
 	private SalesService salesSvc;
-	private ObservableList<String> allProgram;
+//	private ObservableList<String> allProgram;
 	private String selectFilter;
+	private int allPrice;
+	private String strAllPrice ;
+	
 	
 	@FXML private TableView<SalesTable> salesTableView;
 	@FXML private TableColumn<SalesTable, String> colMemNumber;
@@ -32,7 +36,7 @@ public class SalesController implements Initializable{
 	
 	@FXML private ComboBox<String> filterCombo;
 	@FXML private ComboBox<String> detailCombo;
-	
+	@FXML private Label totalPriceLabel;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -56,6 +60,10 @@ public class SalesController implements Initializable{
 		filterCombo.getItems().add("EX 프로그램 종류별 매출");
 		filterCombo.getItems().add("강사별 매출");
 		
+		//로딩 시 전체 매출 표시
+		allPrice = salesSvc.seles("전체 매출");
+		strAllPrice = Integer.toString(allPrice);
+		totalPriceLabel.setText(strAllPrice);
 	}
 
 	public void setSalesForm(Parent salesForm) {
@@ -70,17 +78,27 @@ public class SalesController implements Initializable{
 		if(selectFilter.equals("전체 매출")) {
 			salesTableView.getItems().clear();
 			salesSvc.allSalesTable(salesTableView);
+			allPrice = salesSvc.seles("전체 매출");
 		}else if(selectFilter.equals("헬스 회원권 전체 매출")) {
 			salesTableView.getItems().clear();
 			salesSvc.memSalesTableUp(salesTableView);
+			allPrice = salesSvc.seles("헬스 회원권 전체 매출");
 		}else if(selectFilter.equals("EX 프로그램 전체 매출")) {
 			salesTableView.getItems().clear();
 			salesSvc.exProgramSalesTableUp(salesTableView);
+			allPrice = salesSvc.seles("EX 프로그램 전체 매출");
 		}else if(selectFilter.equals("EX 프로그램 종류별 매출")) {
+			salesTableView.getItems().clear();
 			salesSvc.detailComboSetting("EXProgram",detailCombo);
+			allPrice = salesSvc.seles("EX 프로그램 종류별 매출");
 		}else if(selectFilter.equals("강사별 매출")) {
+			salesTableView.getItems().clear();
 			salesSvc.detailComboSetting("Trainer",detailCombo);
+			allPrice = salesSvc.seles("강사별 매출");
 		}
+		
+		String strAllPrice = Integer.toString(allPrice);
+		totalPriceLabel.setText(strAllPrice);
 
 	}
 	
@@ -89,11 +107,13 @@ public class SalesController implements Initializable{
 		String selectDetail = detailCombo.getValue();
 		if(selectFilter.equals("EX 프로그램 종류별 매출")) {
 			salesSvc.exProgramTypeSalesTableUp(salesTableView, selectDetail);
+			allPrice = salesSvc.seles("EX 프로그램 종류별 매출",selectDetail);
 		}else if(selectFilter.equals("강사별 매출")) {
 			salesSvc.trainerTypeTableUp(salesTableView, selectDetail);
+			allPrice = salesSvc.seles("강사별 매출",selectDetail);
 		}
-
-		
+		String strAllPrice =Integer.toString(allPrice);
+		totalPriceLabel.setText(strAllPrice);
 	}
 
 		

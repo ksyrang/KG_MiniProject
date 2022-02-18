@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.AreaChart?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -81,20 +82,20 @@
                   <VBox prefHeight="200.0" prefWidth="435.0">
                      <children>
                         <Label text="강사별 매출" />
-                        <BarChart>
+                        <AreaChart fx:id="trainerArea">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
                           <yAxis>
                             <NumberAxis side="LEFT" />
                           </yAxis>
-                        </BarChart>
+                        </AreaChart>
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="435.0">
                      <children>
                         <Label text="월별 매출" />
-                        <BarChart>
+                        <BarChart fx:id="monthlyBar">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>

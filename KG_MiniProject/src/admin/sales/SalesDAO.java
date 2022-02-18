@@ -74,28 +74,20 @@ public class SalesDAO {
 				
 				//null처리
 				salesDto.setRES_Code(rs.getString("RES_CODE"));
-				
 				if(rs.getString("MEMSHIPSCHE_CODE") != null) {
 					String memShipScheCode = rs.getString("MEMSHIPSCHE_CODE");
 					salesDto.setMEMSHIPSCHE_Code(memShipScheCode);
-					System.out.println("왜출력안됨"+memShipScheCode);
 					//헬스 회원권
-					
 					CmnMemShipScheDAO cmnMemShipScheDao = new CmnMemShipScheDAO();
 					CmnMemShipScheDTO cmnMemShipScheDto = cmnMemShipScheDao.SltMemShipScheOne(memShipScheCode);
 					//멤버쉽코드
 					String memShipCode = cmnMemShipScheDto.getMEMSHIP_Code();
 					CmnMemShipDAO cmnMemshipDao = new CmnMemShipDAO();
 					CmnMemShipDTO cmnMemshipDto = cmnMemshipDao.SltMemShipOne(memShipCode);
-					System.out.println("맴쉽코드"+memShipCode);
 					//맴버쉽 정보등록
 					int memShipPrice = cmnMemshipDto.getMEMSHIP_Price();
-					System.out.println("회원권가격"+memShipPrice);
-					System.out.println("회원권가격"+memShipPrice);
 					//회원권 정보등록
 					String memShipType = cmnMemshipDto.getMEMSHIP_Type();
-					System.out.println("회원권 정보" + memShipType);
-
 					salesDto.setMEMSHIP_Price(memShipPrice);
 					salesDto.setMEMSHIP_Type(memShipType);
 					

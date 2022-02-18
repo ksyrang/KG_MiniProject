@@ -3,6 +3,7 @@ package admin.welcome;
 import java.io.IOException;
 
 import admin.memberMgt.MemberMgtTable;
+import admin.statistics.StatisticsController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +30,7 @@ public class WelcomeService {
 			welcomeController.setMemberMgtController(loader.getController());
 			welcomeController.setMemberMgtForm(memberMgtForm);
 			welcomeController.settingMemberMgt();
+			
 			
 			// 콤보 박스
 			ComboBox<String> filterCombo = (ComboBox<String>)memberMgtForm.lookup("#filterCombo");
@@ -137,8 +139,9 @@ public class WelcomeService {
 			statisticsForm = loader.load();
 			welcomeController.setStatisticsController(loader.getController());
 			welcomeController.setStatisticsForm(statisticsForm);
+
 			welcomeController.settingStatistics();
-			
+
 			Scene scene = new Scene(statisticsForm);
 			Stage primaryStage = new Stage();
 			primaryStage.setTitle("statisticsForm");

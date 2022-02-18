@@ -62,7 +62,6 @@ public class ExProgramMgtDAO {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				
 				ExProgramMgtDTO exProgramMgtDto = new ExProgramMgtDTO();
 				exProgramMgtDto.setPRMSCHE_Code(rs.getString("PRMSCHE_Code"));
 				exProgramMgtDto.setPRMSCHE_Price(rs.getInt("PRMSCHE_Price"));
@@ -71,16 +70,22 @@ public class ExProgramMgtDAO {
 				exProgramMgtDto.setPRMSCHE_Time(rs.getString("PRMSCHE_Time"));
 				exProgramMgtDto.setPRMSCHE_LimitP(rs.getInt("PRMSCHE_LimitP"));
 				exProgramMgtDto.setPRMSCHE_CurrentP(rs.getInt("PRMSCHE_CurrentP"));
-				exProgramMgtDto.setTRAINER_Code(rs.getString("TRAINER_Code"));
-				exProgramMgtDto.setPRM_Code(rs.getString("PRM_Code"));
-
+				
+				String trainerCode = rs.getString("TRAINER_Code");
+				exProgramMgtDto.setTRAINER_Code(trainerCode);
 				CmnTrainerDAO cmnTrainerDao = new CmnTrainerDAO();
-				CmnTrainerDTO cmnTrainerDto = cmnTrainerDao.SltTrnOne(rs.getString("TRAINER_Code"));
+				CmnTrainerDTO cmnTrainerDto = cmnTrainerDao.SltTrnOne(trainerCode);
 				exProgramMgtDto.setTRAINER_Name(cmnTrainerDto.getTRAINER_Name());
-				CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
-				CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(rs.getString("PRM_Code"));
-				exProgramMgtDto.setPRM_Name(cmnPrmDto.getPRM_Name());
-
+				if(rs.getString("PRM_Code")!=null) {
+					String prmCode = rs.getString("PRM_Code");
+					exProgramMgtDto.setPRM_Code(prmCode);
+					CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
+					CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(prmCode);
+					if(cmnPrmDto.getPRM_Name() != null) {
+						exProgramMgtDto.setPRM_Name(cmnPrmDto.getPRM_Name());
+					}
+				}
+				
 				allList.add(exProgramMgtDto);
 			}
 
@@ -152,22 +157,26 @@ public class ExProgramMgtDAO {
 	
 	
 	//ex프로그램 세부사항 수정 시 중복체크
-	public int selectModifyExProgram(ExProgramMgtDTO exProgramMgtDto, CmnPrmScheDTO cmnPrmScheDto) {
-		String sql = "SELECT * FROM PRMSCHE_TB WHERE PRMSCHE_CODE=?";
+	public int selectModifyExProgram(ExProgramMgtDTO exProgramMgtDto) {
+		String sql = "SELECT * FROM PRMSCHE_TB ";
 		PreparedStatement ps;
+		ResultSet rs;
 		int result = 0;
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, cmnPrmScheDto.getPRMSCHE_Code());
-			result = ps.executeUpdate();
-			if (exProgramMgtDto.getPRMSCHE_Code().equals(cmnPrmScheDto.getPRMSCHE_Code()) &
-				(exProgramMgtDto.getPRMSCHE_Strdate().equals(cmnPrmScheDto.getPRMSCHE_Strdate())) &
-				(exProgramMgtDto.getPRMSCHE_Enddate().equals(cmnPrmScheDto.getPRMSCHE_Enddate())) &
-				(exProgramMgtDto.getPRMSCHE_Time().equals(cmnPrmScheDto.getPRMSCHE_Time())) &
-//				(exProgramMgtDto.getTRAINER_Code().equals(cmnPrmScheDto.getTRAINER_Code())) &
-				(exProgramMgtDto.getPRMSCHE_Price() == cmnPrmScheDto.getPRMSCHE_Price())) {
-				result = 0;
-			}else {
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				if ((exProgramMgtDto.getPRMSCHE_Strdate().equals(rs.getDate("PRMSCHE_STRDATE"))) &
+					(exProgramMgtDto.getPRMSCHE_Enddate().equals(rs.getDate("PRMSCHE_ENDDATE"))) &
+					(exProgramMgtDto.getPRMSCHE_Time().equals(rs.getString("PRMSCHE_TIME"))) &
+					(exProgramMgtDto.getTRAINER_Code().equals(rs.getString("TRAINER_CODE"))) &
+					(exProgramMgtDto.getPRMSCHE_LimitP()==(rs.getInt("PRMSCHE_LIMITP"))) &
+					(exProgramMgtDto.getPRM_Code().equals(rs.getString("PRM_CODE"))) &
+					(exProgramMgtDto.getPRMSCHE_CurrentP()==(rs.getInt("PRMSCHE_CURRENTP"))) &
+					(exProgramMgtDto.getPRMSCHE_Code().equals(rs.getString("PRMSCHE_CODE"))) &
+					(exProgramMgtDto.getPRMSCHE_Price() == rs.getInt("PRMSCHE_PRICE"))) {
+					result=1;
+				}
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -195,9 +204,26 @@ public class ExProgramMgtDAO {
 			e.printStackTrace();
 		}
 		return result;
-		//PRM_Name변경 쿼리문 작성필요
 
 	}
+	
+//	//클릭한 ex프로그램 세부상항중 ex프로그램이름 수정
+//	public int PRM_NAMEModify(ExProgramMgtDTO exProgramMgtDto) {
+//		String sql = "UPDATE PRM_TB SET PRM_NAME=? WHERE PRM_CODE=?";
+//		PreparedStatement ps;
+//		int result = 0;
+//		try {
+//			ps = con.prepareStatement(sql);
+//			System.out.println("getPrmCode"+exProgramMgtDto.getPRM_Code());
+//			System.out.println("getPrmName" + exProgramMgtDto.getPRM_Name());
+//			ps.setString(1, exProgramMgtDto.getPRM_Name());
+//			ps.setString(2, exProgramMgtDto.getPRM_Code());
+//			result = ps.executeUpdate();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return result;	
+//	}
 
 	
 	//클릭한 세부항목삭제

@@ -103,6 +103,7 @@ public class MEM_WelcomeDAO {
 		}
 		return memWelcomeDto;
 	}
+	
 	public String getPrmName(String PrmCode) {
 		String prm_name = null;
 		String sql = "SELECT prm_name FROM prm_tb WHERE prm_code=?";
@@ -121,25 +122,22 @@ public class MEM_WelcomeDAO {
 		return prm_name;
 	}
 	
-	public ObservableList<MEM_WelcomeDTO> getAllMemberList() {
-		String sql = "SELECT mem_code, mem_name, mem_approve FROM mem_tb";
+	public String getTrainner(String PrmCode) {
+		String prm_name = null;
+		String sql = "SELECT prm_name FROM prm_tb WHERE prm_code=?";
 		PreparedStatement ps;
 		ResultSet rs;
-		ObservableList<MEM_WelcomeDTO> member = FXCollections.observableArrayList();
 		try {
 			ps = con.prepareStatement(sql);
+			ps.setString(1, PrmCode);
 			rs = ps.executeQuery();
-			while(rs.next()) {
-				MEM_WelcomeDTO memWelcomeDto = new MEM_WelcomeDTO();				
-//				memWelcomeDto.setMem_code(rs.getString("mem_code"));
-//				memWelcomeDto.setMem_name(rs.getString("mem_name"));
-//				memWelcomeDto.setMem_approve(rs.getString("mem_approve"));
-				member.add(memWelcomeDto);
+			if(rs.next()) {
+				return rs.getString("prm_name");
 			}
-		} catch (SQLException e) {
+		}catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return member;
+		return prm_name;
 	}
 	
 }

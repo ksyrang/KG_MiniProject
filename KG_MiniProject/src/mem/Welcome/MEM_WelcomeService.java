@@ -51,7 +51,7 @@ public class MEM_WelcomeService {
     	 exProgramBuyingForm = loader.load();
          memWelcomeController.setExProgramBuyingForm(exProgramBuyingForm);
          memWelcomeController.setMemExPBuyingContorller(loader.getController());
-         memWelcomeController.getMemExPBuyingContorller().setMemExpBuyingForm(exProgramBuyingForm);
+//         memWelcomeController.getMemExPBuyingContorller().setMemExpBuyingForm(exProgramBuyingForm);
 
          //상단 이름
          Label titleUserName = (Label)exProgramBuyingForm.lookup("#TitleMemNameLabel");

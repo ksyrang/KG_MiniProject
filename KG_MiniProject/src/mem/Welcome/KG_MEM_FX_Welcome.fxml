@@ -71,11 +71,11 @@
                   </FlowPane>
                   <TableView fx:id="memProgramTable" onMouseClicked="#selectPrmDetail" prefHeight="430.0" prefWidth="375.0">
                     <columns>
-                      <TableColumn fx:id="colPrmName" minWidth="200.0" prefWidth="40.0" text="강의코드" />
-                      <TableColumn fx:id="colPrmscheTime" prefWidth="80.0" text="강사코드" />
-                        <TableColumn fx:id="colPrmschePrice" prefWidth="100.0" text="스케쥴코드" />
-                        <TableColumn fx:id="colPrmscheStrdate" prefWidth="140.0" text="시작일" />
-                        <TableColumn fx:id="colPrmscheEnddate" prefWidth="140.0" text="종료일" />
+                      <TableColumn fx:id="colPrmName" minWidth="159.0" prefWidth="159.0" text="강의명" />
+                      <TableColumn fx:id="colPrmscheTime" prefWidth="55.0" text="시간" />
+                        <TableColumn fx:id="colPrmschePrice" prefWidth="96.0" text="가격" />
+                        <TableColumn fx:id="colPrmscheStrdate" prefWidth="111.0" text="시작일" />
+                        <TableColumn fx:id="colPrmscheEnddate" prefWidth="118.0" text="종료일" />
                     </columns>
                   </TableView>
                </children>
@@ -107,7 +107,7 @@
                   </FlowPane>
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0">
                      <children>
-                        <Label text="강  의  명 : " />
+                        <Label text="강의코드 : " />
                         <TextField fx:id="prm_nameTxtFld" prefHeight="25.0">
                            <HBox.margin>
                               <Insets top="5.0" />

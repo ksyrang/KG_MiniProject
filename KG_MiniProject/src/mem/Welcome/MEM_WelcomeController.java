@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import Main.main.MainService;
+import common.CmnTrainerDAO;
+import common.CmnTrainerDTO;
 import common.CommonService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +23,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import mem.Mgt.MgtController;
 import trn.TrnMgt.TrnMgtController;
-import mem.EXProgramBuying.MemExPBuyingContorller;
 
 public class MEM_WelcomeController implements Initializable {
 	private Parent healthProgramBuyingForm;
@@ -32,9 +33,7 @@ public class MEM_WelcomeController implements Initializable {
 	private Parent memWelcomeForm;
 	private String membCode;
 	//test
-
-
-	private MemExPBuyingContorller MemExPBuyingContorller;	
+	
 	
 	
 	@FXML private TextField prm_nameTxtFld;
@@ -129,14 +128,19 @@ public class MEM_WelcomeController implements Initializable {
     	MEM_WelcomeDTO memWelcomeDto = new MEM_WelcomeDTO();
     	int select = memProgramTable.getSelectionModel().getSelectedIndex(); 
     	memWelcomeDto = memWelcomeDao.selectProgram("user1");
-    	System.out.println(memWelcomeDto.getPrm_code());
-    	System.out.println(memWelcomeDto.getPrm_name());
 
     	prm_nameTxtFld.setText(memWelcomeDto.getPrm_code());
-//    	trainer_nameTxtFld.setText(tvd.getColPrmName());
-//    	trainer_careerTxtFld.setText(memWelcomeDto.get);
+    	
+    	CmnTrainerDAO cmnTrainerDao = new CmnTrainerDAO();
+    	CmnTrainerDTO cmnTrainerDto = new CmnTrainerDTO();
+    	cmnTrainerDto = cmnTrainerDao.SltTrnOne(memWelcomeDto.getTrainer_code());
+    	System.out.println(cmnTrainerDto.getTRAINER_Name());
+    	System.out.println(cmnTrainerDto.getTRAINER_Career());
+    	
+    	trainer_nameTxtFld.setText(cmnTrainerDto.getTRAINER_Name());
+    	trainer_careerTxtFld.setText(Integer.toString(cmnTrainerDto.getTRAINER_Career()));
+    	
     	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		Date date = new Date();        
 		String dateToStrdate = dateFormat.format(memWelcomeDto.getPrmsche_strdate());
 		String dateToEnddate = dateFormat.format(memWelcomeDto.getPrmsche_enddate());
     	prmsche_strdateTxtFld.setText(dateToStrdate);
@@ -168,14 +172,18 @@ public class MEM_WelcomeController implements Initializable {
 	public void setExProgramBuyingForm(Parent exProgramBuyingForm) {
 		this.exProgramBuyingForm = exProgramBuyingForm;
 	}
-	
 
-	public MemExPBuyingContorller getMemExPBuyingContorller() {
-		return MemExPBuyingContorller;
+	public void setMemExPBuyingContorller(Object controller) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	public void setMemExPBuyingContorller(MemExPBuyingContorller memExPBuyingContorller) {
-		MemExPBuyingContorller = memExPBuyingContorller;
+	public Object getMemExPBuyingContorller() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
+	public void setMemExpBuyingForm(Parent exProgramBuyingForm) {
+		this.exProgramBuyingForm = exProgramBuyingForm;
+	}
 }

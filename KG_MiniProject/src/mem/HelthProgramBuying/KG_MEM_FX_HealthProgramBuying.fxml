@@ -44,7 +44,7 @@
       <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="100.0" prefHeight="100.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="paymentButton" mnemonicParsing="false" onAction="#paymentProc" prefHeight="50.0" prefWidth="150.0" text="결제" />
-            <Button fx:id="cancelButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="취소" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#healthPrmBuyingCancleProc" prefHeight="50.0" prefWidth="150.0" text="취소" />
          </children>
       </FlowPane>
    </bottom>
@@ -66,25 +66,40 @@
                <children>
                   <VBox prefHeight="264.0" prefWidth="350.0">
                      <children>
-                        <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0">
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <Label text="회 원 권 : " />
-                              <ComboBox fx:id="memshipComboBox" prefWidth="200.0" promptText="회원권선택" />
+                              <Label text="회 원 권 :  헬스 회원권" />
+                              <ComboBox fx:id="memshipComboBox" onAction="#selectTypeCombo" prefHeight="29.0" prefWidth="73.0" />
+                              <Label text="개월" />
                            </children>
-                        </FlowPane>
-                        <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label text="가     격 : " />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="가격표시" />
+                              <Label fx:id="memshipPriceTxt" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="90.0" text="0" />
+                              <Label text="원">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
                            </children>
-                        </FlowPane>
-                        <FlowPane prefHeight="200.0" prefWidth="200.0">
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
                               <Label text="시작날짜 : " />
                               <DatePicker />
                            </children>
-                        </FlowPane>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
                      </children>
+                     <HBox.margin>
+                        <Insets top="30.0" />
+                     </HBox.margin>
                   </VBox>
                   <VBox prefWidth="480.0">
                      <children>

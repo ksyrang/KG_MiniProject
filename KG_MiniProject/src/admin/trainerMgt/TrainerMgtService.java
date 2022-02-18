@@ -141,7 +141,15 @@ public class TrainerMgtService {
 			trnMobile = Integer.parseInt(trnMobileTxt.getText());
 		}
 		
-		String trnAddr =  trnAddrTxt1.getText() + "/" + trnAddrTxt2.getText();
+		String trnAddr1 = trnAddrTxt1.getText();
+		String trnAddr2 = trnAddrTxt2.getText();
+		if (trnAddrTxt1.getText().isEmpty()) {
+			trnAddr1 = "";
+		} else if (trnAddrTxt2.getText().isEmpty()) {
+			trnAddr2 ="";
+		}
+		
+		String trnAddr = trnAddr1 + "/" + trnAddr2;
 		
 		int trnBirth;
 		if(trnBirthTxt.getText().isEmpty()) {

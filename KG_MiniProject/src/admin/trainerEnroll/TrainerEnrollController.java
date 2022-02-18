@@ -14,12 +14,13 @@ public class TrainerEnrollController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		trainerEnrollSvc = new TrainerEnrollService();
-		
+		//mgtSvc = new TrainerMgtService();
 	}
 	
 	public void setTrainerEnrollForm(Parent trainerEnrollForm) {
 		this.trainerEnrollForm = trainerEnrollForm;
 	}
+	
 	
 	// 중복 체크 클릭 시
 	public void overlapProc() {

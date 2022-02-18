@@ -30,14 +30,16 @@ public class ExPrmBuyingService {
 	private String selectData;
 	private ListView<String> programListView;
 	private TableView<ExPrmBuyingTable> ExPrmBuyingTableView;
-	private ExPrmBuyingController ExPrmBuyingController;
+	private ExPrmBuyingController exPrmBuyingController;
+	
+
 	
 	public void setExPrmBuyingController(ExPrmBuyingController ExPrmBuyingController) {
-		this.ExPrmBuyingController = ExPrmBuyingController;
+		this.exPrmBuyingController = ExPrmBuyingController;
 	}
 
 	//ex프로그램 종류 등록
-	public void paymentProc(Parent exProgramBuyingForm) {
+	public void paymentProc(String membCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/BuyingType/KG_MEM_FX_BuyingType.fxml"));
 		Parent buyingTypeForm;
 		try {
@@ -177,7 +179,7 @@ public class ExPrmBuyingService {
 		
 	}
 	
-	public void CancelProc(Parent exProgramBuyingForm) {
+	public void cancelProc(Parent exProgramBuyingForm) {
 		CommonService.WindowClose(exProgramBuyingForm);
 	}
 	

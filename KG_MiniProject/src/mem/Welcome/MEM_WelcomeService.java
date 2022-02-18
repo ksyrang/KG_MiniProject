@@ -51,7 +51,7 @@ public class MEM_WelcomeService {
         exProgramBuyingForm = loader.load();
          memWelcomeController.setExProgramBuyingForm(exProgramBuyingForm);
          memWelcomeController.setExPrmBuyingController(loader.getController());
-      //   memWelcomeController.getExPrmBuyingController().setMembCode(membCode);
+         memWelcomeController.getExPrmBuyingController().setMembCode(membCode);
 
          //상단 이름
          Label titleUserName = (Label)exProgramBuyingForm.lookup("#TitleMemNameLabel");
@@ -144,8 +144,8 @@ public class MEM_WelcomeService {
       
    }
 
-   public void cancelProc() {
-      // TODO Auto-generated method stub
+   public void cancelProc(Parent memWelcomeForm) {
+	    CommonService.WindowClose(memWelcomeForm);
       
    }
 

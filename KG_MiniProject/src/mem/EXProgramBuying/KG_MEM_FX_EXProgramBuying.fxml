@@ -44,7 +44,7 @@
       <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="100.0" prefHeight="100.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="ExPScheBuyBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="예약" />
-            <Button fx:id="BackBtn" mnemonicParsing="false" onAction="#CancleProc" prefHeight="50.0" prefWidth="150.0" text="취소" />
+            <Button fx:id="BackBtn" mnemonicParsing="false" onAction="#cancleProc" prefHeight="50.0" prefWidth="150.0" text="취소" />
          </children>
       </FlowPane>
    </bottom>

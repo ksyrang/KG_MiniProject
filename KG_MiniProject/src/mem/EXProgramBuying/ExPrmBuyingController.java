@@ -58,7 +58,7 @@ public class ExPrmBuyingController implements Initializable{
 		this.membCode = membCode;
 	}
 	
-	public void setExPrmBuyingForm(Parent exProgramBuyingForm) {
+	public void setExProgramBuyingForm(Parent exProgramBuyingForm) {
 		this.exProgramBuyingForm = exProgramBuyingForm;
 	}
 
@@ -70,9 +70,9 @@ public class ExPrmBuyingController implements Initializable{
 	}
 	*/
 	// 이전 버튼 클릭 시
-	public void CancleProc() {
+	public void cancleProc() {
 		//CommonService.WindowClose(exProgramBuyingForm);
-		ExPrmBuyingSvc.CancelProc(exProgramBuyingForm);
+		ExPrmBuyingSvc.cancelProc(exProgramBuyingForm);
 	}
 
 

@@ -162,7 +162,7 @@ public class MEM_WelcomeController implements Initializable {
 
 	}
 	public void cancelProc() {
-		memWelcomeSvc.cancelProc();
+		memWelcomeSvc.cancelProc(memWelcomeForm);
 	}
 	
 	

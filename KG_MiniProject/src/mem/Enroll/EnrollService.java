@@ -98,7 +98,7 @@ public class EnrollService {
 //		}
 		
 		if(pw.equals(confirm)) {	
-			EnrollDAO enrollDAO = new EnrollDAO();
+			enrollDAO = new EnrollDAO();
 			EnrollDTO enrollDTO = enrollDAO.SelectId(id);
 //			System.out.println(enrollDTO);
 			if(enrollDTO == null) {

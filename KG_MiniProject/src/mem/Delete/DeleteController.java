@@ -3,9 +3,9 @@ package mem.Delete;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import common.CommonService;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import mem.Mgt.MgtController;
 
 
 public class DeleteController implements Initializable {
@@ -18,6 +18,7 @@ public class DeleteController implements Initializable {
 	public void setMembCode(String membCode) {
 		this.membCode = membCode;
 	}
+	
 	
 	public void setMemDeleteForm(Parent deleteForm) {
 		this.deleteForm = deleteForm;
@@ -47,9 +48,10 @@ public class DeleteController implements Initializable {
 		}
 	
 
-//		public void DeleteProc() {
-//			deleteService.DeleteProc(deleteForm, membCode);
-//		}
+		public void DeleteProc() {
+			deleteService.deleteProc(deleteForm, membCode);
+			CommonService.WindowClose(deleteForm);
+		}
 
 		
 	

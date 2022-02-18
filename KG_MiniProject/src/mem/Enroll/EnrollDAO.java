@@ -38,7 +38,7 @@ public class EnrollDAO {
 			if(rs.next()) {
 				EnrollDTO enrDTO = new EnrollDTO();
 				
-
+				enrDTO.setMEM_Code(rs.getString("mem_Code"));
 				enrDTO.setMEM_ID(rs.getString("mem_ID"));
 				enrDTO.setMEM_PW(rs.getString("mem_PW"));
 				enrDTO.setMEM_Name(rs.getString("mem_Name"));
@@ -46,6 +46,8 @@ public class EnrollDAO {
 				enrDTO.setMEM_Birth(rs.getInt("mem_Birth"));
 				enrDTO.setMEM_Mobile(rs.getInt("mem_Mobile"));
 				enrDTO.setMEM_Addr(rs.getString("mem_Addr"));
+				enrDTO.setPRMSCHE_Code(rs.getString("prmsche_Code"));
+				enrDTO.setMEMSHIPSCHE_Code(rs.getString("memshipsche_Code"));
 				enrDTO.setMEM_Approve(rs.getString("mem_approve"));
 				return enrDTO;
 			}
@@ -67,7 +69,7 @@ public class EnrollDAO {
 			if(rs.next()) {
 				EnrollDTO enrDTO = new EnrollDTO();
 				
-
+				enrDTO.setMEM_Code(rs.getString("mem_Code"));
 				enrDTO.setMEM_ID(rs.getString("mem_ID"));
 				enrDTO.setMEM_PW(rs.getString("mem_PW"));
 				enrDTO.setMEM_Name(rs.getString("mem_Name"));
@@ -75,6 +77,8 @@ public class EnrollDAO {
 				enrDTO.setMEM_Birth(rs.getInt("mem_Birth"));
 				enrDTO.setMEM_Mobile(rs.getInt("mem_Mobile"));
 				enrDTO.setMEM_Addr(rs.getString("mem_Addr"));
+				enrDTO.setPRMSCHE_Code(rs.getString("prmsche_Code"));
+				enrDTO.setMEMSHIPSCHE_Code(rs.getString("memshipsche_Code"));
 				enrDTO.setMEM_Approve(rs.getString("mem_approve"));
 				return enrDTO;
 			}

@@ -1,7 +1,5 @@
 package mem.Enroll;
 
-import common.CmnMemDTO;
-
 public class EnrollDTO {
 	private String MEM_Code; //PK
 	private String MEM_ID;

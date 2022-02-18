@@ -47,8 +47,8 @@ public class MgtDAO {
 					memberMgtDto.setMEM_Gender(rs.getString("mem_gender"));
 					memberMgtDto.setMEM_Birth(rs.getInt("mem_birth"));
 					memberMgtDto.setMEM_Mobile(rs.getInt("mem_mobile"));
-					memberMgtDto.setPRMSCHE_Code(rs.getString("PRMSCHE_Code"));
-					memberMgtDto.setMEMSHIPSCHE_Code(rs.getString("MEMSHIPSCHE_Code"));
+					memberMgtDto.setPRMSCHE_Code(rs.getString("prmsche_Code"));
+					memberMgtDto.setMEMSHIPSCHE_Code(rs.getString("memshipsche_Code"));
 					memberMgtDto.setMEM_Addr(rs.getString("mem_addr"));
 					memberMgtDto.setMEM_Approve(rs.getString("mem_approve"));
 					

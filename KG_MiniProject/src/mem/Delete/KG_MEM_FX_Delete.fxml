@@ -27,7 +27,7 @@
    <bottom>
       <HBox prefHeight="50.0" prefWidth="335.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="80.0" text="탈퇴">
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#DeleteProc" prefHeight="29.0" prefWidth="80.0" text="탈퇴">
                <HBox.margin>
                   <Insets left="50.0" top="10.0" />
                </HBox.margin>
@@ -52,7 +52,7 @@
                   </Label>
                   <VBox prefHeight="100.0" prefWidth="220.0">
                      <children>
-                        <PasswordField maxWidth="184.0" prefHeight="30.0" prefWidth="184.0">
+                        <PasswordField fx:id="pwTxt" maxWidth="184.0" prefHeight="30.0" prefWidth="184.0">
                            <VBox.margin>
                               <Insets top="36.0" />
                            </VBox.margin>

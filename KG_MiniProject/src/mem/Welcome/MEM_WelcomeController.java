@@ -108,6 +108,7 @@ public class MEM_WelcomeController implements Initializable {
 		ObservableList<MEM_WelcomeDTO> memWelcomeDto = memWelcomeDao.selectMemAllProgram("user1");
 		
 		for(MEM_WelcomeDTO m : memWelcomeDto) {
+			System.out.println(m.getPrm_name());
 			String prm_name = m.getPrm_name();
 			String prmsche_time = m.getPrmsche_time();
 			int prmsche_price = m.getPrmsche_price();

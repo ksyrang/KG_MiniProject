@@ -92,7 +92,6 @@ public class MEM_WelcomeController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	
-		/*	
 		MEM_WelcomeDAO memWelcomeDao = new MEM_WelcomeDAO();
 		obserList = FXCollections.observableArrayList();
 		
@@ -116,7 +115,6 @@ public class MEM_WelcomeController implements Initializable {
 			obserList.add(new MEM_WelcomeMgtTable(prm_name,prmsche_time,prmsche_price,prmsche_strdate,prmsche_enddate));
 		}
 		memProgramTable.setItems(obserList);
-	*/	
 	} 
     
     //회색 버튼 의 핸들러 부분 여기를 누르면 테이블뷰의 리스트가 출력됩니다.

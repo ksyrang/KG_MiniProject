@@ -12,9 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" 
-prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" 
-fx:controller="mem.Welcome.MEM_WelcomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mem.Welcome.MEM_WelcomeController">
    <top>
       <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
@@ -26,7 +24,7 @@ fx:controller="mem.Welcome.MEM_WelcomeController">
                   <Insets left="10.0" top="12.5" />
                </HBox.margin>
             </Label>
-            <Label text="-회원님">
+            <Label fx:id="memMgtButton" onMouseClicked="#MemClickProc" text="-회원님">
                <font>
                   <Font size="20.0" />
                </font>
@@ -73,11 +71,11 @@ fx:controller="mem.Welcome.MEM_WelcomeController">
                   </FlowPane>
                   <TableView fx:id="memProgramTable" onMouseClicked="#selectPrmDetail" prefHeight="430.0" prefWidth="375.0">
                     <columns>
-                      <TableColumn fx:id="colPrmName" minWidth="200.0" prefWidth="40.0" text="강의코드" />
-                      <TableColumn fx:id="colPrmscheTime" prefWidth="80.0" text="강사코드" />
-                        <TableColumn fx:id="colPrmschePrice" prefWidth="100.0" text="스케쥴코드" />
-                        <TableColumn fx:id="colPrmscheStrdate" prefWidth="140.0" text="시작일" />
-                        <TableColumn fx:id="colPrmscheEnddate" prefWidth="140.0" text="종료일" />
+                      <TableColumn fx:id="colPrmName" minWidth="20.0" prefWidth="200.0" text="강의명" />
+                      <TableColumn fx:id="colPrmscheTime" prefWidth="40.0" text="타입" />
+                        <TableColumn fx:id="colPrmschePrice" prefWidth="100.0" text="가격" />
+                        <TableColumn fx:id="colPrmscheStrdate" prefWidth="100.0" text="시작일" />
+                        <TableColumn fx:id="colPrmscheEnddate" prefWidth="100.0" text="종료일" />
                     </columns>
                   </TableView>
                </children>
@@ -109,8 +107,8 @@ fx:controller="mem.Welcome.MEM_WelcomeController">
                   </FlowPane>
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0">
                      <children>
-                        <Label text="강  의  명 : " />
-                        <TextField fx:id="prm_nameTxtFld" prefHeight="25.0">
+                        <Label text="강의코드 : " />
+                        <TextField fx:id="prm_codeTxtFld" prefHeight="25.0">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>

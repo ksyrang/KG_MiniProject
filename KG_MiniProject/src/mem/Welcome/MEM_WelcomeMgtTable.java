@@ -3,15 +3,76 @@ package mem.Welcome;
 import java.util.Date;
 
 public class MEM_WelcomeMgtTable {
-	
+	private String colMemId;
 	private String colPrmCode;
-	private String colTrainerCode;
-	private int colPrmschePrice;
-	private Date colPrmscheStrdate;
-	private Date colPrmscheEnddate;
+	private String colPrmName;
 	private String colPrmscheCode;
 	private String colMemshipscheCode;
+	private String colTrainerCode;
+	private String colPrmscheName;
+	private String colPrmscheTime;
+	private Date colPrmscheStrdate;
+	private Date colPrmscheEnddate;
+	private int colPrmschePrice;
+	private int colPrmscheCurrentp;
+	private int colPrmscheLimitp;
 	
+	public MEM_WelcomeMgtTable(String colPrmName, String colPrmscheTime, int colPrmschePrice,Date colPrmscheStrdate,Date colPrmscheEnddate) {
+		this.colPrmName = colPrmName;
+		this.colPrmscheTime = colPrmscheTime;
+		this.colPrmschePrice = colPrmschePrice;
+		this.colPrmscheStrdate = colPrmscheStrdate;
+		this.colPrmscheEnddate = colPrmscheEnddate;
+	}
+
+	public String getColMemId() {
+		return colMemId;
+	}
+
+	public void setColMemId(String colMemId) {
+		this.colMemId = colMemId;
+	}
+
+	public String getColPrmName() {
+		return colPrmName;
+	}
+
+	public void setColPrmName(String colPrmName) {
+		colPrmName = colPrmName;
+	}
+
+	public String getColPrmscheName() {
+		return colPrmscheName;
+	}
+
+	public void setColPrmscheName(String colPrmscheName) {
+		this.colPrmscheName = colPrmscheName;
+	}
+
+	public String getColPrmscheTime() {
+		return colPrmscheTime;
+	}
+
+	public void setColPrmscheTime(String colPrmscheTime) {
+		this.colPrmscheTime = colPrmscheTime;
+	}
+
+	public int getColPrmscheCurrentp() {
+		return colPrmscheCurrentp;
+	}
+
+	public void setColPrmscheCurrentp(int colPrmscheCurrentp) {
+		this.colPrmscheCurrentp = colPrmscheCurrentp;
+	}
+
+	public int getColPrmscheLimitp() {
+		return colPrmscheLimitp;
+	}
+
+	public void setColPrmscheLimitp(int colPrmscheLimitp) {
+		this.colPrmscheLimitp = colPrmscheLimitp;
+	}
+
 	public String getColPrmscheCode() {
 		return colPrmscheCode;
 	}
@@ -26,14 +87,6 @@ public class MEM_WelcomeMgtTable {
 
 	public void setColMemshipscheCode(String colMemshipscheCode) {
 		this.colMemshipscheCode = colMemshipscheCode;
-	}
-
-	public MEM_WelcomeMgtTable(String colPrmCode, String colTrainerCode, String colPrmscheCode,Date colPrmscheStrdate,Date colPrmscheEnddate) {
-		this.colPrmCode = colPrmCode;
-		this.colTrainerCode = colTrainerCode;
-		this.colPrmscheCode = colPrmscheCode;
-		this.colPrmscheStrdate = colPrmscheStrdate;
-		this.colPrmscheEnddate = colPrmscheEnddate;
 	}
 
 	public String getColPrmCode() {

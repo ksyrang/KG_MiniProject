@@ -3,14 +3,26 @@ package mem.Welcome;
 import java.util.Date;
 
 public class MEM_WelcomeDTO {
+	private String mem_id;
 	private String prm_code;
-	private String trainer_code;
-	private int prmsche_price;
-	private Date prmsche_strdate;
-	private Date prmsche_enddate;
+	private String prm_name;
 	private String prmsche_code;
 	private String memshipsche_code;
+	private String trainer_code;
+	private String prmsche_name;
+	private String prmsche_time;
+	private Date prmsche_strdate;
+	private Date prmsche_enddate;
+	private int prmsche_price;
+	private int prmsche_currentp;
+	private int prmsche_limitp;
 	
+	public String getPrmsche_time() {
+		return prmsche_time;
+	}
+	public void setPrmsche_time(String prmsche_time) {
+		this.prmsche_time = prmsche_time;
+	}
 	public String getPrmsche_code() {
 		return prmsche_code;
 	}
@@ -52,6 +64,36 @@ public class MEM_WelcomeDTO {
 	}
 	public void setPrmsche_enddate(Date prmsche_enddate) {
 		this.prmsche_enddate = prmsche_enddate;
+	}
+	public String getMem_id() {
+		return mem_id;
+	}
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
+	}
+	public String getPrm_name() {
+		return prm_name;
+	}
+	public void setPrm_name(String prm_name) {
+		this.prm_name = prm_name;
+	}
+	public String getPrmsche_name() {
+		return prmsche_name;
+	}
+	public void setPrmsche_name(String prmsche_name) {
+		this.prmsche_name = prmsche_name;
+	}
+	public int getPrmsche_currentp() {
+		return prmsche_currentp;
+	}
+	public void setPrmsche_currentp(int prmsche_currentp) {
+		this.prmsche_currentp = prmsche_currentp;
+	}
+	public int getPrmsche_limitp() {
+		return prmsche_limitp;
+	}
+	public void setPrmsche_limitp(int prmsche_limitp) {
+		this.prmsche_limitp = prmsche_limitp;
 	}
 	
 }

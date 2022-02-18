@@ -91,8 +91,8 @@ public class TrnWelcomeService {
 			ToggleGroup group = new ToggleGroup();
 			maleBtn.setToggleGroup(group);
 			FeMaleBtn.setToggleGroup(group);
-			if(tmpTrnDto.getTRAINER_Gender().equals("남성")) maleBtn.setSelected(true);
-			else if(tmpTrnDto.getTRAINER_Gender().equals("여성")) FeMaleBtn.setSelected(true);
+			if(tmpTrnDto.getTRAINER_Gender().equals("남")) maleBtn.setSelected(true);
+			else if(tmpTrnDto.getTRAINER_Gender().equals("여")) FeMaleBtn.setSelected(true);
 			else maleBtn.setSelected(true);
 			//Addr Sector
 			Addr1Field.setText(tmpTrnDto.getTRAINER_Addr());

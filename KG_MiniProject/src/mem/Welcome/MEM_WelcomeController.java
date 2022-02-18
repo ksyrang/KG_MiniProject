@@ -61,7 +61,7 @@ public class MEM_WelcomeController implements Initializable {
 	public void setMem_WelcomeController(MEM_WelcomeController memWelcomeController) {
 		this.memWelcomeController = memWelcomeController;
 	}
-	
+	////
 	public String getMembCode() {
 		return this.membCode;
 	}
@@ -69,7 +69,7 @@ public class MEM_WelcomeController implements Initializable {
 	public void setMembCode(String membCode) {
 		this.membCode = membCode;
 	}
-	
+	/////
 	public MgtController getMgtController() {
 		return memMgtController;
 	}

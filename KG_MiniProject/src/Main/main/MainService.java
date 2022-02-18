@@ -17,6 +17,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import mem.Mgt.MgtDAO;
+import mem.Mgt.MgtDTO;
 import trn.DBDAO.TrnTrainerDAO;
 import trn.DBDTO.TrnTrainerDTO;
 import trn.Welcome.TrnTbVDTO;
@@ -55,6 +57,10 @@ public class MainService {
 			controller.setMEM_WelcomeController(loader.getController());
 			controller.getMEM_WelcomeController().setMemWelcomeForm(memberWelcomeForm);
 			controller.getMEM_WelcomeController().setMembCode(UserCode);
+			
+			Label titleUserName = (Label)memberWelcomeForm.lookup("#TitleMemNameLabel");
+	         MgtDTO tmpMemDto = new MgtDTO(new MgtDAO().selectCode(UserCode));
+	         titleUserName.setText(tmpMemDto.getMEM_Name()+" 회원님");
 			
 			Scene scene = new Scene(memberWelcomeForm);
 			Stage primaryStage = new Stage();

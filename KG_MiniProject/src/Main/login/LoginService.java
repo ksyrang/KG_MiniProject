@@ -64,7 +64,7 @@ public class LoginService {
 	public String getjob() {
 		return job;
 	}
-	public String getpage() {
+	public String getpage(String UserCode) {
 		return welcomepage;
 	}
 	public String getUserCode() {

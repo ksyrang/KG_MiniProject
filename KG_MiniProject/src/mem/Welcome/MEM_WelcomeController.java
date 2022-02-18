@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-import Main.main.MainService;
 import common.CmnTrainerDAO;
 import common.CmnTrainerDTO;
 import common.CommonService;
@@ -21,8 +20,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import mem.EXProgramBuying.ExPrmBuyingController;
 import mem.Mgt.MgtController;
-import trn.TrnMgt.TrnMgtController;
 
 public class MEM_WelcomeController implements Initializable {
 	private Parent healthProgramBuyingForm;
@@ -32,6 +31,8 @@ public class MEM_WelcomeController implements Initializable {
 	private MgtController memMgtController;
 	private Parent memWelcomeForm;
 	private String membCode;
+	private ExPrmBuyingController exPrmBuyingController;
+	
 	//test
 	
 	
@@ -153,7 +154,7 @@ public class MEM_WelcomeController implements Initializable {
 		memWelcomeSvc.healthProgramBuyingProc();
 	}
 	public void exProgramBuyingProc() {
-		memWelcomeSvc.exProgramBuyingProc(membCode, exProgramBuyingForm);
+		memWelcomeSvc.exProgramBuyingOpen(membCode);
 	}
 	public void logoutProc() {
 		memWelcomeSvc.logoutProc(memWelcomeForm);
@@ -174,14 +175,13 @@ public class MEM_WelcomeController implements Initializable {
 		this.exProgramBuyingForm = exProgramBuyingForm;
 	}
 
-	public void setMemExPBuyingContorller(Object controller) {
-		// TODO Auto-generated method stub
+	public void setExPrmBuyingController(ExPrmBuyingController exPrmBuyingController) {
+		this.exPrmBuyingController = exPrmBuyingController;
 		
 	}
 
-	public Object getMemExPBuyingContorller() {
-		// TODO Auto-generated method stub
-		return null;
+	public ExPrmBuyingController getExPrmBuyingController() {
+		return exPrmBuyingController;
 	}
 	
 	public void setMemExpBuyingForm(Parent exProgramBuyingForm) {

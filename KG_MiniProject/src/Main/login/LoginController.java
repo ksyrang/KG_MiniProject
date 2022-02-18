@@ -44,16 +44,16 @@ public class LoginController implements Initializable{
 			CommonService.WindowClose(mainForm);
 			if(job.equals("회원")) {
 				controller.setUserCode(loginSvc.getUserCode());
-				controller.open(loginSvc.getpage());
+				controller.open(loginSvc.getpage(UserCode));
 				CommonService.Msg("회원 계정 로그인 성공");
 			}
 			else if(job.equals("강사")) {
 				controller.setUserCode(loginSvc.getUserCode());
-				controller.open(loginSvc.getpage());
+				controller.open(loginSvc.getpage(UserCode));
 				CommonService.Msg("강사 계정 로그인 성공");
 			}
 			else if(job.equals("관리자")) {
-				controller.open(loginSvc.getpage());
+				controller.open(loginSvc.getpage(UserCode));
 				CommonService.Msg("관리자 계정 로그인 성공");
 			}
 		}

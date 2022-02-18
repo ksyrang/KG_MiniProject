@@ -11,9 +11,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
  class MemberMgtService {
-	 
+	 private MemberMgtController MemberMgtController;
 	 private MemberMgtDAO memberMgtDao;
 
+	 public void  setMemberMgtController(MemberMgtController MemberMgtController) {
+		 this.MemberMgtController = MemberMgtController;
+	 }
+	 
 	// 필터
 	public void filter(Parent memberMgtForm) {
 		ComboBox<String> comboBox = (ComboBox<String>) memberMgtForm.lookup("#filterCombo");

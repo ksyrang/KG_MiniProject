@@ -38,6 +38,7 @@ public class MemberMgtController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		memberMgtSvc = new MemberMgtService();
+		memberMgtSvc.setMemberMgtController(this);
 		initSetting();
 	}
 	

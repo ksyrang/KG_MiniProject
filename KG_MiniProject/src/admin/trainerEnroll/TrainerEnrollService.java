@@ -1,15 +1,28 @@
 package admin.trainerEnroll;
 
+import java.util.ArrayList;
+
+import admin.trainerMgt.TrainerMgtController;
+import admin.trainerMgt.TrainerMgtTable;
 import common.CmnTrainerDAO;
 import common.CmnTrainerDTO;
 import common.CommonService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-
 public class TrainerEnrollService {
+	
+	private TrainerEnrollController TrainerEnrollController;
+	private TrainerMgtController TrainerMgtController;
+	
+	public void setTrainerEnrollController(TrainerEnrollController TrainerEnrollController) {
+		this.TrainerEnrollController = TrainerEnrollController;
+	}
 	
 		CmnTrainerDAO dao;
 	
@@ -33,6 +46,7 @@ public class TrainerEnrollService {
 	
 	// 강사 등록
 	public void trnEnrollProc(Parent trainerEnrollForm) {
+		
 		TextField trnIdTxt = (TextField) trainerEnrollForm.lookup("#trnIdTxt");
 		PasswordField trnPwTxt = (PasswordField) trainerEnrollForm.lookup("#trnPwTxt");
 		PasswordField trnPwComfrimTxt = (PasswordField) trainerEnrollForm.lookup("#trnPwComfrimTxt");
@@ -110,7 +124,22 @@ public class TrainerEnrollService {
 		} catch (NullPointerException e) {
 			CommonService.Msg("중복 체크를 해주세요.");
 		}
-		
+		//Table View Refresh 
+		Parent TMgtForm = TrainerEnrollController.getTrainerMgtForm();
+		ObservableList<TrainerMgtTable> tableView = FXCollections.observableArrayList();
+		TableView<TrainerMgtTable> newTable = (TableView<TrainerMgtTable>) TMgtForm.lookup("#trnTable");
+		newTable.getItems().clear();
+		try {
+			ObservableList<CmnTrainerDTO> list = dao.OLSltTrnAll();
+			for(CmnTrainerDTO t : list) {
+				tableView.add(new TrainerMgtTable(t.getTRAINER_Code(), t.getTRAINER_Name(), t.getTRAINER_Mobile()));
+			}
+			newTable.setItems(tableView);
+		} catch (NullPointerException e) {
+			CommonService.Msg("새로고침중 이상 발생");
+		}
 	}
+	//테이블 뷰 리프레쉬 스타또'!
+	
 	
 }

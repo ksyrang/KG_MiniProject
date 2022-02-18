@@ -32,6 +32,7 @@ public class TrainerMgtService {
 			trainerEnrollForm = loader.load();
 			trainerMgtController.setTrainerEnrollController(loader.getController());
 			trainerMgtController.setTrainerEnrollForm(trainerEnrollForm);
+			trainerMgtController.getTrainerEnrollController().setTrainerMgtForm(trainerMgtForm);
 			trainerMgtController.settingTrainerEnroll();
 
 			Scene scene = new Scene(trainerEnrollForm);

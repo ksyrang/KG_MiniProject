@@ -19,6 +19,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 public class TrainerMgtController implements Initializable{
+	
+	private TrainerMgtController TrainerMgtController;
 	private Parent trainerMgtForm;
 	private TrainerMgtService trainerMgtSvc;
 	// 강사 등록
@@ -40,10 +42,22 @@ public class TrainerMgtController implements Initializable{
 		initSetting();
 	}
 	
+	public TrainerMgtController getTrainerMgtController() {
+		return TrainerMgtController;
+	}
+	
+	public void setTrainerMgtController(TrainerMgtController trainerMgtController) {
+		this.TrainerMgtController = trainerMgtController;
+	}
+
 	public void setTrainerMgtForm(Parent trainerMgtForm) {
 		this.trainerMgtForm = trainerMgtForm;
 	}
 	
+	public Parent getTrainerMgtForm() {
+		return trainerMgtForm;
+	}
+
 	//초기세팅
 	public void initSetting() {
 		// id textfield 입력 불가
@@ -80,6 +94,10 @@ public class TrainerMgtController implements Initializable{
 		this.trainerEnrollController = trainerEnrollController;
 	}
 	
+	public TrainerEnrollController getTrainerEnrollController() {
+		return trainerEnrollController;
+	}
+
 	public void settingTrainerEnroll() {
 		this.trainerEnrollController.setTrainerEnrollForm(this.trainerEnrollForm);
 	}

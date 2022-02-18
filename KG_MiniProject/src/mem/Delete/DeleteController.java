@@ -47,7 +47,9 @@ public class DeleteController implements Initializable {
 		}
 	
 
-
+//		public void DeleteProc() {
+//			deleteService.DeleteProc(deleteForm, membCode);
+//		}
 
 		
 	

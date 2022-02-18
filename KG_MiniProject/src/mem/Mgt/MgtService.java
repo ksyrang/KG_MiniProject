@@ -25,9 +25,9 @@ public class MgtService {
 		this.mgtcontroller = mgtcontroller;
 	}
 	
-	public void MemModifyProc(Parent memMgtForm, String MemCode) {
+	public void MemModifyProc(Parent memMgtForm, String membCode) {
 		MgtDAO tmpDAO = new MgtDAO();
-		MgtDTO tmpDto = new MgtDTO(tmpDAO.selectCode(MemCode));
+		MgtDTO tmpDto = new MgtDTO(tmpDAO.selectCode(membCode));
 		
 		PasswordField PWField = (PasswordField)memMgtForm.lookup("#MemPWField");
 		PasswordField PWCField = (PasswordField)memMgtForm.lookup("#MemPWCField");

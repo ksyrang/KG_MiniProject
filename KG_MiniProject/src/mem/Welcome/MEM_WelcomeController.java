@@ -92,7 +92,7 @@ public class MEM_WelcomeController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	
-		
+		/*	
 		MEM_WelcomeDAO memWelcomeDao = new MEM_WelcomeDAO();
 		obserList = FXCollections.observableArrayList();
 		
@@ -101,7 +101,7 @@ public class MEM_WelcomeController implements Initializable {
 		colPrmschePrice.setCellValueFactory(new PropertyValueFactory<>("colPrmschePrice"));
 		colPrmscheStrdate.setCellValueFactory(new PropertyValueFactory<>("colPrmscheStrdate"));
 		colPrmscheEnddate.setCellValueFactory(new PropertyValueFactory<>("colPrmscheEnddate"));
-		
+				
 		ObservableList<MEM_WelcomeDTO> memWelcomeDto = memWelcomeDao.selectMemAllProgram("user1");
 		
 		for(MEM_WelcomeDTO m : memWelcomeDto) {
@@ -116,7 +116,7 @@ public class MEM_WelcomeController implements Initializable {
 			obserList.add(new MEM_WelcomeMgtTable(prm_name,prmsche_time,prmsche_price,prmsche_strdate,prmsche_enddate));
 		}
 		memProgramTable.setItems(obserList);
-		
+	*/	
 	} 
     
     //회색 버튼 의 핸들러 부분 여기를 누르면 테이블뷰의 리스트가 출력됩니다.
@@ -140,13 +140,13 @@ public class MEM_WelcomeController implements Initializable {
 //    	prmsche_strdateTxtFld.setText(tvd.getColPrmscheTime());
 //    	prmsche_enddateTxtFld.setText(tvd.getColPrmscheTime());
 //    	prmsche_timeTxtFld.setText(tvd.getColPrmscheTime());
-    	prm_codeTxtFld.setText(tvd.getColPrmName());
+ /*   	prm_codeTxtFld.setText(tvd.getColPrmName());
     	trainer_nameTxtFld.setText(tvd.getColPrmscheTime());
     	trainer_careerTxtFld.setText(toString(tvd.getColPrmschePrice()));
     	prmsche_strdateTxtFld.setText(toString(tvd.getColPrmscheStrdate()));
     	prmsche_enddateTxtFld.setText(toString(tvd.getColPrmscheEnddate()));
     	prmsche_timeTxtFld.setText(tvd.getColPrmscheTime());
-    	
+  */  	
 
     }
 		

@@ -89,7 +89,7 @@ public class EnrollService {
 
 		if(name.isEmpty() || id.isEmpty() || pw.isEmpty() || confirm.isEmpty() || birth.isEmpty() || mobile.isEmpty() ) {
 			CommonService.Msg("필수 데이터 입니다.");
-			return;
+			
 		}
 		
 		

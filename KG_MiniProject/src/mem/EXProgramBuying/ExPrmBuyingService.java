@@ -37,7 +37,7 @@ public class ExPrmBuyingService {
 	}
 
 	//ex프로그램 종류 등록
-	public void paymentProc(Parent ExPrmBuyingForm) {
+	public void paymentProc(Parent exProgramBuyingForm) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/BuyingType/KG_MEM_FX_BuyingType.fxml"));
 		Parent buyingTypeForm;
 		try {
@@ -55,9 +55,9 @@ public class ExPrmBuyingService {
 		}
 	}
 	
-	public void insertProc(Parent ExPrmBuyingForm) {
+	public void insertProc(Parent exProgramBuyingForm) {
 		ListView<String> listView = this.programListView;
-		TextField addProgramText = (TextField) ExPrmBuyingForm.lookup("#addProgramText");
+		TextField addProgramText = (TextField) exProgramBuyingForm.lookup("#addProgramText");
 		String addProgram= addProgramText.getText();
 		
 		//ex프로그램 종류 중복 체크
@@ -82,7 +82,7 @@ public class ExPrmBuyingService {
 	}
 	
 	//ex프로그램 종류 삭제
-	public void deleteProc(Parent ExPrmBuyingForm) {
+	public void deleteProc(Parent exProgramBuyingForm) {
 		ExPrmBuyingDao = new EXPrmBuyingDAO();
 		if(ExPrmBuyingDao.selectDelete(this.selectData)==1) {
 			CommonService.Msg("EX프로그램 삭제 완료");
@@ -95,14 +95,14 @@ public class ExPrmBuyingService {
 
 	
 	//테이블뷰 항목 클릭 시 테이블 내용 업데이트
-	public void modifyTableUp(Parent ExPrmBuyingForm) {
-		ComboBox<String> memshipComboBox = (ComboBox<String>)ExPrmBuyingForm.lookup("#kindComboBox");
-		Label exnameText = (Label) ExPrmBuyingForm.lookup("#exnameText");
-		TextField priceText = (TextField) ExPrmBuyingForm.lookup("#priceText");
-		TextField personLimitText = (TextField) ExPrmBuyingForm.lookup("#personLimitText");
-		Label currnentDateText = (Label) ExPrmBuyingForm.lookup("#currnentDateText");
-		RadioButton amRadioButton = (RadioButton)ExPrmBuyingForm.lookup("#amRadioButton");
-		RadioButton pmRadioButton = (RadioButton)ExPrmBuyingForm.lookup("#pmRadioButton");
+	public void modifyTableUp(Parent exProgramBuyingForm) {
+		ComboBox<String> memshipComboBox = (ComboBox<String>)exProgramBuyingForm.lookup("#kindComboBox");
+		Label exnameText = (Label) exProgramBuyingForm.lookup("#exnameText");
+		TextField priceText = (TextField) exProgramBuyingForm.lookup("#priceText");
+		TextField personLimitText = (TextField) exProgramBuyingForm.lookup("#personLimitText");
+		Label currnentDateText = (Label) exProgramBuyingForm.lookup("#currnentDateText");
+		RadioButton amRadioButton = (RadioButton)exProgramBuyingForm.lookup("#amRadioButton");
+		RadioButton pmRadioButton = (RadioButton)exProgramBuyingForm.lookup("#pmRadioButton");
 		
 		memshipComboBox.setValue(exPrmBuyingTable.getProgramName());
 		exnameText.setText(": "+exPrmBuyingTable.getProgramName()+" - "+exPrmBuyingTable.getTimeC()+"반");
@@ -123,16 +123,16 @@ public class ExPrmBuyingService {
 	
 	
 	//상세정보 수정
-	public void ExPrmBuyingModifyProc(Parent ExPrmBuyingForm) {
-		Label exnameText = (Label) ExPrmBuyingForm.lookup("#exnameText");
-		TextField priceText = (TextField) ExPrmBuyingForm.lookup("#priceText");
-		TextField personLimitText = (TextField) ExPrmBuyingForm.lookup("#personLimitText");
-		Label currnentDateText = (Label) ExPrmBuyingForm.lookup("#currnentDateText");
-		DatePicker startDatePicker = (DatePicker) ExPrmBuyingForm.lookup("#startDatePicker");
-		DatePicker endDatePicker = (DatePicker) ExPrmBuyingForm.lookup("#endDatePicker");
-		RadioButton amRadioButton = (RadioButton)ExPrmBuyingForm.lookup("#amRadioButton");
-		RadioButton pmRadioButton = (RadioButton)ExPrmBuyingForm.lookup("#pmRadioButton");
-		ComboBox<String> memshipComboBox = (ComboBox<String>)ExPrmBuyingForm.lookup("#kindComboBox");
+	public void ExPrmBuyingModifyProc(Parent exProgramBuyingForm) {
+		Label exnameText = (Label) exProgramBuyingForm.lookup("#exnameText");
+		TextField priceText = (TextField) exProgramBuyingForm.lookup("#priceText");
+		TextField personLimitText = (TextField) exProgramBuyingForm.lookup("#personLimitText");
+		Label currnentDateText = (Label) exProgramBuyingForm.lookup("#currnentDateText");
+		DatePicker startDatePicker = (DatePicker) exProgramBuyingForm.lookup("#startDatePicker");
+		DatePicker endDatePicker = (DatePicker) exProgramBuyingForm.lookup("#endDatePicker");
+		RadioButton amRadioButton = (RadioButton)exProgramBuyingForm.lookup("#amRadioButton");
+		RadioButton pmRadioButton = (RadioButton)exProgramBuyingForm.lookup("#pmRadioButton");
+		ComboBox<String> memshipComboBox = (ComboBox<String>)exProgramBuyingForm.lookup("#kindComboBox");
 		
 		String kind = memshipComboBox.getValue();
 		exnameText.setText(": 프로그램명");
@@ -175,6 +175,10 @@ public class ExPrmBuyingService {
 			CommonService.Msg("수정 실패: 모든사항이 중복됨");
 		}
 		
+	}
+	
+	public void CancelProc(Parent exProgramBuyingForm) {
+		CommonService.WindowClose(exProgramBuyingForm);
 	}
 	
 	public void setSelectData(String selectData) {

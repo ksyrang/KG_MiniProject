@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mem.EXProgramBuying.ExPrmBuyingController">
    <top>
       <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
@@ -32,7 +32,7 @@
                   <Insets left="550.0" top="12.5" />
                </HBox.margin>
             </Label>
-            <Button mnemonicParsing="false" text="logout">
+            <Button fx:id="ExlogoutButton" mnemonicParsing="false" text="logout">
                <HBox.margin>
                   <Insets left="20.0" top="12.5" />
                </HBox.margin>
@@ -44,7 +44,7 @@
       <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="100.0" prefHeight="100.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="ExPScheBuyBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="예약" />
-            <Button fx:id="BackBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="취소" />
+            <Button fx:id="BackBtn" mnemonicParsing="false" onAction="#CancleProc" prefHeight="50.0" prefWidth="150.0" text="취소" />
          </children>
       </FlowPane>
    </bottom>

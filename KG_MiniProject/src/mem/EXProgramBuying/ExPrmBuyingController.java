@@ -11,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
+import mem.Mgt.MgtController;
+import mem.Mgt.MgtService;
 
 
 public class ExPrmBuyingController implements Initializable{
@@ -20,13 +22,14 @@ public class ExPrmBuyingController implements Initializable{
 	private ExPrmBuyingTable ExPrmBuyingTable;
 	private ObservableList<String> allProgram;
 	private String membCode;
-	
+	private ExPrmBuyingController exPrmBuyingController;
 	
 	@FXML private ComboBox<String> memshipComboBox;
 	@FXML private DatePicker startDatePicker;
 	@FXML private DatePicker endDatePicker;
 	
 	@FXML private ListView<String> programListView;
+	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -36,7 +39,21 @@ public class ExPrmBuyingController implements Initializable{
 		memshipComboBox.setItems(allProgram);
 	}
 	
+	public ExPrmBuyingController() {
+		ExPrmBuyingSvc = new ExPrmBuyingService();
+		ExPrmBuyingSvc.setExPrmBuyingController(this);
+	}
 	
+	public ExPrmBuyingController getExPrmBuyingController() {
+		return exPrmBuyingController;
+	}
+	
+	public void setExPrmBuyingController(ExPrmBuyingController exPrmBuyingController) {
+		this.exPrmBuyingController = exPrmBuyingController;
+	}
+	public void setMembCode(String membCode) {
+		this.membCode = membCode;
+	}
 	
 	public void setExPrmBuyingForm(Parent exProgramBuyingForm) {
 		this.exProgramBuyingForm = exProgramBuyingForm;

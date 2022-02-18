@@ -57,8 +57,8 @@ public class MgtController implements Initializable{
 	public MgtController getMgtController() {
 		return mgtController;
 	}
-	public void setMgtController(MgtController MgtController) {
-		this.mgtController = MgtController;
+	public void setMgtController(MgtController mgtController) {
+		this.mgtController = mgtController;
 	}
 	
 	public void setDeleteForm(Parent deleteForm) {

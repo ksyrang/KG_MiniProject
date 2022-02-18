@@ -29,7 +29,7 @@
                   <Font size="20.0" />
                </font>
                <HBox.margin>
-                  <Insets left="600.0" top="12.5" />
+                  <Insets left="550.0" top="12.5" />
                </HBox.margin>
             </Label>
             <Button mnemonicParsing="false" text="logout">
@@ -43,8 +43,8 @@
    <bottom>
       <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="100.0" prefHeight="100.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="ExPScheBuyBtn" mnemonicParsing="false" onAction="#ExPScheProc" prefHeight="50.0" prefWidth="150.0" text="예약" />
-            <Button fx:id="BackBtn" mnemonicParsing="false" onAction="#BackProc" prefHeight="50.0" prefWidth="150.0" text="취소" />
+            <Button fx:id="ExPScheBuyBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="예약" />
+            <Button fx:id="BackBtn" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="취소" />
          </children>
       </FlowPane>
    </bottom>

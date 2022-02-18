@@ -28,7 +28,7 @@ public class MEM_WelcomeController implements Initializable {
 	private MgtController memMgtController;
 	private Parent memWelcomeForm;
 	private String membCode;
-	
+	//test
 	
 	
 	

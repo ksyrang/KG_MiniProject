@@ -297,7 +297,7 @@ public class CmnPrmScheDAO {
 	
 	public ArrayList<CmnPrmScheDTO> GetPrmScheCode(String PRM_Code) {
 		//int result = 0;
-		sql = "SELECT PRMSCHE_Code FROM PRMSCHE_TB WHERE PRM_Code = ?";
+		sql = "SELECT * FROM PRMSCHE_TB WHERE PRM_Code = ?";
 		ArrayList<CmnPrmScheDTO> Datalist = new ArrayList<>();
 		CmnPrmScheDTO tmpdata = null;
 		try {
@@ -307,6 +307,7 @@ public class CmnPrmScheDAO {
 			while(rs.next()) {
 				tmpdata = new CmnPrmScheDTO();
 				tmpdata.setPRMSCHE_Code(rs.getString("PRMSCHE_Code"));
+				tmpdata.setPRM_Code(rs.getString("PRM_Code"));
 				Datalist.add(tmpdata);
 			}
 		} catch (SQLException e) {

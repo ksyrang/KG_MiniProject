@@ -114,16 +114,20 @@ public class CmnPayDAO {
 	}
 	
 	// 프로그램 별 pay_code 카운트
-	public ArrayList<CmnPayDTO> CntPayCode(String PRM_Code) {
-		//int result = 0;
-		sql = "SELECT count(*) FROM PRMSCHE_TB WHERE PRMSCHE_CODE = ?";
-		
+	public ArrayList<CmnPayDTO> getPayCode(String PRMSCHE_CODE) {
+		sql = "SELECT PAY_Code, PRMSCHE_Code FROM PAY_TB WHERE PRMSCHE_CODE = ?";
+		ArrayList<CmnPayDTO> Datalist = new ArrayList<>();
+		CmnPayDTO tmpdata = null;
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, PRM_Code);
+			ps.setString(1, PRMSCHE_CODE);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				//result = rs.getInt("count(*)");
+				tmpdata = new CmnPayDTO();
+				tmpdata.setPAY_Code(rs.getString("PAY_Code"));
+				tmpdata.setPRMSCHE_Code(rs.getString("PRMSCHE_CODE"));
+				Datalist.add(tmpdata);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -139,7 +143,7 @@ public class CmnPayDAO {
 			}
 		}
 		//return result;
-		return null;
+		return Datalist;
 	}
 	
 }

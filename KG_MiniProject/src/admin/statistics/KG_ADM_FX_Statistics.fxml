@@ -68,7 +68,7 @@
                   <VBox prefHeight="200.0" prefWidth="435.0">
                      <children>
                         <Label text="각 프로그램 별" />
-                        <PieChart fx:id="proPie" />
+                        <PieChart fx:id="proPie" legendVisible="false" />
                      </children>
                   </VBox>
                </children>

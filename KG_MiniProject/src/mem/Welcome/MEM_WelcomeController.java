@@ -129,7 +129,7 @@ public class MEM_WelcomeController implements Initializable {
     	System.out.println(memWelcomeDto.getPrm_code());
     	System.out.println(memWelcomeDto.getPrm_name());
 
- //   	prm_codeTxtFld.setText(memWelcomeDto.getPrm_code());
+    	prm_nameTxtFld.setText(memWelcomeDto.getPrm_code());
 //    	trainer_nameTxtFld.setText(tvd.getColPrmName());
 //    	trainer_careerTxtFld.setText(memWelcomeDto.get);
     	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");

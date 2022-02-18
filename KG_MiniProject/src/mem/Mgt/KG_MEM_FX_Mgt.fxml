@@ -28,7 +28,7 @@
                   <Font size="20.0" />
                </font>
                <HBox.margin>
-                  <Insets left="300.0" top="10.0" />
+                  <Insets left="250.0" top="10.0" />
                </HBox.margin>
             </Label>
          </children>

@@ -17,10 +17,10 @@ import common.CmnTrainerDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class HealthPrmBuyingDAO {
+public class EXPrmBuyingDAO {
 	private Connection con;
 
-	public HealthPrmBuyingDAO() {
+	public EXPrmBuyingDAO() {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "KGGYM";
 		String password = "oracle1";
@@ -54,35 +54,35 @@ public class HealthPrmBuyingDAO {
 	
 	
 	//tableView 모든 정보
-	public ObservableList<HealthPrmBuyingDTO> getAllInfo() {
+	public ObservableList<ExPrmBuyingDTO> getAllInfo() {
 		String sql = "SELECT * FROM PRMSCHE_TB";
 		PreparedStatement ps;
 		ResultSet rs;
-		ObservableList<HealthPrmBuyingDTO> allList = FXCollections.observableArrayList();
+		ObservableList<ExPrmBuyingDTO> allList = FXCollections.observableArrayList();
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				
-				HealthPrmBuyingDTO healthPrmBuyingDto = new HealthPrmBuyingDTO();
-				healthPrmBuyingDto.setPRMSCHE_Code(rs.getString("PRMSCHE_Code"));
-				healthPrmBuyingDto.setPRMSCHE_Price(rs.getInt("PRMSCHE_Price"));
-				healthPrmBuyingDto.setPRMSCHE_Strdate(rs.getDate("PRMSCHE_Strdate"));
-				healthPrmBuyingDto.setPRMSCHE_Enddate(rs.getDate("PRMSCHE_Enddate"));
-				healthPrmBuyingDto.setPRMSCHE_Time(rs.getString("PRMSCHE_Time"));
-				healthPrmBuyingDto.setPRMSCHE_LimitP(rs.getInt("PRMSCHE_LimitP"));
-				healthPrmBuyingDto.setPRMSCHE_CurrentP(rs.getInt("PRMSCHE_CurrentP"));
-				healthPrmBuyingDto.setTRAINER_Code(rs.getString("TRAINER_Code"));
-				healthPrmBuyingDto.setPRM_Code(rs.getString("PRM_Code"));
+				ExPrmBuyingDTO ExPrmBuyingDto = new ExPrmBuyingDTO();
+				ExPrmBuyingDto.setPRMSCHE_Code(rs.getString("PRMSCHE_Code"));
+				ExPrmBuyingDto.setPRMSCHE_Price(rs.getInt("PRMSCHE_Price"));
+				ExPrmBuyingDto.setPRMSCHE_Strdate(rs.getDate("PRMSCHE_Strdate"));
+				ExPrmBuyingDto.setPRMSCHE_Enddate(rs.getDate("PRMSCHE_Enddate"));
+				ExPrmBuyingDto.setPRMSCHE_Time(rs.getString("PRMSCHE_Time"));
+				ExPrmBuyingDto.setPRMSCHE_LimitP(rs.getInt("PRMSCHE_LimitP"));
+				ExPrmBuyingDto.setPRMSCHE_CurrentP(rs.getInt("PRMSCHE_CurrentP"));
+				ExPrmBuyingDto.setTRAINER_Code(rs.getString("TRAINER_Code"));
+				ExPrmBuyingDto.setPRM_Code(rs.getString("PRM_Code"));
 
 				CmnTrainerDAO cmnTrainerDao = new CmnTrainerDAO();
 				CmnTrainerDTO cmnTrainerDto = cmnTrainerDao.SltTrnOne(rs.getString("TRAINER_Code"));
-				healthPrmBuyingDto.setTRAINER_Name(cmnTrainerDto.getTRAINER_Name());
+				ExPrmBuyingDto.setTRAINER_Name(cmnTrainerDto.getTRAINER_Name());
 				CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
 				CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(rs.getString("PRM_Code"));
-				healthPrmBuyingDto.setPRM_Name(cmnPrmDto.getPRM_Name());
+				ExPrmBuyingDto.setPRM_Name(cmnPrmDto.getPRM_Name());
 
-				allList.add(healthPrmBuyingDto);
+				allList.add(ExPrmBuyingDto);
 			}
 
 		} catch (SQLException e) {
@@ -94,7 +94,7 @@ public class HealthPrmBuyingDAO {
 	
 	
 	//ex프로그램 중복체크
-	public HealthPrmBuyingDTO selectExProgram(String addProgram) {
+	public ExPrmBuyingDTO selectExProgram(String addProgram) {
 		String sql = "SELECT * FROM PRM_TB WHERE PRM_Name=?";
 		PreparedStatement ps;
 		ResultSet rs;
@@ -104,10 +104,10 @@ public class HealthPrmBuyingDAO {
 			ps.setString(1, addProgram);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				HealthPrmBuyingDTO healthPrmBuyingDto = new HealthPrmBuyingDTO();
-				healthPrmBuyingDto.setPRM_Code(rs.getString("PRM_Code"));
-				healthPrmBuyingDto.setPRM_Name(rs.getString("PRM_Name"));
-				return healthPrmBuyingDto;
+				ExPrmBuyingDTO ExPrmBuyingDto = new ExPrmBuyingDTO();
+				ExPrmBuyingDto.setPRM_Code(rs.getString("PRM_Code"));
+				ExPrmBuyingDto.setPRM_Name(rs.getString("PRM_Name"));
+				return ExPrmBuyingDto;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -117,15 +117,15 @@ public class HealthPrmBuyingDAO {
 	
 	
 	//ex프로그램 PRM_Name 리스트뷰 등록
-	public int insertHealthPrmBuying(HealthPrmBuyingDTO healthPrmBuyingDto) {
+	public int insertHealthPrmBuying(ExPrmBuyingDTO ExPrmBuyingDto) {
 		String sql = "INSERT INTO PRM_TB VALUES(?,?)";
 		PreparedStatement ps;
 		int result = 0;
 
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, healthPrmBuyingDto.getPRM_Code());
-			ps.setString(2, healthPrmBuyingDto.getPRM_Name());
+			ps.setString(1, ExPrmBuyingDto.getPRM_Code());
+			ps.setString(2, ExPrmBuyingDto.getPRM_Name());
 			result = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -153,7 +153,7 @@ public class HealthPrmBuyingDAO {
 	
 	
 	//ex프로그램 세부사항 수정 시 중복체크
-	public int selectModifyHealthPrmBuying(HealthPrmBuyingDTO healthPrmBuyingDto, CmnPrmScheDTO cmnPrmScheDto) {
+	public int selectModifyHealthPrmBuying(ExPrmBuyingDTO ExPrmBuyingDto, CmnPrmScheDTO cmnPrmScheDto) {
 		String sql = "SELECT * FROM PRMSCHE_TB WHERE PRMSCHE_CODE=?";
 		PreparedStatement ps;
 		int result = 0;
@@ -161,12 +161,12 @@ public class HealthPrmBuyingDAO {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, cmnPrmScheDto.getPRMSCHE_Code());
 			result = ps.executeUpdate();
-			if (healthPrmBuyingDto.getPRMSCHE_Code().equals(cmnPrmScheDto.getPRMSCHE_Code()) &
-				(healthPrmBuyingDto.getPRMSCHE_Strdate().equals(cmnPrmScheDto.getPRMSCHE_Strdate())) &
-				(healthPrmBuyingDto.getPRMSCHE_Enddate().equals(cmnPrmScheDto.getPRMSCHE_Enddate())) &
-				(healthPrmBuyingDto.getPRMSCHE_Time().equals(cmnPrmScheDto.getPRMSCHE_Time())) &
+			if (ExPrmBuyingDto.getPRMSCHE_Code().equals(cmnPrmScheDto.getPRMSCHE_Code()) &
+				(ExPrmBuyingDto.getPRMSCHE_Strdate().equals(cmnPrmScheDto.getPRMSCHE_Strdate())) &
+				(ExPrmBuyingDto.getPRMSCHE_Enddate().equals(cmnPrmScheDto.getPRMSCHE_Enddate())) &
+				(ExPrmBuyingDto.getPRMSCHE_Time().equals(cmnPrmScheDto.getPRMSCHE_Time())) &
 //				(healthPrmBuyingDto.getTRAINER_Code().equals(cmnPrmScheDto.getTRAINER_Code())) &
-				(healthPrmBuyingDto.getPRMSCHE_Price() == cmnPrmScheDto.getPRMSCHE_Price())) {
+				(ExPrmBuyingDto.getPRMSCHE_Price() == cmnPrmScheDto.getPRMSCHE_Price())) {
 				result = 0;
 			}else {
 			}
@@ -178,7 +178,7 @@ public class HealthPrmBuyingDAO {
 
 	
 	//클릭한 ex프로그램 세부사항 수정
-	public int setHealthPrmBuyingModify(HealthPrmBuyingDTO exProgramMgtDto) {
+	public int setHealthPrmBuyingModify(ExPrmBuyingDTO exProgramMgtDto) {
 		String sql = "UPDATE PRMSCHE_TB SET PRMSCHE_STRDATE=?, PRMSCHE_ENDDATE=?, PRMSCHE_TIME=?, PRMSCHE_LIMITP=?, PRMSCHE_PRICE=? WHERE PRMSCHE_CODE=?";
 		PreparedStatement ps;
 		int result = 0;
@@ -202,7 +202,7 @@ public class HealthPrmBuyingDAO {
 
 	
 	//클릭한 세부항목삭제
-	public void healthPrmBuyingDeleteProc(CmnPrmScheDTO cmnPrmScheDto) {
+	public void ExPrmBuyingDeleteProc(CmnPrmScheDTO cmnPrmScheDto) {
 		String sql = "DELETE FROM PRMSCHE_TB WHERE PRMSCHE_CODE = ?";
 		PreparedStatement ps;
 		try {

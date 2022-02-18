@@ -43,7 +43,7 @@
    <bottom>
       <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="100.0" prefHeight="100.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="paymentButton" mnemonicParsing="false" onAction="#paymentProc" prefHeight="50.0" prefWidth="150.0" text="결제" />
+            <Button fx:id="paymentButton" mnemonicParsing="false" onAction="#PaymentProc" prefHeight="50.0" prefWidth="150.0" text="결제" />
             <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#healthPrmBuyingCancleProc" prefHeight="50.0" prefWidth="150.0" text="취소" />
          </children>
       </FlowPane>

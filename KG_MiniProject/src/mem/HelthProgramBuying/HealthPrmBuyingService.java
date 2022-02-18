@@ -31,6 +31,9 @@ public class HealthPrmBuyingService {
 		String price = Integer.toString(memshipDto.getMEMSHIP_Price());
 		memshipPriceTxt.setText(price);
 	}
+	public void PaymentProc() {
+		
+	}
 
 
 }

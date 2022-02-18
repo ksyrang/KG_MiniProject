@@ -39,9 +39,9 @@ public class HealthPrmBuyingController implements Initializable{
 	}
 	
 	// 결제 버튼 클릭 시
-	public void paymentProc() {
+	public void PaymentProc() {
 		System.out.println("결제처리");
-		healthPrmBuyingSvc.paymentProc(healthPrmBuyingForm);
+		healthPrmBuyingSvc.PaymentProc();
 	}
 	
 	// 이전 버튼 클릭 시

@@ -3,6 +3,7 @@ package common;
 
 
 import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -70,6 +71,20 @@ public class CommonService {
 		return sqlDate;
 		
 	}
+	public static java.sql.Date CnvtsqlDate(java.util.Date utilDate){
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String formattedDate = simpleDateFormat.format(utilDate);
+		java.sql.Date cnvtdate = java.sql.Date.valueOf(formattedDate);
+		
+		return cnvtdate;
+	}
+	
+	public static String getNowDatetoString() {
+		SimpleDateFormat Sdf = new SimpleDateFormat("yy년 MM월 dd일");
+		return Sdf.format(new Date());
+		}
+	
+	
 //	public static void OpenPage(Parent Form) {
 //		Stage  stage = new Stage();
 //		
@@ -77,6 +92,7 @@ public class CommonService {
 //		stage.setScene(new Scene(Form));
 //		stage.show();		
 //	}
+	
 	
 	
 }

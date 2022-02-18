@@ -13,12 +13,14 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 
 
-public class HealthPrmBuyingController implements Initializable{
-	private Parent healthPrmBuyingForm;
-	private HealthPrmBuyingService healthPrmBuyingSvc;
+public class ExPrmBuyingController implements Initializable{
+	private Parent exProgramBuyingForm;
+	private ExPrmBuyingService ExPrmBuyingSvc;
 	private String selectData;
-	private HealthPrmBuyingTable healthPrmBuyingTable;
+	private ExPrmBuyingTable ExPrmBuyingTable;
 	private ObservableList<String> allProgram;
+	private String membCode;
+	
 	
 	@FXML private ComboBox<String> memshipComboBox;
 	@FXML private DatePicker startDatePicker;
@@ -28,25 +30,28 @@ public class HealthPrmBuyingController implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		healthPrmBuyingSvc = new HealthPrmBuyingService();
+		ExPrmBuyingSvc = new ExPrmBuyingService();
 
-		allProgram = healthPrmBuyingSvc.getAllProgram();
+		allProgram = ExPrmBuyingSvc.getAllProgram();
 		memshipComboBox.setItems(allProgram);
 	}
 	
-	public void setHealthPrmBuyingForm(Parent healthPrmBuyingForm) {
-		this.healthPrmBuyingForm = healthPrmBuyingForm;
-	}
 	
-	// 결제 버튼 클릭 시
+	
+	public void setExPrmBuyingForm(Parent exProgramBuyingForm) {
+		this.exProgramBuyingForm = exProgramBuyingForm;
+	}
+
+	
+	// 예약 버튼 클릭 시
 	public void paymentProc() {
-		System.out.println("결제처리");
-		healthPrmBuyingSvc.paymentProc(healthPrmBuyingForm);
+	//	System.out.println("결제처리");
+		ExPrmBuyingSvc.paymentProc(exProgramBuyingForm);
 	}
 	
 	// 이전 버튼 클릭 시
-	public void healthPrmBuyingCancleProc() {
-		CommonService.WindowClose(healthPrmBuyingForm);
+	public void ExPrmBuyingCancleProc() {
+		CommonService.WindowClose(exProgramBuyingForm);
 	}
 
 

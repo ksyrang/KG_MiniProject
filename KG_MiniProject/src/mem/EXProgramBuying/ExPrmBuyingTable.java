@@ -2,7 +2,7 @@ package mem.EXProgramBuying;
 
 import java.sql.Date;
 
-public class HealthPrmBuyingTable {
+public class ExPrmBuyingTable {
 	
 	private String programName;
 	private String code;
@@ -16,7 +16,7 @@ public class HealthPrmBuyingTable {
 	
 	
 	
-	public HealthPrmBuyingTable(String programName, String code, String trainerName, int limtPerson, int currentPerson,
+	public ExPrmBuyingTable(String programName, String code, String trainerName, int limtPerson, int currentPerson,
 			Date strDate, Date endDate, int price, String timeC) {
 		super();
 		this.programName = programName;

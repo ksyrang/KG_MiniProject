@@ -2,7 +2,7 @@ package mem.EXProgramBuying;
 
 import java.sql.Date;
 
-public class HealthPrmBuyingDTO {
+public class ExPrmBuyingDTO {
 	
 
 	//PRMSCHE_TB

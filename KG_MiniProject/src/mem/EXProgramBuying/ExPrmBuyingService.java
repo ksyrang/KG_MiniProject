@@ -1,0 +1,198 @@
+package mem.EXProgramBuying;
+
+import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
+import common.CmnPrmScheDAO;
+import common.CmnPrmScheDTO;
+import common.CommonService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import mem.BuyingType.MEM_BuyingTypeController;
+
+
+public class ExPrmBuyingService {
+	private ExPrmBuyingDTO ExPrmBuyingDto;
+	private EXPrmBuyingDAO ExPrmBuyingDao;
+	private ExPrmBuyingTable exPrmBuyingTable;
+	private ObservableList<String> allProgram;
+	private String selectData;
+	private ListView<String> programListView;
+	private TableView<ExPrmBuyingTable> ExPrmBuyingTableView;
+	private ExPrmBuyingController ExPrmBuyingController;
+	
+	public void setExPrmBuyingController(ExPrmBuyingController ExPrmBuyingController) {
+		this.ExPrmBuyingController = ExPrmBuyingController;
+	}
+
+	//ex프로그램 종류 등록
+	public void paymentProc(Parent ExPrmBuyingForm) {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/BuyingType/KG_MEM_FX_BuyingType.fxml"));
+		Parent buyingTypeForm;
+		try {
+			buyingTypeForm = loader.load();
+			System.out.println(buyingTypeForm);
+//			healthPrmBuyingController.setHealthPrmBuyingForm(buyingTypeForm);
+			
+			Scene scene = new Scene(buyingTypeForm);
+			Stage primaryStage = new Stage();
+			primaryStage.setTitle("BuyingType(결제)Form");
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void insertProc(Parent ExPrmBuyingForm) {
+		ListView<String> listView = this.programListView;
+		TextField addProgramText = (TextField) ExPrmBuyingForm.lookup("#addProgramText");
+		String addProgram= addProgramText.getText();
+		
+		//ex프로그램 종류 중복 체크
+		if(addProgram.length()>0) {
+			ExPrmBuyingDao = new EXPrmBuyingDAO();
+			ExPrmBuyingDto = ExPrmBuyingDao.selectExProgram(addProgram);
+			if(ExPrmBuyingDto == null) {
+				ExPrmBuyingDto = new ExPrmBuyingDTO();
+				String PRM_Code = addProgram+"1";
+				ExPrmBuyingDto.setPRM_Code(PRM_Code);
+				ExPrmBuyingDto.setPRM_Name(addProgram);
+				if(ExPrmBuyingDao.insertHealthPrmBuying(ExPrmBuyingDto) == 1) {
+					listView.getItems().addAll(addProgram);
+					CommonService.Msg("EX프로그램 등록 완료");
+				}else
+					CommonService.Msg("EX프로그램 등록 실패");
+			}else
+				CommonService.Msg("이미 등록된 EX프로그램 입니다.");
+			addProgramText.clear();
+		}else
+			CommonService.Msg("추가 프로그램을 입력하시오");
+	}
+	
+	//ex프로그램 종류 삭제
+	public void deleteProc(Parent ExPrmBuyingForm) {
+		ExPrmBuyingDao = new EXPrmBuyingDAO();
+		if(ExPrmBuyingDao.selectDelete(this.selectData)==1) {
+			CommonService.Msg("EX프로그램 삭제 완료");
+		}else {
+			CommonService.Msg("EX프로그램 삭제 실패");
+		}
+		programListView.getItems().remove(this.selectData);
+		
+	}
+
+	
+	//테이블뷰 항목 클릭 시 테이블 내용 업데이트
+	public void modifyTableUp(Parent ExPrmBuyingForm) {
+		ComboBox<String> memshipComboBox = (ComboBox<String>)ExPrmBuyingForm.lookup("#kindComboBox");
+		Label exnameText = (Label) ExPrmBuyingForm.lookup("#exnameText");
+		TextField priceText = (TextField) ExPrmBuyingForm.lookup("#priceText");
+		TextField personLimitText = (TextField) ExPrmBuyingForm.lookup("#personLimitText");
+		Label currnentDateText = (Label) ExPrmBuyingForm.lookup("#currnentDateText");
+		RadioButton amRadioButton = (RadioButton)ExPrmBuyingForm.lookup("#amRadioButton");
+		RadioButton pmRadioButton = (RadioButton)ExPrmBuyingForm.lookup("#pmRadioButton");
+		
+		memshipComboBox.setValue(exPrmBuyingTable.getProgramName());
+		exnameText.setText(": "+exPrmBuyingTable.getProgramName()+" - "+exPrmBuyingTable.getTimeC()+"반");
+		currnentDateText.setText("현재기간 : " + exPrmBuyingTable.getStrDate() + " ~ " 
+												+ exPrmBuyingTable.getEndDate());
+		
+		if(exPrmBuyingTable.getTimeC().equals("오전")) {
+			amRadioButton.setSelected(true);
+		}else {
+			pmRadioButton.setSelected(true);
+		}
+		
+		priceText.setText(Integer.toString(exPrmBuyingTable.getPrice()));
+		personLimitText.setText(Integer.toString(exPrmBuyingTable.getLimtPerson()));
+
+		
+	}
+	
+	
+	//상세정보 수정
+	public void ExPrmBuyingModifyProc(Parent ExPrmBuyingForm) {
+		Label exnameText = (Label) ExPrmBuyingForm.lookup("#exnameText");
+		TextField priceText = (TextField) ExPrmBuyingForm.lookup("#priceText");
+		TextField personLimitText = (TextField) ExPrmBuyingForm.lookup("#personLimitText");
+		Label currnentDateText = (Label) ExPrmBuyingForm.lookup("#currnentDateText");
+		DatePicker startDatePicker = (DatePicker) ExPrmBuyingForm.lookup("#startDatePicker");
+		DatePicker endDatePicker = (DatePicker) ExPrmBuyingForm.lookup("#endDatePicker");
+		RadioButton amRadioButton = (RadioButton)ExPrmBuyingForm.lookup("#amRadioButton");
+		RadioButton pmRadioButton = (RadioButton)ExPrmBuyingForm.lookup("#pmRadioButton");
+		ComboBox<String> memshipComboBox = (ComboBox<String>)ExPrmBuyingForm.lookup("#kindComboBox");
+		
+		String kind = memshipComboBox.getValue();
+		exnameText.setText(": 프로그램명");
+		currnentDateText.setText("현재 기간");
+		
+		LocalDate lStrDate = startDatePicker.getValue();
+		LocalDate lEndDate = endDatePicker.getValue();
+		Date strDate = (Date)CommonService.LocalDateCnvt(lStrDate);
+		Date endDate = (Date)CommonService.LocalDateCnvt(lEndDate);
+		
+	
+		String timeC ="";
+		if(amRadioButton.isSelected())
+			timeC = "오전";
+		else if(pmRadioButton.isSelected());
+			timeC = "오후";	
+		int price = Integer.parseInt(priceText.getText());
+		int personLimit = Integer.parseInt(personLimitText.getText());
+		
+		//클릭한 PRMSCHE_TB 데이터 코드
+		String code = this.exPrmBuyingTable.getCode();
+		CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
+		CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheOne(exPrmBuyingTable.getCode());
+
+		ExPrmBuyingDTO ExPrmBuyingDto = new ExPrmBuyingDTO();
+		ExPrmBuyingDto.setPRM_Name(kind);
+		ExPrmBuyingDto.setPRMSCHE_Strdate(strDate);
+		ExPrmBuyingDto.setPRMSCHE_Enddate(endDate);
+		ExPrmBuyingDto.setPRMSCHE_Time(timeC);
+		ExPrmBuyingDto.setPRMSCHE_Price(price);
+		ExPrmBuyingDto.setPRMSCHE_LimitP(personLimit);
+		ExPrmBuyingDto.setPRMSCHE_Code(code);
+		
+		EXPrmBuyingDAO ExPrmBuyingDao = new EXPrmBuyingDAO();
+		int result = ExPrmBuyingDao.selectModifyHealthPrmBuying(ExPrmBuyingDto, cmnPrmScheDto);
+		
+		if(result==1) {
+			ExPrmBuyingDao.setHealthPrmBuyingModify(ExPrmBuyingDto);
+		}else {
+			CommonService.Msg("수정 실패: 모든사항이 중복됨");
+		}
+		
+	}
+	
+	public void setSelectData(String selectData) {
+		this.selectData = selectData;
+		
+	}
+
+
+	public void setExPrmBuyingTable(ExPrmBuyingTable exPrmBuyingTable) {
+		this.exPrmBuyingTable = exPrmBuyingTable;
+		
+	}
+
+	public ObservableList<String> getAllProgram() {
+		ExPrmBuyingDao = new EXPrmBuyingDAO();
+		this.allProgram = ExPrmBuyingDao.getAllProgram();
+		return this.allProgram;
+	}
+
+
+}

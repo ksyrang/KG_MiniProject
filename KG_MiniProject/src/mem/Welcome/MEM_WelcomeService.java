@@ -43,10 +43,10 @@ public class MEM_WelcomeService {
          e.printStackTrace();
       }
    }
-   
-   public void exProgramBuyingProc(String membCode) {
+   //ex프로그램 버튼 클릭 시
+   public void exProgramBuyingProc(String membCode, Parent exProgramBuyingForm) {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/EXProgramBuying/KG_MEM_FX_EXProgramBuying.fxml"));
-      Parent exProgramBuyingForm;
+   
       try {
     	 exProgramBuyingForm = loader.load();
          memWelcomeController.setExProgramBuyingForm(exProgramBuyingForm);

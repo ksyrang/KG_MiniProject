@@ -88,13 +88,18 @@ public class TrainerMgtService {
 			trnCareerTxt.setText(trnCarer);
 		}
 		
-		String[] trnAddr = dto.getTRAINER_Addr().split("/");
-		if (trnAddr.length == 1) {
-			trnAddrTxt1.setText(trnAddr[0]);
-			trnAddrTxt2.setText("");
-		} else if (trnAddr.length == 2) {
-			trnAddrTxt1.setText(trnAddr[0]);
-			trnAddrTxt2.setText(trnAddr[1]);
+		if(dto.getTRAINER_Addr() != null) {
+			String[] trnAddr = dto.getTRAINER_Addr().split("/");
+			if (trnAddr.length == 1) {
+				trnAddrTxt1.setText(trnAddr[0]);
+				trnAddrTxt2.setText("");
+			} else if (trnAddr.length == 2) {
+				trnAddrTxt1.setText(trnAddr[0]);
+				trnAddrTxt2.setText(trnAddr[1]);
+			} else {
+				trnAddrTxt1.setText("");
+				trnAddrTxt2.setText("");
+			}
 		} else {
 			trnAddrTxt1.setText("");
 			trnAddrTxt2.setText("");

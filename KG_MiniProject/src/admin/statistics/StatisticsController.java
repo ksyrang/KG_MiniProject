@@ -1,5 +1,6 @@
 package admin.statistics;
 
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -7,6 +8,8 @@ import java.util.ResourceBundle;
 import common.CmnMemDAO;
 import common.CmnMemDTO;
 import common.CmnMemShipScheDAO;
+import common.CmnPayDAO;
+import common.CmnPayDTO;
 import common.CmnPrmDAO;
 import common.CmnPrmDTO;
 import common.CmnPrmScheDAO;
@@ -26,6 +29,7 @@ public class StatisticsController implements Initializable{
 	
 	@FXML private PieChart genderPie;
 	@FXML private PieChart proPie;
+	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -61,11 +65,18 @@ public class StatisticsController implements Initializable{
 			}
 		}
 		
-		genderPie.setData(FXCollections.observableArrayList(
-				new PieChart.Data("남", menCnt),
-				new PieChart.Data("여", womenCnt),
-				new PieChart.Data("선택안함", noGender)
-				));
+		ObservableList<Data> list = FXCollections.observableArrayList();
+		if (menCnt != 0) {
+			list.add(new PieChart.Data("남", menCnt));
+		}
+		if (womenCnt != 0) {
+			list.add(new PieChart.Data("여", womenCnt));
+		}
+		if (noGender != 0) {
+			list.add(new PieChart.Data("선택안함", noGender));
+		}
+		genderPie.setData(list);
+		
 	}
 	
 	// 회원권, 각 프로그램 종류 별 PieChart
@@ -78,18 +89,30 @@ public class StatisticsController implements Initializable{
 		CmnPrmDAO prmDao = new CmnPrmDAO();
 		ArrayList<CmnPrmDTO> prmDto = prmDao.SltPrmAll();
 
+		// prmSche TB 에서 prm_code를 얻어와서
 		CmnPrmScheDAO prmScheDao = new CmnPrmScheDAO();
 		ArrayList<CmnPrmScheDTO> prmScheDto;
-
-		int prmSche;
-
+		
+		CmnPayDAO payDao = new CmnPayDAO();
+		ArrayList<CmnPayDTO> payDto = payDao.SltPayAll();
+//		ArrayList<String> prmScheCode = new ArrayList<String>();
+//		for(CmnPayDTO p : payDto) {
+//			prmScheCode.add(p.getPRMSCHE_Code());
+//		}
+		int payedPrm;
+		
 		ObservableList<Data> list = FXCollections.observableArrayList();
-		list.add(new PieChart.Data("회원권", memshipSche));
+		if(memshipSche != 0) {
+			list.add(new PieChart.Data("회원권", memshipSche));
+		}
 		for (CmnPrmDTO m : prmDto) {
 			System.out.println(m.getPRM_Name());
-			prmSche = prmScheDao.CntPrmSche(m.getPRM_Code());
-			System.out.println(prmSche);
-			list.add(new PieChart.Data(m.getPRM_Name(), prmSche));
+			//payedPrm = payDao.CntPayCode(m.getPRM_Code());
+			prmScheDto = prmScheDao.GetPrmScheCode(m.getPRM_Code());
+			
+			//payDao.CntPayCode();
+//			System.out.println(payedPrm);
+//			list.add(new PieChart.Data(m.getPRM_Name(), payedPrm));
 		}
 		proPie.setData(list);
 	}

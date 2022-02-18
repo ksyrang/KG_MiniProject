@@ -113,13 +113,18 @@ import javafx.scene.control.ToggleGroup;
 			birthfield.setText("");
 		}
 		
-		String[] memAddr = memberMgtDto.getMem_addr().split("/");
-		if (memAddr.length == 1) {
-			addr1field.setText(memAddr[0]);
-			addr2field.setText("");
-		} else if (memAddr.length == 2) {
-			addr1field.setText(memAddr[0]);
-			addr2field.setText(memAddr[1]);
+		if(memberMgtDto.getMem_addr() != null) {
+			String[] memAddr = memberMgtDto.getMem_addr().split("/");
+			if (memAddr.length == 1) {
+				addr1field.setText(memAddr[0]);
+				addr2field.setText("");
+			} else if (memAddr.length == 2) {
+				addr1field.setText(memAddr[0]);
+				addr2field.setText(memAddr[1]);
+			} else {
+				addr1field.setText("");
+				addr2field.setText("");
+			}
 		} else {
 			addr1field.setText("");
 			addr2field.setText("");

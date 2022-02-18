@@ -295,15 +295,19 @@ public class CmnPrmScheDAO {
 		return Datalist;
 	}
 	
-	public int CntPrmSche(String PRM_Code) {
-		int result = 0;
-		sql = "SELECT count(*) FROM PRMSCHE_TB WHERE PRM_Code = ?";
+	public ArrayList<CmnPrmScheDTO> GetPrmScheCode(String PRM_Code) {
+		//int result = 0;
+		sql = "SELECT PRMSCHE_Code FROM PRMSCHE_TB WHERE PRM_Code = ?";
+		ArrayList<CmnPrmScheDTO> Datalist = new ArrayList<>();
+		CmnPrmScheDTO tmpdata = null;
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, PRM_Code);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				result = rs.getInt("count(*)");
+				tmpdata = new CmnPrmScheDTO();
+				tmpdata.setPRMSCHE_Code(rs.getString("PRMSCHE_Code"));
+				Datalist.add(tmpdata);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -318,7 +322,8 @@ public class CmnPrmScheDAO {
 				e2.printStackTrace();
 			}
 		}
-		return result;
+		//return result;
+		return Datalist;
 	}
 	
 	

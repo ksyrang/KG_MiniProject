@@ -112,4 +112,34 @@ public class CmnPayDAO {
 		}
 		return Datalist;
 	}
+	
+	// 프로그램 별 pay_code 카운트
+	public ArrayList<CmnPayDTO> CntPayCode(String PRM_Code) {
+		//int result = 0;
+		sql = "SELECT count(*) FROM PRMSCHE_TB WHERE PRMSCHE_CODE = ?";
+		
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, PRM_Code);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				//result = rs.getInt("count(*)");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		//return result;
+		return null;
+	}
+	
 }

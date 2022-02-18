@@ -48,7 +48,7 @@ public class MEM_WelcomeService {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/EXProgramBuying/KG_MEM_FX_EXProgramBuying.fxml"));
       Parent exProgramBuyingForm;
       try {
-    	 exProgramBuyingForm = loader.load();
+        exProgramBuyingForm = loader.load();
          memWelcomeController.setExProgramBuyingForm(exProgramBuyingForm);
          memWelcomeController.setExPrmBuyingController(loader.getController());
       //   memWelcomeController.getExPrmBuyingController().setMembCode(membCode);
@@ -114,11 +114,11 @@ public class MEM_WelcomeService {
          maleBtn.setToggleGroup(group);
          FeMaleBtn.setToggleGroup(group);
          if(tmpMemDto.getMEM_Gender() != null) {
-        	 if(tmpMemDto.getMEM_Gender().equals("남성")) maleBtn.setSelected(true);
-        	 else if(tmpMemDto.getMEM_Gender().equals("여성")) FeMaleBtn.setSelected(true);
+            if(tmpMemDto.getMEM_Gender().equals("남성")) maleBtn.setSelected(true);
+            else if(tmpMemDto.getMEM_Gender().equals("여성")) FeMaleBtn.setSelected(true);
          } else {
-        	 maleBtn.setSelected(false);
-        	 FeMaleBtn.setSelected(false);
+            maleBtn.setSelected(false);
+            FeMaleBtn.setSelected(false);
          }
          //Addr Sector
          Addr1Field.setText(tmpMemDto.getMEM_Addr());

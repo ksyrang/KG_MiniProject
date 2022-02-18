@@ -44,8 +44,8 @@ public class MgtService {
 			if(PWField.getText().equals(PWCField.getText())){//입력 값이 동일하다는 조건
 				tmpDto.setMEM_Name(NameField.getText());
 				tmpDto.setMEM_PW(PWField.getText());
-				if(MaleRtn.isSelected()) tmpDto.setMEM_Gender("남성");
-				else tmpDto.setMEM_Gender("여성");
+				if(MaleRtn.isSelected()) tmpDto.setMEM_Gender("남");
+				else tmpDto.setMEM_Gender("여");
 				tmpDto.setMEM_Birth(Integer.parseInt(BirthField.getText()));
 				tmpDto.setMEM_Mobile(Integer.parseInt(MobileField.getText()));
 				tmpDto.setMEM_Addr(Addr1Field.getText()+"/"+Addr2Field.getText());

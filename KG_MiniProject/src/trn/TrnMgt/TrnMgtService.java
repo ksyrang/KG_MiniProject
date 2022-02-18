@@ -36,8 +36,8 @@ public class TrnMgtService {
 			if(PWField.getText().equals(PWCField.getText())){//입력 값이 동일하다는 조건
 				tmpDto.setTRAINER_Name(NameField.getText());
 				tmpDto.setTRAINER_PW(PWField.getText());
-				if(MaleRtn.isSelected()) tmpDto.setTRAINER_Gender("남성");
-				else tmpDto.setTRAINER_Gender("여성");
+				if(MaleRtn.isSelected()) tmpDto.setTRAINER_Gender("남");
+				else tmpDto.setTRAINER_Gender("여");
 				tmpDto.setTRAINER_Birth(Integer.parseInt(BirthField.getText()));
 				tmpDto.setTRAINER_Mobile(Integer.parseInt(MobileField.getText()));
 				tmpDto.setTRAINER_Addr(Addr1Field.getText()+"/"+Addr2Field.getText());

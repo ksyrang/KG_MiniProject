@@ -40,15 +40,14 @@ public class MgtDAO {
 				rs = ps.executeQuery();
 				MgtDTO memberMgtDto = new MgtDTO();
 				if(rs.next()) {
-					memberMgtDto.setMEM_Code(rs.getString("mem_code"));
+					
 					memberMgtDto.setMEM_ID(rs.getString("mem_id"));
 					memberMgtDto.setMEM_Name(rs.getString("mem_name"));
 					memberMgtDto.setMEM_PW(rs.getString("mem_pw"));
 					memberMgtDto.setMEM_Gender(rs.getString("mem_gender"));
 					memberMgtDto.setMEM_Birth(rs.getInt("mem_birth"));
 					memberMgtDto.setMEM_Mobile(rs.getInt("mem_mobile"));
-					memberMgtDto.setPRMSCHE_Code(rs.getString("prmsche_Code"));
-					memberMgtDto.setMEMSHIPSCHE_Code(rs.getString("memshipsche_Code"));
+					
 					memberMgtDto.setMEM_Addr(rs.getString("mem_addr"));
 					memberMgtDto.setMEM_Approve(rs.getString("mem_approve"));
 					

@@ -95,13 +95,14 @@ public class StatisticsController implements Initializable {
 
 		CmnPayDAO payDao = new CmnPayDAO();
 		ArrayList<CmnPayDTO> payDto;
-		int payedPrm = 0;
+		
 
 		ObservableList<Data> list = FXCollections.observableArrayList();
 		if (memshipSche != 0) {
 			list.add(new PieChart.Data("회원권", memshipSche));
 		}
 		for (CmnPrmDTO m : prmDto) {
+			int payedPrm = 0;
 			// 프로그램 코드 별 스케줄
 			prmScheDto = prmScheDao.GetPrmScheCode(m.getPRM_Code());
 			for (CmnPrmScheDTO sche : prmScheDto) {
@@ -114,7 +115,6 @@ public class StatisticsController implements Initializable {
 					} else {
 						System.out.println("payDto null나온다.");
 					}
-				
 			}
 			if (payedPrm > 0) {
 				list.add(new PieChart.Data(m.getPRM_Name(), payedPrm));

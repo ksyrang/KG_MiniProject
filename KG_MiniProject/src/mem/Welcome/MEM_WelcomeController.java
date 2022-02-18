@@ -1,6 +1,8 @@
 package mem.Welcome;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -32,7 +34,7 @@ public class MEM_WelcomeController implements Initializable {
 	
 	
 	
-	@FXML private TextField prm_codeTxtFld;
+	@FXML private TextField prm_nameTxtFld;
 	@FXML private TextField trainer_nameTxtFld;
 	@FXML private TextField trainer_careerTxtFld;
 	@FXML private TextField prmsche_strdateTxtFld;
@@ -47,7 +49,6 @@ public class MEM_WelcomeController implements Initializable {
 	@FXML private TableColumn<MEM_WelcomeMgtTable, Date> colPrmscheEnddate;
 	
 	ObservableList<MEM_WelcomeMgtTable> obserList;
-	
 	
 	public MEM_WelcomeController() {
 		memWelcomeSvc = new MEM_WelcomeService();
@@ -104,9 +105,6 @@ public class MEM_WelcomeController implements Initializable {
 		ObservableList<MEM_WelcomeDTO> memWelcomeDto = memWelcomeDao.selectMemAllProgram("user1");
 		
 		for(MEM_WelcomeDTO m : memWelcomeDto) {
-//			obserList.add(new MEM_WelcomeMgtTable(
-//					m.getPrm_name(), m.getPrmsche_time(), m.getPrmsche_price(),
-//					m.getPrmsche_strdate(),m.getPrmsche_enddate()));
 			String prm_name = m.getPrm_name();
 			String prmsche_time = m.getPrmsche_time();
 			int prmsche_price = m.getPrmsche_price();
@@ -124,42 +122,25 @@ public class MEM_WelcomeController implements Initializable {
 
 	//테이블 뷰에서 각 항목을 선택했을때 출력창에 표시 해주는 부분
     @FXML void selectPrmDetail(MouseEvent event) {
-    	// 선택했을 때 인덱스 값을 가지고 옴
-    	//.getSelectedIndex() 메소드를 사용
+    	MEM_WelcomeDAO memWelcomeDao = new MEM_WelcomeDAO();
+    	MEM_WelcomeDTO memWelcomeDto = new MEM_WelcomeDTO();
     	int select = memProgramTable.getSelectionModel().getSelectedIndex(); 
+    	memWelcomeDto = memWelcomeDao.selectProgram("user1");
+    	System.out.println(memWelcomeDto.getPrm_code());
+    	System.out.println(memWelcomeDto.getPrm_name());
 
-    	//선택한 행의 데이터를 테이블 데이터 로 보낸다.
-    	//.getSelectedItem() 메소드를 사용
-    	MEM_WelcomeMgtTable tvd = memProgramTable.getSelectionModel().getSelectedItem();
-//
-//    	prm_codeTxtFld.setText(tvd.getColPrmName());
-//    	trainer_nameTxtFld.setText(tvd.getColPrmscheTime());
-//    	trainer_careerTxtFld.setText(tvd.getColPrmscheTime());
-//    	prmsche_strdateTxtFld.setText(tvd.getColPrmscheTime());
-//    	prmsche_enddateTxtFld.setText(tvd.getColPrmscheTime());
-//    	prmsche_timeTxtFld.setText(tvd.getColPrmscheTime());
- /*   	prm_codeTxtFld.setText(tvd.getColPrmName());
-    	trainer_nameTxtFld.setText(tvd.getColPrmscheTime());
-    	trainer_careerTxtFld.setText(toString(tvd.getColPrmschePrice()));
-    	prmsche_strdateTxtFld.setText(toString(tvd.getColPrmscheStrdate()));
-    	prmsche_enddateTxtFld.setText(toString(tvd.getColPrmscheEnddate()));
-    	prmsche_timeTxtFld.setText(tvd.getColPrmscheTime());
-  */  	
-
+ //   	prm_codeTxtFld.setText(memWelcomeDto.getPrm_code());
+//    	trainer_nameTxtFld.setText(tvd.getColPrmName());
+//    	trainer_careerTxtFld.setText(memWelcomeDto.get);
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Date date = new Date();        
+		String dateToStrdate = dateFormat.format(memWelcomeDto.getPrmsche_strdate());
+		String dateToEnddate = dateFormat.format(memWelcomeDto.getPrmsche_enddate());
+    	prmsche_strdateTxtFld.setText(dateToStrdate);
+    	prmsche_enddateTxtFld.setText(dateToEnddate);
+    	prmsche_timeTxtFld.setText(memWelcomeDto.getPrmsche_time());
     }
 		
-	private String toString(Date colPrmscheStrdate2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private String toString(int colPrmschePrice2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-
 	public void healthProgramBuyingProc() {
 		memWelcomeSvc.healthProgramBuyingProc();
 	}

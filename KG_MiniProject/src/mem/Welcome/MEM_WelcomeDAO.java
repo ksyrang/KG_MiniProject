@@ -67,7 +67,42 @@ public class MEM_WelcomeDAO {
 		}
 		return member;
 	}
-	
+	public MEM_WelcomeDTO selectProgram(String id) {
+		MEM_WelcomeDTO memWelcomeDto = new MEM_WelcomeDTO();				
+		String sql1 = "SELECT * FROM mem_tb WHERE mem_id=?";
+		String sql2 = "SELECT * FROM prmsche_tb WHERE prmsche_code=?";
+		PreparedStatement ps1, ps2;
+		ResultSet rs1, rs2;
+		try {
+			ps1 = con.prepareStatement(sql1);
+			ps1.setString(1, id);
+			rs1 = ps1.executeQuery();
+			if(rs1.next()) {
+				ps2 = con.prepareStatement(sql2);
+				ps2.setString(1, rs1.getString("prmsche_code"));
+				rs2 = ps2.executeQuery();
+				if(rs2.next()) {
+					memWelcomeDto.setMem_id(rs1.getString("mem_id"));
+					memWelcomeDto.setPrm_code(rs2.getString("prm_code"));
+					memWelcomeDto.setPrm_name(rs2.getString("prmsche_name"));
+					memWelcomeDto.setPrmsche_code(rs1.getString("prmsche_code"));
+					memWelcomeDto.setMemshipsche_code(rs1.getString("memshipsche_code"));
+					memWelcomeDto.setTrainer_code(rs2.getString("trainer_code"));
+					memWelcomeDto.setPrmsche_name(rs2.getString("prmsche_name"));
+					memWelcomeDto.setPrmsche_time(rs2.getString("prmsche_time"));
+					memWelcomeDto.setPrmsche_strdate(rs2.getDate("prmsche_strdate"));
+					memWelcomeDto.setPrmsche_enddate(rs2.getDate("prmsche_enddate"));
+					memWelcomeDto.setPrmsche_price(rs2.getInt("prmsche_price"));
+					memWelcomeDto.setPrmsche_currentp(rs2.getInt("prmsche_currentp"));
+					memWelcomeDto.setPrmsche_limitp(rs2.getInt("prmsche_limitp"));
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return memWelcomeDto;
+	}
 	public String getPrmName(String PrmCode) {
 		String prm_name = null;
 		String sql = "SELECT prm_name FROM prm_tb WHERE prm_code=?";

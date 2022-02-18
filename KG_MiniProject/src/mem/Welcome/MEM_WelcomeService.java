@@ -104,9 +104,10 @@ public class MEM_WelcomeService {
          ToggleGroup group = new ToggleGroup();
          maleBtn.setToggleGroup(group);
          FeMaleBtn.setToggleGroup(group);
-         if(tmpMemDto.getMEM_Gender().equals("남성")) maleBtn.setSelected(true);
-         else if(tmpMemDto.getMEM_Gender().equals("여성")) FeMaleBtn.setSelected(true);
-         else {
+         if(tmpMemDto.getMEM_Gender() != null) {
+        	 if(tmpMemDto.getMEM_Gender().equals("남성")) maleBtn.setSelected(true);
+        	 else if(tmpMemDto.getMEM_Gender().equals("여성")) FeMaleBtn.setSelected(true);
+         } else {
         	 maleBtn.setSelected(false);
         	 FeMaleBtn.setSelected(false);
          }

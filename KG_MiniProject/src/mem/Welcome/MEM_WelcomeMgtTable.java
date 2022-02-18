@@ -4,36 +4,52 @@ import java.util.Date;
 
 public class MEM_WelcomeMgtTable {
 	
-	private String colPrmName;
-	private String colPrmscheTime;
+	private String colPrmCode;
+	private String colTrainerCode;
 	private int colPrmschePrice;
 	private Date colPrmscheStrdate;
 	private Date colPrmscheEnddate;
+	private String colPrmscheCode;
 	private String colMemshipscheCode;
-	private String colTrainerCode;
 	
-	public MEM_WelcomeMgtTable(String colPrmName, String colPrmscheTime, int colPrmschePrice,Date colPrmscheStrdate,Date colPrmscheEnddate) {
-		this.colPrmName = colPrmName;
-		this.colPrmscheTime = colPrmscheTime;
-		this.colPrmschePrice = colPrmschePrice;
+	public String getColPrmscheCode() {
+		return colPrmscheCode;
+	}
+
+	public void setColPrmscheCode(String colPrmscheCode) {
+		this.colPrmscheCode = colPrmscheCode;
+	}
+	
+	public String getColMemshipscheCode() {
+		return colMemshipscheCode;
+	}
+
+	public void setColMemshipscheCode(String colMemshipscheCode) {
+		this.colMemshipscheCode = colMemshipscheCode;
+	}
+
+	public MEM_WelcomeMgtTable(String colPrmCode, String colTrainerCode, String colPrmscheCode,Date colPrmscheStrdate,Date colPrmscheEnddate) {
+		this.colPrmCode = colPrmCode;
+		this.colTrainerCode = colTrainerCode;
+		this.colPrmscheCode = colPrmscheCode;
 		this.colPrmscheStrdate = colPrmscheStrdate;
 		this.colPrmscheEnddate = colPrmscheEnddate;
 	}
 
-	public String getColPrmName() {
-		return colPrmName;
+	public String getColPrmCode() {
+		return colPrmCode;
 	}
 
-	public void setColPrmName(String colPrmName) {
-		this.colPrmName = colPrmName;
+	public void setColPrmCode(String colPrmCode) {
+		this.colPrmCode = colPrmCode;
 	}
 
-	public String getColPrmscheTime() {
-		return colPrmscheTime;
+	public String getColTrainerCode() {
+		return colTrainerCode;
 	}
 
-	public void setColPrmscheTime(String colPrmscheTime) {
-		this.colPrmscheTime = colPrmscheTime;
+	public void setColTrainerCode(String colTrainerCode) {
+		this.colTrainerCode = colTrainerCode;
 	}
 
 	public int getColPrmschePrice() {

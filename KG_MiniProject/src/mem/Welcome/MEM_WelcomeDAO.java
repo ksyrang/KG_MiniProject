@@ -31,11 +31,9 @@ public class MEM_WelcomeDAO {
 	
 	public ObservableList<MEM_WelcomeDTO> selectMemAllProgram(String id) {
 		String sql1 = "SELECT prmsche_code, memshipsche_code FROM mem_tb WHERE mem_id=?";
-//		String sql2 = "SELECT prm_code, trainer_code, prmsche_time, prmsche_price, prmsche_strdate, prmsche_enddate FROM prmsche_tb WHERE prmsche_code=?";
 		String sql2 = "SELECT * FROM prmsche_tb WHERE prmsche_code=?";
-		String sql3 = "SELECT prm_name FROM prm_tb WHERE prm_code=?";
-		PreparedStatement ps1, ps2, ps3;
-		ResultSet rs1, rs2, rs3;
+		PreparedStatement ps1, ps2;
+		ResultSet rs1, rs2;
 		ObservableList<MEM_WelcomeDTO> member = FXCollections.observableArrayList();
 		try {
 			ps1 = con.prepareStatement(sql1);
@@ -46,21 +44,15 @@ public class MEM_WelcomeDAO {
 				ps2.setString(1, rs1.getString("prmsche_code"));
 				rs2 = ps2.executeQuery();
 				if(rs2.next()) {
-					ps3 = con.prepareStatement(sql3);
-					ps3.setString(1, rs2.getString("prm_code"));
-					rs3 = ps3.executeQuery();
-					if(rs3.next()) {
-						MEM_WelcomeDTO memWelcomeDto = new MEM_WelcomeDTO();				
-						memWelcomeDto.setPrm_name(rs3.getString("prm_name"));
-						memWelcomeDto.setPrmsche_time(rs2.getString("prmsche_time"));
-						memWelcomeDto.setPrmsche_price(rs2.getInt("prmsche_price"));
-						memWelcomeDto.setPrmsche_strdate(rs2.getDate("prmsche_strdate"));
-						memWelcomeDto.setPrmsche_enddate(rs2.getDate("prmsche_enddate"));
-						memWelcomeDto.setPrmsche_code(rs1.getString("prmsche_code"));
-						memWelcomeDto.setMemshipsche_code(rs1.getString("memshipsche_code"));
-						memWelcomeDto.setTrainer_code(rs2.getString("trainer_code"));
-						member.add(memWelcomeDto);
-					}
+					MEM_WelcomeDTO memWelcomeDto = new MEM_WelcomeDTO();				
+					memWelcomeDto.setPrm_code(rs2.getString("prm_code"));
+					memWelcomeDto.setTrainer_code(rs2.getString("trainer_code"));
+					memWelcomeDto.setPrmsche_price(rs2.getInt("prmsche_price"));
+					memWelcomeDto.setPrmsche_strdate(rs2.getDate("prmsche_strdate"));
+					memWelcomeDto.setPrmsche_enddate(rs2.getDate("prmsche_enddate"));
+					memWelcomeDto.setPrmsche_code(rs1.getString("prmsche_code"));
+					memWelcomeDto.setMemshipsche_code(rs1.getString("memshipsche_code"));
+					member.add(memWelcomeDto);
 				}
 			}
 			
@@ -68,6 +60,24 @@ public class MEM_WelcomeDAO {
 			e.printStackTrace();
 		}
 		return member;
+	}
+	
+	public String getPrmName(String PrmCode) {
+		String prm_name = null;
+		String sql = "SELECT prm_name FROM prm_tb WHERE prm_code=?";
+		PreparedStatement ps;
+		ResultSet rs;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, PrmCode);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				return rs.getString("prm_name");
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return prm_name;
 	}
 	
 	public ObservableList<MEM_WelcomeDTO> getAllMemberList() {

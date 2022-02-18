@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mem.HelthProgramBuying.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mem.HelthProgramBuying.HealthPrmBuyingController">
    <top>
       <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
@@ -43,7 +43,7 @@
    <bottom>
       <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="100.0" prefHeight="100.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="paymentButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="결제" />
+            <Button fx:id="paymentButton" mnemonicParsing="false" onAction="#paymentProc" prefHeight="50.0" prefWidth="150.0" text="결제" />
             <Button fx:id="cancelButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="취소" />
          </children>
       </FlowPane>
@@ -69,7 +69,7 @@
                         <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <Label text="회 원 권 : " />
-                              <ComboBox prefWidth="150.0" />
+                              <ComboBox fx:id="memshipComboBox" prefWidth="200.0" promptText="회원권선택" />
                            </children>
                         </FlowPane>
                         <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0">

@@ -3,14 +3,13 @@ package mem.Welcome;
 import java.util.Date;
 
 public class MEM_WelcomeDTO {
-	private String prm_name;
-	private String prmsche_time;
+	private String prm_code;
+	private String trainer_code;
 	private int prmsche_price;
 	private Date prmsche_strdate;
 	private Date prmsche_enddate;
 	private String prmsche_code;
 	private String memshipsche_code;
-	private String trainer_code;
 	
 	public String getPrmsche_code() {
 		return prmsche_code;
@@ -30,17 +29,11 @@ public class MEM_WelcomeDTO {
 	public void setTrainer_code(String trainer_code) {
 		this.trainer_code = trainer_code;
 	}
-	public String getPrm_name() {
-		return prm_name;
+	public String getPrm_code() {
+		return prm_code;
 	}
-	public void setPrm_name(String prm_name) {
-		this.prm_name = prm_name;
-	}
-	public String getPrmsche_time() {
-		return prmsche_time;
-	}
-	public void setPrmsche_time(String prmsche_time) {
-		this.prmsche_time = prmsche_time;
+	public void setPrm_code(String prm_code) {
+		this.prm_code = prm_code;
 	}
 	public int getPrmsche_price() {
 		return prmsche_price;

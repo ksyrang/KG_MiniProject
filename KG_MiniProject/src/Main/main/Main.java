@@ -23,7 +23,7 @@ public class Main extends Application{
 		
 		LoginController loginController = controller.getLoginController();
 		loginController.setmainForm(mainForm);
-		
+		//sdgdsdg
 		Scene scene = new Scene(mainForm);
 		
 		primaryStage.setTitle("MainPage");

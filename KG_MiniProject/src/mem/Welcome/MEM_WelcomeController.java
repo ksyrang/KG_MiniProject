@@ -21,6 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import mem.Mgt.MgtController;
 import trn.TrnMgt.TrnMgtController;
+import mem.EXProgramBuying.MemExPBuyingContorller;
 
 public class MEM_WelcomeController implements Initializable {
 	private Parent healthProgramBuyingForm;
@@ -31,7 +32,9 @@ public class MEM_WelcomeController implements Initializable {
 	private Parent memWelcomeForm;
 	private String membCode;
 	//test
-	
+
+
+	private MemExPBuyingContorller MemExPBuyingContorller;	
 	
 	
 	@FXML private TextField prm_nameTxtFld;
@@ -145,7 +148,7 @@ public class MEM_WelcomeController implements Initializable {
 		memWelcomeSvc.healthProgramBuyingProc();
 	}
 	public void exProgramBuyingProc() {
-		memWelcomeSvc.exProgramBuyingProc();
+		memWelcomeSvc.exProgramBuyingProc(membCode);
 	}
 	public void logoutProc() {
 		memWelcomeSvc.logoutProc(memWelcomeForm);
@@ -166,5 +169,13 @@ public class MEM_WelcomeController implements Initializable {
 		this.exProgramBuyingForm = exProgramBuyingForm;
 	}
 	
+
+	public MemExPBuyingContorller getMemExPBuyingContorller() {
+		return MemExPBuyingContorller;
+	}
+
+	public void setMemExPBuyingContorller(MemExPBuyingContorller memExPBuyingContorller) {
+		MemExPBuyingContorller = memExPBuyingContorller;
+	}
 	
 }

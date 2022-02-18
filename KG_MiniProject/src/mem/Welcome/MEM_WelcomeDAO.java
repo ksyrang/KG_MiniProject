@@ -40,7 +40,7 @@ public class MEM_WelcomeDAO {
 		PreparedStatement ps1, ps2, ps3;
 		ResultSet rs1, rs2, rs3;
 		ObservableList<MEM_WelcomeDTO> member = FXCollections.observableArrayList();
-		MEM_WelcomeDTO memWelcomeDto = new MEM_WelcomeDTO();				
+		MEM_WelcomeDTO memWelcomeDto;				
 		try {
 			ps1 = con.prepareStatement(sql1); 
 			ps1.setString(1, id);
@@ -51,6 +51,7 @@ public class MEM_WelcomeDAO {
 					ps2.setString(1, rs1.getString("prmsche_code"));
 					rs2 = ps2.executeQuery();
 					if(rs2.next()) {
+						memWelcomeDto = new MEM_WelcomeDTO();
 						memWelcomeDto.setMem_id(rs1.getString("mem_id"));
 						memWelcomeDto.setPrm_code(rs2.getString("prm_code"));
 						memWelcomeDto.setPrm_name(rs2.getString("prmsche_name"));
@@ -66,6 +67,7 @@ public class MEM_WelcomeDAO {
 						memWelcomeDto.setPrmsche_limitp(rs2.getInt("prmsche_limitp"));
 						member.add(memWelcomeDto);
 						System.out.println("prmsche_code : " + rs1.getString("prmsche_code"));
+						System.out.println("prmsche_code : " + member.get(0));
 					}
 				}
 				if(rs1.getString("memshipsche_code") != null) {
@@ -73,6 +75,7 @@ public class MEM_WelcomeDAO {
 					ps3.setString(1, rs1.getString("memshipsche_code"));
 					rs3 = ps3.executeQuery();
 					if(rs3.next()) {
+						memWelcomeDto = new MEM_WelcomeDTO();
 						memWelcomeDto.setMem_id(rs1.getString("mem_id"));
 						memWelcomeDto.setPrm_code(rs3.getString("memship_code")); // *****
  
@@ -99,6 +102,7 @@ public class MEM_WelcomeDAO {
 						memWelcomeDto.setPrmsche_limitp(0);
 						member.add(memWelcomeDto);
 						System.out.println("memshipsche_code : " + rs1.getString("memshipsche_code"));
+						System.out.println("memshipsche_code : " + member.get(1));
 					}
 				}
 			}

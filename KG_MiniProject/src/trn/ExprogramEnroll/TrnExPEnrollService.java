@@ -9,12 +9,16 @@ import common.CmnPrmScheDTO;
 import common.CmnTrainerDAO;
 import common.CmnTrainerDTO;
 import common.CommonService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import trn.Welcome.TrnTbVDTO;
 import trn.Welcome.TrnWelcomeController;
 
 public class TrnExPEnrollService {
@@ -35,7 +39,11 @@ public class TrnExPEnrollService {
 	}
 	
 
-	public void ExPErllProc(Parent myForm, String TrnCode) {
+	public void ExPErllProc(Parent myForm) {
+		if(CommonService.CompareDate(SrtDate.getValue(), EndDate.getValue())) {
+			CommonService.Msg("종료일을 시작일 뒤의 날짜로 입력해주십시오.");
+			return;
+		}
 		int InitCrtMems = 0;
 		String Time = null;
 		String PrmType = ExPTypeBox.getSelectionModel().getSelectedItem();
@@ -54,24 +62,27 @@ public class TrnExPEnrollService {
 			}
 		}
 		//강사 정보 -> 이름찾기용
-		CmnTrainerDTO TrnInfo = new CmnTrainerDAO().SltTrnOne(TrnCode); 
+		CmnTrainerDTO TrnInfo = new CmnTrainerDAO().SltTrnOne(TrnExpEnrollController.getTrnCode()); 
 		//강의 일정용 코드 생성
 		String PrmScheCodegeneration = null;//Rule : PrmSche+강의종류 + 오전/오후 + 강사 + num
 
 		ArrayList<CmnPrmScheDTO> PrmScheListbyPrmCode = new CmnPrmScheDAO().SltPrmScheAllbyPrm(getPrmCode);
-//		for(CmnPrmScheDTO e: PrmScheListbyPrmCode) System.out.println("선택한 강의가 포함된 EXPSCHE 코드 : " + e.getPRMSCHE_Code());
 
+		//스케쥴 코드 리스트 생성
 		String[] PrmScheListbyPrmCodeList = new String[PrmScheListbyPrmCode.size()];
 		int i=0;
 		for(CmnPrmScheDTO DTO: PrmScheListbyPrmCode) {
-			PrmScheListbyPrmCodeList[i] = DTO.getPRMSCHE_Code();
+			if(DTO.getPRMSCHE_Time().equals("오전")) {
+				PrmScheListbyPrmCodeList[i] = DTO.getPRMSCHE_Code();	
+			}else {
+				PrmScheListbyPrmCodeList[i] = DTO.getPRMSCHE_Code();
+			}
 			i++;
 		}
 		String PrmScheNumber = getlatestNumToString(PrmScheListbyPrmCodeList);
-		
+		System.out.println("최신번호 결과: " + PrmScheNumber);
 		//코드 생성
 		PrmScheCodegeneration ="PrmSche"+"_"+PrmType+"_"+Time+"_"+TrnInfo.getTRAINER_Name()+"_"+PrmScheNumber;
-//		PrmScheCodegeneration ="PrmSche"+"_"+PrmType+"_"+Time+"_"+TrnInfo.getTRAINER_Name();
 		System.out.println("생성된 코드 : "+PrmScheCodegeneration);
 		
 		CmnPrmScheDTO tmpDTO = new CmnPrmScheDTO(
@@ -93,7 +104,16 @@ public class TrnExPEnrollService {
 		}else {
 			CommonService.Msg("이상 발생!");
 		}
-		
+//		//Table View Refresh 
+//		TableView<TrnTbVDTO> refreshTable = (TableView<TrnTbVDTO>)WelcomeForm.lookup("#CurrentProgramTableList");
+//		refreshTable.getItems().clear();
+//		ArrayList<CmnPrmScheDTO> tmplist = new CmnPrmScheDAO().SltPrmScheAllbyTrn(TrnExpEnrollController.getTrnCode());
+//		ObservableList<TrnTbVDTO> TBVwlist = FXCollections.observableArrayList();
+//		for(CmnPrmScheDTO tmpdto: tmplist) {//PCodeColumn, PNameColumn, MembersColumn
+//			TBVwlist.add(new TrnTbVDTO(tmpdto.getPRMSCHE_Code(), tmpdto.getPRMSCHE_Name(), 
+//					Integer.toString(tmpdto.getPRMSCHE_CurrentP())));
+//		}			
+//		refreshTable.setItems(TBVwlist);	
 	}
 	
 	public void BackProc(Parent myForm) {
@@ -122,21 +142,26 @@ public class TrnExPEnrollService {
 		 */	
 		
 		String LastestNum = null;
-			String[] extractionNum = new String[PrmScheCodeListbyPrmCode.length];
+		String[] extractionNum = new String[PrmScheCodeListbyPrmCode.length];
 //			System.out.println("입력받은 문자열개수"+PrmScheCodeListbyPrmCode.length);
-			for(int i = 0; i<PrmScheCodeListbyPrmCode.length;i++) {
-			String tmpdata[] =  PrmScheCodeListbyPrmCode[i].split("_");
+		for(int i = 0; i<PrmScheCodeListbyPrmCode.length;i++) {
+		String tmpdata[] =  PrmScheCodeListbyPrmCode[i].split("_");
 //			String tmpdata =  PrmScheCodeListbyPrmCode[i];
-//			System.out.println("추출한 번호 : "+tmpdata[tmpdata.length-1]);
-			extractionNum[i] = tmpdata[tmpdata.length-1];
+		System.out.println("추출한 번호 : "+tmpdata[tmpdata.length-1]);
+		extractionNum[i] = tmpdata[tmpdata.length-1];
+		System.out.println("추출번호 대입 결과 : "+extractionNum[i]);
 		}
-//			LastestNum =
-		for(int i = 1; i<extractionNum.length;i++) {
-			if(Integer.parseInt(extractionNum[i-1]) < Integer.parseInt(extractionNum[i])) {
-				LastestNum = Integer.toString(Integer.parseInt(extractionNum[i])+1);
-				System.out.println(LastestNum);
-			}
+		
+		if(extractionNum.length > 1) {
+			for(int i = 1; i<extractionNum.length;i++) {
+				if(Integer.parseInt(extractionNum[i-1]) < Integer.parseInt(extractionNum[i])) {
+					LastestNum = Integer.toString(Integer.parseInt(extractionNum[i])+1);
+				}
+			}	
+		}else {
+			LastestNum = Integer.toString(Integer.parseInt(extractionNum[0])+1);
 		}
+		System.out.println("연산 결과 : "+LastestNum);
 		return LastestNum;
 	}
 	

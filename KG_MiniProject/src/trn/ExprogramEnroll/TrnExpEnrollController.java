@@ -62,7 +62,7 @@ public class TrnExpEnrollController implements Initializable {
 	
 	}
 	public void ExPErllProc(){
-		trnExPEnrollSvc.ExPErllProc(trnExpEnrollForm, trnCode);
+		trnExPEnrollSvc.ExPErllProc(trnExpEnrollForm);
 		
 	}
 	

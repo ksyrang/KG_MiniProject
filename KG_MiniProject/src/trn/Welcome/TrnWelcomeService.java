@@ -260,7 +260,13 @@ public class TrnWelcomeService {
 	public void programclickProc(Parent form) {
 		TableView<TrnTbVDTO> TbVw = (TableView<TrnTbVDTO>)form.lookup("#CurrentProgramTableList");
 		TrnTbVDTO tmp = TbVw.getSelectionModel().getSelectedItem();
-		CmnPrmScheDTO getPrmSchetmpDto = new CmnPrmScheDAO().SltPrmScheOne(tmp.getPCodeColumn());
+		CmnPrmScheDTO getPrmSchetmpDto;
+		try {//선택 오류로 인한 null값 입력 시 대처
+			getPrmSchetmpDto = new CmnPrmScheDAO().SltPrmScheOne(tmp.getPCodeColumn());	
+		} catch (NullPointerException e) {
+			return;
+		}
+		
 		
 		Label ExPCodeDisLabel= (Label)form.lookup("#ExPCodeDisLabel");
 		Label ExPTypeDisLabel= (Label)form.lookup("#ExPTypeDisLabel");

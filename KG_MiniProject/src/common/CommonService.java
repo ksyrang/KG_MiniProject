@@ -27,6 +27,11 @@ public class CommonService {
 		stage.close();
 	}
 	
+	public static boolean CompareDate(LocalDate Start, LocalDate End) {
+		if(Start.isAfter(End)) return true;//Start보다 End가 일찍이라면 false
+		else return false;
+	}
+
 	public static void LogOut() {
 
 		

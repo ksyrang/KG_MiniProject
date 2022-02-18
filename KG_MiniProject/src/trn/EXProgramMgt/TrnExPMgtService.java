@@ -62,6 +62,12 @@ public class TrnExPMgtService {
 	}
 	
 	public void ExPMdyProc(Parent MyForm, Parent WelcomeForm) {//수정
+		
+		if(CommonService.CompareDate(SrtDate.getValue(), EndDate.getValue())) {
+			CommonService.Msg("종료일을 시작일 뒤의 날짜로 입력해주십시오.");
+			return;
+		}
+		
 		PRMSCHEDAO = new CmnPrmScheDAO();
 		int result = 0; 
 		CmnPrmScheDTO DTO = new CmnPrmScheDAO().SltPrmScheOne(PRMSCHEDAO.SltPrmScheOne(PrmScheCodeLabel.getText()).getPRMSCHE_Code());

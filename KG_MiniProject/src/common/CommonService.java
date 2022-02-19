@@ -40,8 +40,8 @@ public class CommonService {
 	public static LocalDate StringtoLocalDate(String Date) {		
 		return LocalDate.parse(Date, DateTimeFormatter.ISO_DATE);
 	}
-	public static String LocaltoStringDate(LocalDate Date) {		
-		return Date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+	public static String LocaltoStringDate(LocalDate Date) {
+		return Date.toString();
 	}	
 	
 	public static LocalDate DateCnvt(java.sql.Date sqldate) {

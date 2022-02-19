@@ -12,16 +12,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mem.HelthProgramBuying.HealthPrmBuyingController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mem.HelthProgramBuying.HealthPrmBuyingController">
    <top>
-      <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
             <Label text="KG GYM">
                <font>
                   <Font size="25.0" />
                </font>
                <HBox.margin>
-                  <Insets left="10.0" top="12.5" />
+                  <Insets left="10.0" />
                </HBox.margin>
             </Label>
             <Label text="-회원님">
@@ -29,12 +29,12 @@
                   <Font size="20.0" />
                </font>
                <HBox.margin>
-                  <Insets left="600.0" top="12.5" />
+                  <Insets left="420.0" />
                </HBox.margin>
             </Label>
             <Button fx:id="logoututton" mnemonicParsing="false" text="logout">
                <HBox.margin>
-                  <Insets left="20.0" top="12.5" />
+                  <Insets left="20.0" />
                </HBox.margin>
             </Button>
          </children>
@@ -59,38 +59,56 @@
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
             </Label>
-            <HBox prefHeight="400.0" prefWidth="250.0" spacing="30.0">
+            <HBox prefHeight="400.0" prefWidth="250.0" spacing="100.0">
                <VBox.margin>
-                  <Insets left="20.0" top="10.0" />
+                  <Insets left="20.0" />
                </VBox.margin>
                <children>
-                  <VBox prefHeight="264.0" prefWidth="350.0">
+                  <VBox alignment="CENTER_LEFT" spacing="50.0">
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                        <HBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <Label text="회 원 권 :  헬스 회원권" />
-                              <ComboBox fx:id="memshipComboBox" onAction="#selectTypeCombo" prefHeight="29.0" prefWidth="73.0" />
-                              <Label text="개월" />
+                              <Label text="회 원 권 :  ">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font></Label>
+                              <ComboBox fx:id="memshipComboBox" onAction="#selectTypeCombo" prefHeight="25.0" prefWidth="100.0" />
+                              <Label text="개월">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font></Label>
                            </children>
                            <VBox.margin>
-                              <Insets top="30.0" />
+                              <Insets />
                            </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                            <children>
-                              <Label text="가     격 : " />
-                              <Label fx:id="memshipPriceTxt" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="90.0" text="0" />
+                              <Label text="가     격 : ">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font></Label>
+                              <Label fx:id="memshipPriceTxt" alignment="CENTER_RIGHT" prefHeight="19.0" text="0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font></Label>
                               <Label text="원">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
                               </Label>
                            </children>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
                            <children>
-                              <Label text="시작날짜 : " />
-                              <DatePicker />
+                              <Label text="시작 일자 : ">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font></Label>
+                              <DatePicker fx:id="SltDate" onContextMenuRequested="#sltDateProc" prefHeight="25.0" prefWidth="170.0" />
                            </children>
                            <VBox.margin>
                               <Insets />
@@ -98,56 +116,39 @@
                         </HBox>
                      </children>
                      <HBox.margin>
-                        <Insets top="30.0" />
+                        <Insets />
                      </HBox.margin>
                   </VBox>
-                  <VBox prefWidth="480.0">
+                  <VBox alignment="CENTER_LEFT" spacing="70.0">
                      <children>
-                        <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0">
+                        <HBox>
                            <children>
-                              <Label text="결제코드 : " />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="결제코드 표기" />
+                              <Label text="시작 일자 : ">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Text fx:id="SrtDateLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="회원권 시작 일자">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
                            </children>
-                           <VBox.margin>
-                              <Insets left="20.0" />
-                           </VBox.margin>
-                        </FlowPane>
-                        <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0">
+                        </HBox>
+                        <HBox>
                            <children>
-                              <Label text="회원권 종류 : " />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="결제할 회원권 번호" />
+                              <Label text="종료 일자 : ">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Text fx:id="EndDateLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="회원권 종료 일자">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
                            </children>
-                           <VBox.margin>
-                              <Insets left="20.0" />
-                           </VBox.margin>
-                        </FlowPane>
-                        <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <Label text="금액 : " />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="결제할 금액" />
-                           </children>
-                           <VBox.margin>
-                              <Insets left="20.0" />
-                           </VBox.margin>
-                        </FlowPane>
-                        <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <Label text="시작날짜 : " />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="회원권 시작 일자" />
-                           </children>
-                           <VBox.margin>
-                              <Insets left="20.0" />
-                           </VBox.margin>
-                        </FlowPane>
-                        <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <Label text="종료날짜 : " />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="회원권 종료 일자" />
-                           </children>
-                           <VBox.margin>
-                              <Insets left="20.0" />
-                           </VBox.margin>
-                        </FlowPane>
+                        </HBox>
                      </children>
                   </VBox>
                </children>

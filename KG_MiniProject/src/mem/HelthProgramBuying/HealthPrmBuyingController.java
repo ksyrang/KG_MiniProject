@@ -22,11 +22,14 @@ public class HealthPrmBuyingController implements Initializable{
 	private ObservableList<String> allProgram;
 	private String membCode;
 	private MEM_BuyingTypeController MEM_BuyingTypeController;
-	
+
+
+    
+    
 	@FXML private ComboBox<String> memshipComboBox;
 	@FXML private DatePicker startDatePicker;
 	@FXML private DatePicker endDatePicker;
-	
+	@FXML private DatePicker SltDate;
 	@FXML private ListView<String> programListView;
 	
 	@Override
@@ -43,11 +46,15 @@ public class HealthPrmBuyingController implements Initializable{
 	
 	// 결제 버튼 클릭 시
 	public void PaymentProc() {
-		healthPrmBuyingSvc.PaymentProc();
+		healthPrmBuyingSvc.PaymentProc(healthPrmBuyingForm);
 	}
 	//콤보박스 클릭 시
 	public void selectTypeCombo() {
 		healthPrmBuyingSvc.selectTypeCombo(healthPrmBuyingForm);
+	}
+	//날짜 선택 시
+	public void sltDateProc() {
+		healthPrmBuyingSvc.sltDateProc(healthPrmBuyingForm);
 	}
 	// 이전 버튼 클릭 시
 	public void healthPrmBuyingCancleProc() {

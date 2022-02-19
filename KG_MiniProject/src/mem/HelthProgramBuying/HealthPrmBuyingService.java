@@ -4,12 +4,15 @@ import java.io.IOException;
 
 import common.CmnMemShipDAO;
 import common.CmnMemShipDTO;
+import common.CommonService;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -31,12 +34,24 @@ public class HealthPrmBuyingService {
 		ComboBox<String> memshipComboBox = (ComboBox<String>) healthPrmBuyingForm.lookup("#memshipComboBox");
 		Label memshipPriceTxt = (Label) healthPrmBuyingForm.lookup("#memshipPriceTxt");
 		memshipPriceTxt.setText(memshipComboBox.getSelectionModel().getSelectedItem());
-//		memshipDao = new CmnMemShipDAO();
-//		CmnMemShipDTO memshipDto = memshipDao.SltMemShipAll(type);
-//		String price = Integer.toString(memshipDto.getMEMSHIP_Price());
-//		memshipPriceTxt.setText(price);
+		
 	}
-	public void PaymentProc() {
+	//날짜 선택 시
+	public void sltDateProc(Parent healthPrmBuyingForm) {
+		DatePicker sltDate = (DatePicker)healthPrmBuyingForm.lookup("#SltDate");
+		Text SrtDateLabel = (Text)healthPrmBuyingForm.lookup("#SrtDateLabel");
+		Text EndDateLabel = (Text)healthPrmBuyingForm.lookup("#EndDateLabel");
+//		SrtDateLabel.setText(CommonService.LocaltoStringDate(sltDate.getValue()));
+		
+	}
+	
+	public void PaymentProc(Parent healthPrmBuyingForm) {
+		//회원권 스케줄 생성!
+		
+		
+		
+		
+		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/BuyingType/KG_MEM_FX_BuyingType.fxml"));
 		try {
 			Parent BuyingTypeForm = loader.load();
@@ -58,6 +73,8 @@ public class HealthPrmBuyingService {
 	public void setHealthPrmBuyingController(HealthPrmBuyingController healthPrmBuyingController) {
 		this.HealthPrmBuyingController = healthPrmBuyingController;
 	}
+
+
 
 
 }

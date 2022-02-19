@@ -54,8 +54,8 @@ public class MEM_BuyingTypeController implements Initializable{
 	public void setBuyingTypeForm(Parent buyingTypeForm) {
 		this.buyingTypeForm = buyingTypeForm;
 		buyingTypeSvc.SetFXId(buyingTypeForm);
-		System.out.println("BuyingType 1 : "+buyingTypeForm);
-		System.out.println("BuyingType 2 : "+this.buyingTypeForm);
+//		System.out.println("BuyingType 1 : "+buyingTypeForm);
+//		System.out.println("BuyingType 2 : "+this.buyingTypeForm);
 	}
 	
 	

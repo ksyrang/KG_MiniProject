@@ -11,7 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
-
+import mem.BuyingType.MEM_BuyingTypeController;
 
 public class HealthPrmBuyingController implements Initializable{
 	
@@ -21,7 +21,7 @@ public class HealthPrmBuyingController implements Initializable{
 	private HealthPrmBuyingTable healthPrmBuyingTable;
 	private ObservableList<String> allProgram;
 	private String membCode;
-	
+	private MEM_BuyingTypeController MEM_BuyingTypeController;
 	
 	@FXML private ComboBox<String> memshipComboBox;
 	@FXML private DatePicker startDatePicker;
@@ -43,10 +43,12 @@ public class HealthPrmBuyingController implements Initializable{
 	
 	// 결제 버튼 클릭 시
 	public void PaymentProc() {
-		System.out.println("결제처리");
 		healthPrmBuyingSvc.PaymentProc();
 	}
-	
+	//콤보박스 클릭 시
+	public void selectTypeCombo() {
+		healthPrmBuyingSvc.selectTypeCombo(healthPrmBuyingForm);
+	}
 	// 이전 버튼 클릭 시
 	public void healthPrmBuyingCancleProc() {
 		CommonService.WindowClose(healthPrmBuyingForm);
@@ -59,6 +61,14 @@ public class HealthPrmBuyingController implements Initializable{
 	public void setMembCode(String membCode) {
 		this.membCode = membCode;
 	}
-	
+
+	public MEM_BuyingTypeController getMEM_BuyingTypeController() {
+		return MEM_BuyingTypeController;
+	}
+
+	public void setMEM_BuyingTypeController(MEM_BuyingTypeController mEM_BuyingTypeController) {
+		MEM_BuyingTypeController = mEM_BuyingTypeController;
+	}
+
 
 }

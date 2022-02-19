@@ -6,6 +6,7 @@ import common.CommonService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
@@ -23,27 +24,28 @@ public class MEM_WelcomeService {
    }
    
    public void healthProgramBuyingProc() {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/HelthProgramBuying/KG_MEM_FX_HealthProgramBuying.fxml"));
-      Parent healthProgramBuyingForm;
-      try {
-         healthProgramBuyingForm = loader.load();
-         memWelcomeController.setHealthProgramBuyingForm(healthProgramBuyingForm);
-         memWelcomeController.setHealthPrmBuyingController(loader.getController());
-         System.out.println("getMembCode: "+memWelcomeController.getMembCode());
-         memWelcomeController.getHealthPrmBuyingController().setMembCode(memWelcomeController.getMembCode());
-//         ComboBox<String> combo = (ComboBox<String>)healthProgramBuyingForm.lookup("#filterCombo");
-//         if(combo != null) {
-//            combo.getItems().addAll("전체보기", "승인여부");
-//         }
-         
-         Scene scene = new Scene(healthProgramBuyingForm);
-         Stage primaryStage = new Stage();
-         primaryStage.setTitle("MEM_HealthProgramBuyingForm");
-         primaryStage.setScene(scene);
-         primaryStage.show();
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
+	   FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/HelthProgramBuying/KG_MEM_FX_HealthProgramBuying.fxml"));
+	   Parent healthProgramBuyingForm;
+	   try {
+	     healthProgramBuyingForm = loader.load();
+	     memWelcomeController.setHealthProgramBuyingForm(healthProgramBuyingForm);
+	     memWelcomeController.setHealthPrmBuyingController(loader.getController());
+	     memWelcomeController.getHealthPrmBuyingController().setHealthPrmBuyingForm(healthProgramBuyingForm);
+	     memWelcomeController.getHealthPrmBuyingController().setMembCode(memWelcomeController.getMembCode());
+	     ComboBox<String> combo = (ComboBox<String>)healthProgramBuyingForm.lookup("#memshipComboBox");
+	     combo.setValue("기본");
+	//         if(combo != null) {
+	//            combo.getItems().addAll("전체보기", "승인여부");
+	//         }
+	 
+		Scene scene = new Scene(healthProgramBuyingForm);
+		Stage primaryStage = new Stage();
+		primaryStage.setTitle("MEM_HealthProgramBuyingForm");
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
    }
    //ex프로그램 버튼 클릭 시
    public void exProgramBuyingOpen(String membCode) {

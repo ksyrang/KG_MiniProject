@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 
 
 public class HealthPrmBuyingService {
+	private HealthPrmBuyingController HealthPrmBuyingController;
 	private ObservableList<String> allProgram;
 	private CmnMemShipDAO memshipDao;
 
@@ -33,6 +34,10 @@ public class HealthPrmBuyingService {
 	}
 	public void PaymentProc() {
 		
+	}
+
+	public void setHealthPrmBuyingController(HealthPrmBuyingController healthPrmBuyingController) {
+		this.HealthPrmBuyingController = healthPrmBuyingController;
 	}
 
 

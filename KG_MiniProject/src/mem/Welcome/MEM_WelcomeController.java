@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import mem.EXProgramBuying.ExPrmBuyingController;
+import mem.HelthProgramBuying.HealthPrmBuyingController;
 import mem.Mgt.MgtController;
 
 public class MEM_WelcomeController implements Initializable {
@@ -29,6 +30,7 @@ public class MEM_WelcomeController implements Initializable {
 	private Parent exProgramBuyingForm;
 	
 	private ExPrmBuyingController exPrmBuyingController;
+	private HealthPrmBuyingController healthPrmBuyingController;
 	private MEM_WelcomeController memWelcomeController;
 	private MgtController memMgtController;
 	
@@ -36,9 +38,7 @@ public class MEM_WelcomeController implements Initializable {
 	private Parent memWelcomeForm;
 	private String membCode;
 	
-	
-	
-	
+
 	@FXML private TextField prm_nameTxtFld;
 	@FXML private TextField trainer_nameTxtFld;
 	@FXML private TextField trainer_careerTxtFld;
@@ -189,4 +189,13 @@ public class MEM_WelcomeController implements Initializable {
 	public void setMemExpBuyingForm(Parent exProgramBuyingForm) {
 		this.exProgramBuyingForm = exProgramBuyingForm;
 	}
+	
+	public HealthPrmBuyingController getHealthPrmBuyingController() {
+		return healthPrmBuyingController;
+	}
+
+	public void setHealthPrmBuyingController(HealthPrmBuyingController healthPrmBuyingController) {
+		this.healthPrmBuyingController = healthPrmBuyingController;
+	}
+	
 }

@@ -14,11 +14,14 @@ import javafx.scene.control.ListView;
 
 
 public class HealthPrmBuyingController implements Initializable{
+	
 	private Parent healthPrmBuyingForm;
 	private HealthPrmBuyingService healthPrmBuyingSvc;
 	private String selectData;
 	private HealthPrmBuyingTable healthPrmBuyingTable;
 	private ObservableList<String> allProgram;
+	private String membCode;
+	
 	
 	@FXML private ComboBox<String> memshipComboBox;
 	@FXML private DatePicker startDatePicker;
@@ -29,7 +32,7 @@ public class HealthPrmBuyingController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		healthPrmBuyingSvc = new HealthPrmBuyingService();
-
+		healthPrmBuyingSvc.setHealthPrmBuyingController(this);
 		allProgram = healthPrmBuyingSvc.getAllProgram();
 		memshipComboBox.setItems(allProgram);
 	}
@@ -49,5 +52,13 @@ public class HealthPrmBuyingController implements Initializable{
 		CommonService.WindowClose(healthPrmBuyingForm);
 	}
 
+	public String getMembCode() {
+		return membCode;
+	}
+
+	public void setMembCode(String membCode) {
+		this.membCode = membCode;
+	}
+	
 
 }

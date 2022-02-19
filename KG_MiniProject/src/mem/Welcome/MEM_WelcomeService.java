@@ -28,7 +28,9 @@ public class MEM_WelcomeService {
       try {
          healthProgramBuyingForm = loader.load();
          memWelcomeController.setHealthProgramBuyingForm(healthProgramBuyingForm);
-         
+         memWelcomeController.setHealthPrmBuyingController(loader.getController());
+         System.out.println("getMembCode: "+memWelcomeController.getMembCode());
+         memWelcomeController.getHealthPrmBuyingController().setMembCode(memWelcomeController.getMembCode());
 //         ComboBox<String> combo = (ComboBox<String>)healthProgramBuyingForm.lookup("#filterCombo");
 //         if(combo != null) {
 //            combo.getItems().addAll("전체보기", "승인여부");

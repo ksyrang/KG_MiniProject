@@ -47,9 +47,9 @@ public class StatisticsController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		SalesDAO salesDao = new SalesDAO();
 		this.allSalesList = salesDao.getAllInfo();
-		
-		
-		// 남녀성비 PieChart
+
+		// 1. 남녀성비 PieChart
+
 		CmnMemDAO memDao = new CmnMemDAO();
 		ArrayList<CmnMemDTO> member = memDao.SltMemAll();
 		int menCnt = 0;
@@ -82,9 +82,7 @@ public class StatisticsController implements Initializable {
 		}
 		genderPie.setData(list1);
 
-		
-		
-		// 회원권, 각 프로그램 종류 별 PieChart
+		// 2.회원권, 각 프로그램 종류 별 PieChart
 		// 회원권 갯수
 		CmnMemShipScheDAO memShipScheDao = new CmnMemShipScheDAO();
 		int memshipSche = memShipScheDao.CntMemShipSche();
@@ -104,6 +102,7 @@ public class StatisticsController implements Initializable {
 		if (memshipSche != 0) {
 			list2.add(new PieChart.Data("회원권", memshipSche));
 		}
+
 		for (CmnPrmDTO m : prmDto) {
 			int payedPrm = 0;
 			// 프로그램 코드 별 스케줄
@@ -125,8 +124,7 @@ public class StatisticsController implements Initializable {
 		}
 		proPie.setData(list2);
 
-		
-		// 트레이너별 차트
+		// 3.강사별 차트
 		XYChart.Series series1 = new XYChart.Series();
 		series1.setName("강사별 매출");
 		int sales = 0;
@@ -149,13 +147,12 @@ public class StatisticsController implements Initializable {
 		}
 		trainerArea.getData().add(series1);
 
-
+		// 4. 월별 차트
 		XYChart.Series series2 = new XYChart.Series();
-		series2.setName("월별 전체 매출");
-		int sales2 = 0;
-
-		for (int monthDate12 = 1; monthDate12 > 13; monthDate12++) {
-			System.out.println(monthDate12);
+		series2.setName("월별 매출");
+		
+		for (int monthDate12 = 1; monthDate12 < 13; monthDate12++) {
+			int sales2 = 0;
 			for (SalesDTO i : this.allSalesList) {
 				Date date = i.getPAY_Date();
 				int monthDate = CommonService.DateCnvt(date).getMonthValue();
@@ -169,15 +166,13 @@ public class StatisticsController implements Initializable {
 					}
 				}
 			}
-			series2.getData().add(new XYChart.Data(monthDate12, sales2));
+			String strMonthDate = Integer.toString(monthDate12);
+			series2.getData().add(new XYChart.Data(strMonthDate,sales2));
 		}
 		monthlyBar.getData().add(series2);
-	
+
 	}
 
-		
-		
-		
 	public void setStatisticsForm(Parent statisticsForm) {
 		this.statisticsForm = statisticsForm;
 	}

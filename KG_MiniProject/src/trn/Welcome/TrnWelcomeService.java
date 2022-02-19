@@ -30,8 +30,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import trn.DBDAO.TrnTrainerDAO;
-import trn.DBDTO.TrnTrainerDTO;
 
 public class TrnWelcomeService {
 	

@@ -1,27 +1,18 @@
 package trn.Welcome;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Main.main.Controller;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import trn.DBDAO.TrnExPDAO;
-import trn.DBDAO.TrnExPSCHEDAO;
-import trn.DBDAO.TrnTrainerDAO;
-import trn.DBDTO.TrnExPSCHEDTO;
-import trn.DBDTO.TrnTrainerDTO;
 import trn.EXProgramMgt.TrnExPMgtController;
 import trn.ExprogramEnroll.TrnExpEnrollController;
 import trn.TrnMgt.TrnMgtController;
@@ -55,11 +46,14 @@ public class TrnWelcomeController implements Initializable {
     @FXML private Button Backbtn;
     
     
-	private TrnWelcomeService WelcomeSvc;
+    //종속시키는 컨트롤러
 	private TrnWelcomeController trnWelcomeController;
 	private TrnMgtController trnMgtController;
 	private TrnExpEnrollController trnExpEnrollController;
 	private TrnExPMgtController trnExpMgtController;
+	
+	
+	private TrnWelcomeService WelcomeSvc;
 	private Parent WelcomeForm;
 	private String trnCode;
 	

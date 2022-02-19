@@ -24,16 +24,18 @@ import mem.EXProgramBuying.ExPrmBuyingController;
 import mem.Mgt.MgtController;
 
 public class MEM_WelcomeController implements Initializable {
+	
 	private Parent healthProgramBuyingForm;
 	private Parent exProgramBuyingForm;
-	private MEM_WelcomeService memWelcomeSvc;
+	
+	private ExPrmBuyingController exPrmBuyingController;
 	private MEM_WelcomeController memWelcomeController;
 	private MgtController memMgtController;
+	
+	private MEM_WelcomeService memWelcomeSvc;
 	private Parent memWelcomeForm;
 	private String membCode;
-	private ExPrmBuyingController exPrmBuyingController;
 	
-	//test
 	
 	
 	

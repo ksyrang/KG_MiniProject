@@ -97,39 +97,39 @@ public class MEM_BuyingTypeController implements Initializable{
 		
 	}
 	
-	public void PayInfoInit() {
-		// 스케쥴의 데이터
-		// 회원권 스케쥴 데이터
-		CmnMemShipScheDTO MsScheDTO = new CmnMemShipScheDAO().SltMemShipScheOne(MEMSHIPSCHE_Code);
-		// ExP 스케쥴 데이터
-		CmnPrmScheDTO PrmScheDTO = new CmnPrmScheDAO().SltPrmScheOne(PRMSCHE_Code);
-
-		// 가저온 스케쥴 데이터의 강의 Type 데이터
-		// 회원권 스케쥴 데이터로 회원권 정보 get
-		CmnMemShipDTO MsDTO = new CmnMemShipDAO().SltMemShipOne(MsScheDTO.getMEMSHIP_Code());
-		// ExP 스케쥴 데이터로 ExP정보 get
-
-		// 프로그램 명 Sector
-		if ((PrmScheDTO == null) && (MsScheDTO != null)) {// 회원권 스케쥴이 데이터O, Exp스케쥴X
-			ScheNameLabel.setText(MsDTO.getMEMSHIP_Type() + "개월 회원권");
-		} else if ((PrmScheDTO != null) && (MsScheDTO == null)) {// 회원권 스케쥴이 데이터X, Exp스케쥴O
-			ScheNameLabel.setText(PrmScheDTO.getPRMSCHE_Name());
-		} else {
-			CommonService.WindowClose(buyingTypeForm);
-			CommonService.Msg("프로그램명 로드 이상 발생 문의 부탁 드립니다.");
-		}
-		// 금액 Sector
-		if ((PrmScheDTO == null) && (MsScheDTO != null)) {// 회원권 스케쥴이 데이터O, Exp스케쥴X
-			SchePriceLabel.setText(Integer.toString(MsDTO.getMEMSHIP_Price()) + "원");// 금액
-		} else if ((PrmScheDTO != null) && (MsScheDTO == null)) {// 회원권 스케쥴이 데이터X, Exp스케쥴O
-			SchePriceLabel.setText(Integer.toString(PrmScheDTO.getPRMSCHE_Price()));
-		} else {
-			CommonService.WindowClose(buyingTypeForm);
-			CommonService.Msg("금액 로드 이상 발생 문의 부탁 드립니다.");
-		}
-		//결제 일자 sector
-		PayDateLabel.setText(CommonService.getNowDatetoString());
-	}
+//	public void PayInfoInit() {
+//		// 스케쥴의 데이터
+//		// 회원권 스케쥴 데이터
+//		CmnMemShipScheDTO MsScheDTO = new CmnMemShipScheDAO().SltMemShipScheOne(MEMSHIPSCHE_Code);
+//		// ExP 스케쥴 데이터
+//		CmnPrmScheDTO PrmScheDTO = new CmnPrmScheDAO().SltPrmScheOne(PRMSCHE_Code);
+//
+//		// 가저온 스케쥴 데이터의 강의 Type 데이터
+//		// 회원권 스케쥴 데이터로 회원권 정보 get
+//		CmnMemShipDTO MsDTO = new CmnMemShipDAO().SltMemShipOne(MsScheDTO.getMEMSHIP_Code());
+//		// ExP 스케쥴 데이터로 ExP정보 get
+//
+//		// 프로그램 명 Sector
+//		if ((PrmScheDTO == null) && (MsScheDTO != null)) {// 회원권 스케쥴이 데이터O, Exp스케쥴X
+//			ScheNameLabel.setText(MsDTO.getMEMSHIP_Type() + "개월 회원권");
+//		} else if ((PrmScheDTO != null) && (MsScheDTO == null)) {// 회원권 스케쥴이 데이터X, Exp스케쥴O
+//			ScheNameLabel.setText(PrmScheDTO.getPRMSCHE_Name());
+//		} else {
+//			CommonService.WindowClose(buyingTypeForm);
+//			CommonService.Msg("프로그램명 로드 이상 발생 문의 부탁 드립니다.");
+//		}
+//		// 금액 Sector
+//		if ((PrmScheDTO == null) && (MsScheDTO != null)) {// 회원권 스케쥴이 데이터O, Exp스케쥴X
+//			SchePriceLabel.setText(Integer.toString(MsDTO.getMEMSHIP_Price()) + "원");// 금액
+//		} else if ((PrmScheDTO != null) && (MsScheDTO == null)) {// 회원권 스케쥴이 데이터X, Exp스케쥴O
+//			SchePriceLabel.setText(Integer.toString(PrmScheDTO.getPRMSCHE_Price()));
+//		} else {
+//			CommonService.WindowClose(buyingTypeForm);
+//			CommonService.Msg("금액 로드 이상 발생 문의 부탁 드립니다.");
+//		}
+//		//결제 일자 sector
+//		PayDateLabel.setText(CommonService.getNowDatetoString());
+//	}
 	
 
 }

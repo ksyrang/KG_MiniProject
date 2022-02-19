@@ -53,7 +53,30 @@ public class CmnMemShipScheDAO {
 		}
 		return result;
 	}
-	
+	// 회원권스케줄 코드번호 최대 값 찾기
+		public int MemShipScheMaxCodeNum() {
+			int result = 0;
+			sql = "SELECT Max(MEMSHIPSCHECode_Num) FROM MEMSHIPSCHE_TB";
+			try {
+				ps = con.prepareStatement(sql);
+				rs = ps.executeQuery();
+				while (rs.next()) {
+					result = rs.getInt("Max(MEMSHIPSCHECode_Num)");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (rs != null)
+						rs.close();
+					if (ps != null)
+						ps.close();
+				} catch (SQLException e2) {
+					e2.printStackTrace();
+				}
+			}
+			return result;
+		}
 	
 	// 회원권스케줄 갯수
 	public int CntMemShipSche() {

@@ -40,7 +40,9 @@ public class MgtDAO {
 				rs = ps.executeQuery();
 				MgtDTO memberMgtDto = new MgtDTO();
 				if(rs.next()) {
-					
+					//코드 추가
+					memberMgtDto.setMEM_Code(rs.getString("mem_code"));
+					//2022.02.19
 					memberMgtDto.setMEM_ID(rs.getString("mem_id"));
 					memberMgtDto.setMEM_Name(rs.getString("mem_name"));
 					memberMgtDto.setMEM_PW(rs.getString("mem_pw"));

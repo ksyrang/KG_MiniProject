@@ -24,12 +24,12 @@
                   <Insets left="10.0" top="12.5" />
                </HBox.margin>
             </Label>
-            <Label fx:id="TitleMemNameLabel" onMouseClicked="#MemClickProc" text="-회원님">
+            <Label fx:id="TitleMemNameLabel" onMouseClicked="#MemClickProc" prefWidth="200.0" text="-회원님">
                <font>
                   <Font size="20.0" />
                </font>
                <HBox.margin>
-                  <Insets left="600.0" top="12.5" />
+                  <Insets left="450.0" top="12.5" />
                </HBox.margin>
             </Label>
             <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#logoutProc" text="logout">
@@ -71,7 +71,7 @@
                   </FlowPane>
                   <TableView fx:id="memProgramTable" prefHeight="430.0" prefWidth="375.0">
                     <columns>
-                      <TableColumn fx:id="colPrmName" minWidth="159.0" prefWidth="159.0" text="강의 종류" />
+                      <TableColumn fx:id="colPrmName" minWidth="159.0" prefWidth="159.0" text="강의종류" />
                       <TableColumn fx:id="colPrmscheTime" prefWidth="55.0" text="시간" />
                         <TableColumn fx:id="colPrmschePrice" prefWidth="96.0" text="가격" />
                         <TableColumn fx:id="colPrmscheStrdate" prefWidth="111.0" text="시작일" />
@@ -107,7 +107,7 @@
                   </FlowPane>
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0">
                      <children>
-                        <Label text="강의 종류 : " />
+                        <Label text="강의종류 : " />
                         <TextField fx:id="prm_nameTxtFld" prefHeight="25.0">
                            <HBox.margin>
                               <Insets top="5.0" />
@@ -148,11 +148,6 @@
                               <Insets left="10.0" />
                            </padding>
                         </TextField>
-                        <Label text="년">
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
                      </children>
                      <opaqueInsets>
                         <Insets left="10.0" />

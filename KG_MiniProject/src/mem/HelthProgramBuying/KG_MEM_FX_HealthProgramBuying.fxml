@@ -90,7 +90,7 @@
                                  <font>
                                     <Font size="20.0" />
                                  </font></Label>
-                              <Label fx:id="memshipPriceTxt" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="150.0" text="0">
+                              <Label fx:id="memshipPriceTxt" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="140.0" text="0">
                                  <font>
                                     <Font size="20.0" />
                                  </font></Label>

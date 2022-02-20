@@ -28,18 +28,20 @@ public class CmnMemShipScheDAO {
 		int result = 0;
 		sql = "INSERT INTO MEMSHIPSCHE_TB "
 				+ "(MEMSHIPSCHE_Code, "
+				+ "MEMSHIPSCHECode_Num, "
 				+ "MEMSHIPSCHE_Strdate, "
 				+ "MEMSHIPSCHE_Enddate, "
 				+ "MEMSHIP_Code, "
 				+ "MEM_Code) "
-				+ "VALUES(?, ?, ?, ?, ?)";
+				+ "VALUES(?, ?, ?, ?, ?, ?)";
 		try {
 			ps = con.prepareStatement(sql);//향후 스케쥴 코드 번호 set해줘야함
 			ps.setString(1, DTO.getMEMSHIPSCHE_Code());
-			ps.setDate(2, DTO.getMEMSHIPSCHE_Strdate());
-			ps.setDate(3, DTO.getMEMSHIPSCHE_Enddate());
-			ps.setString(4, DTO.getMEMSHIP_Code());
-			ps.setString(5, DTO.getMEM_Code());
+			ps.setInt(2, DTO.getMEMSHIPSCHECode_Num());
+			ps.setDate(3, DTO.getMEMSHIPSCHE_Strdate());
+			ps.setDate(4, DTO.getMEMSHIPSCHE_Enddate());
+			ps.setString(5, DTO.getMEMSHIP_Code());
+			ps.setString(6, DTO.getMEM_Code());
 			result = ps.executeUpdate();
 		}catch (SQLException e) {
 			e.printStackTrace();

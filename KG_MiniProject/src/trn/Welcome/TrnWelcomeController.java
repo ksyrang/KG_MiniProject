@@ -99,8 +99,8 @@ public class TrnWelcomeController implements Initializable {
 	}
 	public void LogOutProc(){
 		System.out.println("logout");
-//		WelcomeSvc.LogOut();
 //		WelcomeSvc.ShutDown(WelcomeForm);
+		WelcomeSvc.LogOut(WelcomeForm);
 		
 	}
 	public String getTrnCode() {

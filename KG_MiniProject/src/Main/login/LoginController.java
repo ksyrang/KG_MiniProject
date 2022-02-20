@@ -117,7 +117,10 @@ public class LoginController implements Initializable{
 	public void setmainForm(Parent mainForm) {
 		this.mainForm = mainForm;
 	}
-
+	public Parent getMainForm() {
+		return mainForm;
+	}
+	
 	//로그인 버튼 클릭 시 호출
 	public void loginProc() {
 		LoginDTO loginDto = loginSvc.loginProc(mainForm);

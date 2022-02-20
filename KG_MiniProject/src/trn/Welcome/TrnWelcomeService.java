@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import Main.main.Controller;
 import common.CmnPrmDAO;
 import common.CmnPrmDTO;
 import common.CmnPrmScheDAO;
@@ -314,9 +315,9 @@ public class TrnWelcomeService {
 		CommonService.WindowClose(form);
 	}
 	
-//	public void LogOut() {
-//		LogOut();
-//	}
+	public void LogOut(Parent form) {
+		CommonService.LogOut(form);
+	}
 	
 	//NotUse
 //	private String getPrmScheData(String data) {

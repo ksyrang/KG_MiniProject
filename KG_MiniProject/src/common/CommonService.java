@@ -3,6 +3,10 @@ package common;
 
 
 import java.util.Date;
+
+import Main.login.LoginController;
+import Main.main.Controller;
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -15,7 +19,10 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class CommonService {
-
+	
+	private static Controller controller;
+	private LoginController loginController;
+	
 	public static void Msg(String content) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("알림");
@@ -33,8 +40,13 @@ public class CommonService {
 		else return false;
 	}
 
-	public static void LogOut() {
-
+	public static void LogOut(Parent form) {
+		Stage oldstage = (Stage)form.getScene().getWindow();
+		oldstage.close();
+//		Stage stage = new Stage();		
+//		stage.setScene(new Scene());
+//		stage.setTitle("trnExPEnroll");
+//		stage.show();
 		
 	}
 	public static LocalDate StringtoLocalDate(String Date) {		

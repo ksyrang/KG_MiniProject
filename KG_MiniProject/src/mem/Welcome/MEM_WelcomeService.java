@@ -23,7 +23,7 @@ public class MEM_WelcomeService {
       this.memWelcomeController = memWelcomeController;
    }
    
-   public void healthProgramBuyingProc() {
+   public void healthProgramBuyingProc(String membCode, Parent healthProgramBuyingForm2) {
 	   FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/HelthProgramBuying/KG_MEM_FX_HealthProgramBuying.fxml"));
 	   Parent healthProgramBuyingForm;
 	   try {
@@ -33,11 +33,8 @@ public class MEM_WelcomeService {
 	     memWelcomeController.getHealthPrmBuyingController().setHealthPrmBuyingForm(healthProgramBuyingForm);
 	     memWelcomeController.getHealthPrmBuyingController().setMembCode(memWelcomeController.getMembCode());
 	     ComboBox<String> combo = (ComboBox<String>)healthProgramBuyingForm.lookup("#memshipComboBox");
-	     combo.setValue("기본");
-	//         if(combo != null) {
-	//            combo.getItems().addAll("전체보기", "승인여부");
-	//         }
-	 
+	     combo.setValue("0");
+
 		Scene scene = new Scene(healthProgramBuyingForm);
 		Stage primaryStage = new Stage();
 		primaryStage.setTitle("MEM_HealthProgramBuyingForm");

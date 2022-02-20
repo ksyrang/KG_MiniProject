@@ -33,12 +33,14 @@ public class HealthPrmBuyingService {
 
 	// 회원권 선택시 가격 변동
 	public void selectTypeCombo(Parent MyForm) {
-//		System.out.println("서비스로 넘어옴");
+		System.out.println(MyForm);
 		ComboBox<String> memshipComboBox = (ComboBox<String>) MyForm.lookup("#memshipComboBox");
 		Label memshipPriceTxt = (Label) MyForm.lookup("#memshipPriceTxt");
-		CmnMemShipDTO tmpDto = new CmnMemShipDAO().SltMemShipOne("Memship_"+memshipComboBox.getSelectionModel().getSelectedItem());
-		memshipPriceTxt.setText(Integer.toString(tmpDto.getMEMSHIP_Price()));
-		
+		CmnMemShipDTO memshipDto = memshipDao.SltMemShipAll(memshipComboBox.getValue());
+		System.out.println(memshipComboBox.getValue());
+		String price = Integer.toString(memshipDto.getMEMSHIP_Price());
+		System.out.println(memshipDto.getMEMSHIP_Price());
+		memshipPriceTxt.setText(price);
 	}
 	//날짜 선택 시
 	public void sltDateProc(Parent MyForm) {

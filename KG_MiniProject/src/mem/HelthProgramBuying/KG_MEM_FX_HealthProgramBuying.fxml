@@ -71,7 +71,7 @@
                                  <font>
                                     <Font size="20.0" />
                                  </font></Label>
-                              <ComboBox fx:id="memshipComboBox" onAction="#selectTypeCombo" prefHeight="25.0" prefWidth="100.0" promptText="선택박스">
+                              <ComboBox fx:id="memshipComboBox" onAction="#selectTypeCombo" prefHeight="25.0" prefWidth="100.0">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets></ComboBox>
@@ -90,7 +90,7 @@
                                  <font>
                                     <Font size="20.0" />
                                  </font></Label>
-                              <Label fx:id="memshipPriceTxt" alignment="CENTER_RIGHT" prefHeight="19.0" text="0">
+                              <Label fx:id="memshipPriceTxt" alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="150.0" text="0">
                                  <font>
                                     <Font size="20.0" />
                                  </font></Label>

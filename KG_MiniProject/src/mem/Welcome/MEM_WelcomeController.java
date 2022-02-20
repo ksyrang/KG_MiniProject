@@ -153,7 +153,7 @@ public class MEM_WelcomeController implements Initializable {
     }
 		
 	public void healthProgramBuyingProc() {
-		memWelcomeSvc.healthProgramBuyingProc();
+		memWelcomeSvc.healthProgramBuyingProc(membCode, healthProgramBuyingForm);
 	}
 	public void exProgramBuyingProc() {
 		memWelcomeSvc.exProgramBuyingOpen(membCode, exProgramBuyingForm);

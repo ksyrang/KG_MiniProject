@@ -5,13 +5,16 @@ import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import mem.Welcome.MEM_WelcomeController;
 
 
 public class LoginService {
 	
-	private String job=null;
+	private String job;
 	private String welcomepage;
 	private String UserCode;
+	private String id;
+	
 	// 로그인 버튼 클릭 시 호출
 	public LoginDTO loginProc(Parent mainForm) {
 		TextField idText = (TextField) mainForm.lookup("#idText");
@@ -20,7 +23,9 @@ public class LoginService {
 		RadioButton trainerRadio = (RadioButton)mainForm.lookup("#trainerRadio");
 		RadioButton adminRadio = (RadioButton)mainForm.lookup("#adminRadio");
 		
-
+		//회원쪽으로 id전송
+		this.id = idText.getText();
+		
 		if(memberRadio.isSelected())
 			job = "회원";
 		else if(trainerRadio.isSelected())
@@ -61,6 +66,11 @@ public class LoginService {
 		
 		return loginDto;
 	}
+	
+	public String getId() {
+		return id;
+	}
+	
 	
 	public String getjob() {
 		return job;

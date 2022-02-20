@@ -126,5 +126,29 @@ public class CmnPrmDAO {
 	}
 	
 	
+	public CmnPrmDTO SltPrmNameOne(String PRM_Name) {
+		CmnPrmDTO tmpdata = null;
+		sql = "SELECT * FROM PRM_TB WHERE PRM_Name = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, PRM_Name);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				tmpdata = new CmnPrmDTO(rs.getString("PRM_Code"), rs.getString("PRM_Name"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		return tmpdata;		
+	}
+	
 	
 }

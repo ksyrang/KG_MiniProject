@@ -59,8 +59,8 @@ public class MainService {
 			controller.getMEM_WelcomeController().setMembCode(UserCode);
 			
 			Label titleUserName = (Label)memberWelcomeForm.lookup("#TitleMemNameLabel");
-	         MgtDTO tmpMemDto = new MgtDTO(new MgtDAO().selectCode(UserCode));
-	         titleUserName.setText(tmpMemDto.getMEM_Name()+" 회원님");
+	        MgtDTO tmpMemDto = new MgtDTO(new MgtDAO().selectCode(UserCode));
+	        titleUserName.setText(tmpMemDto.getMEM_Name()+" 회원님");
 			
 			Scene scene = new Scene(memberWelcomeForm);
 			Stage primaryStage = new Stage();

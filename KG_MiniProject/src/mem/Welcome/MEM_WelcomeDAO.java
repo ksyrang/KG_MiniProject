@@ -54,8 +54,8 @@ public class MEM_WelcomeDAO {
 						memWelcomeDto = new MEM_WelcomeDTO();
 						memWelcomeDto.setMem_id(rs1.getString("mem_id"));
 						memWelcomeDto.setPrm_code(rs2.getString("prm_code"));
-						memWelcomeDto.setPrm_name(rs2.getString("prmsche_name"));
 						memWelcomeDto.setPrmsche_code(rs1.getString("prmsche_code"));
+//						memWelcomeDto.setPrm_name(rs2.getString("prm_name"));
 						memWelcomeDto.setMemshipsche_code(rs1.getString("memshipsche_code"));
 						memWelcomeDto.setTrainer_code(rs2.getString("trainer_code"));
 						memWelcomeDto.setPrmsche_name(rs2.getString("prmsche_name"));
@@ -66,6 +66,8 @@ public class MEM_WelcomeDAO {
 						memWelcomeDto.setPrmsche_currentp(rs2.getInt("prmsche_currentp"));
 						memWelcomeDto.setPrmsche_limitp(rs2.getInt("prmsche_limitp"));
 						member.add(memWelcomeDto);
+						
+						
 						System.out.println("prmsche_code : " + rs1.getString("prmsche_code"));
 						System.out.println("prmsche_code : " + member.get(0));
 					}
@@ -129,7 +131,7 @@ public class MEM_WelcomeDAO {
 				if(rs2.next()) {
 					memWelcomeDto.setMem_id(rs1.getString("mem_id"));
 					memWelcomeDto.setPrm_code(rs2.getString("prm_code"));
-					memWelcomeDto.setPrm_name(rs2.getString("prmsche_name"));
+//					memWelcomeDto.setPrm_name(rs2.getString("prm_name"));
 					memWelcomeDto.setPrmsche_code(rs1.getString("prmsche_code"));
 					memWelcomeDto.setMemshipsche_code(rs1.getString("memshipsche_code"));
 					memWelcomeDto.setTrainer_code(rs2.getString("trainer_code"));

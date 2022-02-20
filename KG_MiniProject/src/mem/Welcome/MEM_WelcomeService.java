@@ -139,6 +139,26 @@ public class MEM_WelcomeService {
       
    }
    
+   //수정 버튼 클릭시
+   public void modifyProcOpen(Parent memWelcomeForm) {
+	   FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/ProgramMgt/KG_MEM_FX_ProgramMgt.fxml"));
+		Parent programMgtForm;
+		try {
+			programMgtForm = loader.load();
+			memWelcomeController.setProgramMgtController(loader.getController());
+			memWelcomeController.setProgramMgtForm(programMgtForm);
+			memWelcomeController.settingProgramMgt();
+			
+			Scene scene = new Scene(programMgtForm);
+			Stage primaryStage = new Stage();
+			primaryStage.setTitle("programMgtForm");
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+   }
+   
    public void logoutProc(Parent memWelcomeForm) {
       CommonService.Msg("로그아웃 되셨습니다.");
       CommonService.WindowClose(memWelcomeForm);

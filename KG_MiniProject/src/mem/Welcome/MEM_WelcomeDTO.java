@@ -1,6 +1,6 @@
 package mem.Welcome;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class MEM_WelcomeDTO {
 	private String mem_id;

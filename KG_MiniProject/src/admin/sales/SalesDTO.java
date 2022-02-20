@@ -6,24 +6,20 @@ public class SalesDTO {
 	private String PAY_Code;
 	private String PAY_Type; //6. 결제종류
 	private Date PAY_Date; //5. 결제일자
-	
+	private String MEM_Code; //1. 회원고유번호 
 	
 	//FK
-	private String RES_Code;
+//	private String RES_Code;
 	private String MEMSHIPSCHE_Code;
 	private String PRMSCHE_Code;
 	
 	//가져올데이터(결제금액/프로그램명/)
 	private int MEMSHIP_Price; // 4.결제금액 membershipescheduled -> membershipe에 price있음
 	private int PRMSCHE_Price; // 4.결제금액 
-	private String MEM_Code; //1. 회원고유번호 membershipescheduled에 있음
 	private String PRMSCHE_Name; //2. 프로그램명
 	private String PRM_Name; //3. ex프로그램 종류 이름
 	private String MEMSHIP_Type; //3. 회원권 개월 수 숫자만 있음.
 	private String TRAINER_NAME; //7.강사이름
-	
-	
-	
 	
 	
 	public int getPRMSCHE_Price() {
@@ -55,12 +51,6 @@ public class SalesDTO {
 	}
 	public void setPAY_Date(Date pAY_Date) {
 		PAY_Date = pAY_Date;
-	}
-	public String getRES_Code() {
-		return RES_Code;
-	}
-	public void setRES_Code(String rES_Code) {
-		RES_Code = rES_Code;
 	}
 	public String getMEMSHIPSCHE_Code() {
 		return MEMSHIPSCHE_Code;
@@ -104,6 +94,12 @@ public class SalesDTO {
 	public void setMEMSHIP_Type(String mEMSHIP_Type) {
 		MEMSHIP_Type = mEMSHIP_Type;
 	}
+//	public String getRES_Code() {
+//		return RES_Code;
+//	}
+//	public void setRES_Code(String rES_Code) {
+//		RES_Code = rES_Code;
+//	}
 
 	
 

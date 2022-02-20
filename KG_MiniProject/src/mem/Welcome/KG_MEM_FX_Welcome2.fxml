@@ -69,7 +69,7 @@
                         </Label>
                      </children>
                   </FlowPane>
-                  <TableView fx:id="memProgramTable" onMouseClicked="#selectPrmDetail" prefHeight="430.0" prefWidth="375.0">
+                  <TableView fx:id="memProgramTable" prefHeight="430.0" prefWidth="375.0">
                     <columns>
                       <TableColumn fx:id="colPrmName" minWidth="20.0" prefWidth="200.0" text="강의명" />
                       <TableColumn fx:id="colPrmscheTime" prefWidth="40.0" text="타입" />

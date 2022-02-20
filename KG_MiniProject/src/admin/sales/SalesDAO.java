@@ -63,17 +63,11 @@ public class SalesDAO {
 				
 				
 				//회원고유번호 등록
-				String resCode = rs.getString("RES_CODE");
-				CmnResDAO cmnResDao = new CmnResDAO();
-				CmnResDTO cmnResDto = cmnResDao.SltResOne(resCode);				
-				
-				String memCode = cmnResDto.getMEM_Code();
-				CmnMemDAO cmnMemDao = new CmnMemDAO();
-				CmnMemDTO cmnMemDto = cmnMemDao.SltMemOne(memCode);
+				String memCode = rs.getString("MEM_CODE");
 				salesDto.setMEM_Code(memCode);
+//				salesDto.setRES_Code(rs.getString("RES_CODE"));
 				
 				//null처리
-				salesDto.setRES_Code(rs.getString("RES_CODE"));
 				if(rs.getString("MEMSHIPSCHE_CODE") != null) {
 					String memShipScheCode = rs.getString("MEMSHIPSCHE_CODE");
 					salesDto.setMEMSHIPSCHE_Code(memShipScheCode);

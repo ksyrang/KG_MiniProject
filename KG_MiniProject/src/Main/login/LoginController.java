@@ -107,7 +107,7 @@ public class LoginController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.loginSvc = new LoginService();
-		UptMemshipList();
+//		UptMemshipList();
 	}
 	
 	public void setController(Controller controller) {

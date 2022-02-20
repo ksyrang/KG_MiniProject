@@ -3,24 +3,14 @@ package mem.BuyingType;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import common.CmnMemShipDAO;
-import common.CmnMemShipDTO;
-import common.CmnMemShipScheDAO;
-import common.CmnMemShipScheDTO;
-import common.CmnPrmScheDAO;
-import common.CmnPrmScheDTO;
-import common.CommonService;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.text.Text;
+import mem.Welcome.MEM_WelcomeController;
 
 
 public class MEM_BuyingTypeController implements Initializable{
@@ -39,16 +29,39 @@ public class MEM_BuyingTypeController implements Initializable{
     @FXML private Text PayDateLabel;
     
 	private Parent buyingTypeForm;
-	private MEM_BuyingTypeService buyingTypeSvc;;
+	private MEM_BuyingTypeService buyingTypeSvc;
+	private MEM_BuyingTypeController buyingTypeController;
+	private String membCode;
 	
 	private String UserCode;
 	private String MEMSHIPSCHE_Code;
 	private String PRMSCHE_Code;	
 	
+	public MEM_BuyingTypeController() {
+		buyingTypeSvc = new MEM_BuyingTypeService();
+		buyingTypeSvc.setMEM_BuyingTypeController(this);
+	}
+	
+	public MEM_BuyingTypeController getMEM_BuyingTypeController() {
+		return buyingTypeController;
+	}
+	
+	public void setMEM_BuyingTypeController(MEM_BuyingTypeController buyingTypeController) {
+		this.buyingTypeController = buyingTypeController;
+	}
+	
+	public String getMembCode() {
+		return this.membCode;
+	}
+	
+	public void setMembCode(String membCode) {
+		this.membCode = membCode;
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		buyingTypeSvc = new MEM_BuyingTypeService();
-		buyingTypeSvc.setBuyingTypeController(this);
+//		buyingTypeSvc = new MEM_BuyingTypeService();
+//		buyingTypeSvc.setMEM_BuyingTypeController(this);
 	}
 	
 	public void setBuyingTypeForm(Parent buyingTypeForm) {

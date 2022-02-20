@@ -13,10 +13,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import mem.BuyingType.MEM_BuyingTypeController;
 
 
 public class ExPrmBuyingController implements Initializable{
 	private Parent exProgramBuyingForm;
+	private Parent buyingTypeForm;
 	private ExPrmBuyingService ExPrmBuyingSvc;
 	private String selectData;
 	private ExPrmBuyingTable ExPrmBuyingTable;
@@ -24,7 +26,7 @@ public class ExPrmBuyingController implements Initializable{
 	private String membCode;
 	private ExPrmBuyingController exPrmBuyingController;
 	private Parent memWelcomeForm;
-	
+	private MEM_BuyingTypeController buyingTypeController;
 	@FXML private Label TitleMemNameLabel;
 	@FXML private ComboBox<String> memshipComboBox;
 	@FXML private DatePicker startDatePicker;
@@ -67,6 +69,14 @@ public class ExPrmBuyingController implements Initializable{
 		this.exProgramBuyingForm = exProgramBuyingForm;
 		
 	}
+	
+	public MEM_BuyingTypeController getMEM_BuyingTypeController() {
+		return buyingTypeController;
+	}
+	
+	public void setMEM_BuyingTypeController(MEM_BuyingTypeController buyingTypeController) {
+		this.buyingTypeController = buyingTypeController;
+	}
 
 	public void setMemWelcomeForm(Parent memWelcomeForm) {
 		this.memWelcomeForm = memWelcomeForm;	
@@ -74,14 +84,16 @@ public class ExPrmBuyingController implements Initializable{
 	public Parent getMemWelcomeForm() {
 		return memWelcomeForm;
 	}
+	public void setBuyingTypeForm(Parent buyingTypeForm) {
+		this.buyingTypeForm = buyingTypeForm;
+	}
 	
-	/*
 	// 예약 버튼 클릭 시
 	public void paymentProc() {
 	//	System.out.println("결제처리");
-		ExPrmBuyingSvc.paymentProc(exProgramBuyingForm, membCode);
+		ExPrmBuyingSvc.paymentProc(buyingTypeForm, membCode);
 	}
-	*/
+	
 	// 이전 버튼 클릭 시
 	public void cancleProc() {
 		//CommonService.WindowClose(exProgramBuyingForm);

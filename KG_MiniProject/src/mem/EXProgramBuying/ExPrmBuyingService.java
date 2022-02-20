@@ -39,13 +39,16 @@ public class ExPrmBuyingService {
 	}
 
 	//ex프로그램 종류 등록
-	public void paymentProc(String membCode) {
+	public void paymentProc(Parent buyingTypeForm, String membCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/BuyingType/KG_MEM_FX_BuyingType.fxml"));
-		Parent buyingTypeForm;
+
 		try {
 			buyingTypeForm = loader.load();
 			System.out.println(buyingTypeForm);
-//			healthPrmBuyingController.setHealthPrmBuyingForm(buyingTypeForm);
+			exPrmBuyingController.setBuyingTypeForm(buyingTypeForm);
+			exPrmBuyingController.setMEM_BuyingTypeController(loader.getController());
+			exPrmBuyingController.getMEM_BuyingTypeController().setBuyingTypeForm(buyingTypeForm);
+			exPrmBuyingController.getMEM_BuyingTypeController().setMembCode(exPrmBuyingController.getMembCode());
 			
 			Scene scene = new Scene(buyingTypeForm);
 			Stage primaryStage = new Stage();

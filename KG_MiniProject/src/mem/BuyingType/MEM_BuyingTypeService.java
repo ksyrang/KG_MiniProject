@@ -24,7 +24,7 @@ import javafx.scene.text.Text;
 
 public class MEM_BuyingTypeService {
 
-	private MEM_BuyingTypeController MyController;
+	private MEM_BuyingTypeController buyingTypeController;
 	private Parent MyForm;
 	private Label TitleMemNameLabel;
 	private Button PayBtn;
@@ -38,8 +38,8 @@ public class MEM_BuyingTypeService {
 	private Text SchePriceLabel;
 	private Text PayDateLabel;
 
-	public void setBuyingTypeController(MEM_BuyingTypeController MyController) {
-		this.MyController = MyController;
+	public void setMEM_BuyingTypeController(MEM_BuyingTypeController buyingTypeController) {
+		this.buyingTypeController = buyingTypeController;
 	}
 
 	public void PaymentProc() {
@@ -61,11 +61,11 @@ public class MEM_BuyingTypeService {
 			return;
 		}
 		PayDTO.setPAY_Type(PayType);
-		PayDTO.setMEM_Code(MyController.getUserCode());
-		PayDTO.setMEMSHIPSCHE_Code(MyController.getMEMSHIPSCHE_Code());
-		PayDTO.setPRMSCHE_Code(MyController.getPRMSCHE_Code());
+		PayDTO.setMEM_Code(buyingTypeController.getUserCode());
+		PayDTO.setMEMSHIPSCHE_Code(buyingTypeController.getMEMSHIPSCHE_Code());
+		PayDTO.setPRMSCHE_Code(buyingTypeController.getPRMSCHE_Code());
 		PayDTO.setPAY_Date(CommonService.CnvtsqlDate(new Date()));
-		PayDTO.setPAY_Code(MyController.getUserCode()+PayDTO.getPAY_Date()+"코드번호");
+		PayDTO.setPAY_Code(buyingTypeController.getUserCode()+PayDTO.getPAY_Date()+"코드번호");
 		
 		//입력 결과
 		result = new CmnPayDAO().Istpay(PayDTO);

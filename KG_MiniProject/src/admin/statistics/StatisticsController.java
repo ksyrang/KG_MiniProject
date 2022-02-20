@@ -51,7 +51,7 @@ public class StatisticsController implements Initializable {
 		// 1. 남녀성비 PieChart
 
 		CmnMemDAO memDao = new CmnMemDAO();
-		ArrayList<CmnMemDTO> member = memDao.SltMemAll();
+		ArrayList<CmnMemDTO> member = memDao.SltMemGender();
 		int menCnt = 0;
 		int womenCnt = 0;
 		int noGender = 0;
@@ -82,6 +82,7 @@ public class StatisticsController implements Initializable {
 		}
 		genderPie.setData(list1);
 
+		
 		// 2.회원권, 각 프로그램 종류 별 PieChart
 		// 회원권 갯수
 		CmnMemShipScheDAO memShipScheDao = new CmnMemShipScheDAO();
@@ -115,7 +116,6 @@ public class StatisticsController implements Initializable {
 						payedPrm++;
 					}
 				} else {
-					System.out.println("payDto null나온다.");
 				}
 			}
 			if (payedPrm > 0) {
@@ -127,13 +127,14 @@ public class StatisticsController implements Initializable {
 		// 3.강사별 차트
 		XYChart.Series series1 = new XYChart.Series();
 		series1.setName("강사별 매출");
-		int sales = 0;
+		
 		String trainerName = null;
 		CmnTrainerDAO cmnTrainerDao = new CmnTrainerDAO();
-		ObservableList<CmnTrainerDTO> cmnTrainerDto = cmnTrainerDao.OLSltTrnAll();
+		ObservableList<CmnTrainerDTO> cmnTrainerDto = cmnTrainerDao.trainerName();
 
 		for (CmnTrainerDTO i : cmnTrainerDto) {
 			trainerName = i.getTRAINER_Name();
+			int sales = 0;
 			for (SalesDTO j : this.allSalesList) {
 				// null처리
 				if (j.getPRMSCHE_Code() != null && trainerName != null) {

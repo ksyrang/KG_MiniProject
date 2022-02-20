@@ -48,6 +48,12 @@ public class CmnMemDTO {
 		MEMSHIPSCHE_Code = mEMSHIPSCHE_Code;
 		MEM_Approve = mEM_Approve;
 	}
+	
+	public CmnMemDTO(String mEM_Gender) {
+		super();
+		MEM_Gender = mEM_Gender;
+	}
+
 
 	public String getMEM_Code() {
 		return MEM_Code;

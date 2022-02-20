@@ -242,4 +242,32 @@ public class CmnMemDAO {
 	}
 	
 	
+	
+	public ArrayList<CmnMemDTO> SltMemGender(){
+		ArrayList<CmnMemDTO> Datalist = new ArrayList<>();
+		CmnMemDTO tmpdata = new CmnMemDTO();
+		sql = "SELECT MEM_GENDER FROM MEM_TB";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				tmpdata = new CmnMemDTO(
+					rs.getString("MEM_Gender")
+				);
+			Datalist.add(tmpdata);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		return Datalist;
+	}
+	
 }

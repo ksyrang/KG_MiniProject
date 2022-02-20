@@ -88,7 +88,7 @@ public class CmnMemShipScheDAO {
 			while (rs.next()) {
 				result = rs.getInt("count(*)");
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
@@ -96,7 +96,7 @@ public class CmnMemShipScheDAO {
 					rs.close();
 				if (ps != null)
 					ps.close();
-			} catch (SQLException e2) {
+			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
 		}

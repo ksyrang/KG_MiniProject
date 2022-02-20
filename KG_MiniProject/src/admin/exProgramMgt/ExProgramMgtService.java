@@ -130,7 +130,7 @@ public class ExProgramMgtService {
 	}
 
 	
-	// 상세정보 수정
+	// 상세정보 수정 클릭시
 	public void exProgramModifyProc(Parent exProgramMgtForm) {
 		Label exnameText = (Label) exProgramMgtForm.lookup("#exnameText");
 		Label exPrmNameText = (Label) exProgramMgtForm.lookup("#exPrmNameText");
@@ -155,8 +155,7 @@ public class ExProgramMgtService {
 		if (amRadioButton.isSelected())
 			timeC = "오전";
 		else if (pmRadioButton.isSelected())
-			;
-		timeC = "오후";
+			timeC = "오후";
 		int price = Integer.parseInt(priceText.getText());
 		int personLimit = Integer.parseInt(personLimitText.getText());
 
@@ -170,11 +169,17 @@ public class ExProgramMgtService {
 		CmnTrainerDTO cmnTrainerDto = cmnTrainerDao.SltTrnOne(trainerCode);
 		String trainerName = cmnTrainerDto.getTRAINER_Name();
 		
+		String prmCode = cmnPrmScheDto.getPRM_Code();
+		CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
+		CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(prmCode);
+		String prmName = cmnPrmDto.getPRM_Name();
+		
+
+		String prmScheName = prmName + "_" + trainerName + "_" + timeC; 
+		
 		ExProgramMgtDAO exProgramMgtDao = new ExProgramMgtDAO();
 		ExProgramMgtDTO exProgramMgtDto = new ExProgramMgtDTO();
 		
-		String prmCode = cmnPrmScheDto.getPRM_Code();
-
 		exProgramMgtDto.setPRM_Code(prmCode);
 		exProgramMgtDto.setPRMSCHE_Strdate(strDate);
 		exProgramMgtDto.setPRMSCHE_Enddate(endDate);
@@ -184,6 +189,7 @@ public class ExProgramMgtService {
 		exProgramMgtDto.setPRMSCHE_Code(prmScheCode);
 		exProgramMgtDto.setTRAINER_Code(trainerCode);
 		exProgramMgtDto.setTRAINER_Name(trainerName);
+		exProgramMgtDto.setPRMSHE_Name(prmScheName);
 		
 		ExProgramMgtDTO exProgramMgtDto2 = new ExProgramMgtDTO();
 		exProgramMgtDto2.setPRM_Code(prmCode);

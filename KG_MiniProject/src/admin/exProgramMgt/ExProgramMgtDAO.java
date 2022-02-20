@@ -70,22 +70,22 @@ public class ExProgramMgtDAO {
 				exProgramMgtDto.setPRMSCHE_Time(rs.getString("PRMSCHE_Time"));
 				exProgramMgtDto.setPRMSCHE_LimitP(rs.getInt("PRMSCHE_LimitP"));
 				exProgramMgtDto.setPRMSCHE_CurrentP(rs.getInt("PRMSCHE_CurrentP"));
+				exProgramMgtDto.setPRMSHE_Name(rs.getString("PRMSCHE_Name"));
 				
 				String trainerCode = rs.getString("TRAINER_Code");
 				exProgramMgtDto.setTRAINER_Code(trainerCode);
 				CmnTrainerDAO cmnTrainerDao = new CmnTrainerDAO();
 				CmnTrainerDTO cmnTrainerDto = cmnTrainerDao.SltTrnOne(trainerCode);
 				exProgramMgtDto.setTRAINER_Name(cmnTrainerDto.getTRAINER_Name());
-				if(rs.getString("PRM_Code")!=null) {
-					String prmCode = rs.getString("PRM_Code");
-					exProgramMgtDto.setPRM_Code(prmCode);
-					CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
-					CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(prmCode);
-					if(cmnPrmDto.getPRM_Name() != null) {
-						exProgramMgtDto.setPRM_Name(cmnPrmDto.getPRM_Name());
+//				if(rs.getString("PRM_Code")!=null) {
+				String prmCode = rs.getString("PRM_Code");
+				exProgramMgtDto.setPRM_Code(prmCode);
+				CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
+				CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(prmCode);
+				if(cmnPrmDto.getPRM_Name() != null) {
+					exProgramMgtDto.setPRM_Name(cmnPrmDto.getPRM_Name());
 					}
-				}
-				
+//				}	
 				allList.add(exProgramMgtDto);
 			}
 
@@ -187,7 +187,7 @@ public class ExProgramMgtDAO {
 	
 	//클릭한 ex프로그램 세부사항 수정
 	public int setProgramModify(ExProgramMgtDTO exProgramMgtDto) {
-		String sql = "UPDATE PRMSCHE_TB SET PRMSCHE_STRDATE=?, PRMSCHE_ENDDATE=?, PRMSCHE_TIME=?, PRMSCHE_LIMITP=?, PRMSCHE_PRICE=? WHERE PRMSCHE_CODE=?";
+		String sql = "UPDATE PRMSCHE_TB SET PRMSCHE_STRDATE=?, PRMSCHE_ENDDATE=?, PRMSCHE_TIME=?, PRMSCHE_LIMITP=?, PRMSCHE_PRICE=?, PRMSCHE_NAME=? WHERE PRMSCHE_CODE=?";
 		PreparedStatement ps;
 		int result = 0;
 		
@@ -198,7 +198,8 @@ public class ExProgramMgtDAO {
 			ps.setString(3, exProgramMgtDto.getPRMSCHE_Time());
 			ps.setInt(4, exProgramMgtDto.getPRMSCHE_LimitP());
 			ps.setInt(5, exProgramMgtDto.getPRMSCHE_Price());
-			ps.setString(6, exProgramMgtDto.getPRMSCHE_Code());
+			ps.setString(6,exProgramMgtDto.getPRMSHE_Name());
+			ps.setString(7, exProgramMgtDto.getPRMSCHE_Code());
 			result = ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -206,6 +207,7 @@ public class ExProgramMgtDAO {
 		return result;
 
 	}
+	
 	
 //	//클릭한 ex프로그램 세부상항중 ex프로그램이름 수정
 //	public int PRM_NAMEModify(ExProgramMgtDTO exProgramMgtDto) {

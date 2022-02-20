@@ -50,7 +50,6 @@ public class HealthPrmBuyingController implements Initializable{
 	}
 	//콤보박스 클릭 시
 	public void selectTypeCombo() {
-		System.out.println(healthPrmBuyingForm);
 		healthPrmBuyingSvc.selectTypeCombo(healthPrmBuyingForm);
 	}
 	//날짜 선택 시

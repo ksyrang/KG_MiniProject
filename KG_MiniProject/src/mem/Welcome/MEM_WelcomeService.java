@@ -24,25 +24,25 @@ public class MEM_WelcomeService {
    }
    
    public void healthProgramBuyingProc(String membCode, Parent healthProgramBuyingForm2) {
-	   FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/HelthProgramBuying/KG_MEM_FX_HealthProgramBuying.fxml"));
-	   Parent healthProgramBuyingForm;
-	   try {
-	     healthProgramBuyingForm = loader.load();
-	     memWelcomeController.setHealthProgramBuyingForm(healthProgramBuyingForm);
-	     memWelcomeController.setHealthPrmBuyingController(loader.getController());
-	     memWelcomeController.getHealthPrmBuyingController().setHealthPrmBuyingForm(healthProgramBuyingForm);
-	     memWelcomeController.getHealthPrmBuyingController().setMembCode(memWelcomeController.getMembCode());
-	     ComboBox<String> combo = (ComboBox<String>)healthProgramBuyingForm.lookup("#memshipComboBox");
-	     combo.setValue("0");
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/HelthProgramBuying/KG_MEM_FX_HealthProgramBuying.fxml"));
+      Parent healthProgramBuyingForm;
+      try {
+        healthProgramBuyingForm = loader.load();
+        memWelcomeController.setHealthProgramBuyingForm(healthProgramBuyingForm);
+        memWelcomeController.setHealthPrmBuyingController(loader.getController());
+        memWelcomeController.getHealthPrmBuyingController().setHealthPrmBuyingForm(healthProgramBuyingForm);
+        memWelcomeController.getHealthPrmBuyingController().setMembCode(memWelcomeController.getMembCode());
+        ComboBox<String> combo = (ComboBox<String>)healthProgramBuyingForm.lookup("#memshipComboBox");
+        combo.setValue("0");
 
-		Scene scene = new Scene(healthProgramBuyingForm);
-		Stage primaryStage = new Stage();
-		primaryStage.setTitle("MEM_HealthProgramBuyingForm");
-		primaryStage.setScene(scene);
-		primaryStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}	
+      Scene scene = new Scene(healthProgramBuyingForm);
+      Stage primaryStage = new Stage();
+      primaryStage.setTitle("MEM_HealthProgramBuyingForm");
+      primaryStage.setScene(scene);
+      primaryStage.show();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }   
    }
    //ex프로그램 버튼 클릭 시
    public void exProgramBuyingOpen(String membCode,  Parent exProgramBuyingForm ) {
@@ -147,7 +147,7 @@ public class MEM_WelcomeService {
    }
 
    public void cancelProc(Parent memWelcomeForm) {
-	    CommonService.WindowClose(memWelcomeForm);
+       CommonService.WindowClose(memWelcomeForm);
       
    }
 

@@ -93,8 +93,9 @@ public class TrnWelcomeService {
 			else if(tmpTrnDto.getTRAINER_Gender().equals("여")) FeMaleBtn.setSelected(true);
 			else maleBtn.setSelected(true);
 			//Addr Sector
-			Addr1Field.setText(tmpTrnDto.getTRAINER_Addr());
-			Addr2Field.setText(tmpTrnDto.getTRAINER_Addr());
+			String[] AddrSplit = tmpTrnDto.getTRAINER_Addr().split("/");
+			Addr1Field.setText(AddrSplit[0]);
+			Addr2Field.setText(AddrSplit[1]);
 			//Career Sector
 			CareerField.setText(Integer.toString(tmpTrnDto.getTRAINER_Career()));
 		

@@ -45,12 +45,21 @@ public class HealthPrmBuyingService {
 		DatePicker sltDate = (DatePicker)MyForm.lookup("#SltDate");
 		Label SrtDateLabel = (Label)MyForm.lookup("#SrtDateLabel");
 		Label EndDateLabel = (Label)MyForm.lookup("#EndDateLabel");
-		//시작날짜 표시
-		SrtDateLabel.setText(sltDate.getValue().toString());
-		//종료 날짜 계산
-		LocalDate enddate = sltDate.getValue().plusMonths(Integer.parseInt(memshipComboBox.getSelectionModel().getSelectedItem()));
-		//종료 날짜 표시
-		EndDateLabel.setText(enddate.toString());
+
+		if(CommonService.CompareDate(LocalDate.now(),sltDate.getValue())) {
+			CommonService.Msg("현재 일짜 이후로 입력해주십시오.");
+			sltDate.getEditor().clear();
+			return;
+		}
+		else {
+			//시작날짜 표시
+			SrtDateLabel.setText(sltDate.getValue().toString());
+			//종료 날짜 계산
+			LocalDate enddate = sltDate.getValue().plusMonths(Integer.parseInt(memshipComboBox.getSelectionModel().getSelectedItem()));
+			//종료 날짜 표시
+			EndDateLabel.setText(enddate.toString());	
+		}
+		
 	}
 	
 	// 결제 버튼

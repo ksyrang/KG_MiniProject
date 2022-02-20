@@ -42,7 +42,8 @@ public class CommonService {
 
 	public static void LogOut(Parent form) {
 		Stage oldstage = (Stage)form.getScene().getWindow();
-		oldstage.close();
+//		oldstage.close();
+		oldstage.show();
 //		Stage stage = new Stage();		
 //		stage.setScene(new Scene());
 //		stage.setTitle("trnExPEnroll");

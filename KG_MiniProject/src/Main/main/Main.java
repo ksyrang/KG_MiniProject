@@ -20,7 +20,8 @@ public class Main extends Application{
 		Controller controller = new Controller();
 		
 		controller.setLoginController(loader.getController());
-		
+//		controller.getLoginController().setmainForm(mainForm);
+//		System.out.println("mainForm"+mainForm);
 		LoginController loginController = controller.getLoginController();
 		loginController.setmainForm(mainForm);
 		//sdgdsdg

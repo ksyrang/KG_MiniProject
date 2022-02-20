@@ -3,6 +3,7 @@ package trn.Welcome;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Main.login.LoginController;
 import Main.main.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -57,6 +58,10 @@ public class TrnWelcomeController implements Initializable {
 	private Parent WelcomeForm;
 	private String trnCode;
 	
+	
+	//윈도우 오픈용
+	private LoginController loginController;
+	
 	public TrnWelcomeController() {
 		WelcomeSvc = new TrnWelcomeService();
 		WelcomeSvc.setTrnWelcomeController(this);
@@ -100,7 +105,8 @@ public class TrnWelcomeController implements Initializable {
 	public void LogOutProc(){
 		System.out.println("logout");
 //		WelcomeSvc.ShutDown(WelcomeForm);
-		WelcomeSvc.LogOut(WelcomeForm);
+//		System.out.println("loginController.getMainForm()"+loginController.getMainForm());
+//		WelcomeSvc.LogOut(loginController.getMainForm());
 		
 	}
 	public String getTrnCode() {

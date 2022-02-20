@@ -59,19 +59,21 @@ public class HealthPrmBuyingService {
 		DatePicker sltDate = (DatePicker)MyForm.lookup("#SltDate");
 		//회원권 스케줄 생성!
 		CmnMemShipScheDAO ShceDAO = new CmnMemShipScheDAO();
-		//필요 데이터 : 회원권 코드, 시작일, 종료일, 회원 코드
+		//필요 데이터 : 회원권 코드, 코드 넘버, 시작일, 종료일, 회원 코드
 		CmnMemShipScheDTO ShceDTO = new CmnMemShipScheDTO();
 		//코드 번호 개설
 		//DB에서 번호의 최대 값을 가지고 와서 +1 해줘서 넣어줘야 함
-//		int InputCodeNum = ShceDAO.MemShipScheMaxCodeNum()+1;
+		int InputCodeNum = ShceDAO.MemShipScheMaxCodeNum()+1;
+		CmnMemShipDTO memshipDto = memshipDao.SltMemShipAll(memshipComboBox.getValue());
 		ShceDTO.setMEMSHIPSCHE_Code(
-				"Memship_"+memshipComboBox.getSelectionModel().getSelectedItem()
-				+"_"+HealthPrmBuyingController.getMembCode()+"_"+"코드번호1");//DB 수정 후 해당 위치의 코드번호용 알고리즘 코딩 필요
-//				+"_"+HealthPrmBuyingController.getMembCode()+"_"+Integer.toString(InputCodeNum));
+				memshipDto.getMEMSHIP_Code()
+				+"_"+HealthPrmBuyingController.getMembCode()+"_"+ InputCodeNum);
+//				+"_"+HealthPrmBuyingController.getMembCode()+"_"+"코드번호1");//DB 수정 후 해당 위치의 코드번호용 알고리즘 코딩 필요
+		ShceDTO.setMEMSHIPSCHECode_Num(InputCodeNum);
 		ShceDTO.setMEMSHIPSCHE_Strdate(CommonService.LocalDateCnvt(sltDate.getValue()));
 		LocalDate enddate = sltDate.getValue().plusMonths(Integer.parseInt(memshipComboBox.getSelectionModel().getSelectedItem()));
 		ShceDTO.setMEMSHIPSCHE_Enddate(CommonService.LocalDateCnvt(enddate));
-		ShceDTO.setMEMSHIP_Code("Memship_"+memshipComboBox.getSelectionModel().getSelectedItem());
+		ShceDTO.setMEMSHIP_Code(memshipDto.getMEMSHIP_Code());
 		ShceDTO.setMEM_Code(HealthPrmBuyingController.getMembCode());
 		int result = 0;
 		result = ShceDAO.IstMemShipSche(ShceDTO);
@@ -92,7 +94,7 @@ public class HealthPrmBuyingService {
 			
 			//결제 회원권 이름
 			CmnMemShipDTO MemshipDTO = new CmnMemShipDAO().SltMemShipOne(ShceDTO.getMEMSHIP_Code());			
-			ScheNameLabel.setText("KGGYM 헬스장"+MemshipDTO.getMEMSHIP_Type()+"개월 이용권");
+			ScheNameLabel.setText("KGGYM 헬스장 "+MemshipDTO.getMEMSHIP_Type()+" 개월 이용권");
 			//결제 금액	
 			SchePriceLabel.setText(Integer.toString(MemshipDTO.getMEMSHIP_Price())+" 원");
 			//결제 일 표시

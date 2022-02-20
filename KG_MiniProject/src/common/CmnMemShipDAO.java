@@ -55,6 +55,33 @@ public class CmnMemShipDAO {
 		}
 		return tmpdata;		
 	}
+	public ArrayList<CmnMemShipDTO> SltMemShipAllType(){
+		ArrayList<CmnMemShipDTO> tmpLiat = new ArrayList<>();
+		sql = "SELECT * FROM MEMSHIP_TB" ;
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				CmnMemShipDTO tmpdata = new CmnMemShipDTO(
+						rs.getString("MEMSHIP_CODE"),
+						rs.getString("MEMSHIP_TYPE"),
+						rs.getInt("MEMSHIP_PRICE"));
+				tmpLiat.add(tmpdata);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		return tmpLiat;
+	}
+	
 	
 	// 회원권 종류로 모두 불러오기
 	public CmnMemShipDTO SltMemShipAll(String MEMSHIP_Type) {

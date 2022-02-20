@@ -1,8 +1,11 @@
 package mem.EXProgramBuying;
 
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
+import admin.exProgramMgt.ExProTable;
+import admin.exProgramMgt.ExProgramMgtService;
 import common.CommonService;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,6 +16,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import mem.BuyingType.MEM_BuyingTypeController;
 
 
@@ -35,16 +41,44 @@ public class ExPrmBuyingController implements Initializable{
 	@FXML private Button ExPScheBuyBtn;
 	@FXML private Button ExlogoutButton;
 	@FXML private ListView<String> programListView;
+	@FXML private TableView<ExPrmBuyingTable> exProgramTableView;
+	@FXML private TableColumn<ExPrmBuyingTable, String> programName;
+	@FXML private TableColumn<ExPrmBuyingTable, String> code;
+	@FXML private TableColumn<ExPrmBuyingTable, String> trainerName;
+	@FXML private TableColumn<ExPrmBuyingTable, Integer> limtPerson;
+	@FXML private TableColumn<ExPrmBuyingTable, Integer> currentPerson;
+	@FXML private TableColumn<ExPrmBuyingTable, Date> strDate;
+	@FXML private TableColumn<ExPrmBuyingTable, Date> endDate;
+	@FXML private TableColumn<ExPrmBuyingTable, Integer> price;
+	@FXML private TableColumn<ExPrmBuyingTable, String> timeC;
 	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-	//	ExPrmBuyingSvc = new ExPrmBuyingService();
+		//ExPrmBuyingSvc = new ExPrmBuyingService();
 
-	//	allProgram = ExPrmBuyingSvc.getAllProgram();
-	//	memshipComboBox.setItems(allProgram);
+		//allProgram = ExPrmBuyingSvc.getAllProgram();
+		//programListView.setItems(allProgram);
+		/*
+		ExPrmBuyingSvc = new ExPrmBuyingService();
+		//리스트 창 
+		ExPrmBuyingSvc.listUp(this.programListView);
+		
+		//테이블 창
+		programName.setCellValueFactory(new PropertyValueFactory<>("programName"));
+		code.setCellValueFactory(new PropertyValueFactory<>("code"));
+		trainerName.setCellValueFactory(new PropertyValueFactory<>("trainerName"));
+		programName.setCellValueFactory(new PropertyValueFactory<>("programName"));
+		limtPerson.setCellValueFactory(new PropertyValueFactory<>("limtPerson"));
+		currentPerson.setCellValueFactory(new PropertyValueFactory<>("currentPerson"));
+		strDate.setCellValueFactory(new PropertyValueFactory<>("strDate"));
+		endDate.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+		price.setCellValueFactory(new PropertyValueFactory<>("price"));
+		timeC.setCellValueFactory(new PropertyValueFactory<>("timeC"));
+		
+		ExPrmBuyingSvc.tableUp(exProgramTableView);
+		 */
 	}
-	
 	public ExPrmBuyingController() {
 		ExPrmBuyingSvc = new ExPrmBuyingService();
 		ExPrmBuyingSvc.setExPrmBuyingController(this);

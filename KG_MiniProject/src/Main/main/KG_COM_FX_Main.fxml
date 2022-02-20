@@ -7,12 +7,20 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.login.LoginController">
@@ -35,17 +43,241 @@
         <tabs>
           <Tab text="Info">
             <content>
-              <AnchorPane maxWidth="832.0" minHeight="0.0" minWidth="0.0" prefHeight="455.0" prefWidth="832.0" />
+              <AnchorPane maxWidth="832.0" minHeight="0.0" minWidth="0.0" prefHeight="455.0" prefWidth="832.0">
+                     <children>
+                        <ImageView fitHeight="291.0" fitWidth="273.0" layoutX="294.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/Main/image/qhrf11_tcei-ws6qbk_logo.png" />
+                           </image>
+                        </ImageView>
+                     </children></AnchorPane>
             </content>
           </Tab>
           <Tab text="회원권 가격">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <VBox fx:id="회원권표시00" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 :" />
+                                    <Label fx:id="MemshipName1" text="-" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="23.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 가격 :" />
+                                    <Label fx:id="MemshipPrice1" text="-" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="회원권표시10" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 :" />
+                                    <Label fx:id="MemshipName2" text="-" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="23.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 가격 :" />
+                                    <Label fx:id="MemshipPrice2" text="-" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="회원권표시20" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 :" />
+                                    <Label fx:id="MemshipName3" text="-" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="23.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 가격 :" />
+                                    <Label fx:id="MemshipPrice3" text="-" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="회원권표시30" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 :" />
+                                    <Label fx:id="MemshipName4" text="-" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="23.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 가격 :" />
+                                    <Label fx:id="MemshipPrice4" text="-" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="회원권표시01" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 :" />
+                                    <Label fx:id="MemshipName5" text="-" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="23.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 가격 :" />
+                                    <Label fx:id="MemshipPrice5" text="-" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="회원권표시11" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 :" />
+                                    <Label fx:id="MemshipName6" text="-" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="23.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 가격 :" />
+                                    <Label fx:id="MemshipPrice6" text="-" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="회원권표시21" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 :" />
+                                    <Label fx:id="MemshipName7" text="-" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="23.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 가격 :" />
+                                    <Label fx:id="MemshipPrice7" text="-" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="회원권표시31" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 :" />
+                                    <Label fx:id="MemshipName8" text="-" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="23.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 가격 :" />
+                                    <Label fx:id="MemshipPrice8" text="-" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="회원권표시02" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 :" />
+                                    <Label fx:id="MemshipName9" text="-" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="23.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 가격 :" />
+                                    <Label fx:id="MemshipPrice9" text="-" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="회원권표시12" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 :" />
+                                    <Label fx:id="MemshipName10" text="-" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="23.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 가격 :" />
+                                    <Label fx:id="MemshipPrice10" text="-" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="회원권표시22" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 :" />
+                                    <Label fx:id="MemshipName11" text="-" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="23.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 가격 :" />
+                                    <Label fx:id="MemshipPrice11" text="-" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox fx:id="회원권표시32" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 :" />
+                                    <Label fx:id="MemshipName12" text="-" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="23.0" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="회원권 가격 :" />
+                                    <Label fx:id="MemshipPrice12" text="-" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
             </content>
           </Tab>
             <Tab text="클래스">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="MainTableView" prefHeight="372.0" prefWidth="824.0">
+                          <columns>
+                            <TableColumn fx:id="main프로그램명" minWidth="390.0" prefWidth="-1.0" text="프로그램명" />
+                            <TableColumn fx:id="Main강사명" minWidth="120.0" prefWidth="-1.0" text="강사명" />
+                              <TableColumn fx:id="Main참여인원" minWidth="80.0" prefWidth="-1.0" text="참여인원" />
+                              <TableColumn fx:id="Main참여정원" minWidth="80.0" prefWidth="-1.0" text="참여정원" />
+                              <TableColumn fx:id="Main프로그램가격" minWidth="150.0" prefWidth="-1.0" text="프로그램 가격" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
                </content>
             </Tab>
         </tabs>

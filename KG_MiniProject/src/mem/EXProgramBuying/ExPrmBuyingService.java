@@ -3,6 +3,10 @@ package mem.EXProgramBuying;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
+
+import admin.exProgramMgt.ExProTable;
+import admin.exProgramMgt.ExProgramMgtDAO;
+import admin.exProgramMgt.ExProgramMgtDTO;
 import common.CmnPrmScheDAO;
 import common.CmnPrmScheDTO;
 import common.CommonService;
@@ -37,7 +41,28 @@ public class ExPrmBuyingService {
 	public void setExPrmBuyingController(ExPrmBuyingController exPrmBuyingController) {
 		this.exPrmBuyingController = exPrmBuyingController;
 	}
+	/*
+	// 실행 시 리스트뷰 업
+		public void listUp(ListView<String> programListView) {
+			this.programListView = programListView;
+			ExPrmBuyingDao = new EXPrmBuyingDAO();
+			this.allProgram = ExPrmBuyingDao.getAllProgram();
+			programListView.getItems().addAll(allProgram);
+		}
 
+		// 실행 시 테이블뷰 업
+		public void tableUp(TableView<ExPrmBuyingTable> exProgramTableView) {
+			this.ExPrmBuyingTableView = exProgramTableView;
+			ObservableList<ExPrmBuyingTable> tableItems = FXCollections.observableArrayList();
+			ObservableList<ExPrmBuyingDTO> allList = ExPrmBuyingDao.getAllInfo();
+			for (ExPrmBuyingDTO i : allList) {
+				tableItems.add(new ExPrmBuyingTable(i.getPRM_Name(), i.getPRMSCHE_Code(), i.getTRAINER_Name(),
+						i.getPRMSCHE_LimitP(), i.getPRMSCHE_CurrentP(), i.getPRMSCHE_Strdate(), i.getPRMSCHE_Enddate(),
+						i.getPRMSCHE_Price(), i.getPRMSCHE_Time()));
+			}
+			exProgramTableView.setItems(tableItems);
+		}
+	*/
 	//ex프로그램 종류 등록
 	public void paymentProc(Parent buyingTypeForm, String membCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/BuyingType/KG_MEM_FX_BuyingType.fxml"));
@@ -71,7 +96,7 @@ public class ExPrmBuyingService {
 	      
 	   }
 	
-	/*
+	
 	public void insertProc(Parent exProgramBuyingForm) {
 		ListView<String> listView = this.programListView;
 		TextField addProgramText = (TextField) exProgramBuyingForm.lookup("#addProgramText");
@@ -212,6 +237,6 @@ public class ExPrmBuyingService {
 		this.allProgram = ExPrmBuyingDao.getAllProgram();
 		return this.allProgram;
 	}
-	*/
+	
 
 }

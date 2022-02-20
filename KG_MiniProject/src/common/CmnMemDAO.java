@@ -270,4 +270,27 @@ public class CmnMemDAO {
 		return Datalist;
 	}
 	
+	// MemShipSche_Code update
+	public int memShipScheCodeUpdate(String MEM_Code, String MEMSHIPSCHE_Code) {
+		int result = 0;
+		String sql = "UPDATE MEM_TB SET MEMSHIPSCHE_Code = ? WHERE MEM_Code = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, MEMSHIPSCHE_Code);
+			ps.setString(2, MEM_Code);
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ps != null) ps.close();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
 }

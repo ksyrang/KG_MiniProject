@@ -29,17 +29,18 @@ public class CmnPayDAO {
 	public int Istpay(CmnPayDTO cmnPayDTO) {
 		int result = 0;
 		sql = "INSERT INTO PAY_TB "+
-				"(PAY_Code, PAY_Type, PAY_Date, "+
+				"(PAY_Code, PAYCode_Num, PAY_Type, PAY_Date, "+
 				"MEMSHIPSCHE_Code, MEM_Code, PRMSCHE_Code)"+
-				"VALUES(?,?,?,?,?,?)";
+				"VALUES(?,?,?,?,?,?,?)";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, cmnPayDTO.getPAY_Code());
-			ps.setString(2, cmnPayDTO.getPAY_Type());
-			ps.setDate(3, cmnPayDTO.getPAY_Date());
-			ps.setString(4, cmnPayDTO.getMEMSHIPSCHE_Code());
-			ps.setString(5, cmnPayDTO.getMEM_Code());
-			ps.setString(6, cmnPayDTO.getMEMSHIPSCHE_Code());
+			ps.setInt(2, cmnPayDTO.getPAYCode_Num());
+			ps.setString(3, cmnPayDTO.getPAY_Type());
+			ps.setDate(4, cmnPayDTO.getPAY_Date());
+			ps.setString(5, cmnPayDTO.getMEMSHIPSCHE_Code());
+			ps.setString(6, cmnPayDTO.getMEM_Code());
+			ps.setString(7, cmnPayDTO.getMEMSHIPSCHE_Code());
 			result = ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -47,6 +48,31 @@ public class CmnPayDAO {
 		}finally {
 			try { 
 				if(ps != null) ps.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	//결제 코드 번호 최대 값 찾기
+	public int PayMaxCodeNum() {
+		int result = 0;
+		sql = "SELECT Max(PAYCode_Num) FROM PAY_TB";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				result = rs.getInt("Max(PAYCode_Num)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
 			} catch (SQLException e2) {
 				e2.printStackTrace();
 			}

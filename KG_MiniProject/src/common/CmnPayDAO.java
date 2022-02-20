@@ -63,6 +63,7 @@ public class CmnPayDAO {
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				tmpdata = new CmnPayDTO(rs.getString("PAY_CODE"), 
+						rs.getInt("PAYCode_Num"),
 						rs.getString("PAY_TYPE"), 
 						rs.getDate("PAY_DATE"), 
 						rs.getString("MEMSHIPSCHE_CODE"), 
@@ -92,6 +93,7 @@ public class CmnPayDAO {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				tmpdata = new CmnPayDTO(rs.getString("PAY_Code"), 
+						rs.getInt("PAYCode_Num"),
 						rs.getString("PAY_Type"), 
 						rs.getDate("PAY_Date"), 
 						rs.getString("MEMSHIPSCHE_Code"), 

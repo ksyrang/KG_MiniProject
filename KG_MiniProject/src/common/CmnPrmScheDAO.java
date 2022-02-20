@@ -80,6 +80,7 @@ public class CmnPrmScheDAO {
 			if(rs.next()) {
 				tmpdata = new CmnPrmScheDTO(
 					rs.getString("PRMSCHE_Code"),
+					rs.getInt("PRMSCHECode_Num"),
 					rs.getDate("PRMSCHE_Strdate"),
 					rs.getDate("PRMSCHE_Enddate"),
 					rs.getString("PRMSCHE_Time"),
@@ -169,6 +170,7 @@ public class CmnPrmScheDAO {
 			while(rs.next()) {
 				tmpdata = new CmnPrmScheDTO(
 					rs.getString("PRMSCHE_Code"),
+					rs.getInt("PRMSCHECode_Num"),
 					rs.getDate("PRMSCHE_Strdate"),
 					rs.getDate("PRMSCHE_Enddate"),
 					rs.getString("PRMSCHE_Time"),
@@ -205,6 +207,7 @@ public class CmnPrmScheDAO {
 			while(rs.next()) {
 				tmpdata = new CmnPrmScheDTO(
 					rs.getString("PRMSCHE_CODE"),
+					rs.getInt("PRMSCHECode_Num"),
 					rs.getDate("PRMSCHE_STRDATE"),
 					rs.getDate("PRMSCHE_ENDDATE"),
 					rs.getString("PRMSCHE_TIME"),
@@ -242,6 +245,7 @@ public class CmnPrmScheDAO {
 			while(rs.next()) {
 				tmpdata = new CmnPrmScheDTO(
 					rs.getString("PRMSCHE_Code"),
+					rs.getInt("PRMSCHECode_Num"),
 					rs.getDate("PRMSCHE_Strdate"),
 					rs.getDate("PRMSCHE_Enddate"),
 					rs.getString("PRMSCHE_Time"),
@@ -296,7 +300,6 @@ public class CmnPrmScheDAO {
 	}
 	
 	public ArrayList<CmnPrmScheDTO> GetPrmScheCode(String PRM_Code) {
-		//int result = 0;
 		sql = "SELECT * FROM PRMSCHE_TB WHERE PRM_Code = ?";
 		ArrayList<CmnPrmScheDTO> Datalist = new ArrayList<>();
 		CmnPrmScheDTO tmpdata = null;
@@ -323,7 +326,6 @@ public class CmnPrmScheDAO {
 				e2.printStackTrace();
 			}
 		}
-		//return result;
 		return Datalist;
 	}
 	

@@ -113,6 +113,7 @@ public class CmnMemShipScheDAO {
 			if(rs.next()) {
 				tmpdata = new CmnMemShipScheDTO(
 				rs.getString("MEMSHIPSCHE_Code"),
+				rs.getInt("MEMSHIPSCHECode_Num"),
 				rs.getDate("MEMSHIPSCHE_Strdate"),
 				rs.getDate("MEMSHIPSCHE_Enddate"),
 				rs.getString("MEMSHIP_Code"),

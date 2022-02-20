@@ -62,9 +62,6 @@ public class WelcomeController implements Initializable {
 	public void logoutProc() {
 		//common으로 동작
 	}
-	public void cancelProc() {
-		CommonService.WindowClose(welcomForm);
-	}
 	
 	// setForm
 	public void setMemberMgtForm(Parent memberMgtForm) {

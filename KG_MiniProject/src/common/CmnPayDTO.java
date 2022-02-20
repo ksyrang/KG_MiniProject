@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class CmnPayDTO {
 	private String PAY_Code;//PK
+	private int PAYCode_Num;
 	private String PAY_Type;
 	private Date PAY_Date;
 	//FK
@@ -16,17 +17,19 @@ public class CmnPayDTO {
 	}
 	public CmnPayDTO(CmnPayDTO DTO) {
 		PAY_Code = DTO.getPAY_Code();
+		PAYCode_Num = DTO.getPAYCode_Num();
 		PAY_Type = DTO.getPAY_Type();
 		PAY_Date = DTO.getPAY_Date();
 		MEMSHIPSCHE_Code = DTO.getMEMSHIPSCHE_Code();
 		MEM_Code = DTO.getMEM_Code();
 		PRMSCHE_Code = DTO.getPRMSCHE_Code();
 	}
-	public CmnPayDTO(String pAY_Code, String pAY_Type, 
+	public CmnPayDTO(String pAY_Code, int pAYCode_Num, String pAY_Type, 
 			Date pAY_Date, String mEMSHIPSCHE_Code, 
 			String mEM_Code, String pRMSCHE_Code) {
 		super();
 		PAY_Code = pAY_Code;
+		PAYCode_Num = pAYCode_Num;
 		PAY_Type = pAY_Type;
 		PAY_Date = pAY_Date;
 		MEMSHIPSCHE_Code = mEMSHIPSCHE_Code;
@@ -40,6 +43,14 @@ public class CmnPayDTO {
 
 	public void setPAY_Code(String pAY_Code) {
 		PAY_Code = pAY_Code;
+	}
+	
+	public int getPAYCode_Num() {
+		return PAYCode_Num;
+	}
+	
+	public void setPAYCode_Num(int pAYCode_Num) {
+		PAYCode_Num = pAYCode_Num;
 	}
 
 	public String getPAY_Type() {

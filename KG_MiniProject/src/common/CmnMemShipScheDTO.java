@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class CmnMemShipScheDTO {
 	private String MEMSHIPSCHE_Code;//PK
+	private int MEMSHIPSCHECode_Num;
 	private Date MEMSHIPSCHE_Strdate;
 	private Date MEMSHIPSCHE_Enddate;
 	//FK
@@ -14,10 +15,11 @@ public class CmnMemShipScheDTO {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public CmnMemShipScheDTO(String mEMSHIPSCHE_Code, Date mEMSHIPSCHE_Strdate, Date mEMSHIPSCHE_Enddate,
+	public CmnMemShipScheDTO(String mEMSHIPSCHE_Code,int mEMSHIPSCHECode_Num, Date mEMSHIPSCHE_Strdate, Date mEMSHIPSCHE_Enddate,
 			String mEMSHIP_Code, String mEM_Code) {
 		super();
 		MEMSHIPSCHE_Code = mEMSHIPSCHE_Code;
+		MEMSHIPSCHECode_Num = mEMSHIPSCHECode_Num;
 		MEMSHIPSCHE_Strdate = mEMSHIPSCHE_Strdate;
 		MEMSHIPSCHE_Enddate = mEMSHIPSCHE_Enddate;
 		MEMSHIP_Code = mEMSHIP_Code;
@@ -30,6 +32,14 @@ public class CmnMemShipScheDTO {
 
 	public void setMEMSHIPSCHE_Code(String mEMSHIPSCHE_Code) {
 		MEMSHIPSCHE_Code = mEMSHIPSCHE_Code;
+	}
+	
+	public int getMEMSHIPSCHECode_Num() {
+		return MEMSHIPSCHECode_Num;
+	}
+	
+	public void setMEMSHIPSCHECode_Num(int mEMSHIPSCHECode_Num) {
+		MEMSHIPSCHECode_Num = mEMSHIPSCHECode_Num;
 	}
 
 	public Date getMEMSHIPSCHE_Strdate() {

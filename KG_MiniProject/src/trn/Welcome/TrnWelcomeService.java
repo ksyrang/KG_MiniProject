@@ -60,6 +60,7 @@ public class TrnWelcomeService {
 			//강사 정보 get
 			//tilte sector set
 			Label titleUserName = (Label)trnMgtForm.lookup("#TitleUserNameLabel");
+			
 			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnWelcomeController.getTrnCode()));
 			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
 			//초기 표시 설정

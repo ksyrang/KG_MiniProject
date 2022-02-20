@@ -289,9 +289,8 @@ public class CmnTrainerDAO {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				CmnTrainerDTO tmpdata = new CmnTrainerDTO(
-						rs.getString("TRAINER_Name")
-				);
+				CmnTrainerDTO tmpdata = new CmnTrainerDTO();
+				tmpdata.setTRAINER_Name(rs.getString("TRAINER_Name"));
 				Datalist.add(tmpdata);
 			}
 		} catch (Exception e) {

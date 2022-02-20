@@ -41,7 +41,7 @@ public class ExPrmBuyingService {
 	public void setExPrmBuyingController(ExPrmBuyingController exPrmBuyingController) {
 		this.exPrmBuyingController = exPrmBuyingController;
 	}
-
+	/*
 	// 실행 시 리스트뷰 업
 		public void listUp(ListView<String> programListView) {
 			this.programListView = programListView;
@@ -62,7 +62,7 @@ public class ExPrmBuyingService {
 			}
 			exProgramTableView.setItems(tableItems);
 		}
-	
+	*/
 	//ex프로그램 종류 등록
 	public void paymentProc(Parent buyingTypeForm, String membCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/BuyingType/KG_MEM_FX_BuyingType.fxml"));

@@ -57,9 +57,9 @@ public class ExPrmBuyingController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		//ExPrmBuyingSvc = new ExPrmBuyingService();
 
-		allProgram = ExPrmBuyingSvc.getAllProgram();
-		programListView.setItems(allProgram);
-		
+		//allProgram = ExPrmBuyingSvc.getAllProgram();
+		//programListView.setItems(allProgram);
+		/*
 		ExPrmBuyingSvc = new ExPrmBuyingService();
 		//리스트 창 
 		ExPrmBuyingSvc.listUp(this.programListView);
@@ -77,8 +77,8 @@ public class ExPrmBuyingController implements Initializable{
 		timeC.setCellValueFactory(new PropertyValueFactory<>("timeC"));
 		
 		ExPrmBuyingSvc.tableUp(exProgramTableView);
+		 */
 	}
-	
 	public ExPrmBuyingController() {
 		ExPrmBuyingSvc = new ExPrmBuyingService();
 		ExPrmBuyingSvc.setExPrmBuyingController(this);

@@ -65,8 +65,7 @@ public class TrnMgtService {
 			CommonService.Msg("비밀번호칸들을 채워 주세요");
 		}
 	}
-	
-	
+
 	public void BackProc(Parent Form) {
 		CommonService.WindowClose(Form);
 	}

@@ -94,8 +94,8 @@ public class ExProgramMgtService {
 
 	// 테이블뷰 항목 클릭 시 세부사항 업데이트
 	public void modifyTableUp(Parent exProgramMgtForm) {
-		ComboBox<String> kindComboBox = (ComboBox<String>) exProgramMgtForm.lookup("#kindComboBox");
 		Label exnameText = (Label) exProgramMgtForm.lookup("#exnameText");
+		Label exPrmNameText = (Label) exProgramMgtForm.lookup("#exPrmNameText");
 		TextField priceText = (TextField) exProgramMgtForm.lookup("#priceText");
 		TextField personLimitText = (TextField) exProgramMgtForm.lookup("#personLimitText");
 		Label currnentDateText = (Label) exProgramMgtForm.lookup("#currnentDateText");
@@ -105,10 +105,9 @@ public class ExProgramMgtService {
 		DatePicker endDatePicker = (DatePicker) exProgramMgtForm.lookup("#endDatePicker");
 		
 		
+		exPrmNameText.setText(" : " + codeTable.getProgramName());
 		
-		kindComboBox.setValue(codeTable.getProgramName());
-		
-		exnameText.setText(": " + codeTable.getProgramName() + " - " + codeTable.getTimeC() + "반");
+		exnameText.setText(" : " + codeTable.getProgramName() + "_" +codeTable.getTrainerName()+ "_" + codeTable.getTimeC());
 
 		currnentDateText.setText("현재기간 : " + codeTable.getStrDate() + " ~ " + codeTable.getEndDate());
 		Date strDate = codeTable.getStrDate();
@@ -130,9 +129,11 @@ public class ExProgramMgtService {
 
 	}
 
+	
 	// 상세정보 수정
 	public void exProgramModifyProc(Parent exProgramMgtForm) {
 		Label exnameText = (Label) exProgramMgtForm.lookup("#exnameText");
+		Label exPrmNameText = (Label) exProgramMgtForm.lookup("#exPrmNameText");
 		TextField priceText = (TextField) exProgramMgtForm.lookup("#priceText");
 		TextField personLimitText = (TextField) exProgramMgtForm.lookup("#personLimitText");
 		Label currnentDateText = (Label) exProgramMgtForm.lookup("#currnentDateText");
@@ -140,10 +141,9 @@ public class ExProgramMgtService {
 		DatePicker endDatePicker = (DatePicker) exProgramMgtForm.lookup("#endDatePicker");
 		RadioButton amRadioButton = (RadioButton) exProgramMgtForm.lookup("#amRadioButton");
 		RadioButton pmRadioButton = (RadioButton) exProgramMgtForm.lookup("#pmRadioButton");
-		ComboBox<String> kindComboBox = (ComboBox<String>) exProgramMgtForm.lookup("#kindComboBox");
 
-		String kind = kindComboBox.getValue();
-		exnameText.setText(": 프로그램명");
+		exPrmNameText.setText(" :");
+		exnameText.setText(" :");
 		currnentDateText.setText("현재 기간");
 
 		LocalDate lStrDate = startDatePicker.getValue();
@@ -175,7 +175,6 @@ public class ExProgramMgtService {
 		
 		String prmCode = cmnPrmScheDto.getPRM_Code();
 
-		exProgramMgtDto.setPRM_Name(kind);
 		exProgramMgtDto.setPRM_Code(prmCode);
 		exProgramMgtDto.setPRMSCHE_Strdate(strDate);
 		exProgramMgtDto.setPRMSCHE_Enddate(endDate);
@@ -187,15 +186,12 @@ public class ExProgramMgtService {
 		exProgramMgtDto.setTRAINER_Name(trainerName);
 		
 		ExProgramMgtDTO exProgramMgtDto2 = new ExProgramMgtDTO();
-		exProgramMgtDto2.setPRM_Name(kind);
 		exProgramMgtDto2.setPRM_Code(prmCode);
 		
 
 		int result = exProgramMgtDao.selectModifyExProgram(exProgramMgtDto);
 		if (result != 1) {
-//			System.out.println(exProgramMgtDao.PRM_NAMEModify(exProgramMgtDto2));
 			if(exProgramMgtDao.setProgramModify(exProgramMgtDto) == 1) {
-//					& exProgramMgtDao.PRM_NAMEModify(exProgramMgtDto2) == 1) {
 				CommonService.Msg("수정 성공");
 			}else
 				CommonService.Msg("수정 실패");

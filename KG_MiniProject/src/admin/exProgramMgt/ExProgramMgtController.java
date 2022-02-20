@@ -71,8 +71,7 @@ public class ExProgramMgtController implements Initializable{
 		
 		
 		//수정창
-		allProgram = exProgramSvc.getAllProgram();
-		kindComboBox.setItems(allProgram);
+//		allProgram = exProgramSvc.getAllProgram();
 		
 		//listview 클릭 시
 		programListView.setOnMouseClicked(new EventHandler<MouseEvent>() { 

@@ -97,7 +97,7 @@ public class ExProgramMgtDAO {
 		
 	
 	
-	//ex프로그램 중복체크
+	//ex프로그램 PRM_Name 중복체크
 	public ExProgramMgtDTO selectExProgram(String addProgram) {
 		String sql = "SELECT * FROM PRM_TB WHERE PRM_Name=?";
 		PreparedStatement ps;
@@ -156,7 +156,7 @@ public class ExProgramMgtDAO {
 	}
 	
 	
-	//ex프로그램 세부사항 수정 시 중복체크
+	//클릭한 ex프로그램 세부사항 수정 시 중복체크
 	public int selectModifyExProgram(ExProgramMgtDTO exProgramMgtDto) {
 		String sql = "SELECT * FROM PRMSCHE_TB ";
 		PreparedStatement ps;

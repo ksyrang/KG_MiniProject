@@ -61,13 +61,13 @@
             </Label>
             <TabPane prefHeight="400.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                  <Tab text="EX프로그램1">
+                  <Tab fx:id="sltPilates" text="필라테스">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                   </Tab>
-                <Tab text="EX프로그램2" />
-                <Tab text="EX프로그램3" />
+                <Tab fx:id="sltYoga" text="   요가   " />
+                <Tab fx:id="sltPT" text="    PT     " />
                   <Tab text="EX프로그램4">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />

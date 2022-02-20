@@ -1,8 +1,11 @@
 package Main.main;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 
+import common.CmnPrmDAO;
+import common.CmnPrmDTO;
 import common.CmnPrmScheDAO;
 import common.CmnPrmScheDTO;
 import common.CmnTrainerDAO;
@@ -19,6 +22,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import mem.Mgt.MgtDAO;
 import mem.Mgt.MgtDTO;
+import mem.Welcome.MEM_WelcomeController;
+import mem.Welcome.MEM_WelcomeDAO;
+import mem.Welcome.MEM_WelcomeDTO;
+import mem.Welcome.MEM_WelcomeMgtTable;
 import trn.DBDAO.TrnTrainerDAO;
 import trn.DBDTO.TrnTrainerDTO;
 import trn.Welcome.TrnTbVDTO;
@@ -57,11 +64,39 @@ public class MainService {
 			controller.setMEM_WelcomeController(loader.getController());
 			controller.getMEM_WelcomeController().setMemWelcomeForm(memberWelcomeForm);
 			controller.getMEM_WelcomeController().setMembCode(UserCode);
-			
 			Label titleUserName = (Label)memberWelcomeForm.lookup("#TitleMemNameLabel");
+			Label idText = (Label)memberWelcomeForm.lookup("#idText");
 	        MgtDTO tmpMemDto = new MgtDTO(new MgtDAO().selectCode(UserCode));
 	        titleUserName.setText(tmpMemDto.getMEM_Name()+" 회원님");
-			
+
+	        
+	        
+	        //초기화면 테이블 세팅
+	        TableView<MEM_WelcomeMgtTable> memProgramTable = (TableView<MEM_WelcomeMgtTable>) memberWelcomeForm.lookup("#memProgramTable");
+			MEM_WelcomeDAO memWelcomeDao = new MEM_WelcomeDAO();
+			ObservableList<MEM_WelcomeMgtTable> obserList = FXCollections.observableArrayList();
+	    	ObservableList<MEM_WelcomeDTO> memWelcomeDto = memWelcomeDao.selectMemAllProgram(tmpMemDto.getMEM_ID());
+
+			for (MEM_WelcomeDTO m : memWelcomeDto) {
+				// String prm_name 얻는 과정
+				String prm_Code = m.getPrm_code();
+				CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
+				CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(prm_Code);
+				String prm_name = cmnPrmDto.getPRM_Name();
+
+				String prmsche_time = m.getPrmsche_time();
+				int prmsche_price = m.getPrmsche_price();
+				Date prmsche_strdate = m.getPrmsche_strdate();
+				Date prmsche_enddate = m.getPrmsche_enddate();
+				obserList.add(
+						new MEM_WelcomeMgtTable(prm_name, prmsche_time, prmsche_price, prmsche_strdate, prmsche_enddate));
+			}
+			memProgramTable.setItems(obserList);
+
+	        
+	        
+	        
+	        
 			Scene scene = new Scene(memberWelcomeForm);
 			Stage primaryStage = new Stage();
 			primaryStage.setTitle("memberWelcome");

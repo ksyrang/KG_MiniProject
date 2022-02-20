@@ -121,6 +121,8 @@ public class LoginController implements Initializable{
 	//로그인 버튼 클릭 시 호출
 	public void loginProc() {
 		LoginDTO loginDto = loginSvc.loginProc(mainForm);
+		String id =loginSvc.getId();
+		controller.setId(id);
 		String job = loginSvc.getjob();
 		if(loginDto != null) {
 			CommonService.WindowClose(mainForm);

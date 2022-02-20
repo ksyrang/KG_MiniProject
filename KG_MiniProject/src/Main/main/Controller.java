@@ -1,6 +1,7 @@
 package Main.main;
 
 import Main.login.LoginController;
+import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -30,6 +31,9 @@ public class Controller {
 	private Stage stage;
 	private Scene scene;
 	private Parent memberMgtForm;
+	private String id;
+	
+
 	
 	public Stage getStage() {
 		return stage;
@@ -93,9 +97,6 @@ public class Controller {
 		this.memberJoinForm = memberJoinForm;
 	}
 	
-	
-	
-	
 	public void settingEnroll() {
 		this.enrollController.setEnrollForm(this.memberJoinForm);
 	}
@@ -123,6 +124,15 @@ public class Controller {
 	public void settingFindPW() {
 		this.findPWController.setFindPWForm(this.memberFindPWForm);
 	}
+	
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	public String getid() {
+		return this.id;
+	}
+	
 	
 
 	

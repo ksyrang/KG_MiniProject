@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Main.login.LoginService;
+import Main.main.Controller;
 import common.CmnPrmDAO;
 import common.CmnPrmDTO;
 import common.CmnPrmScheDAO;
@@ -20,6 +21,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -45,7 +47,6 @@ public class MEM_WelcomeController implements Initializable {
 	private Parent memWelcomeForm;
 	private Parent programMgtForm;
 	private String membCode;
-	private String id;
 
 	private MEM_WelcomeMgtTable selectTable;
 
@@ -63,6 +64,8 @@ public class MEM_WelcomeController implements Initializable {
 	private TextField prmsche_timeTxtFld;
 	@FXML
 	private TextField price_TxtFld;
+
+	
 
 	@FXML
 	private TableView<MEM_WelcomeMgtTable> memProgramTable;
@@ -101,7 +104,7 @@ public class MEM_WelcomeController implements Initializable {
 		this.membCode = membCode;
 	}
 
-	/////
+	
 	public MgtController getMgtController() {
 		return memMgtController;
 	}
@@ -119,15 +122,14 @@ public class MEM_WelcomeController implements Initializable {
 	}
 
 	public void MemClickProc() {
-		System.out.println(membCode);
 		memWelcomeSvc.memMgtOpen(membCode);
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		MEM_WelcomeDAO memWelcomeDao = new MEM_WelcomeDAO();
-		obserList = FXCollections.observableArrayList();
+//		MEM_WelcomeDAO memWelcomeDao = new MEM_WelcomeDAO();
+//		obserList = FXCollections.observableArrayList();
 
 		colPrmName.setCellValueFactory(new PropertyValueFactory<>("colPrmName"));
 		colPrmscheTime.setCellValueFactory(new PropertyValueFactory<>("colPrmscheTime"));
@@ -135,27 +137,27 @@ public class MEM_WelcomeController implements Initializable {
 		colPrmscheStrdate.setCellValueFactory(new PropertyValueFactory<>("colPrmscheStrdate"));
 		colPrmscheEnddate.setCellValueFactory(new PropertyValueFactory<>("colPrmscheEnddate"));
 
-		LoginService loginSvc = new LoginService();
-		this.id = loginSvc.getId();
-		System.out.println(id); // id값 가져오기 해결해야함
+//		Controller controller = new Controller();
+//		this.id = controller.getid();
+//		
 
-		ObservableList<MEM_WelcomeDTO> memWelcomeDto = memWelcomeDao.selectMemAllProgram("admin");
-
-		for (MEM_WelcomeDTO m : memWelcomeDto) {
-			// String prm_name 얻는 과정
-			String prm_Code = m.getPrm_code();
-			CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
-			CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(prm_Code);
-			String prm_name = cmnPrmDto.getPRM_Name();
-
-			String prmsche_time = m.getPrmsche_time();
-			int prmsche_price = m.getPrmsche_price();
-			Date prmsche_strdate = m.getPrmsche_strdate();
-			Date prmsche_enddate = m.getPrmsche_enddate();
-			obserList.add(
-					new MEM_WelcomeMgtTable(prm_name, prmsche_time, prmsche_price, prmsche_strdate, prmsche_enddate));
-		}
-		memProgramTable.setItems(obserList);
+//		ObservableList<MEM_WelcomeDTO> memWelcomeDto = memWelcomeDao.selectMemAllProgram("admin");
+//
+//		for (MEM_WelcomeDTO m : memWelcomeDto) {
+//			// String prm_name 얻는 과정
+//			String prm_Code = m.getPrm_code();
+//			CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
+//			CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(prm_Code);
+//			String prm_name = cmnPrmDto.getPRM_Name();
+//
+//			String prmsche_time = m.getPrmsche_time();
+//			int prmsche_price = m.getPrmsche_price();
+//			Date prmsche_strdate = m.getPrmsche_strdate();
+//			Date prmsche_enddate = m.getPrmsche_enddate();
+//			obserList.add(
+//					new MEM_WelcomeMgtTable(prm_name, prmsche_time, prmsche_price, prmsche_strdate, prmsche_enddate));
+//		}
+//		memProgramTable.setItems(obserList);
 
 //회색 버튼 의 핸들러 부분 여기를 누르면 테이블뷰의 리스트가 출력됩니다.
 //    @FXML
@@ -170,6 +172,7 @@ public class MEM_WelcomeController implements Initializable {
 
 				// 강의 종류
 				String prmName = selectTable.getColPrmName();
+				System.out.println(prmName);
 				prm_nameTxtFld.setText(prmName);
 
 				// 강의 코드
@@ -292,5 +295,7 @@ public class MEM_WelcomeController implements Initializable {
 	public void settingProgramMgt() {
 		this.programMgtController.setProgramMgtForm(this.programMgtForm);
 	}
+
+
 
 }

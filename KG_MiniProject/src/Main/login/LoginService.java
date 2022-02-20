@@ -17,6 +17,7 @@ public class LoginService {
 	
 	// 로그인 버튼 클릭 시 호출
 	public LoginDTO loginProc(Parent mainForm) {
+		
 		TextField idText = (TextField) mainForm.lookup("#idText");
 		PasswordField pwText = (PasswordField) mainForm.lookup("#pwText");
 		RadioButton memberRadio = (RadioButton)mainForm.lookup("#memberRadio");
@@ -25,6 +26,7 @@ public class LoginService {
 		
 		//회원쪽으로 id전송
 		this.id = idText.getText();
+		
 		
 		if(memberRadio.isSelected())
 			job = "회원";

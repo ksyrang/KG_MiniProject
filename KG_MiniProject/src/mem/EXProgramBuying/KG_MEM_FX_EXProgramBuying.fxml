@@ -32,7 +32,7 @@
                   <Insets left="550.0" top="12.5" />
                </HBox.margin>
             </Label>
-            <Button fx:id="ExlogoutButton" mnemonicParsing="false" text="logout">
+            <Button fx:id="ExlogoutButton" mnemonicParsing="false" onAction="#logoutProc" text="logout">
                <HBox.margin>
                   <Insets left="20.0" top="12.5" />
                </HBox.margin>

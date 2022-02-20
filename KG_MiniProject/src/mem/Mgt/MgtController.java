@@ -60,6 +60,9 @@ public class MgtController implements Initializable{
 	public void setMgtController(MgtController mgtController) {
 		this.mgtController = mgtController;
 	}
+	public void setMemberMgtForm(Parent memMgtForm) {
+		this.memMgtForm = memMgtForm;
+	}
 	
 	public void setDeleteForm(Parent deleteForm) {
 		this.deleteForm = deleteForm;
@@ -73,9 +76,6 @@ public class MgtController implements Initializable{
 		this.deleteController = deleteController;
 	}
 	
-	public void setMemberMgtForm(Parent memMgtForm) {
-		this.memMgtForm = memMgtForm;
-	}
 	
 //	public void settingDelete() {
 //		this.deleteController.setDeleteForm(this.deleteForm);

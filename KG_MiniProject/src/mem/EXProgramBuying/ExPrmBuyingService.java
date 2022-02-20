@@ -34,8 +34,8 @@ public class ExPrmBuyingService {
 	
 
 	
-	public void setExPrmBuyingController(ExPrmBuyingController ExPrmBuyingController) {
-		this.exPrmBuyingController = ExPrmBuyingController;
+	public void setExPrmBuyingController(ExPrmBuyingController exPrmBuyingController) {
+		this.exPrmBuyingController = exPrmBuyingController;
 	}
 
 	//ex프로그램 종류 등록
@@ -57,6 +57,18 @@ public class ExPrmBuyingService {
 		}
 	}
 	
+	public void cancelProc(Parent exProgramBuyingForm) {
+		CommonService.WindowClose(exProgramBuyingForm);
+	}
+	
+	public void logoutProc(Parent exProgramBuyingForm) {
+	      CommonService.Msg("로그아웃 되셨습니다.");
+	      CommonService.WindowClose(exProgramBuyingForm);
+	      
+	      
+	   }
+	
+	/*
 	public void insertProc(Parent exProgramBuyingForm) {
 		ListView<String> listView = this.programListView;
 		TextField addProgramText = (TextField) exProgramBuyingForm.lookup("#addProgramText");
@@ -179,9 +191,7 @@ public class ExPrmBuyingService {
 		
 	}
 	
-	public void cancelProc(Parent exProgramBuyingForm) {
-		CommonService.WindowClose(exProgramBuyingForm);
-	}
+
 	
 	public void setSelectData(String selectData) {
 		this.selectData = selectData;
@@ -199,6 +209,6 @@ public class ExPrmBuyingService {
 		this.allProgram = ExPrmBuyingDao.getAllProgram();
 		return this.allProgram;
 	}
-
+	*/
 
 }

@@ -48,14 +48,15 @@ public class MEM_WelcomeService {
 		}	
    }
    //ex프로그램 버튼 클릭 시
-   public void exProgramBuyingOpen(String membCode) {
+   public void exProgramBuyingOpen(String membCode,  Parent exProgramBuyingForm ) {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/EXProgramBuying/KG_MEM_FX_EXProgramBuying.fxml"));
-      Parent exProgramBuyingForm;
+      
       try {
         exProgramBuyingForm = loader.load();
          memWelcomeController.setExProgramBuyingForm(exProgramBuyingForm);
          memWelcomeController.setExPrmBuyingController(loader.getController());
-         memWelcomeController.getExPrmBuyingController().setMembCode(membCode);
+         memWelcomeController.getExPrmBuyingController().setExProgramBuyingForm(exProgramBuyingForm);
+         memWelcomeController.getExPrmBuyingController().setMembCode(memWelcomeController.getMembCode());
 
          //상단 이름
          Label titleUserName = (Label)exProgramBuyingForm.lookup("#TitleMemNameLabel");

@@ -3,7 +3,7 @@ package mem.EXProgramBuying;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
+import common.CommonService;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,6 +23,7 @@ public class ExPrmBuyingController implements Initializable{
 	private ObservableList<String> allProgram;
 	private String membCode;
 	private ExPrmBuyingController exPrmBuyingController;
+	private Parent memWelcomeForm;
 	
 	@FXML private Label TitleMemNameLabel;
 	@FXML private ComboBox<String> memshipComboBox;
@@ -58,10 +59,22 @@ public class ExPrmBuyingController implements Initializable{
 		this.membCode = membCode;
 	}
 	
+	public String getMembCode() {
+		return membCode;
+	}
+	
 	public void setExProgramBuyingForm(Parent exProgramBuyingForm) {
 		this.exProgramBuyingForm = exProgramBuyingForm;
+		
 	}
 
+	public void setMemWelcomeForm(Parent memWelcomeForm) {
+		this.memWelcomeForm = memWelcomeForm;	
+	}
+	public Parent getMemWelcomeForm() {
+		return memWelcomeForm;
+	}
+	
 	/*
 	// 예약 버튼 클릭 시
 	public void paymentProc() {
@@ -75,5 +88,10 @@ public class ExPrmBuyingController implements Initializable{
 		ExPrmBuyingSvc.cancelProc(exProgramBuyingForm);
 	}
 
+	public void logoutProc() {
+		ExPrmBuyingSvc.logoutProc(exProgramBuyingForm);
+	//	CommonService.WindowClose(exProgramBuyingForm);
 
+	}
+	
 }

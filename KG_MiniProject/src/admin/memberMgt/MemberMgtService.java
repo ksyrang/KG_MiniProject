@@ -71,13 +71,13 @@ import javafx.scene.control.ToggleGroup;
 		RadioButton men = (RadioButton) memberMgtForm.lookup("#menradio");
 		RadioButton women = (RadioButton) memberMgtForm.lookup("#womenradio");
 		
-		idfield.setText("");
-		namefield.setText("");
-		pwfield.setText("");
-		mobilefield.setText("");
-		birthfield.setText("");
-		addr1field.setText("");
-		addr2field.setText("");
+		idfield.clear();
+		namefield.clear();
+		pwfield.clear();
+		mobilefield.clear();
+		birthfield.clear();
+		addr1field.clear();
+		addr2field.clear();
 		men.setSelected(false);
 		women.setSelected(false);
 	}

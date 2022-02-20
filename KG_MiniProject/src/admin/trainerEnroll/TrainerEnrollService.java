@@ -39,7 +39,8 @@ public class TrainerEnrollService {
 				CommonService.Msg(trnId + " 은(는) 사용 가능한 ID입니다.");
 			}else {
 				CommonService.Msg(trnId + " 은(는) 이미 사용하고 있는 ID입니다.");
-				trnIdTxt.setText(null);
+				trnIdTxt.clear();
+				trnIdTxt.requestFocus();
 			}
 		}
 	}
@@ -89,7 +90,7 @@ public class TrainerEnrollService {
 			trnCareer = Integer.parseInt(trnCareerTxt.getText());
 		}
 		
-		String trnCode = trnId + trnBirth;
+		String trnCode = "Trn_" + trnId;
 		String trnGender;
 		if(trnMenRadio.isSelected()) {
 			trnGender = "남";
@@ -116,6 +117,9 @@ public class TrainerEnrollService {
 						}
 					} else {
 						CommonService.Msg("비밀번호가 다릅니다.");
+						trnPwComfrimTxt.clear();
+						trnPwComfrimTxt.requestFocus();
+						
 					}
 				} else {
 					CommonService.Msg("중복 체크를 해주세요.");

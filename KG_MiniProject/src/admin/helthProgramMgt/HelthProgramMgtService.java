@@ -15,8 +15,8 @@ public class HelthProgramMgtService {
 	public void refreshTable(Parent helthProgramMgtForm) {
 		TextField typetxt = (TextField) helthProgramMgtForm.lookup("#memshipType");
 		TextField pricetxt = (TextField) helthProgramMgtForm.lookup("#memshipPrice");
-		typetxt.setText(null);
-		pricetxt.setText(null);
+		typetxt.clear();
+		pricetxt.clear();
 		
 		ObservableList<HelthProTable> tableView = FXCollections.observableArrayList();
 		TableView<HelthProTable> allTable = (TableView<HelthProTable>) helthProgramMgtForm.lookup("#memshipTable");
@@ -54,6 +54,7 @@ public class HelthProgramMgtService {
 		try {
 			if (type.isEmpty() || price.isEmpty()) {
 				CommonService.Msg("입력란을 채워주세요.");
+				typetxt.requestFocus();
 			} else {
 				if (hprice != 0) {
 					helthProgramDao = new HelthProgramMgtDAO();
@@ -68,14 +69,18 @@ public class HelthProgramMgtService {
 						refreshTable(helthProgramMgtForm);
 					} else {
 						CommonService.Msg("이미 등록된 회원권입니다.");
+						typetxt.clear();
+						pricetxt.clear();
 					}
 				} else {
 					CommonService.Msg("가격란엔 숫자만 입력 가능합니다.");
-					pricetxt.setText("");
+					pricetxt.clear();
+					pricetxt.requestFocus();
 				}
 			}
 		} catch (NullPointerException e) {
 			CommonService.Msg("입력란을 채워주세요.");
+			typetxt.requestFocus();
 		}
 	}
 	

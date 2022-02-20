@@ -261,14 +261,14 @@ public class TrainerMgtService {
 		RadioButton trnMenRadio = (RadioButton) trainerMgtForm.lookup("#trnMenRadio");
 		RadioButton trnWomenRadio = (RadioButton) trainerMgtForm.lookup("#trnWomenRadio");
 		
-		trnIdTxt.setText(null);
-		trnNameTxt.setText(null);
-		trnPwTxt.setText(null);
-		trnMobileTxt.setText(null);
-		trnAddrTxt1.setText(null);
-		trnAddrTxt2.setText(null);
-		trnBirthTxt.setText(null);
-		trnCareerTxt.setText(null);
+		trnIdTxt.clear();
+		trnNameTxt.clear();
+		trnPwTxt.clear();
+		trnMobileTxt.clear();
+		trnAddrTxt1.clear();
+		trnAddrTxt2.clear();
+		trnBirthTxt.clear();
+		trnCareerTxt.clear();
 		trnMenRadio.setSelected(false);
 		trnWomenRadio.setSelected(false);
 	}

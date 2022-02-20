@@ -103,7 +103,7 @@ public class HelthProgramMgtDAO {
 		
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, helthProgramDto.getMemship_type() + "memship");
+			ps.setString(1, "Memship_" + helthProgramDto.getMemship_type());
 			ps.setString(2, helthProgramDto.getMemship_type());
 			ps.setInt(3, helthProgramDto.getMemship_price());
 			ps.executeUpdate();

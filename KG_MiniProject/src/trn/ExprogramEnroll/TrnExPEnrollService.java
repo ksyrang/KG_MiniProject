@@ -79,14 +79,15 @@ public class TrnExPEnrollService {
 			}
 			i++;
 		}
-		String PrmScheNumber = getlatestNumToString(PrmScheListbyPrmCodeList);
-		System.out.println("최신번호 결과: " + PrmScheNumber);
+//		String PrmScheNumber = getlatestNumToString(PrmScheListbyPrmCodeList);
 		//코드 생성
-		PrmScheCodegeneration ="PrmSche"+"_"+PrmType+"_"+Time+"_"+TrnInfo.getTRAINER_Name()+"_"+PrmScheNumber;
+		int latestNum = new CmnPrmScheDAO().SltPrmScheCodeMaxNum();
+		System.out.println("최신번호 결과: " + latestNum);
+		PrmScheCodegeneration ="PrmSche"+"_"+PrmType+"_"+Time+"_"+TrnInfo.getTRAINER_Name()+"_"+Integer.toString(latestNum+1);
 		System.out.println("생성된 코드 : "+PrmScheCodegeneration);
-		
 		CmnPrmScheDTO tmpDTO = new CmnPrmScheDTO(
 				PrmScheCodegeneration,
+				latestNum+1,
 				CommonService.LocalDateCnvt(SrtDate.getValue()),
 				CommonService.LocalDateCnvt(EndDate.getValue()),
 				Time,

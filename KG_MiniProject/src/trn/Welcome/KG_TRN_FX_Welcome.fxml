@@ -97,13 +97,13 @@
                         <HBox spacing="15.0">
                            <children>
                               <Label text="시작 기간 : " />
-                              <DatePicker fx:id="ExpSrtDateDisPicker" />
+                              <DatePicker fx:id="ExpSrtDateDisPicker" editable="false" />
                            </children>
                         </HBox>
                         <HBox spacing="15.0">
                            <children>
                               <Label text="종료 기간 : " />
-                              <DatePicker fx:id="ExpEndDateDisPicker" />
+                              <DatePicker fx:id="ExpEndDateDisPicker" editable="false" />
                            </children>
                         </HBox>
                      </children>

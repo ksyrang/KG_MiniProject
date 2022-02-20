@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import Main.main.Controller;
 import common.CmnPrmDAO;
 import common.CmnPrmDTO;
 import common.CmnPrmScheDAO;
@@ -60,6 +61,7 @@ public class TrnWelcomeService {
 			//강사 정보 get
 			//tilte sector set
 			Label titleUserName = (Label)trnMgtForm.lookup("#TitleUserNameLabel");
+			
 			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnWelcomeController.getTrnCode()));
 			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
 			//초기 표시 설정
@@ -313,9 +315,9 @@ public class TrnWelcomeService {
 		CommonService.WindowClose(form);
 	}
 	
-//	public void LogOut() {
-//		LogOut();
-//	}
+	public void LogOut(Parent form) {
+		CommonService.LogOut(form);
+	}
 	
 	//NotUse
 //	private String getPrmScheData(String data) {

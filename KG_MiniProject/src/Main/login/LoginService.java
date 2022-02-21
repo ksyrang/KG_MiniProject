@@ -27,7 +27,7 @@ public class LoginService {
 		//회원쪽으로 id전송
 		this.id = idText.getText();
 		
-		
+		//User Type 분류
 		if(memberRadio.isSelected())
 			job = "회원";
 		else if(trainerRadio.isSelected())
@@ -35,12 +35,13 @@ public class LoginService {
 		else if(adminRadio.isSelected())
 			job = "관리자";
 		
+		////User Type에 따른 동작
 		LoginDAO loginDao = new LoginDAO();
 		LoginDTO loginDto = null;
 		
 		if(job != null) {
 			if(job.equals("관리자") || job.equals("회원")) {
-				loginDto = loginDao.SelectMemberId(idText.getText());
+				loginDto = loginDao.SelectMemberId(idText.getText());//getInfo form DB
 //				System.out.println("Mcode: "+loginDto.getMEM_Code());
 				if(loginDto != null && loginDto.getMEM_PW().equals(pwText.getText())) {
 					if(job.equals("관리자"))

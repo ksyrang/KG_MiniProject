@@ -63,6 +63,7 @@ public class MEM_WelcomeController implements Initializable {
 	@FXML
 	private TextField price_TxtFld;
 
+
 	
 
 	@FXML
@@ -169,33 +170,81 @@ public class MEM_WelcomeController implements Initializable {
 				selectTable = memProgramTable.getSelectionModel().getSelectedItem();
 				memWelcomeSvc.setSelectTable(selectTable);
 				
-				// 강의 종류
-				String prmName = selectTable.getColPrmName();
-				prm_nameTxtFld.setText(prmName);
+				String memberStr = selectTable.getColPrmName();
+				String[] memberStr2= memberStr.split("_"); //회원권
+				String memberStr3 = memberStr2[0];
+				
+				
+				System.out.println(memberStr3);
+				if(memberStr3.equals("회원권")) {
+					//회원권임
+					// 강의 종류
+					String prmType = selectTable.getColPrmName();
+					prm_nameTxtFld.setText(prmType);
 
-				// 강의 코드
-				CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
-				CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmNameOne(prmName);
-				String prmCode = cmnPrmDto.getPRM_Code();
+					// 가격
+					int price = selectTable.getColPrmschePrice();
+					String strPrice = Integer.toString(price);
+					price_TxtFld.setText(strPrice);
 
-				// 가격
-				int price = selectTable.getColPrmschePrice();
-				String strPrice = Integer.toString(price);
-				price_TxtFld.setText(strPrice);
+					// 시간
+					String time = selectTable.getColPrmscheTime();
+					prmsche_timeTxtFld.setText(time);
 
-				// 시간
-				String time = selectTable.getColPrmscheTime();
-				prmsche_timeTxtFld.setText(time);
+					// 시작일 종료일
+					Date strDate = selectTable.getColPrmscheStrdate();
+					LocalDate LstrDate = CommonService.DateCnvt(strDate);
+					String Sstrdate = LstrDate.toString();
+					prmsche_strdateTxtFld.setText(Sstrdate);
+					Date endDate = selectTable.getColPrmscheEnddate();
+					LocalDate LendDate = CommonService.DateCnvt(endDate);
+					String Senddate = LendDate.toString();
+					
+					prmsche_enddateTxtFld.setText(Senddate);
+					
+					//강사 이름
+					String trainerName = selectTable.getColTrainerName();
+					trainer_nameTxtFld.setText(trainerName);
+					
+					
+				}else {
+					//ex프로그램임
+					
+					// 강의 종류
+					String prmName = selectTable.getColPrmName();
+					prm_nameTxtFld.setText(prmName);
 
-				// 시작일 종료일
-				Date strDate = selectTable.getColPrmscheStrdate();
-				LocalDate LstrDate = CommonService.DateCnvt(strDate);
-				String Sstrdate = LstrDate.toString();
-				prmsche_strdateTxtFld.setText(Sstrdate);
-				Date endDate = selectTable.getColPrmscheEnddate();
-				LocalDate LendDate = CommonService.DateCnvt(endDate);
-				String Senddate = LendDate.toString();
-				prmsche_enddateTxtFld.setText(Senddate);
+					// 강의 코드
+					CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
+					CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmNameOne(prmName);
+					String prmCode = cmnPrmDto.getPRM_Code();
+
+					// 가격
+					int price = selectTable.getColPrmschePrice();
+					String strPrice = Integer.toString(price);
+					price_TxtFld.setText(strPrice);
+
+					// 시간
+					String time = selectTable.getColPrmscheTime();
+					prmsche_timeTxtFld.setText(time);
+
+					// 시작일 종료일
+					Date strDate = selectTable.getColPrmscheStrdate();
+					LocalDate LstrDate = CommonService.DateCnvt(strDate);
+					String Sstrdate = LstrDate.toString();
+					prmsche_strdateTxtFld.setText(Sstrdate);
+					Date endDate = selectTable.getColPrmscheEnddate();
+					LocalDate LendDate = CommonService.DateCnvt(endDate);
+					String Senddate = LendDate.toString();
+					
+					//강사 이름
+					String trainerName = selectTable.getColTrainerName();
+					trainer_nameTxtFld.setText(trainerName);
+					
+					prmsche_enddateTxtFld.setText(Senddate);
+				}
+				
+				
 
 //				// 강사코드, 강사명 꼭 넣어야하나요..?
 //				String trainerCode = null;

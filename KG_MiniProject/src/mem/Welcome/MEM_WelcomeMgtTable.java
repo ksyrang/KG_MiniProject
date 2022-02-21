@@ -8,7 +8,7 @@ public class MEM_WelcomeMgtTable {
 	private String colPrmName;
 //	private String colPrmscheCode;
 //	private String colMemshipscheCode;
-//	private String colTrainerCode;
+	private String colTrainerName;
 //	private String colPrmscheName;
 	private String colPrmscheTime;
 	private Date colPrmscheStrdate;
@@ -17,12 +17,13 @@ public class MEM_WelcomeMgtTable {
 //	private int colPrmscheCurrentp;
 //	private int colPrmscheLimitp;
 	
-	public MEM_WelcomeMgtTable(String colPrmName, String colPrmscheTime, int colPrmschePrice,Date colPrmscheStrdate,Date colPrmscheEnddate) {
+	public MEM_WelcomeMgtTable(String colTrainerName,String colPrmName, String colPrmscheTime, int colPrmschePrice,Date colPrmscheStrdate,Date colPrmscheEnddate) {
 		this.colPrmName = colPrmName;
 		this.colPrmscheTime = colPrmscheTime;
 		this.colPrmschePrice = colPrmschePrice;
 		this.colPrmscheStrdate = colPrmscheStrdate;
 		this.colPrmscheEnddate = colPrmscheEnddate;
+		this.colTrainerName = colTrainerName;
 	}
 
 
@@ -32,7 +33,7 @@ public class MEM_WelcomeMgtTable {
 	}
 
 	public void setColPrmName(String colPrmName) {
-		colPrmName = colPrmName;
+		this.colPrmName = colPrmName;
 	}
 
 	public String getColPrmscheTime() {
@@ -65,6 +66,18 @@ public class MEM_WelcomeMgtTable {
 
 	public void setColPrmscheEnddate(Date colPrmscheEnddate) {
 		this.colPrmscheEnddate = colPrmscheEnddate;
+	}
+
+
+
+	public String getColTrainerName() {
+		return colTrainerName;
+	}
+
+
+
+	public void setColTrainerName(String colTrainerName) {
+		this.colTrainerName = colTrainerName;
 	}
 	
 	

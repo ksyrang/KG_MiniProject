@@ -103,8 +103,8 @@ public class MEM_WelcomeDAO {
 						memWelcomeDto.setPrmsche_currentp(0);
 						memWelcomeDto.setPrmsche_limitp(0);
 						member.add(memWelcomeDto);
-						System.out.println("memshipsche_code : " + rs1.getString("memshipsche_code"));
-						System.out.println("memshipsche_code : " + member.get(1));
+//						System.out.println("memshipsche_code : " + rs1.getString("memshipsche_code"));
+//						System.out.println("memshipsche_code : " + member.get(1));
 					}
 				}
 			}

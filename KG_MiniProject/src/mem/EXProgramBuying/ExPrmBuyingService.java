@@ -1,10 +1,9 @@
 package mem.EXProgramBuying;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
 
-
+import common.CmnPrmScheDAO;
+import common.CmnPrmScheDTO;
 import common.CommonService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +16,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mem.Mgt.MgtDAO;
 import mem.Mgt.MgtDTO;
@@ -42,7 +42,7 @@ public class ExPrmBuyingService {
 		exprogramDao = new ExProgramBuyingDAO();
 		ObservableList<ExProgramBuyingDTO> allList = exprogramDao.getAllInfo();
 		for (ExProgramBuyingDTO i : allList) {
-			tableItems.add(new ExProTable(i.getPRM_Name(), i.getPRMSCHE_Code(), i.getTRAINER_Name(),
+			tableItems.add(new ExProTable(i.getPRMSCHE_Name(), i.getPRMSCHE_Code(), i.getTRAINER_Name(),
 					i.getPRMSCHE_LimitP(), i.getPRMSCHE_CurrentP(), i.getPRMSCHE_Strdate(), i.getPRMSCHE_Enddate(),
 					i.getPRMSCHE_Price(), i.getPRMSCHE_Time()));
 		}
@@ -116,22 +116,48 @@ public class ExPrmBuyingService {
 	}
 	
 	//ex프로그램 종류 등록
-	public void paymentProc(Parent buyingTypeForm, String membCode) {
+	public void paymentProc(Parent exProgramBuyingForm, String membCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/BuyingType/KG_MEM_FX_BuyingType.fxml"));
+		CmnPrmScheDAO cmnPrmScheDAO = new CmnPrmScheDAO();
+		CmnPrmScheDTO cmnPrmScheDTO = new CmnPrmScheDTO();
+		Parent buyingTypeForm;
 		
 		try {
 			buyingTypeForm = loader.load();
-			System.out.println(buyingTypeForm);
+			//System.out.println(buyingTypeForm);
 			exPrmBuyingController.setBuyingTypeForm(buyingTypeForm);
 			exPrmBuyingController.setMEM_BuyingTypeController(loader.getController());
 			exPrmBuyingController.getMEM_BuyingTypeController().setBuyingTypeForm(buyingTypeForm);
 			exPrmBuyingController.getMEM_BuyingTypeController().setMembCode(exPrmBuyingController.getMembCode());
 			
+			TableView<ExProTable> exProgramTableView = (TableView<ExProTable>)exProgramBuyingForm.lookup("#exProgramTableView");
+			ExProTable tmpData = new ExProTable();
+			tmpData = exProgramTableView.getSelectionModel().getSelectedItem();
+			
 			// 상단 이름
 			Label titleUserName = (Label) buyingTypeForm.lookup("#TitleMemNameLabel");
 			MgtDTO tmpMemDto = new MgtDTO(new MgtDAO().selectCode(membCode));
 			titleUserName.setText(tmpMemDto.getMEM_Name() + " 회원님");
-
+			
+			//결제 회원권 이름
+			Text ScheNameLabel = (Text)buyingTypeForm.lookup("#ScheNameLabel");
+			Text SchePriceLabel = (Text)buyingTypeForm.lookup("#SchePriceLabel");
+			Text PayDateLabel = (Text)buyingTypeForm.lookup("#PayDateLabel");
+//			
+//			//데이터 대입
+//			System.out.println(ScheNameLabel.getText());
+			ScheNameLabel.setText(tmpData.getProgramName());
+			SchePriceLabel.setText(Integer.toString(tmpData.getPrice()));
+			PayDateLabel.setText(CommonService.getNowDatetoString());
+//			
+			
+//			CmnPrmScheDTO PrmScheDTO = new CmnPrmScheDAO().SltPrmScheOne(cmnPrmScheDTO.getPRMSCHE_Code());	
+//			System.out.println(PrmScheDTO.getPRMSCHE_Name());
+//			ScheNameLabel.setText("KGGYM "+PrmScheDTO.getPRMSCHE_Name()+" 개월 이용권");
+//			//결제 금액	
+//			SchePriceLabel.setText(Integer.toString(PrmScheDTO.getPRMSCHE_Price())+" 원");
+//			//결제 일 표시
+//			PayDateLabel.setText(CommonService.getNowDatetoString());
 			
 			Scene scene = new Scene(buyingTypeForm);
 			Stage primaryStage = new Stage();

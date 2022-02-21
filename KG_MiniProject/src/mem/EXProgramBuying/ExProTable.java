@@ -15,7 +15,9 @@ public class ExProTable {
 	private String timeC;
 	
 	
-	
+	public ExProTable() {
+		// TODO Auto-generated constructor stub
+	}
 	public ExProTable(String programName, String code, String trainerName, int limtPerson, int currentPerson,
 			Date strDate, Date endDate, int price, String timeC) {
 		super();

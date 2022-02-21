@@ -73,6 +73,32 @@ public class CmnPrmScheDAO {
 		return result;
 	}
 	
+	public CmnPrmScheDTO SltPrmScheCode(String MEM_Code) {
+		CmnPrmScheDTO tmpdata = null;
+		sql = "SELECT * FROM PRMSCHE_TB WHERE MEM_Code = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, MEM_Code);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				tmpdata = new CmnPrmScheDTO();
+				tmpdata.setPRMSCHE_Code(rs.getString("PRMSCHE_Code"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		return tmpdata;		
+	}
+	
 	public CmnPrmScheDTO SltPrmScheOne(String PRMSCHE_Code) {
 		CmnPrmScheDTO tmpdata = null;
 		sql = "SELECT * FROM PRMSCHE_TB WHERE PRMSCHE_Code = ?" ;

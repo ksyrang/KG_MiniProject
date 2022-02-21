@@ -148,10 +148,10 @@ public class ExPrmBuyingController implements Initializable {
 		exProgramSvc.memMgtOpen(membCode);
 	}
 	
-	// 예약 버튼 클릭 시
+	// 결제 버튼 클릭 시
 	public void paymentProc() {
 		// System.out.println("결제처리");
-		exProgramSvc.paymentProc(buyingTypeForm, membCode);
+		exProgramSvc.paymentProc(exProgramMgtForm, membCode);
 	}
 
 	// 이전 버튼 클릭 시

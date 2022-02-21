@@ -5,14 +5,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mem.EXProgramBuying.ExPrmBuyingController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mem.EXProgramBuying.ExPrmBuyingController1">
    <top>
       <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
@@ -61,23 +62,43 @@
             </Label>
             <TabPane prefHeight="400.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                  <Tab fx:id="sltPilates" text="필라테스">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    </content>
+                  <Tab text="필라테스">
+                     <content>
+                        <TableView fx:id="exProgramTableView" prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn fx:id="programName" prefWidth="125.0" text="프로그램 종류" />
+                            <TableColumn fx:id="trainerName" text="강사" />
+                              <TableColumn fx:id="code" prefWidth="87.0" text="고유번호" />
+                              <TableColumn fx:id="currentPerson" prefWidth="90.0" text="현재인원" />
+                              <TableColumn fx:id="limtPerson" prefWidth="98.0" text="최대인원" />
+                              <TableColumn fx:id="strDate" prefWidth="92.0" text="시작일" />
+                              <TableColumn fx:id="endDate" minWidth="5.0" prefWidth="86.0" text="마감일" />
+                              <TableColumn fx:id="timeC" minWidth="0.0" prefWidth="85.0" text="오전/오후" />
+                              <TableColumn fx:id="price" minWidth="0.0" prefWidth="109.0" text="가격" />
+                          </columns>
+                        </TableView>
+                     </content>
                   </Tab>
-                <Tab fx:id="sltYoga" text="   요가   " />
-                <Tab fx:id="sltPT" text="    PT     " />
-                  <Tab text="EX프로그램4">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    </content>
-                  </Tab>
-                  <Tab text="EX프로그램5">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    </content>
-                  </Tab>
+                <Tab fx:id="sltYoga" text="   요가   ">
+                     <content>
+                        <TableView prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                     </content></Tab>
+                <Tab fx:id="sltPT" text="    PT     ">
+                     <content>
+                        <TableView prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                     </content></Tab>
+                  <Tab text="EX프로그램4" />
+                  <Tab text="EX프로그램5" />
               </tabs>
                <VBox.margin>
                   <Insets top="10.0" />

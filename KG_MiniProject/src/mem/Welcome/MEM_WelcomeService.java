@@ -46,7 +46,7 @@ public class MEM_WelcomeService {
    }
    //ex프로그램 버튼 클릭 시
    public void exProgramBuyingOpen(String membCode,  Parent exProgramBuyingForm ) {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/EXProgramBuying/KG_MEM_FX_EXProgramBuying.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/EXProgramBuying/KG_MEM_FX_EXProgramMgt.fxml"));
       
       try {
         exProgramBuyingForm = loader.load();

@@ -2,7 +2,9 @@ package mem.EXProgramBuying;
 
 import java.sql.Date;
 
-public class ExPrmBuyingDTO {
+
+
+public class ExProgramMgtDTO {
 	
 
 	//PRMSCHE_TB
@@ -13,7 +15,7 @@ public class ExPrmBuyingDTO {
 	private int PRMSCHE_LimitP;
 	private int PRMSCHE_CurrentP;
 	private int PRMSCHE_Price;
-//	private String PRMSHE_Name;
+	private String PRMSHE_Name;
 	
 	//FK
 	private String TRAINER_Code;
@@ -89,6 +91,12 @@ public class ExPrmBuyingDTO {
 	}
 	public void setTRAINER_Name(String tRAINER_Name) {
 		TRAINER_Name = tRAINER_Name;
+	}
+	public String getPRMSHE_Name() {
+		return PRMSHE_Name;
+	}
+	public void setPRMSHE_Name(String pRMSHE_Name) {
+		PRMSHE_Name = pRMSHE_Name;
 	}
 	
 

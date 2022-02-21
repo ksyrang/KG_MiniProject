@@ -2,10 +2,10 @@ package mem.EXProgramBuying;
 
 import java.sql.Date;
 
-public class ExPrmBuyingTable {
+public class ExProTable {
 	
 	private String programName;
-	private String code;
+	private String code; //프로그램스케줄고유번호
 	private String trainerName;
 	private int limtPerson;
 	private int currentPerson;
@@ -16,7 +16,7 @@ public class ExPrmBuyingTable {
 	
 	
 	
-	public ExPrmBuyingTable(String programName, String code, String trainerName, int limtPerson, int currentPerson,
+	public ExProTable(String programName, String code, String trainerName, int limtPerson, int currentPerson,
 			Date strDate, Date endDate, int price, String timeC) {
 		super();
 		this.programName = programName;

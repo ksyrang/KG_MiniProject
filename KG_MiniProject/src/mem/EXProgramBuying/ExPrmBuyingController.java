@@ -1,68 +1,62 @@
 package mem.EXProgramBuying;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
-
-import admin.exProgramMgt.ExProTable;
-import admin.exProgramMgt.ExProgramMgtService;
 import common.CommonService;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import mem.BuyingType.MEM_BuyingTypeController;
 
 
+
 public class ExPrmBuyingController implements Initializable{
-	private Parent exProgramBuyingForm;
-	private Parent buyingTypeForm;
-	private ExPrmBuyingService ExPrmBuyingSvc;
+	private Parent exProgramMgtForm;
+	private ExPrmBuyingService exProgramSvc;
 	private String selectData;
-	private ExPrmBuyingTable ExPrmBuyingTable;
+	private ExProTable codeTable;
 	private ObservableList<String> allProgram;
 	private String membCode;
 	private ExPrmBuyingController exPrmBuyingController;
-	private Parent memWelcomeForm;
 	private MEM_BuyingTypeController buyingTypeController;
-	@FXML private Label TitleMemNameLabel;
-	@FXML private ComboBox<String> memshipComboBox;
+	private Parent memWelcomeForm;
+	private Parent buyingTypeForm;
+	@FXML private ComboBox<String> kindComboBox;
 	@FXML private DatePicker startDatePicker;
 	@FXML private DatePicker endDatePicker;
-	@FXML private Button BackBtn;
-	@FXML private Button ExPScheBuyBtn;
-	@FXML private Button ExlogoutButton;
 	@FXML private ListView<String> programListView;
-	@FXML private TableView<ExPrmBuyingTable> exProgramTableView;
-	@FXML private TableColumn<ExPrmBuyingTable, String> programName;
-	@FXML private TableColumn<ExPrmBuyingTable, String> code;
-	@FXML private TableColumn<ExPrmBuyingTable, String> trainerName;
-	@FXML private TableColumn<ExPrmBuyingTable, Integer> limtPerson;
-	@FXML private TableColumn<ExPrmBuyingTable, Integer> currentPerson;
-	@FXML private TableColumn<ExPrmBuyingTable, Date> strDate;
-	@FXML private TableColumn<ExPrmBuyingTable, Date> endDate;
-	@FXML private TableColumn<ExPrmBuyingTable, Integer> price;
-	@FXML private TableColumn<ExPrmBuyingTable, String> timeC;
+	@FXML private TableView<ExProTable> exProgramTableView;
+	@FXML private TableColumn<ExProTable, String> programName;
+	@FXML private TableColumn<ExProTable, String> code;
+	@FXML private TableColumn<ExProTable, String> trainerName;
+	@FXML private TableColumn<ExProTable, Integer> limtPerson;
+	@FXML private TableColumn<ExProTable, Integer> currentPerson;
+	@FXML private TableColumn<ExProTable, Date> strDate;
+	@FXML private TableColumn<ExProTable, Date> endDate;
+	@FXML private TableColumn<ExProTable, Integer> price;
+	@FXML private TableColumn<ExProTable, String> timeC;
+
 	
+	/*
+	 * 1.ex프로그램 combobox 선택 후 수정 연동
+	*/
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//ExPrmBuyingSvc = new ExPrmBuyingService();
-
-		//allProgram = ExPrmBuyingSvc.getAllProgram();
-		//programListView.setItems(allProgram);
-		/*
-		ExPrmBuyingSvc = new ExPrmBuyingService();
-		//리스트 창 
-		ExPrmBuyingSvc.listUp(this.programListView);
+		
 		
 		//테이블 창
 		programName.setCellValueFactory(new PropertyValueFactory<>("programName"));
@@ -76,12 +70,30 @@ public class ExPrmBuyingController implements Initializable{
 		price.setCellValueFactory(new PropertyValueFactory<>("price"));
 		timeC.setCellValueFactory(new PropertyValueFactory<>("timeC"));
 		
-		ExPrmBuyingSvc.tableUp(exProgramTableView);
-		 */
+		exProgramSvc.tableUp(exProgramTableView);
+		
+		
+		//수정창		
+		//tabelView 클릭 시
+		exProgramTableView.setOnMouseClicked(new EventHandler<MouseEvent>() { 
+			@Override public void handle(MouseEvent event) { 
+				codeTable = exProgramTableView.getSelectionModel().getSelectedItem();
+				exProgramSvc.setCodeTable(codeTable);
+				
+				}
+			});
+		
 	}
+	
+	public void setExProgramMgtForm(Parent exProgramMgtForm) {
+		this.exProgramMgtForm = exProgramMgtForm;
+	}
+	
+	
+	
 	public ExPrmBuyingController() {
-		ExPrmBuyingSvc = new ExPrmBuyingService();
-		ExPrmBuyingSvc.setExPrmBuyingController(this);
+		exProgramSvc = new ExPrmBuyingService();
+		exProgramSvc.setExPrmBuyingController(this);
 	}
 	
 	public ExPrmBuyingController getExPrmBuyingController() {
@@ -99,8 +111,8 @@ public class ExPrmBuyingController implements Initializable{
 		return membCode;
 	}
 	
-	public void setExProgramBuyingForm(Parent exProgramBuyingForm) {
-		this.exProgramBuyingForm = exProgramBuyingForm;
+	public void setExProgramBuyingForm(Parent exProgramMgtForm) {
+		this.exProgramMgtForm = exProgramMgtForm;
 		
 	}
 	
@@ -125,17 +137,17 @@ public class ExPrmBuyingController implements Initializable{
 	// 예약 버튼 클릭 시
 	public void paymentProc() {
 	//	System.out.println("결제처리");
-		ExPrmBuyingSvc.paymentProc(buyingTypeForm, membCode);
+		exProgramSvc.paymentProc(buyingTypeForm, membCode);
 	}
 	
 	// 이전 버튼 클릭 시
 	public void cancleProc() {
 		//CommonService.WindowClose(exProgramBuyingForm);
-		ExPrmBuyingSvc.cancelProc(exProgramBuyingForm);
+		exProgramSvc.cancelProc(exProgramMgtForm);
 	}
 
 	public void logoutProc() {
-		ExPrmBuyingSvc.logoutProc(exProgramBuyingForm);
+		exProgramSvc.logoutProc(exProgramMgtForm);
 	//	CommonService.WindowClose(exProgramBuyingForm);
 
 	}

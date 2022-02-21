@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mem.EXProgramBuying.ExPrmBuyingController">
+   <top>
+      <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="KG GYM">
+               <font>
+                  <Font size="25.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" top="12.5" />
+               </HBox.margin>
+            </Label>
+            <Label text="-회원님">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="600.0" top="12.5" />
+               </HBox.margin>
+            </Label>
+            <Button mnemonicParsing="false" text="logout">
+               <HBox.margin>
+                  <Insets left="20.0" top="12.5" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </top>
+   <bottom>
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" orientation="VERTICAL" prefHeight="90.0" prefWidth="900.0">
+         <children>
+            <HBox prefHeight="90.0" prefWidth="900.0">
+               <children>
+                  <Button fx:id="payButton" mnemonicParsing="false" onAction="#paymentProc" prefHeight="50.0" prefWidth="150.0" text="결제">
+                     <HBox.margin>
+                        <Insets left="150.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="cancleButton" mnemonicParsing="false" onAction="#cancleProc" prefHeight="50.0" prefWidth="150.0" text="이전">
+                     <HBox.margin>
+                        <Insets left="300.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </FlowPane>
+   </bottom>
+   <center>
+      <VBox prefHeight="400.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <VBox prefHeight="400.0" prefWidth="823.0" spacing="5.0">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="EX 프로그램 예약" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="exProgramTableView" prefHeight="374.0" prefWidth="772.0" tableMenuButtonVisible="true">
+                          <columns>
+                            <TableColumn fx:id="programName" minWidth="0.0" prefWidth="170.0" text="프로그램 종류" />
+                              <TableColumn fx:id="trainerName" minWidth="0.0" text="강사" />
+                            <TableColumn fx:id="code" minWidth="0.0" text="고유번호" />
+                              <TableColumn fx:id="currentPerson" minWidth="0.0" prefWidth="60.0" text="현재인원" />
+                              <TableColumn fx:id="limtPerson" minWidth="0.0" prefWidth="60.0" resizable="false" text="최대인원" />
+                              <TableColumn fx:id="strDate" minWidth="0.0" prefWidth="100.0" text="시작일" />
+                              <TableColumn fx:id="endDate" minWidth="0.0" prefWidth="100.0" text="마감일" />
+                              <TableColumn fx:id="timeC" minWidth="0.0" text="오전/오후" />
+                              <TableColumn fx:id="price" minWidth="0.0" text="가격" />
+                          </columns>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets top="20.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>

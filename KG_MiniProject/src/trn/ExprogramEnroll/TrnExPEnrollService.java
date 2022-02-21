@@ -38,6 +38,10 @@ public class TrnExPEnrollService {
 		this.TrnExpEnrollController = trnExpEnrollController;
 	}
 	
+	public void CheckSrtDate() {
+		
+	}
+	
 
 	public void ExPErllProc(Parent myForm) {
 		if(CommonService.CompareDate(SrtDate.getValue(), EndDate.getValue())) {

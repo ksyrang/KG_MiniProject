@@ -61,6 +61,10 @@ public class TrnExpEnrollController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {		
 	
 	}
+	public void CheckSrtDate() {
+		trnExPEnrollSvc.CheckSrtDate();
+	}
+	
 	public void ExPErllProc(){
 		trnExPEnrollSvc.ExPErllProc(trnExpEnrollForm);
 		

@@ -98,7 +98,7 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="SrtDate" prefHeight="35.0" prefWidth="175.0">
+                  <DatePicker fx:id="SrtDate" onAction="#CheckSrtDate" prefHeight="35.0" prefWidth="175.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

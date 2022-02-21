@@ -20,13 +20,12 @@ public class Main extends Application{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/main/KG_COM_FX_Main.fxml"));
 		Parent mainForm = loader.load();
 		Controller controller = new Controller();
-		CommonService cmnsvc = new CommonService();
+//		CommonService cmnsvc = new CommonService();
 		
 		controller.setLoginController(loader.getController());
 //		controller.getLoginController().setmainForm(mainForm);
 		LoginController loginController = controller.getLoginController();
-		loginController.setmainForm(mainForm);		
-		cmnsvc.setLoginForm(mainForm);
+		loginController.setmainForm(mainForm);
 		controller.setLogOut(new LogOut());
 //		LogOut logout = new LogOut();
 //		logout.setLoginForm(mainForm);

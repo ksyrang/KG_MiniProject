@@ -19,15 +19,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class CommonService {
-	
-	private Parent Form;
-
-	public Parent getLoginForm() {
-		return Form;
-	}
-	public void setLoginForm(Parent loginForm) {
-		this.Form = loginForm;
-	}
 
 	public static void Msg(String content) {
 		Alert alert = new Alert(AlertType.INFORMATION);
@@ -46,14 +37,6 @@ public class CommonService {
 		else return false;
 	}
 
-//	public void LogOut() {
-//
-//		Stage stage = new Stage();
-////		Scene scene = new Scnen(Form);}
-//		stage.setScene(scene);
-//		stage.setTitle("new login");
-//		stage.show();
-//	}
 	public static LocalDate StringtoLocalDate(String Date) {		
 		return LocalDate.parse(Date, DateTimeFormatter.ISO_DATE);
 	}

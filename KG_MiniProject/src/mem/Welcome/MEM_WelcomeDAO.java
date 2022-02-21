@@ -187,4 +187,34 @@ public class MEM_WelcomeDAO {
 		return prm_name;
 	}
 	
+	public ObservableList<MEM_WelcomeDTO> selectMemScheAllProgram(String mem_code) {
+		MEM_WelcomeDTO memWelcomeDto = new MEM_WelcomeDTO();				
+		String sql = "SELECT * FROM MEMSCHE_TB WHERE mem_code=?";
+		PreparedStatement ps;
+		ResultSet rs;
+		ObservableList<MEM_WelcomeDTO> member = FXCollections.observableArrayList();
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, mem_code);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				//종류, 시간, 가격, 시작일, 종료일, 강사명,
+				memWelcomeDto = new MEM_WelcomeDTO();
+				memWelcomeDto.setMemsche_code(rs.getString("memsche_code"));
+				memWelcomeDto.setPrmsche_code(rs.getString("prmsche_code"));
+				memWelcomeDto.setMemshipsche_code(rs.getString("memshipsche_code"));
+				memWelcomeDto.setMem_code(rs.getString("mem_code"));
+				member.add(memWelcomeDto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return member;
+	}
+	
+	
+	
+	
+	
+	
 }

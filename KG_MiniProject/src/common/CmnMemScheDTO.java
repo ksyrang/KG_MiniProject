@@ -1,17 +1,18 @@
 package common;
 
 public class CmnMemScheDTO {
-	//PK
-	private String MEMSCHE_Code; 
+	// PK
+	private String MEMSCHE_Code;
 
-	//FK
-	private String PRMSCHE_Code; 
+	// FK
+	private String PRMSCHE_Code;
 	private String MEMSHIPSCHE_Code;
 	private String MEM_Code;
-	
-	
 
-	
+	public CmnMemScheDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public CmnMemScheDTO(String mEMSCHE_Code, String pRMSCHE_Code, String mEMSHIPSCHE_Code, String mEM_Code) {
 		super();
 		MEMSCHE_Code = mEMSCHE_Code;
@@ -19,9 +20,6 @@ public class CmnMemScheDTO {
 		MEMSHIPSCHE_Code = mEMSHIPSCHE_Code;
 		MEM_Code = mEM_Code;
 	}
-
-
-
 
 	public String getMEMSCHE_Code() {
 		return MEMSCHE_Code;
@@ -55,6 +53,4 @@ public class CmnMemScheDTO {
 		MEM_Code = mEM_Code;
 	}
 
-	
-	
 }

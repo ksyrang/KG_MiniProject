@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import common.CmnMemScheDAO;
+import common.CmnMemScheDTO;
 import common.CmnMemShipDAO;
 import common.CmnMemShipDTO;
 import common.CmnMemShipScheDAO;
@@ -44,23 +46,23 @@ public class MainService {
 	}
 
 	public void adminWelcomeOpen() {
-	      FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/welcome/KG_ADM_FX_Welcome.fxml"));
-	      Parent adminWelcomeForm;
-	      try {
-	         adminWelcomeForm = loader.load();
-	         controller.setAdminWelcomeController(loader.getController());
-	         controller.setAdminWelcomeForm(adminWelcomeForm);
-	         controller.settingAdmin();
-	         
-	         Scene scene = new Scene(adminWelcomeForm);
-	         Stage primaryStage = new Stage();
-	         primaryStage.setTitle("adminWelcome");
-	         primaryStage.setScene(scene);
-	         primaryStage.show();
-	      } catch (IOException e) {
-	         e.printStackTrace();
-	      }
-	   }
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/welcome/KG_ADM_FX_Welcome.fxml"));
+		Parent adminWelcomeForm;
+		try {
+			adminWelcomeForm = loader.load();
+			controller.setAdminWelcomeController(loader.getController());
+			controller.setAdminWelcomeForm(adminWelcomeForm);
+			controller.settingAdmin();
+
+			Scene scene = new Scene(adminWelcomeForm);
+			Stage primaryStage = new Stage();
+			primaryStage.setTitle("adminWelcome");
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void memberWelcomeOpen(String UserCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/Welcome/KG_MEM_FX_Welcome.fxml"));
@@ -71,67 +73,96 @@ public class MainService {
 			controller.setMEM_WelcomeController(loader.getController());
 			controller.getMEM_WelcomeController().setMemWelcomeForm(memberWelcomeForm);
 			controller.getMEM_WelcomeController().setMembCode(UserCode);
-			Label titleUserName = (Label)memberWelcomeForm.lookup("#TitleMemNameLabel");
-			Label idText = (Label)memberWelcomeForm.lookup("#idText");
-	        MgtDTO tmpMemDto = new MgtDTO(new MgtDAO().selectCode(UserCode));
-	        titleUserName.setText(tmpMemDto.getMEM_Name()+" 회원님");
+			Label titleUserName = (Label) memberWelcomeForm.lookup("#TitleMemNameLabel");
+			Label idText = (Label) memberWelcomeForm.lookup("#idText");
+			MgtDTO tmpMemDto = new MgtDTO(new MgtDAO().selectCode(UserCode));
+			titleUserName.setText(tmpMemDto.getMEM_Name() + " 회원님");
 
-	        
-	        //초기화면 테이블 세팅
-	        TableView<MEM_WelcomeMgtTable> memProgramTable = (TableView<MEM_WelcomeMgtTable>) memberWelcomeForm.lookup("#memProgramTable");
+			// 초기화면 테이블 세팅
+			TableView<MEM_WelcomeMgtTable> memProgramTable = (TableView<MEM_WelcomeMgtTable>) memberWelcomeForm
+					.lookup("#memProgramTable");
 			MEM_WelcomeDAO memWelcomeDao = new MEM_WelcomeDAO();
 			ObservableList<MEM_WelcomeMgtTable> obserList = FXCollections.observableArrayList();
-	    	ObservableList<MEM_WelcomeDTO> memWelcomeDto = memWelcomeDao.selectMemAllProgram(tmpMemDto.getMEM_ID());
+			ObservableList<MEM_WelcomeDTO> memWelcomeDto = memWelcomeDao.selectMemScheAllProgram(tmpMemDto.getMEM_Code());
 
+			// cmnMemScheDto.getMEM_Code();
+			// cmnMemScheDto.getPRMSCHE_Code();
+			// cmnMemScheDto.getMEMSHIPSCHE_Code();
 			for (MEM_WelcomeDTO m : memWelcomeDto) {
-				// String prm_name 얻는 과정
-				String prm_Code = m.getPrm_code();
-				CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
-				CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(prm_Code);
+				String memCode = m.getMem_code();
+				String PrmScheCode = m.getPrmsche_code();
+				String memShipScheCode = m.getMemshipsche_code();
+				String memScheCode = m.getMemsche_code();
+
 				String type = null;
 				String time = null;
 				String trainerName = null;
-				if(cmnPrmDto!=null) {
-					
+				int prmsche_price = 0;
+				Date prmsche_strdate = null;
+				Date prmsche_enddate = null;
+
+				if (PrmScheCode != null) {
+					// 프로그램임
+
+					// type(프로그램명)
+					CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
+					CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheOne(PrmScheCode);
+					String prmCode = cmnPrmScheDto.getPRM_Code();
+					CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
+					CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(prmCode);
 					type = cmnPrmDto.getPRM_Name();
-					time = m.getPrmsche_time();
-					
-			        String prmSCheCode = m.getPrmsche_code();
-			        CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
-			        CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheOne(prmSCheCode);
-			        String trainerCode = cmnPrmScheDto.getTRAINER_Code();
-			        CmnTrainerDAO cmnTrainerDao = new CmnTrainerDAO();
-			        CmnTrainerDTO cmnTrainerDto = cmnTrainerDao.SltTrnOne(trainerCode);
-			        trainerName = cmnTrainerDto.getTRAINER_Name();
-				}else {
-					//회원권
+
+					// time
+					time = cmnPrmScheDto.getPRMSCHE_Time();
+
+					// 트레이너 이름
+					String trainerCode = cmnPrmScheDto.getTRAINER_Code();
+					CmnTrainerDAO cmnTrainerDao = new CmnTrainerDAO();
+					CmnTrainerDTO cmnTrainerDto = cmnTrainerDao.SltTrnOne(trainerCode);
+					trainerName = cmnTrainerDto.getTRAINER_Name();
+
+					// 가격
+					prmsche_price = cmnPrmScheDto.getPRMSCHE_Price();
+
+					// 시작, 마무리 날짜
+					prmsche_strdate = cmnPrmScheDto.getPRMSCHE_Strdate();
+					prmsche_enddate = cmnPrmScheDto.getPRMSCHE_Enddate();
+
+				} else {
+					// 회원권
+
+					// type(프로그램명)
 					CmnMemShipScheDAO cmnMemShipScheDao = new CmnMemShipScheDAO();
-					CmnMemShipScheDTO cmnMemShipScheDto = cmnMemShipScheDao.SltMemShipScheOne(m.getMemshipsche_code());
+					CmnMemShipScheDTO cmnMemShipScheDto = cmnMemShipScheDao.SltMemShipScheOne(memShipScheCode);
 					String memShipCode = cmnMemShipScheDto.getMEMSHIP_Code();
 					CmnMemShipDAO cmnMemShipDao = new CmnMemShipDAO();
 					CmnMemShipDTO cmnMemShipDto = cmnMemShipDao.SltMemShipOne(memShipCode);
 					String memShipType = cmnMemShipDto.getMEMSHIP_Type();
-					type = "회원권_"+memShipType+"개월";
-					time = "-";
-					trainerName= "KGGYM";
-					
-				}
+					type = "회원권_" + memShipType + "개월";
 
-				int prmsche_price = m.getPrmsche_price();
-				Date prmsche_strdate = m.getPrmsche_strdate();
-				Date prmsche_enddate = m.getPrmsche_enddate();
-				System.out.println("trainer"+trainerName);
-				obserList.add(
-						new MEM_WelcomeMgtTable(trainerName, type, time, prmsche_price, prmsche_strdate, prmsche_enddate));
+					// time
+					time = "-";
+
+					// 트레이너 이름
+					trainerName = "KGGYM";
+
+					// 가격
+					prmsche_price = cmnMemShipDto.getMEMSHIP_Price();
+
+					// 시작, 마무리 날짜
+					prmsche_strdate = cmnMemShipScheDto.getMEMSHIPSCHE_Strdate();
+					prmsche_enddate = cmnMemShipScheDto.getMEMSHIPSCHE_Enddate();
+
+				}
+				obserList.add(new MEM_WelcomeMgtTable(trainerName, type, time, prmsche_price, prmsche_strdate,
+						prmsche_enddate));
+
 			}
 			memProgramTable.setItems(obserList);
 
 			MEM_WelcomeService memWelcomeService = new MEM_WelcomeService();
-			memWelcomeService.setId(tmpMemDto.getMEM_ID());	
-	        
-	        
-	        
-	        
+			memWelcomeService.setId(tmpMemDto.getMEM_ID());
+
 			Scene scene = new Scene(memberWelcomeForm);
 			Stage primaryStage = new Stage();
 			primaryStage.setTitle("memberWelcome");

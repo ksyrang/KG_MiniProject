@@ -5,6 +5,8 @@ import java.util.Date;
 
 import common.CmnMemDAO;
 import common.CmnMemDTO;
+import common.CmnMemScheDAO;
+import common.CmnMemScheDTO;
 import common.CmnMemShipDAO;
 import common.CmnMemShipDTO;
 import common.CmnMemShipScheDAO;
@@ -80,17 +82,30 @@ public class MEM_BuyingTypeService {
 		PayDTO.setMEMSHIPSCHE_Code(memshipScheDto.getMEMSHIPSCHE_Code());
 //		PayDTO.setPRMSCHE_Code(buyingTypeController.getPRMSCHE_Code());
 		
+		
+		//MEM_CODE		
+		//MEMSCHE_CODE
+		//MEMSHIPSCHE_CODE
+		//넣어주기
+		CmnMemScheDAO cmnMemScheDao = new CmnMemScheDAO();
+		CmnMemScheDTO cmnMemScheDto = new CmnMemScheDTO();
+		cmnMemScheDto.setMEM_Code(buyingTypeController.getUserCode());
+		cmnMemScheDto.setMEMSHIPSCHE_Code(memshipScheDto.getMEMSHIPSCHE_Code());
+		cmnMemScheDto.setMEMSCHE_Code(cmnMemScheDto.getMEM_Code()+cmnMemScheDto.getMEMSHIPSCHE_Code());
+		cmnMemScheDao.IstMem(cmnMemScheDto);
+		
+		
 		CmnMemDAO memDao = new CmnMemDAO();
 		
 		//입력 결과
 		result =payDao.Istpay(PayDTO);
 		if(result == 1) {
-			if(memDao.memShipScheCodeUpdate(buyingTypeController.getUserCode(), memshipScheDto.getMEMSHIPSCHE_Code()) == 1) {
+//			if(memDao.memShipScheCodeUpdate(buyingTypeController.getUserCode(), memshipScheDto.getMEMSHIPSCHE_Code()) == 1) {
 				CommonService.WindowClose(MyForm);
 				CommonService.Msg("결제완료");
-			}else {
-				CommonService.Msg("결제 이상 발생");
-			}
+//			}else {
+//				CommonService.Msg("결제 이상 발생");
+//			}
 		}else {
 			CommonService.Msg("결제 이상 발생");
 			return;

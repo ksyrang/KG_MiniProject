@@ -6,16 +6,22 @@ public class MEM_WelcomeDTO {
 	private String mem_id;
 	private String prm_code;
 	private String prm_name;
-	private String prmsche_code;
-	private String memshipsche_code;
 	private String trainer_code;
 	private String prmsche_name;
 	private String prmsche_time;
+
+	//예약 스케줄 관리
+	private String mem_code;
+	private String memsche_code;
+	private String prmsche_code;
+	private String memshipsche_code;
+	
 	private Date prmsche_strdate;
 	private Date prmsche_enddate;
 	private int prmsche_price;
 	private int prmsche_currentp;
 	private int prmsche_limitp;
+	
 	
 	public String getPrmsche_time() {
 		return prmsche_time;
@@ -94,6 +100,18 @@ public class MEM_WelcomeDTO {
 	}
 	public void setPrmsche_limitp(int prmsche_limitp) {
 		this.prmsche_limitp = prmsche_limitp;
+	}
+	public String getMemsche_code() {
+		return memsche_code;
+	}
+	public void setMemsche_code(String memsche_code) {
+		this.memsche_code = memsche_code;
+	}
+	public String getMem_code() {
+		return mem_code;
+	}
+	public void setMem_code(String mem_code) {
+		this.mem_code = mem_code;
 	}
 	
 }

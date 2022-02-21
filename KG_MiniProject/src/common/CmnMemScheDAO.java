@@ -24,17 +24,19 @@ public class CmnMemScheDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
 	public int IstMem(CmnMemScheDTO DTO) {
 		int result = 0;
 		sql = "INSERT INTO MEMSCHE_TB "+
-				"(MEMSCHE_Code, MEM_CODE, PRMSCHE_Code, MEMSHIPSCHE_CODE)"+
-				"VALUES(?, ?, ?, ?)";
+				"(MEMSCHE_Code, MEM_CODE, MEMSHIPSCHE_CODE)"+
+				"VALUES(?, ?, ?)";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, DTO.getMEMSCHE_Code());
 			ps.setString(2, DTO.getMEM_Code());
-			ps.setString(3, DTO.getPRMSCHE_Code());
-			ps.setString(4, DTO.getMEMSHIPSCHE_Code());
+			ps.setString(3, DTO.getMEMSHIPSCHE_Code());
 			result = ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -48,6 +50,50 @@ public class CmnMemScheDAO {
 		}
 		return result;
 	}
+	
+	
+	
+	public int IstPro(CmnMemScheDTO DTO) {
+		int result = 0;
+		sql = "INSERT INTO MEMSCHE_TB "+
+				"(MEMSCHE_Code, MEM_CODE, PRMSCHE_Code)"+
+				"VALUES(?, ?, ?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, DTO.getMEMSCHE_Code());
+			ps.setString(2, DTO.getMEM_Code());
+			ps.setString(3, DTO.getPRMSCHE_Code());
+			result = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try { 
+				if(ps != null) ps.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public CmnMemScheDTO SltMemOne(String MEMSCHE_Code) {
 		CmnMemScheDTO tmpdata = null;

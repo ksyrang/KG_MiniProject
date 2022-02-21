@@ -21,6 +21,7 @@ public class CmnPrmScheDTO {
 	public CmnPrmScheDTO() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	public CmnPrmScheDTO(CmnPrmScheDTO dTO) {
 		super();
 		PRMSCHE_Code = dTO.getPRMSCHE_Code();

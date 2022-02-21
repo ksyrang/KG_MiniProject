@@ -1,6 +1,7 @@
 package trn.EXProgramMgt;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import common.CmnPrmScheDAO;
 import common.CmnPrmScheDTO;
@@ -8,11 +9,15 @@ import common.CommonService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import trn.ExprogramEnroll.TrnExpEnrollController;
 import trn.Welcome.TrnTbVDTO;
 
@@ -37,7 +42,10 @@ public class TrnExPMgtService {
 	
 	
 	public void ExPDltProc(Parent MyForm ,Parent WelcomeForm) {//삭제
-		
+		boolean Checkresult = CommonService.CheckMsg("삭제 하시겠습니까?");
+		if(!Checkresult) {
+			return;			
+		}
 		PRMSCHEDAO = new CmnPrmScheDAO();
 		int result = 0; 
 		result = PRMSCHEDAO.DltPrmSche(PRMSCHEDAO.SltPrmScheOne(PrmScheCodeLabel.getText()).getPRMSCHE_Code());
@@ -57,17 +65,18 @@ public class TrnExPMgtService {
 					Integer.toString(tmpdto.getPRMSCHE_CurrentP())));
 		}			
 		refreshTable.setItems(TBVwlist);		
-		
-		
 	}
 	
 	public void ExPMdyProc(Parent MyForm, Parent WelcomeForm) {//수정
+		boolean Checkresult = CommonService.CheckMsg("수정 하시겠습니까?");
+		if(!Checkresult) {
+			return;			
+		}
 		
 		if(CommonService.CompareDate(SrtDate.getValue(), EndDate.getValue())) {
 			CommonService.Msg("종료일을 시작일 뒤의 날짜로 입력해주십시오.");
 			return;
 		}
-		
 		PRMSCHEDAO = new CmnPrmScheDAO();
 		int result = 0; 
 		CmnPrmScheDTO DTO = new CmnPrmScheDAO().SltPrmScheOne(PRMSCHEDAO.SltPrmScheOne(PrmScheCodeLabel.getText()).getPRMSCHE_Code());

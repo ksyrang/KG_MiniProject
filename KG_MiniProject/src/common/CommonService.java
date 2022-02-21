@@ -3,6 +3,7 @@ package common;
 
 
 import java.util.Date;
+import java.util.Optional;
 
 import Main.login.LoginController;
 import Main.main.Controller;
@@ -15,11 +16,22 @@ import java.time.format.DateTimeFormatter;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class CommonService {
 
+	public static boolean CheckMsg(String content) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("확인 알림");
+		alert.setContentText(content);
+		Optional<ButtonType> result = alert.showAndWait();
+		if(result.get() == ButtonType.OK) {
+			return true;						
+		}else return false;
+		
+	}
 	public static void Msg(String content) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("알림");

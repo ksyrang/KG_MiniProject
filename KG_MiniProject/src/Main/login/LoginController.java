@@ -107,7 +107,7 @@ public class LoginController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.loginSvc = new LoginService();
-//		UptMemshipList();
+		UptMemshipList();
 	}
 	
 	public void setController(Controller controller) {
@@ -172,45 +172,64 @@ public class LoginController implements Initializable{
 			tmpPricelist[tmpnum] = E.getMEMSHIP_Price();
 			tmpnum++;
 		}
+		for(int i = 0; i < tmpTypelist.length; i++) {
+			System.out.println(i + " : " + tmpTypelist[i]);
+		}
+		int listLength = tmpTypelist.length;
 		//Type과 가격 입력
-		MemshipName1.setText(tmpTypelist[0]+" 개월");
-		MemshipName2.setText(tmpTypelist[1]+" 개월");
-		MemshipName3.setText(tmpTypelist[2]+" 개월");
-		MemshipName4.setText(tmpTypelist[3]+" 개월");
-		MemshipName5.setText(tmpTypelist[4]+" 개월");
-		MemshipName6.setText(tmpTypelist[5]+" 개월");
-		MemshipName7.setText(tmpTypelist[6]+" 개월");
-		MemshipName8.setText(tmpTypelist[7]+" 개월");
-		MemshipName9.setText(tmpTypelist[8]+" 개월");
-		MemshipName10.setText(tmpTypelist[9]+" 개월");
-		MemshipName11.setText(tmpTypelist[10]+" 개월");
-		MemshipName12.setText(tmpTypelist[11]+" 개월");
-		
-		MemshipPrice1.setText(Integer.toString(tmpPricelist[0])+" 원");
-		MemshipPrice2.setText(Integer.toString(tmpPricelist[1])+" 원");
-		MemshipPrice3.setText(Integer.toString(tmpPricelist[2])+" 원");
-		MemshipPrice4.setText(Integer.toString(tmpPricelist[3])+" 원");
-		MemshipPrice5.setText(Integer.toString(tmpPricelist[4])+" 원");
-		MemshipPrice6.setText(Integer.toString(tmpPricelist[5])+" 원");
-		MemshipPrice7.setText(Integer.toString(tmpPricelist[6])+" 원");
-		MemshipPrice8.setText(Integer.toString(tmpPricelist[7])+" 원");
-		MemshipPrice9.setText(Integer.toString(tmpPricelist[8])+" 원");
-		MemshipPrice10.setText(Integer.toString(tmpPricelist[9])+" 원");
-		MemshipPrice11.setText(Integer.toString(tmpPricelist[10])+" 원");
-		MemshipPrice12.setText(Integer.toString(tmpPricelist[11])+" 원");
+		switch(listLength) {
+		case 12 :
+			MemshipName12.setText(tmpTypelist[11]+" 개월");
+			MemshipPrice12.setText(Integer.toString(tmpPricelist[11])+" 원");
+		case 11 :
+			MemshipName11.setText(tmpTypelist[10]+" 개월");
+			MemshipPrice11.setText(Integer.toString(tmpPricelist[10])+" 원");
+		case 10 :
+			MemshipName10.setText(tmpTypelist[9]+" 개월");
+			MemshipPrice10.setText(Integer.toString(tmpPricelist[9])+" 원");
+		case 9:
+			MemshipName9.setText(tmpTypelist[8]+" 개월");
+			MemshipPrice9.setText(Integer.toString(tmpPricelist[8])+" 원");
+		case 8:
+			MemshipName8.setText(tmpTypelist[7]+" 개월");
+			MemshipPrice8.setText(Integer.toString(tmpPricelist[7])+" 원");
+		case 7:
+			MemshipName7.setText(tmpTypelist[6]+" 개월");
+			MemshipPrice7.setText(Integer.toString(tmpPricelist[6])+" 원");
+		case 6:
+			MemshipName6.setText(tmpTypelist[5]+" 개월");
+			MemshipPrice6.setText(Integer.toString(tmpPricelist[5])+" 원");
+		case 5:
+			MemshipName5.setText(tmpTypelist[4]+" 개월");
+			MemshipPrice5.setText(Integer.toString(tmpPricelist[4])+" 원");
+		case 4:
+			MemshipName4.setText(tmpTypelist[3]+" 개월");
+			MemshipPrice4.setText(Integer.toString(tmpPricelist[3])+" 원");
+		case 3:
+			MemshipName3.setText(tmpTypelist[2]+" 개월");
+			MemshipPrice3.setText(Integer.toString(tmpPricelist[2])+" 원");
+		case 2:
+			MemshipName2.setText(tmpTypelist[1]+" 개월");
+			MemshipPrice2.setText(Integer.toString(tmpPricelist[1])+" 원");
+		case 1: 
+			MemshipName1.setText(tmpTypelist[0]+" 개월");
+			MemshipPrice1.setText(Integer.toString(tmpPricelist[0])+" 원");
+		}
 
 		//입력 값이 없을 경우 숨기기
 		if(MemshipName1.getText().equals("-")) 회원권표시00.setVisible(false);
-		if(MemshipName2.getText().equals("-")) 회원권표시01.setVisible(false);
-		if(MemshipName3.getText().equals("-")) 회원권표시02.setVisible(false);
-		if(MemshipName4.getText().equals("-")) 회원권표시10.setVisible(false);
-		if(MemshipName5.getText().equals("-")) 회원권표시11.setVisible(false);
-		if(MemshipName6.getText().equals("-")) 회원권표시12.setVisible(false);
-		if(MemshipName7.getText().equals("-")) 회원권표시20.setVisible(false);
-		if(MemshipName8.getText().equals("-")) 회원권표시21.setVisible(false);
-		if(MemshipName9.getText().equals("-")) 회원권표시22.setVisible(false);
-		if(MemshipName10.getText().equals("-")) 회원권표시30.setVisible(false);
-		if(MemshipName11.getText().equals("-")) 회원권표시31.setVisible(false);
+		if(MemshipName2.getText().equals("-")) 회원권표시10.setVisible(false);
+		if(MemshipName3.getText().equals("-")) 회원권표시20.setVisible(false);
+		if(MemshipName4.getText().equals("-")) 회원권표시30.setVisible(false);
+		
+		if(MemshipName5.getText().equals("-")) 회원권표시01.setVisible(false);
+		if(MemshipName6.getText().equals("-")) 회원권표시11.setVisible(false);
+		if(MemshipName7.getText().equals("-")) 회원권표시21.setVisible(false);
+		if(MemshipName8.getText().equals("-")) 회원권표시31.setVisible(false);
+		
+		if(MemshipName9.getText().equals("-")) 회원권표시02.setVisible(false);
+		if(MemshipName10.getText().equals("-")) 회원권표시12.setVisible(false);
+		if(MemshipName11.getText().equals("-")) 회원권표시22.setVisible(false);
 		if(MemshipName12.getText().equals("-")) 회원권표시32.setVisible(false);
 		
 	}

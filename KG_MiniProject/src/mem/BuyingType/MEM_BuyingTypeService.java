@@ -1,7 +1,7 @@
 package mem.BuyingType;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 
 import common.CmnMemDAO;
 import common.CmnMemDTO;
@@ -13,16 +13,26 @@ import common.CmnMemShipScheDAO;
 import common.CmnMemShipScheDTO;
 import common.CmnPayDAO;
 import common.CmnPayDTO;
+import common.CmnPrmDAO;
+import common.CmnPrmDTO;
 import common.CmnPrmScheDAO;
 import common.CmnPrmScheDTO;
+import common.CmnTrainerDAO;
+import common.CmnTrainerDTO;
 import common.CommonService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
+import mem.Welcome.MEM_WelcomeDAO;
+import mem.Welcome.MEM_WelcomeDTO;
+import mem.Welcome.MEM_WelcomeMgtTable;
 
 public class MEM_BuyingTypeService {
 
@@ -39,6 +49,7 @@ public class MEM_BuyingTypeService {
 	private Text ScheNameLabel;
 	private Text SchePriceLabel;
 	private Text PayDateLabel;
+	private String SltPrmScheName;
 
 	public void setMEM_BuyingTypeController(MEM_BuyingTypeController buyingTypeController) {
 		this.buyingTypeController = buyingTypeController;
@@ -66,21 +77,21 @@ public class MEM_BuyingTypeService {
 		CmnPayDAO payDao = new CmnPayDAO();
 		
 		CmnMemShipScheDAO memshipScheDao = new CmnMemShipScheDAO();
+		System.out.println();
 		CmnMemShipScheDTO memshipScheDto = memshipScheDao.SltMemShipScheCode(buyingTypeController.getUserCode());
 		
 		int maxCodeNum = payDao.PayMaxCodeNum() + 1;
 		
-		Date strPayDate = CommonService.CnvtsqlDate(new Date());
+		Date strPayDate = CommonService.CnvtsqlDate(new java.util.Date());
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
 		String payDate = transFormat.format(strPayDate);
 
 		PayDTO.setPAY_Code(buyingTypeController.getUserCode()+ payDate + maxCodeNum);
 		PayDTO.setPAYCode_Num(maxCodeNum);
 		PayDTO.setPAY_Type(PayType);
-		PayDTO.setPAY_Date(CommonService.CnvtsqlDate(new Date()));
+		PayDTO.setPAY_Date(CommonService.CnvtsqlDate(new java.util.Date()));
+		System.out.println("buyingTypeController.getUserCode() : "+ buyingTypeController.getUserCode());
 		PayDTO.setMEM_Code(buyingTypeController.getUserCode());
-		PayDTO.setMEMSHIPSCHE_Code(memshipScheDto.getMEMSHIPSCHE_Code());
-//		PayDTO.setPRMSCHE_Code(buyingTypeController.getPRMSCHE_Code());
 		
 		
 		//MEM_CODE		
@@ -89,16 +100,34 @@ public class MEM_BuyingTypeService {
 		//넣어주기
 		CmnMemScheDAO cmnMemScheDao = new CmnMemScheDAO();
 		CmnMemScheDTO cmnMemScheDto = new CmnMemScheDTO();
-		cmnMemScheDto.setMEM_Code(buyingTypeController.getUserCode());
-		cmnMemScheDto.setMEMSHIPSCHE_Code(memshipScheDto.getMEMSHIPSCHE_Code());
-		cmnMemScheDto.setMEMSCHE_Code(cmnMemScheDto.getMEM_Code()+cmnMemScheDto.getMEMSHIPSCHE_Code());
-		cmnMemScheDao.IstMem(cmnMemScheDto);
+		CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
+		CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheName(buyingTypeController.getPrmScheName());
+
+		
+		if(memshipScheDto != null) { 
+			//회원권
+			PayDTO.setMEMSHIPSCHE_Code(memshipScheDto.getMEMSHIPSCHE_Code());
+			cmnMemScheDto.setMEMSHIPSCHE_Code(memshipScheDto.getMEMSHIPSCHE_Code());
+			cmnMemScheDto.setMEMSCHE_Code(cmnMemScheDto.getMEM_Code()+cmnMemScheDto.getMEMSHIPSCHE_Code()+maxCodeNum);
+			cmnMemScheDto.setMEM_Code(buyingTypeController.getUserCode());
+			cmnMemScheDao.IstPro(cmnMemScheDto);
+		}else {
+			//프로그램
+			PayDTO.setPRMSCHE_Code(buyingTypeController.getPRMSCHE_Code());
+			cmnMemScheDto.setPRMSCHE_Code(cmnPrmScheDto.getPRMSCHE_Code());
+			cmnMemScheDto.setMEMSCHE_Code(cmnMemScheDto.getMEM_Code()+cmnMemScheDto.getPRMSCHE_Code()+maxCodeNum);
+			cmnMemScheDto.setMEM_Code(buyingTypeController.getUserCode());
+			cmnMemScheDao.IstMem(cmnMemScheDto);
+		}
+		
+
 		
 		
-		CmnMemDAO memDao = new CmnMemDAO();
+//		CmnMemDAO memDao = new CmnMemDAO();
 		
 		//입력 결과
-		result =payDao.Istpay(PayDTO);
+		result = payDao.Istpay(PayDTO);
+
 		if(result == 1) {
 //			if(memDao.memShipScheCodeUpdate(buyingTypeController.getUserCode(), memshipScheDto.getMEMSHIPSCHE_Code()) == 1) {
 				CommonService.WindowClose(MyForm);
@@ -110,11 +139,16 @@ public class MEM_BuyingTypeService {
 			CommonService.Msg("결제 이상 발생");
 			return;
 		}
+		
+		//welcomePage 리로드
+		this.welcomereload();
+		
+		
+		
 	}
 
 	public void BackProc(Parent MyForm) {
 		CommonService.WindowClose(MyForm);
-
 	}
 
 	public void SetFXId(Parent MyForm) {
@@ -137,4 +171,96 @@ public class MEM_BuyingTypeService {
 		KakaoPayBtn.setToggleGroup(group);
 		NaverPayBtn.setToggleGroup(group);
 	}
+	
+	
+	private void welcomereload() {
+		Parent memberWelcomeForm = buyingTypeController.getMemWelcomeForm();
+		TableView<MEM_WelcomeMgtTable> memProgramTable = (TableView<MEM_WelcomeMgtTable>) memberWelcomeForm
+				.lookup("#memProgramTable");
+		MEM_WelcomeDAO memWelcomeDao = new MEM_WelcomeDAO();
+		ObservableList<MEM_WelcomeMgtTable> obserList = FXCollections.observableArrayList();
+		ObservableList<MEM_WelcomeDTO> memWelcomeDto = memWelcomeDao.selectMemScheAllProgram(buyingTypeController.getUserCode());
+
+		// cmnMemScheDto.getMEM_Code();
+		// cmnMemScheDto.getPRMSCHE_Code();
+		// cmnMemScheDto.getMEMSHIPSCHE_Code();
+		for (MEM_WelcomeDTO m : memWelcomeDto) {
+			String memCode = m.getMem_code();
+			String PrmScheCode = m.getPrmsche_code();
+			String memShipScheCode = m.getMemshipsche_code();
+			String memScheCode = m.getMemsche_code();
+
+			String type = null;
+			String time = null;
+			String trainerName = null;
+			int prmsche_price = 0;
+			Date prmsche_strdate = null;
+			Date prmsche_enddate = null;
+
+			if (PrmScheCode != null) {
+				// 프로그램임
+
+				// type(프로그램명)
+				CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
+				CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheOne(PrmScheCode);
+				String prmCode = cmnPrmScheDto.getPRM_Code();
+				CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
+				CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(prmCode);
+				type = cmnPrmDto.getPRM_Name();
+
+				// time
+				time = cmnPrmScheDto.getPRMSCHE_Time();
+
+				// 트레이너 이름
+				String trainerCode = cmnPrmScheDto.getTRAINER_Code();
+				CmnTrainerDAO cmnTrainerDao = new CmnTrainerDAO();
+				CmnTrainerDTO cmnTrainerDto = cmnTrainerDao.SltTrnOne(trainerCode);
+				trainerName = cmnTrainerDto.getTRAINER_Name();
+
+				// 가격
+				prmsche_price = cmnPrmScheDto.getPRMSCHE_Price();
+
+				// 시작, 마무리 날짜
+				prmsche_strdate = cmnPrmScheDto.getPRMSCHE_Strdate();
+				prmsche_enddate = cmnPrmScheDto.getPRMSCHE_Enddate();
+
+			} else {
+				// 회원권
+				// type(프로그램명)
+				CmnMemShipScheDAO cmnMemShipScheDao = new CmnMemShipScheDAO();
+				CmnMemShipScheDTO cmnMemShipScheDto = cmnMemShipScheDao.SltMemShipScheOne(memShipScheCode);
+				String memShipCode = cmnMemShipScheDto.getMEMSHIP_Code();
+				CmnMemShipDAO cmnMemShipDao = new CmnMemShipDAO();
+				CmnMemShipDTO cmnMemShipDto = cmnMemShipDao.SltMemShipOne(memShipCode);
+				String memShipType = cmnMemShipDto.getMEMSHIP_Type();
+				type = "회원권_" + memShipType + "개월";
+
+				// time
+				time = "-";
+
+				// 트레이너 이름
+				trainerName = "KGGYM";
+
+				// 가격
+				prmsche_price = cmnMemShipDto.getMEMSHIP_Price();
+
+				// 시작, 마무리 날짜
+				prmsche_strdate = cmnMemShipScheDto.getMEMSHIPSCHE_Strdate();
+				prmsche_enddate = cmnMemShipScheDto.getMEMSHIPSCHE_Enddate();
+
+			}
+			
+			obserList.add(new MEM_WelcomeMgtTable(trainerName, type, time, prmsche_price, prmsche_strdate,
+					prmsche_enddate));
+
+		}
+		memProgramTable.setItems(obserList);
+	}
+
+	public void setName(String SltPrmScheName) {
+		this.SltPrmScheName = SltPrmScheName;
+		
+	}
+	
+	
 }

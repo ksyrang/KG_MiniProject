@@ -3,6 +3,9 @@ package mem.BuyingType;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Main.login.LoginService;
+import Main.main.Controller;
+import Main.main.MainService;
 import common.CommonService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,14 +32,18 @@ public class MEM_BuyingTypeController implements Initializable{
     @FXML private Text SchePriceLabel;
     @FXML private Text PayDateLabel;
     
+    private Parent memWelcomeForm;
 	private Parent buyingTypeForm;
 	private MEM_BuyingTypeService buyingTypeSvc;
 	private MEM_BuyingTypeController buyingTypeController;
-	private String membCode;
-	
+//	private String membCode;
+
 	private String UserCode;
 	private String MEMSHIPSCHE_Code;
 	private String PRMSCHE_Code;	
+	private String PrmScheName;
+	
+	
 	
 	public MEM_BuyingTypeController() {
 		buyingTypeSvc = new MEM_BuyingTypeService();
@@ -51,13 +58,13 @@ public class MEM_BuyingTypeController implements Initializable{
 		this.buyingTypeController = buyingTypeController;
 	}
 	
-	public String getMembCode() {
-		return this.membCode;
-	}
-	
-	public void setMembCode(String membCode) {
-		this.membCode = membCode;
-	}
+//	public String getMembCode() {
+//		return this.membCode;
+//	}
+//	
+//	public void setMembCode(String membCode) {
+//		this.membCode = membCode;
+//	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -108,8 +115,28 @@ public class MEM_BuyingTypeController implements Initializable{
 	
 	public void BackProc() {
 		buyingTypeSvc.BackProc(buyingTypeForm);
+//		MainService mainSvc = new MainService();
 		
 	}
+
+	public Parent getMemWelcomeForm() {
+		return memWelcomeForm;
+	}
+
+	public void setMemWelcomeForm(Parent memWelcomeForm) {
+		this.memWelcomeForm = memWelcomeForm;
+	}
+
+	public String getPrmScheName() {
+		return PrmScheName;
+	}
+
+	public void setPrmScheName(String prmScheName) {
+		PrmScheName = prmScheName;
+	}
+	
+	
+	
 	
 //	public void PayInfoInit() {
 //		// 스케쥴의 데이터

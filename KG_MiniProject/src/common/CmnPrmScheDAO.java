@@ -472,4 +472,42 @@ public class CmnPrmScheDAO {
 	}
 	
 	
+	public CmnPrmScheDTO SltPrmScheName(String PRMSCHE_Name) {
+		CmnPrmScheDTO tmpdata = null;
+		sql = "SELECT * FROM PRMSCHE_TB WHERE PRMSCHE_Name = ?" ;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, PRMSCHE_Name);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				tmpdata = new CmnPrmScheDTO(
+					rs.getString("PRMSCHE_Code"),
+					rs.getInt("PRMSCHECode_Num"),
+					rs.getDate("PRMSCHE_Strdate"),
+					rs.getDate("PRMSCHE_Enddate"),
+					rs.getString("PRMSCHE_Time"),
+					rs.getInt("PRMSCHE_LimitP"),
+					rs.getInt("PRMSCHE_CurrentP"),
+					rs.getInt("PRMSCHE_Price"),
+					rs.getString("PRM_Code"),
+					rs.getString("TRAINER_Code"),
+					rs.getString("PRMSCHE_Name")
+				);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		return tmpdata;		
+	}
+	
+	
+	
 }//class end

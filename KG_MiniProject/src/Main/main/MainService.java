@@ -26,6 +26,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import mem.BuyingType.MEM_BuyingTypeController;
 import mem.Mgt.MgtDAO;
 import mem.Mgt.MgtDTO;
 import mem.Welcome.MEM_WelcomeController;
@@ -51,7 +52,6 @@ public class MainService {
 		try {
 			adminWelcomeForm = loader.load();
 			controller.setAdminWelcomeController(loader.getController());
-			controller.getAdminWelcomeController().setLogout(controller.getLogOut());
 			controller.setAdminWelcomeForm(adminWelcomeForm);
 			controller.settingAdmin();
 
@@ -74,6 +74,8 @@ public class MainService {
 			controller.setMEM_WelcomeController(loader.getController());
 			controller.getMEM_WelcomeController().setMemWelcomeForm(memberWelcomeForm);
 			controller.getMEM_WelcomeController().setMembCode(UserCode);
+			MEM_BuyingTypeController memBuyingTypeController = new MEM_BuyingTypeController();
+			memBuyingTypeController.setMemWelcomeForm(memberWelcomeForm);
 			Label titleUserName = (Label) memberWelcomeForm.lookup("#TitleMemNameLabel");
 			Label idText = (Label) memberWelcomeForm.lookup("#idText");
 			MgtDTO tmpMemDto = new MgtDTO(new MgtDAO().selectCode(UserCode));
@@ -131,11 +133,13 @@ public class MainService {
 
 				} else {
 					// 회원권
-
+					
 					// type(프로그램명)
 					CmnMemShipScheDAO cmnMemShipScheDao = new CmnMemShipScheDAO();
 					CmnMemShipScheDTO cmnMemShipScheDto = cmnMemShipScheDao.SltMemShipScheOne(memShipScheCode);
+
 					String memShipCode = cmnMemShipScheDto.getMEMSHIP_Code();
+					
 					CmnMemShipDAO cmnMemShipDao = new CmnMemShipDAO();
 					CmnMemShipDTO cmnMemShipDto = cmnMemShipDao.SltMemShipOne(memShipCode);
 					String memShipType = cmnMemShipDto.getMEMSHIP_Type();

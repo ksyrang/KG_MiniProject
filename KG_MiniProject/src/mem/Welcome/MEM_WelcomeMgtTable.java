@@ -28,6 +28,9 @@ public class MEM_WelcomeMgtTable {
 
 
 
+
+
+
 	public String getColPrmName() {
 		return colPrmName;
 	}

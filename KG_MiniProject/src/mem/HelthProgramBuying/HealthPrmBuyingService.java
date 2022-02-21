@@ -105,6 +105,9 @@ public class HealthPrmBuyingService {
 			HealthPrmBuyingController.setMEM_BuyingTypeController(loader.getController());
 			HealthPrmBuyingController.getMEM_BuyingTypeController().setBuyingTypeForm(BuyingTypeForm);
 			HealthPrmBuyingController.getMEM_BuyingTypeController().setUserCode(HealthPrmBuyingController.getMembCode());
+			HealthPrmBuyingController.getMEM_BuyingTypeController().setMemWelcomeForm(HealthPrmBuyingController.getMemWelcomeForm());
+			
+			
 			
 			Text ScheNameLabel = (Text)BuyingTypeForm.lookup("#ScheNameLabel");
 			Text SchePriceLabel = (Text)BuyingTypeForm.lookup("#SchePriceLabel");

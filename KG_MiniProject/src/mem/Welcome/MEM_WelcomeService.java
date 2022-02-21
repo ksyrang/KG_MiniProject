@@ -36,6 +36,8 @@ public class MEM_WelcomeService {
 			memWelcomeController.setHealthPrmBuyingController(loader.getController());
 			memWelcomeController.getHealthPrmBuyingController().setHealthPrmBuyingForm(healthProgramBuyingForm);
 			memWelcomeController.getHealthPrmBuyingController().setMembCode(memWelcomeController.getMembCode());
+			memWelcomeController.getHealthPrmBuyingController().setWelcomForm(memWelcomeController.getMemWelcomeForm());
+			
 			ComboBox<String> combo = (ComboBox<String>) healthProgramBuyingForm.lookup("#memshipComboBox");
 			combo.setValue("0");
 
@@ -60,6 +62,8 @@ public class MEM_WelcomeService {
 			memWelcomeController.setExPrmBuyingController(loader.getController());
 			memWelcomeController.getExPrmBuyingController().setExProgramBuyingForm(exProgramBuyingForm);
 			memWelcomeController.getExPrmBuyingController().setMembCode(memWelcomeController.getMembCode());
+			memWelcomeController.getExPrmBuyingController().setWelcomForm(memWelcomeController.getMemWelcomeForm());
+			
 
 			// 상단 이름
 			Label titleUserName = (Label) exProgramBuyingForm.lookup("#TitleMemNameLabel");
@@ -141,15 +145,7 @@ public class MEM_WelcomeService {
 
 	}
 
-	// 수정 버튼 클릭시
-	public void deleteProc(Parent memWelcomeForm) {
-	   MEM_WelcomeDAO memWelcomeDao = new MEM_WelcomeDAO();
-	   this.selectTable.getColPrmName();
-	   
-	   
-	   MEM_WelcomeDTO meeWelcomeDto = new MEM_WelcomeDTO();
-	   
-   }
+
 
 	// selectTable 세팅
 

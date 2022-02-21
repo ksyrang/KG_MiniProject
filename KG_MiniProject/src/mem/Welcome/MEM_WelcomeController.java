@@ -246,7 +246,7 @@ public class MEM_WelcomeController implements Initializable {
 				
 				
 
-//				// 강사코드, 강사명 꼭 넣어야하나요..?
+//				// 강사코드, 강사명 
 //				String trainerCode = null;
 //				CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
 //				ArrayList<CmnPrmScheDTO> cmnPrmScheDto = cmnPrmScheDao.SltPrmScheAll();
@@ -284,11 +284,6 @@ public class MEM_WelcomeController implements Initializable {
 		memWelcomeSvc.exProgramBuyingOpen(membCode, exProgramBuyingForm);
 	}
 
-	// 수정 버튼 클릭시
-	public void deleteProc() {
-		memWelcomeSvc.deleteProc(memWelcomeForm);
-
-	}
 
 	public void logoutProc() {
 		memWelcomeSvc.logoutProc(memWelcomeForm);

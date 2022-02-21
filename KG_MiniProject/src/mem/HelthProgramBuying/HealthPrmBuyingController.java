@@ -22,6 +22,7 @@ public class HealthPrmBuyingController implements Initializable{
 	private ObservableList<String> allProgram;
 	private String membCode;
 	private MEM_BuyingTypeController MEM_BuyingTypeController;
+	private Parent memWelcomeForm;
 
 
     
@@ -76,6 +77,16 @@ public class HealthPrmBuyingController implements Initializable{
 	public void setMEM_BuyingTypeController(MEM_BuyingTypeController mEM_BuyingTypeController) {
 		MEM_BuyingTypeController = mEM_BuyingTypeController;
 	}
+
+	public void setWelcomForm(Parent memWelcomeForm) {
+		this.memWelcomeForm = memWelcomeForm;
+	}
+
+	public Parent getMemWelcomeForm() {
+		return memWelcomeForm;
+	}
+	
+	
 
 
 }

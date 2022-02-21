@@ -30,8 +30,8 @@ public class CmnPayDAO {
 		int result = 0;
 		sql = "INSERT INTO PAY_TB "+
 				"(PAY_Code, PAYCode_Num, PAY_Type, PAY_Date, "+
-				"MEMSHIPSCHE_Code, MEM_Code)"+
-				"VALUES(?, ?, ?, ?, ?, ?)";
+				"MEMSHIPSCHE_Code, MEM_Code, PRMSCHE_CODE)"+
+				"VALUES(?, ?, ?, ?, ?, ?, ?)";
 		//PRMSCHE_Code
 		try {
 			ps = con.prepareStatement(sql);
@@ -41,7 +41,7 @@ public class CmnPayDAO {
 			ps.setDate(4, cmnPayDTO.getPAY_Date());
 			ps.setString(5, cmnPayDTO.getMEMSHIPSCHE_Code());
 			ps.setString(6, cmnPayDTO.getMEM_Code());
-			//ps.setString(7, cmnPayDTO.getPRMSCHE_Code());
+			ps.setString(7, cmnPayDTO.getPRMSCHE_Code());
 			result = ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

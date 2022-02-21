@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import mem.BuyingType.MEM_BuyingTypeService;
 import mem.Mgt.MgtDAO;
 import mem.Mgt.MgtDTO;
 
@@ -128,7 +129,11 @@ public class ExPrmBuyingService {
 			exPrmBuyingController.setBuyingTypeForm(buyingTypeForm);
 			exPrmBuyingController.setMEM_BuyingTypeController(loader.getController());
 			exPrmBuyingController.getMEM_BuyingTypeController().setBuyingTypeForm(buyingTypeForm);
-			exPrmBuyingController.getMEM_BuyingTypeController().setMembCode(exPrmBuyingController.getMembCode());
+//			System.out.println("exPrmBuyingController.getMembCode(): "+exPrmBuyingController.getMembCode());
+			exPrmBuyingController.getMEM_BuyingTypeController().setUserCode(exPrmBuyingController.getMembCode());
+			System.out.println("getMEM_BuyingTypeController.getMembCode(): "+exPrmBuyingController.getMEM_BuyingTypeController().getUserCode());
+			exPrmBuyingController.getMEM_BuyingTypeController().setMemWelcomeForm(exPrmBuyingController.getWelcomForm());
+			
 			
 			TableView<ExProTable> exProgramTableView = (TableView<ExProTable>)exProgramBuyingForm.lookup("#exProgramTableView");
 			ExProTable tmpData = new ExProTable();
@@ -146,10 +151,17 @@ public class ExPrmBuyingService {
 //			
 //			//데이터 대입
 //			System.out.println(ScheNameLabel.getText());
+
+			
 			ScheNameLabel.setText(tmpData.getProgramName());
+			
 			SchePriceLabel.setText(Integer.toString(tmpData.getPrice()));
 			PayDateLabel.setText(CommonService.getNowDatetoString());
-//			
+
+//			MEM_BuyingTypeService setName = new MEM_BuyingTypeService();
+			exPrmBuyingController.getMEM_BuyingTypeController().setPrmScheName(tmpData.getProgramName());
+//			setName.setName(tmpData.getProgramName());
+			
 			
 //			CmnPrmScheDTO PrmScheDTO = new CmnPrmScheDAO().SltPrmScheOne(cmnPrmScheDTO.getPRMSCHE_Code());	
 //			System.out.println(PrmScheDTO.getPRMSCHE_Name());

@@ -67,11 +67,6 @@
                               <Insets top="7.0" />
                            </FlowPane.margin>
                         </Label>
-                        <Button fx:id="deleteButton" alignment="CENTER" mnemonicParsing="false" onAction="#deleteProc" prefHeight="30.0" prefWidth="87.0" text="회원권 삭제">
-                           <FlowPane.margin>
-                              <Insets left="300.0" />
-                           </FlowPane.margin>
-                        </Button>
                      </children>
                   </FlowPane>
                   <TableView fx:id="memProgramTable" prefHeight="430.0" prefWidth="375.0">

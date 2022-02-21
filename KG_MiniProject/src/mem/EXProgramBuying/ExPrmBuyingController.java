@@ -33,6 +33,8 @@ public class ExPrmBuyingController implements Initializable {
 	private MEM_BuyingTypeController buyingTypeController;
 	private Parent buyingTypeForm;
 	private MgtController memMgtController;
+	private Parent memWelcomeForm;
+	private String PrmscheName;
 	
 	@FXML
 	private ComboBox<String> kindComboBox;
@@ -165,5 +167,19 @@ public class ExPrmBuyingController implements Initializable {
 		// CommonService.WindowClose(exProgramBuyingForm);
 
 	}
+	public Parent getWelcomForm() {
+		return memWelcomeForm;
+	}
+	
+	public void setWelcomForm(Parent memWelcomeForm) {
+		this.memWelcomeForm = memWelcomeForm;
+	}
+	public String getPrmscheName() {
+		return PrmscheName;
+	}
+	public void setPrmscheName(String prmscheName) {
+		PrmscheName = prmscheName;
+	}
+	
 
 }

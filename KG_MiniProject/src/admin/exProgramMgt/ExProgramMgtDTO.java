@@ -15,7 +15,7 @@ public class ExProgramMgtDTO {
 	private int PRMSCHE_LimitP;
 	private int PRMSCHE_CurrentP;
 	private int PRMSCHE_Price;
-	private String PRMSHE_Name;
+	private String PRMSCHE_Name;
 	
 	//FK
 	private String TRAINER_Code;
@@ -92,11 +92,11 @@ public class ExProgramMgtDTO {
 	public void setTRAINER_Name(String tRAINER_Name) {
 		TRAINER_Name = tRAINER_Name;
 	}
-	public String getPRMSHE_Name() {
-		return PRMSHE_Name;
+	public String getPRMSCHE_Name() {
+		return PRMSCHE_Name;
 	}
-	public void setPRMSHE_Name(String pRMSHE_Name) {
-		PRMSHE_Name = pRMSHE_Name;
+	public void setPRMSCHE_Name(String pRMSCHE_Name) {
+		PRMSCHE_Name = pRMSCHE_Name;
 	}
 	
 

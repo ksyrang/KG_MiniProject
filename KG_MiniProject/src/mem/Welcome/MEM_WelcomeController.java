@@ -55,8 +55,6 @@ public class MEM_WelcomeController implements Initializable {
 	@FXML
 	private TextField trainer_nameTxtFld;
 	@FXML
-	private TextField trainer_careerTxtFld;
-	@FXML
 	private TextField prmsche_strdateTxtFld;
 	@FXML
 	private TextField prmsche_enddateTxtFld;
@@ -169,10 +167,10 @@ public class MEM_WelcomeController implements Initializable {
 			@Override
 			public void handle(MouseEvent event) {
 				selectTable = memProgramTable.getSelectionModel().getSelectedItem();
-
+				memWelcomeSvc.setSelectTable(selectTable);
+				
 				// 강의 종류
 				String prmName = selectTable.getColPrmName();
-				System.out.println(prmName);
 				prm_nameTxtFld.setText(prmName);
 
 				// 강의 코드
@@ -238,8 +236,8 @@ public class MEM_WelcomeController implements Initializable {
 	}
 
 	// 수정 버튼 클릭시
-	public void modifyProc() {
-		memWelcomeSvc.modifyProcOpen(memWelcomeForm);
+	public void deleteProc() {
+		memWelcomeSvc.deleteProc(memWelcomeForm);
 
 	}
 
@@ -296,6 +294,7 @@ public class MEM_WelcomeController implements Initializable {
 		this.programMgtController.setProgramMgtForm(this.programMgtForm);
 	}
 
+	
 
 
 }

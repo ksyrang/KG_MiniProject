@@ -20,8 +20,6 @@ import common.CmnPrmDAO;
 import common.CmnPrmDTO;
 import common.CmnPrmScheDAO;
 import common.CmnPrmScheDTO;
-import common.CmnResDAO;
-import common.CmnResDTO;
 import common.CmnTrainerDAO;
 import common.CmnTrainerDTO;
 import javafx.collections.FXCollections;
@@ -90,6 +88,7 @@ public class SalesDAO {
 					//ex프로그램
 					
 					String prmScheCode = rs.getString("PRMSCHE_Code");
+					System.out.println("prmschecode"+prmScheCode);
 					salesDto.setPRMSCHE_Code(prmScheCode);
 					CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
 					CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheOne(prmScheCode);

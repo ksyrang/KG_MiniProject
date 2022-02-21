@@ -26,6 +26,7 @@ import mem.Welcome.MEM_WelcomeController;
 import mem.Welcome.MEM_WelcomeDAO;
 import mem.Welcome.MEM_WelcomeDTO;
 import mem.Welcome.MEM_WelcomeMgtTable;
+import mem.Welcome.MEM_WelcomeService;
 import trn.DBDAO.TrnTrainerDAO;
 import trn.DBDTO.TrnTrainerDTO;
 import trn.Welcome.TrnTbVDTO;
@@ -93,6 +94,8 @@ public class MainService {
 			}
 			memProgramTable.setItems(obserList);
 
+			MEM_WelcomeService memWelcomeService = new MEM_WelcomeService();
+			memWelcomeService.setId(tmpMemDto.getMEM_ID());	
 	        
 	        
 	        

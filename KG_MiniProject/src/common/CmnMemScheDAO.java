@@ -95,17 +95,17 @@ public class CmnMemScheDAO {
 	
 	
 	
-	public CmnMemScheDTO SltMemOne(String MEMSCHE_Code) {
+	public CmnMemScheDTO SltMemOne(String MEM_Code) {
 		CmnMemScheDTO tmpdata = null;
 		sql = "SELECT * FROM MEM_TB WHERE MEM_Code = ?" ;
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, MEMSCHE_Code);
+			ps.setString(1, MEM_Code);
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				tmpdata = new CmnMemScheDTO(
 					rs.getString("MEMSche_Code"),
-					rs.getString("MEM_ID"),
+					rs.getString("MEM_Code"),
 					rs.getString("PRMSCHE_Code"),
 					rs.getString("MEMSHIPSCHE_Code")
 				);

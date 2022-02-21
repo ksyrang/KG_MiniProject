@@ -75,9 +75,7 @@ public class MEM_BuyingTypeService {
 		}
 		
 		CmnPayDAO payDao = new CmnPayDAO();
-		
 		CmnMemShipScheDAO memshipScheDao = new CmnMemShipScheDAO();
-		System.out.println();
 		CmnMemShipScheDTO memshipScheDto = memshipScheDao.SltMemShipScheCode(buyingTypeController.getUserCode());
 		
 		int maxCodeNum = payDao.PayMaxCodeNum() + 1;
@@ -103,20 +101,20 @@ public class MEM_BuyingTypeService {
 		CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
 		CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheName(buyingTypeController.getPrmScheName());
 
-		
-		if(memshipScheDto != null) { 
-			//회원권
-			PayDTO.setMEMSHIPSCHE_Code(memshipScheDto.getMEMSHIPSCHE_Code());
-			cmnMemScheDto.setMEMSHIPSCHE_Code(memshipScheDto.getMEMSHIPSCHE_Code());
-			cmnMemScheDto.setMEMSCHE_Code(cmnMemScheDto.getMEM_Code()+cmnMemScheDto.getMEMSHIPSCHE_Code()+maxCodeNum);
-			cmnMemScheDto.setMEM_Code(buyingTypeController.getUserCode());
-			cmnMemScheDao.IstPro(cmnMemScheDto);
-		}else {
+		if(cmnPrmScheDto != null) { 
 			//프로그램
 			PayDTO.setPRMSCHE_Code(buyingTypeController.getPRMSCHE_Code());
 			cmnMemScheDto.setPRMSCHE_Code(cmnPrmScheDto.getPRMSCHE_Code());
-			cmnMemScheDto.setMEMSCHE_Code(cmnMemScheDto.getMEM_Code()+cmnMemScheDto.getPRMSCHE_Code()+maxCodeNum);
 			cmnMemScheDto.setMEM_Code(buyingTypeController.getUserCode());
+			cmnMemScheDto.setMEMSCHE_Code(cmnMemScheDto.getMEM_Code()+cmnMemScheDto.getPRMSCHE_Code()+maxCodeNum);
+			cmnMemScheDao.IstPro(cmnMemScheDto);
+
+		}else {
+			//회원권
+			PayDTO.setMEMSHIPSCHE_Code(memshipScheDto.getMEMSHIPSCHE_Code());
+			cmnMemScheDto.setMEMSHIPSCHE_Code(memshipScheDto.getMEMSHIPSCHE_Code());
+			cmnMemScheDto.setMEM_Code(buyingTypeController.getUserCode());
+			cmnMemScheDto.setMEMSCHE_Code(cmnMemScheDto.getMEM_Code()+cmnMemScheDto.getMEMSHIPSCHE_Code()+maxCodeNum);
 			cmnMemScheDao.IstMem(cmnMemScheDto);
 		}
 		
@@ -180,15 +178,16 @@ public class MEM_BuyingTypeService {
 		MEM_WelcomeDAO memWelcomeDao = new MEM_WelcomeDAO();
 		ObservableList<MEM_WelcomeMgtTable> obserList = FXCollections.observableArrayList();
 		ObservableList<MEM_WelcomeDTO> memWelcomeDto = memWelcomeDao.selectMemScheAllProgram(buyingTypeController.getUserCode());
-
-		// cmnMemScheDto.getMEM_Code();
-		// cmnMemScheDto.getPRMSCHE_Code();
-		// cmnMemScheDto.getMEMSHIPSCHE_Code();
+		
 		for (MEM_WelcomeDTO m : memWelcomeDto) {
 			String memCode = m.getMem_code();
 			String PrmScheCode = m.getPrmsche_code();
 			String memShipScheCode = m.getMemshipsche_code();
 			String memScheCode = m.getMemsche_code();
+//			System.out.println(memCode+": memCode");
+//			System.out.println(PrmScheCode+": PrmScheCode");
+//			System.out.println(memShipScheCode+": memShipScheCode");
+//			System.out.println(memScheCode+": memScheCode");
 
 			String type = null;
 			String time = null;

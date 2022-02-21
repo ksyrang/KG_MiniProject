@@ -10,6 +10,7 @@ import admin.sales.SalesController;
 import admin.statistics.StatisticsController;
 import admin.trainerMgt.TrainerMgtController;
 import common.CommonService;
+import common.LogOut;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 
@@ -29,6 +30,7 @@ public class WelcomeController implements Initializable {
 	private SalesController salesController;
 	private StatisticsController statisticsController;
 	private WelcomeService welcomSvc;
+	private LogOut logout;
 	
 	
 	
@@ -61,6 +63,8 @@ public class WelcomeController implements Initializable {
 	}
 	public void logoutProc() {
 		//common으로 동작
+		CommonService.WindowClose(welcomForm);
+		logout.LogOut();
 	}
 	
 	// setForm

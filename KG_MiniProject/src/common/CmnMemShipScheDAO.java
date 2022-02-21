@@ -105,6 +105,32 @@ public class CmnMemShipScheDAO {
 		return result;
 	}
 	
+	public CmnMemShipScheDTO SltMemShipScheCode(String MEM_Code) {
+		CmnMemShipScheDTO tmpdata = null;
+		sql = "SELECT * FROM MEMSHIPSCHE_TB WHERE MEM_Code = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, MEM_Code);
+			if(rs.next()) {
+				tmpdata = new CmnMemShipScheDTO();
+				tmpdata.setMEMSHIPSCHE_Code("MEMSHIPSCHE_Code");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		return tmpdata;		
+	}
+	
+	
 	public CmnMemShipScheDTO SltMemShipScheOne(String MEMSHIPSCHE_Code) {
 		CmnMemShipScheDTO tmpdata = null;
 		sql = "SELECT * FROM MEMSHIPSCHE_TB WHERE MEMSHIPSCHE_Code = ?" ;

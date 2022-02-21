@@ -61,7 +61,10 @@ public class MEM_BuyingTypeService {
 			return;
 		}
 		CmnPayDAO payDao = new CmnPayDAO();
-		
+		CmnMemShipScheDAO memshipScheDao = new CmnMemShipScheDAO();
+		CmnMemShipScheDTO memshipScheDto = memshipScheDao.SltMemShipScheCode(buyingTypeController.getUserCode());
+		System.out.println(buyingTypeController.getUserCode());
+		System.out.println(memshipScheDto.getMEMSHIPSCHE_Code());
 		int maxCodeNum = payDao.PayMaxCodeNum() + 1;
 		
 		Date strPayDate = CommonService.CnvtsqlDate(new Date());
@@ -74,7 +77,8 @@ public class MEM_BuyingTypeService {
 		PayDTO.setPAY_Type(PayType);
 		PayDTO.setPAY_Date(CommonService.CnvtsqlDate(new Date()));
 		PayDTO.setMEM_Code(buyingTypeController.getUserCode());
-		PayDTO.setMEMSHIPSCHE_Code(buyingTypeController.getMEMSHIPSCHE_Code());
+		PayDTO.setMEMSHIPSCHE_Code(memshipScheDto.getMEMSHIPSCHE_Code());
+		System.out.println("memshipsche_code : " + memshipScheDto.getMEMSHIPSCHE_Code());
 		PayDTO.setPRMSCHE_Code(buyingTypeController.getPRMSCHE_Code());
 		
 		CmnMemDAO memDao = new CmnMemDAO();

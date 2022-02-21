@@ -111,9 +111,10 @@ public class CmnMemShipScheDAO {
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, MEM_Code);
+			rs = ps.executeQuery();
 			if(rs.next()) {
 				tmpdata = new CmnMemShipScheDTO();
-				tmpdata.setMEMSHIPSCHE_Code("MEMSHIPSCHE_Code");
+				tmpdata.setMEMSHIPSCHE_Code(rs.getString("MEMSHIPSCHE_Code"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

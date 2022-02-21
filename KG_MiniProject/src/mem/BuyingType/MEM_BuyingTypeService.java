@@ -60,17 +60,17 @@ public class MEM_BuyingTypeService {
 			CommonService.Msg("결제타입 선택 오류");
 			return;
 		}
+		
 		CmnPayDAO payDao = new CmnPayDAO();
+		
 		CmnMemShipScheDAO memshipScheDao = new CmnMemShipScheDAO();
 		CmnMemShipScheDTO memshipScheDto = memshipScheDao.SltMemShipScheCode(buyingTypeController.getUserCode());
-		System.out.println(buyingTypeController.getUserCode());
-		System.out.println(memshipScheDto.getMEMSHIPSCHE_Code());
+		
 		int maxCodeNum = payDao.PayMaxCodeNum() + 1;
 		
 		Date strPayDate = CommonService.CnvtsqlDate(new Date());
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
 		String payDate = transFormat.format(strPayDate);
-		System.out.println(payDate);
 
 		PayDTO.setPAY_Code(buyingTypeController.getUserCode()+ payDate + maxCodeNum);
 		PayDTO.setPAYCode_Num(maxCodeNum);
@@ -78,19 +78,18 @@ public class MEM_BuyingTypeService {
 		PayDTO.setPAY_Date(CommonService.CnvtsqlDate(new Date()));
 		PayDTO.setMEM_Code(buyingTypeController.getUserCode());
 		PayDTO.setMEMSHIPSCHE_Code(memshipScheDto.getMEMSHIPSCHE_Code());
-		System.out.println("memshipsche_code : " + memshipScheDto.getMEMSHIPSCHE_Code());
-		PayDTO.setPRMSCHE_Code(buyingTypeController.getPRMSCHE_Code());
+//		PayDTO.setPRMSCHE_Code(buyingTypeController.getPRMSCHE_Code());
 		
 		CmnMemDAO memDao = new CmnMemDAO();
 		
 		//입력 결과
 		result =payDao.Istpay(PayDTO);
 		if(result == 1) {
-			if(memDao.memShipScheCodeUpdate(buyingTypeController.getUserCode(), buyingTypeController.getMEMSHIPSCHE_Code()) == 1) {
+			if(memDao.memShipScheCodeUpdate(buyingTypeController.getUserCode(), memshipScheDto.getMEMSHIPSCHE_Code()) == 1) {
 				CommonService.WindowClose(MyForm);
 				CommonService.Msg("결제완료");
 			}else {
-				CommonService.Msg("멤버결제 이상 발생");
+				CommonService.Msg("결제 이상 발생");
 			}
 		}else {
 			CommonService.Msg("결제 이상 발생");

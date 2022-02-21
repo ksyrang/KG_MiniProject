@@ -86,8 +86,12 @@ public class HealthPrmBuyingService {
 		ShceDTO.setMEM_Code(HealthPrmBuyingController.getMembCode());
 		int result = 0;
 		result = ShceDAO.IstMemShipSche(ShceDTO);
-		if(result > 0)System.out.println("생성 완료");
-		else System.out.println("이상 발생");
+		System.out.println(ShceDTO.getMEMSHIPSCHE_Code());
+		System.out.println(ShceDTO.getMEM_Code());
+		if(result > 0) {
+			System.out.println("생성 완료");
+			CommonService.WindowClose(MyForm);
+		}else System.out.println("이상 발생");
 		//회원권 스케줄 생성 End
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/BuyingType/KG_MEM_FX_BuyingType.fxml"));

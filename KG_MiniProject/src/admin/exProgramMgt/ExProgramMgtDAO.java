@@ -111,11 +111,13 @@ public class ExProgramMgtDAO {
 				ExProgramMgtDTO exProgramDto = new ExProgramMgtDTO();
 				exProgramDto.setPRM_Code(rs.getString("PRM_Code"));
 				exProgramDto.setPRM_Name(rs.getString("PRM_Name"));
+				System.out.println("ddddddd");
 				return exProgramDto;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("xxxxxxxx");
 		return null;
 	}
 	

@@ -110,7 +110,6 @@ public class ExProgramMgtController implements Initializable{
 		System.out.println("프로그램 등록");
 		exProgramSvc.insertProc(exProgramMgtForm);
 		this.allProgram = exProgramSvc.getAllProgram();
-		kindComboBox.setItems(this.allProgram);
 	}
 	
 	// 삭제 버튼 클릭 시

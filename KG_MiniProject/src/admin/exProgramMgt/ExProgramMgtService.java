@@ -58,26 +58,31 @@ public class ExProgramMgtService {
 		String addProgram = addProgramText.getText();
 
 		// ex프로그램 종류 중복 체크
-		if (addProgram.length() > 0) {
-			ExProgramMgtDAO exprogramDao = new ExProgramMgtDAO();
-			exprogramDto = exprogramDao.selectExProgram(addProgram);
-			if (exprogramDto.getPRM_Name() != null) {
-				CommonService.Msg("이미 등록된 EX프로그램 입니다.");
+		try{
+			if (addProgram.length() > 0) {
+				ExProgramMgtDAO exprogramDao = new ExProgramMgtDAO();
+				exprogramDto = exprogramDao.selectExProgram(addProgram);
+				if (exprogramDto != null) {
+					CommonService.Msg("이미 등록된 EX프로그램 입니다.");
+				} else {
+					ExProgramMgtDTO exprogramDto = new ExProgramMgtDTO();
+					exprogramDto.setPRM_Name(addProgram);
+					exprogramDto.setPRM_Code(addProgram + 1); //PRM_Code 임의로생성
+					if (exprogramDao.insertExProgram(exprogramDto) == 1) {
+						listView.getItems().addAll(addProgram);
+						CommonService.Msg("EX프로그램 등록 완료");
+					} else {
+						CommonService.Msg("EX프로그램 등록 실패");
+					}
+				}
+				addProgramText.clear();
 			} else {
-				ExProgramMgtDTO exprogramDto = new ExProgramMgtDTO();
-				exprogramDto.setPRM_Name(addProgram);
-				exprogramDto.setPRM_Code(addProgram + 1); //PRM_Code 임의로생성
+				CommonService.Msg("추가 프로그램을 입력하시오");
 			}
-			if (exprogramDao.insertExProgram(exprogramDto) == 1) {
-				listView.getItems().addAll(addProgram);
-				CommonService.Msg("EX프로그램 등록 완료");
-			} else {
-				CommonService.Msg("EX프로그램 등록 실패");
-			}
-			addProgramText.clear();
-		} else {
-			CommonService.Msg("추가 프로그램을 입력하시오");
+		}catch(Exception e){
+			e.printStackTrace();
 		}
+		
 	}
 
 	// ex프로그램 종류 삭제

@@ -1,6 +1,7 @@
 package Main.main;
 
 import Main.login.LoginController;
+import admin.welcome.WelcomeController;
 import common.CommonService;
 import common.LogOut;
 import javafx.fxml.FXML;
@@ -22,6 +23,7 @@ public class Controller {
 	private FindPWController findPWController;
 	private TrnWelcomeController trnWelcomeController;
 	private MEM_WelcomeController memWelcomeController;
+	private WelcomeController adminWelcomeController;
 	private LogOut LogOut;
 	private CommonService commonService;
 	private MainService mainService;
@@ -87,6 +89,10 @@ public class Controller {
 		this.enrollController = enrollController;
 	}
 	
+	public void setAdminWelcomeController(WelcomeController adminWelcomeController) {
+		this.adminWelcomeController = adminWelcomeController;
+	}
+	
 	public void setAdminWelcomeForm(Parent adminWelcomeForm) {
 		this.adminWelcomeForm = adminWelcomeForm;
 	}
@@ -102,6 +108,10 @@ public class Controller {
 	
 	public void settingEnroll() {
 		this.enrollController.setEnrollForm(this.memberJoinForm);
+	}
+	
+	public void settingAdmin() {
+		this.adminWelcomeController.setWelcomeForm(this.adminWelcomeForm);
 	}
 	
 	public void setMemberFindIDForm(Parent memberFindIDForm) {

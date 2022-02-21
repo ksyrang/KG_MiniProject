@@ -109,7 +109,7 @@ public class TrnExPEnrollService {
 			CommonService.Msg("이상 발생!");
 		}
 		//Table View Refresh 
-		Parent wlcForm = TrnExpEnrollController.getTrnWlcForm();
+		Parent wlcForm = TrnExpEnrollController.getWlcForm();
 		TableView<TrnTbVDTO> refreshTable = (TableView<TrnTbVDTO>)wlcForm.lookup("#CurrentProgramTableList");
 		refreshTable.getItems().clear();
 		ArrayList<CmnPrmScheDTO> tmplist = new CmnPrmScheDAO().SltPrmScheAllbyTrn(TrnExpEnrollController.getTrnCode());

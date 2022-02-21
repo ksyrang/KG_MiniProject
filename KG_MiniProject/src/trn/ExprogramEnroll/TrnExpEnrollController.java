@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import common.CmnTrainerDAO;
+import common.CommonService;
+import common.LogOut;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -49,8 +51,11 @@ public class TrnExpEnrollController implements Initializable {
 	
 	private TrnExPEnrollService trnExPEnrollSvc;
 	private Parent trnExpEnrollForm;
-	private Parent TrnWlcForm;
 	private String trnCode;
+	private Parent WlcForm;
+
+	//Logout용
+	private LogOut logOut;
 	
 	public TrnExpEnrollController() {
 		trnExPEnrollSvc = new TrnExPEnrollService();
@@ -75,14 +80,12 @@ public class TrnExpEnrollController implements Initializable {
 	public void BackProc() {
 		trnExPEnrollSvc.BackProc(trnExpEnrollForm);
 	}
+	public void LogOutProc(){
+		trnExPEnrollSvc.BackProc(trnExpEnrollForm);
+		CommonService.WindowClose(WlcForm);
+		logOut.LogOut();
+	}
 
-	
-	public Parent getTrnWlcForm() {
-		return TrnWlcForm;
-	}
-	public void setTrnWlcForm(Parent trnWlcForm) {
-		TrnWlcForm = trnWlcForm;
-	}
 	public void setTrnCode(String trnCode) {
 		this.trnCode = trnCode;
 	}	
@@ -93,4 +96,17 @@ public class TrnExpEnrollController implements Initializable {
 		this.trnExpEnrollForm = trnExpEnrollForm;
 		trnExPEnrollSvc.SetFxId(trnExpEnrollForm);
 	}
+	public LogOut getLogOut() {
+		return logOut;
+	}
+	public void setLogOut(LogOut logOut) {
+		this.logOut = logOut;
+	}
+	public Parent getWlcForm() {
+		return WlcForm;
+	}
+	public void setWlcForm(Parent wlcForm) {
+		WlcForm = wlcForm;
+	}
+	
 }

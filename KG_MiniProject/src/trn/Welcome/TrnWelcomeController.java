@@ -107,13 +107,10 @@ public class TrnWelcomeController implements Initializable {
 		
 	}
 	public void LogOutProc(){
-//		System.out.println("logout");
 		WelcomeSvc.ShutDown(WelcomeForm);
 		logOut.LogOut();
-//		System.out.println("loginController.getMainForm()"+loginController.getMainForm());
-//		WelcomeSvc.LogOut(loginController.getMainForm());
-		
 	}
+	
 	public String getTrnCode() {
 		return this.trnCode;
 	}

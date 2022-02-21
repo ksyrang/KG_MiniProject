@@ -20,9 +20,15 @@ import javafx.stage.Stage;
 
 public class CommonService {
 	
-	private static Controller controller;
-	private LoginController loginController;
-	
+	private Parent Form;
+
+	public Parent getLoginForm() {
+		return Form;
+	}
+	public void setLoginForm(Parent loginForm) {
+		this.Form = loginForm;
+	}
+
 	public static void Msg(String content) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("알림");
@@ -40,16 +46,14 @@ public class CommonService {
 		else return false;
 	}
 
-	public static void LogOut(Parent form) {
-		Stage oldstage = (Stage)form.getScene().getWindow();
-//		oldstage.close();
-		oldstage.show();
-//		Stage stage = new Stage();		
-//		stage.setScene(new Scene());
-//		stage.setTitle("trnExPEnroll");
+//	public void LogOut() {
+//
+//		Stage stage = new Stage();
+////		Scene scene = new Scnen(Form);}
+//		stage.setScene(scene);
+//		stage.setTitle("new login");
 //		stage.show();
-		
-	}
+//	}
 	public static LocalDate StringtoLocalDate(String Date) {		
 		return LocalDate.parse(Date, DateTimeFormatter.ISO_DATE);
 	}

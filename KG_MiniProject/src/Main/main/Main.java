@@ -1,6 +1,8 @@
 package Main.main;
 
 import Main.login.LoginController;
+import common.CommonService;
+import common.LogOut;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,18 +20,22 @@ public class Main extends Application{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/main/KG_COM_FX_Main.fxml"));
 		Parent mainForm = loader.load();
 		Controller controller = new Controller();
+		CommonService cmnsvc = new CommonService();
 		
 		controller.setLoginController(loader.getController());
 //		controller.getLoginController().setmainForm(mainForm);
-//		System.out.println("mainForm"+mainForm);
 		LoginController loginController = controller.getLoginController();
-		loginController.setmainForm(mainForm);
-		//sdgdsdg
+		loginController.setmainForm(mainForm);		
+		cmnsvc.setLoginForm(mainForm);
+		controller.setLogOut(new LogOut());
+//		LogOut logout = new LogOut();
+//		logout.setLoginForm(mainForm);
+//		controller.setLogOut(logout);
+		
 		Scene scene = new Scene(mainForm);
 		
 		primaryStage.setTitle("MainPage");
 		primaryStage.setScene(scene);
-		controller.setStage(primaryStage);
 		primaryStage.show();
 	}
 	

@@ -117,6 +117,7 @@ public class MainService {
 			controller.setTrnWelcomeController(loader.getController());
 			controller.getTrnWelcomeController().setTrnWelcomeForm(trainerWelcomeForm);
 			controller.getTrnWelcomeController().setTrnCode(UserCode);
+			controller.getTrnWelcomeController().setLogOut(controller.getLogOut());
 			//상단 강사명 표시
 			Label titleUserName = (Label)trainerWelcomeForm.lookup("#TitleUserNameLabel");
 			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(UserCode));

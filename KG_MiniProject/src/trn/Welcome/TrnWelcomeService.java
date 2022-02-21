@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import Main.main.Controller;
+import common.LogOut;
 import common.CmnPrmDAO;
 import common.CmnPrmDTO;
 import common.CmnPrmScheDAO;
@@ -46,7 +47,6 @@ public class TrnWelcomeService {
 	public void setTrnWelcomeController(TrnWelcomeController trnWelcomeController) {
 		this.trnWelcomeController = trnWelcomeController;
 	}
-
 
 	//강사정보페이지
 	public void TrnMgtOpen() {
@@ -315,9 +315,9 @@ public class TrnWelcomeService {
 		CommonService.WindowClose(form);
 	}
 	
-	public void LogOut(Parent form) {
-		CommonService.LogOut(form);
-	}
+//	public void LogOut() {
+//		logOut.LogOut();
+//	}
 	
 	//NotUse
 //	private String getPrmScheData(String data) {

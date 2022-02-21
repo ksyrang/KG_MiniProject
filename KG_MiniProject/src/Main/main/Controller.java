@@ -1,6 +1,8 @@
 package Main.main;
 
 import Main.login.LoginController;
+import common.CommonService;
+import common.LogOut;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,29 +21,30 @@ public class Controller {
 	private FindIDController findIDController;
 	private FindPWController findPWController;
 	private TrnWelcomeController trnWelcomeController;
+	private MEM_WelcomeController memWelcomeController;
+	private LogOut LogOut;
+	private CommonService commonService;
 	private MainService mainService;
 	private Parent adminWelcomeForm;
-	private MEM_WelcomeController memWelcomeController;
 	private Parent memberWelcomeForm;
 	private Parent trainerWelcomeForm;
 	private Parent memberJoinForm;
 	private String UserCode;
 	private Parent memberFindIDForm;
 	private Parent memberFindPWForm;
-	private Stage stage;
-	private Scene scene;
 	private Parent memberMgtForm;
 	private String id;
 	
-
 	
-	public Stage getStage() {
-		return stage;
+	
+	public LogOut getLogOut() {
+		return LogOut;
 	}
 
-	public void setStage(Stage stage) {
-		this.stage = stage;
+	public void setLogOut(LogOut logOut) {
+		LogOut = logOut;
 	}
+
 
 	public Controller() {
 		mainService = new MainService();
@@ -132,10 +135,13 @@ public class Controller {
 	public String getid() {
 		return this.id;
 	}
-	
-	
+	public CommonService getCommonService() {
+		return commonService;
+	}
+	public void setCommonService(CommonService commonService) {
+		this.commonService = commonService;
+	}
 
-	
 	public void open(String division) {
 		if("adminWelcome".equals(division)) {
 			mainService.adminWelcomeOpen();

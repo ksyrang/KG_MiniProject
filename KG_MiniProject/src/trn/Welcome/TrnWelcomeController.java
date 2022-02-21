@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import Main.login.LoginController;
 import Main.main.Controller;
+import common.LogOut;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -53,14 +54,17 @@ public class TrnWelcomeController implements Initializable {
 	private TrnExpEnrollController trnExpEnrollController;
 	private TrnExPMgtController trnExpMgtController;
 	
+	//Logout용
+	private LogOut logOut;
 	
+	//내데이터
 	private TrnWelcomeService WelcomeSvc;
 	private Parent WelcomeForm;
 	private String trnCode;
 	
 	
-	//윈도우 오픈용
-	private LoginController loginController;
+//	//윈도우 오픈용
+//	private LoginController loginController;
 	
 	public TrnWelcomeController() {
 		WelcomeSvc = new TrnWelcomeService();
@@ -103,8 +107,9 @@ public class TrnWelcomeController implements Initializable {
 		
 	}
 	public void LogOutProc(){
-		System.out.println("logout");
-//		WelcomeSvc.ShutDown(WelcomeForm);
+//		System.out.println("logout");
+		WelcomeSvc.ShutDown(WelcomeForm);
+		logOut.LogOut();
 //		System.out.println("loginController.getMainForm()"+loginController.getMainForm());
 //		WelcomeSvc.LogOut(loginController.getMainForm());
 		
@@ -151,6 +156,14 @@ public class TrnWelcomeController implements Initializable {
 	public TableView<TrnTbVDTO> getCurrentProgramTableList() {
 		return CurrentProgramTableList;
 	}
+	public LogOut getLogOut() {
+		return logOut;
+	}
+	public void setLogOut(LogOut logOut) {
+		this.logOut = logOut;
+	}
+	
+	
 
 }
  

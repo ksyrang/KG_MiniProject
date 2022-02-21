@@ -16,10 +16,10 @@ import common.CmnTrainerDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class ExProgramMgtDAO {
+public class ExProgramBuyingDAO {
 	private Connection con;
 
-	public ExProgramMgtDAO() {
+	public ExProgramBuyingDAO() {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "KGGYM";
 		String password = "oracle1";
@@ -53,16 +53,16 @@ public class ExProgramMgtDAO {
 	
 	
 	//tableView 모든 정보
-	public ObservableList<ExProgramMgtDTO> getAllInfo() {
+	public ObservableList<ExProgramBuyingDTO> getAllInfo() {
 		String sql = "SELECT * FROM PRMSCHE_TB";
 		PreparedStatement ps;
 		ResultSet rs;
-		ObservableList<ExProgramMgtDTO> allList = FXCollections.observableArrayList();
+		ObservableList<ExProgramBuyingDTO> allList = FXCollections.observableArrayList();
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				ExProgramMgtDTO exProgramMgtDto = new ExProgramMgtDTO();
+				ExProgramBuyingDTO exProgramMgtDto = new ExProgramBuyingDTO();
 				exProgramMgtDto.setPRMSCHE_Code(rs.getString("PRMSCHE_Code"));
 				exProgramMgtDto.setPRMSCHE_Price(rs.getInt("PRMSCHE_Price"));
 				exProgramMgtDto.setPRMSCHE_Strdate(rs.getDate("PRMSCHE_Strdate"));
@@ -70,7 +70,7 @@ public class ExProgramMgtDAO {
 				exProgramMgtDto.setPRMSCHE_Time(rs.getString("PRMSCHE_Time"));
 				exProgramMgtDto.setPRMSCHE_LimitP(rs.getInt("PRMSCHE_LimitP"));
 				exProgramMgtDto.setPRMSCHE_CurrentP(rs.getInt("PRMSCHE_CurrentP"));
-				exProgramMgtDto.setPRMSHE_Name(rs.getString("PRMSCHE_Name"));
+				exProgramMgtDto.setPRMSCHE_Name(rs.getString("PRMSCHE_Name"));
 				
 				String trainerCode = rs.getString("TRAINER_Code");
 				exProgramMgtDto.setTRAINER_Code(trainerCode);
@@ -98,7 +98,7 @@ public class ExProgramMgtDAO {
 	
 	
 	//ex프로그램 PRM_Name 중복체크
-	public ExProgramMgtDTO selectExProgram(String addProgram) {
+	public ExProgramBuyingDTO selectExProgram(String addProgram) {
 		String sql = "SELECT * FROM PRM_TB WHERE PRM_Name=?";
 		PreparedStatement ps;
 		ResultSet rs;
@@ -108,7 +108,7 @@ public class ExProgramMgtDAO {
 			ps.setString(1, addProgram);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				ExProgramMgtDTO exProgramDto = new ExProgramMgtDTO();
+				ExProgramBuyingDTO exProgramDto = new ExProgramBuyingDTO();
 				exProgramDto.setPRM_Code(rs.getString("PRM_Code"));
 				exProgramDto.setPRM_Name(rs.getString("PRM_Name"));
 				return exProgramDto;
@@ -121,7 +121,7 @@ public class ExProgramMgtDAO {
 	
 	
 	//ex프로그램 PRM_Name 리스트뷰 등록
-	public int insertExProgram(ExProgramMgtDTO exprogramDto) {
+	public int insertExProgram(ExProgramBuyingDTO exprogramDto) {
 		String sql = "INSERT INTO PRM_TB VALUES(?,?)";
 		PreparedStatement ps;
 		int result = 0;
@@ -157,7 +157,7 @@ public class ExProgramMgtDAO {
 	
 	
 	//클릭한 ex프로그램 세부사항 수정 시 중복체크
-	public int selectModifyExProgram(ExProgramMgtDTO exProgramMgtDto) {
+	public int selectModifyExProgram(ExProgramBuyingDTO exProgramMgtDto) {
 		String sql = "SELECT * FROM PRMSCHE_TB ";
 		PreparedStatement ps;
 		ResultSet rs;
@@ -186,7 +186,7 @@ public class ExProgramMgtDAO {
 
 	
 	//클릭한 ex프로그램 세부사항 수정
-	public int setProgramModify(ExProgramMgtDTO exProgramMgtDto) {
+	public int setProgramModify(ExProgramBuyingDTO exProgramMgtDto) {
 		String sql = "UPDATE PRMSCHE_TB SET PRMSCHE_STRDATE=?, PRMSCHE_ENDDATE=?, PRMSCHE_TIME=?, PRMSCHE_LIMITP=?, PRMSCHE_PRICE=?, PRMSCHE_NAME=? WHERE PRMSCHE_CODE=?";
 		PreparedStatement ps;
 		int result = 0;
@@ -198,7 +198,7 @@ public class ExProgramMgtDAO {
 			ps.setString(3, exProgramMgtDto.getPRMSCHE_Time());
 			ps.setInt(4, exProgramMgtDto.getPRMSCHE_LimitP());
 			ps.setInt(5, exProgramMgtDto.getPRMSCHE_Price());
-			ps.setString(6,exProgramMgtDto.getPRMSHE_Name());
+			ps.setString(6,exProgramMgtDto.getPRMSCHE_Name());
 			ps.setString(7, exProgramMgtDto.getPRMSCHE_Code());
 			result = ps.executeUpdate();
 		} catch (Exception e) {

@@ -70,7 +70,7 @@ public class ExProgramMgtDAO {
 				exProgramMgtDto.setPRMSCHE_Time(rs.getString("PRMSCHE_Time"));
 				exProgramMgtDto.setPRMSCHE_LimitP(rs.getInt("PRMSCHE_LimitP"));
 				exProgramMgtDto.setPRMSCHE_CurrentP(rs.getInt("PRMSCHE_CurrentP"));
-				exProgramMgtDto.setPRMSHE_Name(rs.getString("PRMSCHE_Name"));
+				exProgramMgtDto.setPRMSCHE_Name(rs.getString("PRMSCHE_Name"));
 				
 				String trainerCode = rs.getString("TRAINER_Code");
 				exProgramMgtDto.setTRAINER_Code(trainerCode);
@@ -198,7 +198,7 @@ public class ExProgramMgtDAO {
 			ps.setString(3, exProgramMgtDto.getPRMSCHE_Time());
 			ps.setInt(4, exProgramMgtDto.getPRMSCHE_LimitP());
 			ps.setInt(5, exProgramMgtDto.getPRMSCHE_Price());
-			ps.setString(6,exProgramMgtDto.getPRMSHE_Name());
+			ps.setString(6,exProgramMgtDto.getPRMSCHE_Name());
 			ps.setString(7, exProgramMgtDto.getPRMSCHE_Code());
 			result = ps.executeUpdate();
 		} catch (Exception e) {

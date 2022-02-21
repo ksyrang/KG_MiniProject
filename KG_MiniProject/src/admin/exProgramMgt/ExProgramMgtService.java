@@ -189,7 +189,7 @@ public class ExProgramMgtService {
 		exProgramMgtDto.setPRMSCHE_Code(prmScheCode);
 		exProgramMgtDto.setTRAINER_Code(trainerCode);
 		exProgramMgtDto.setTRAINER_Name(trainerName);
-		exProgramMgtDto.setPRMSHE_Name(prmScheName);
+		exProgramMgtDto.setPRMSCHE_Name(prmScheName);
 		
 		ExProgramMgtDTO exProgramMgtDto2 = new ExProgramMgtDTO();
 		exProgramMgtDto2.setPRM_Code(prmCode);

@@ -51,6 +51,7 @@ public class MainService {
 		try {
 			adminWelcomeForm = loader.load();
 			controller.setAdminWelcomeController(loader.getController());
+			controller.getAdminWelcomeController().setLogout(controller.getLogOut());
 			controller.setAdminWelcomeForm(adminWelcomeForm);
 			controller.settingAdmin();
 

@@ -67,6 +67,15 @@ public class WelcomeController implements Initializable {
 		logout.LogOut();
 	}
 	
+	//logout setter,getter
+	public LogOut getLogout() {
+		return logout;
+	}
+	
+	public void setLogout(LogOut logout) {
+		this.logout = logout;
+	}
+	
 	// setForm
 	public void setMemberMgtForm(Parent memberMgtForm) {
 		this.memberMgtForm = memberMgtForm;

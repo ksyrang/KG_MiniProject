@@ -93,6 +93,10 @@ public class Controller {
 		this.adminWelcomeController = adminWelcomeController;
 	}
 	
+	public WelcomeController getAdminWelcomeController() {
+		return adminWelcomeController;
+	}
+	
 	public void setAdminWelcomeForm(Parent adminWelcomeForm) {
 		this.adminWelcomeForm = adminWelcomeForm;
 	}

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -122,8 +123,11 @@
                      <HBox.margin>
                         <Insets left="46.0" top="40.0" />
                      </HBox.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="gender" />
+                     </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="trnWomenRadio" mnemonicParsing="false" prefHeight="19.0" text="여">
+                  <RadioButton fx:id="trnWomenRadio" mnemonicParsing="false" prefHeight="19.0" text="여" toggleGroup="$gender">
                      <HBox.margin>
                         <Insets left="25.0" top="40.0" />
                      </HBox.margin>

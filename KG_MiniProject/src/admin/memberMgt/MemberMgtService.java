@@ -96,9 +96,9 @@ import javafx.scene.control.ToggleGroup;
 		TextField addr2field = (TextField) memberMgtForm.lookup("#addrtxt2");
 		RadioButton men = (RadioButton) memberMgtForm.lookup("#menradio");
 		RadioButton women = (RadioButton) memberMgtForm.lookup("#womenradio");
-		ToggleGroup gender = new ToggleGroup();
-		men.setToggleGroup(gender);
-		women.setToggleGroup(gender);
+//		ToggleGroup gender = new ToggleGroup();
+//		men.setToggleGroup(gender);
+//		women.setToggleGroup(gender);
 		
 		idfield.setText(memberMgtDto.getMem_id());
 		namefield.setText(memberMgtDto.getMem_name());

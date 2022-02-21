@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
@@ -150,8 +151,11 @@
                               </Label>
                               <VBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="99.0" spacing="5.0">
                                  <children>
-                                    <RadioButton fx:id="menradio" mnemonicParsing="false" text="남" />
-                                    <RadioButton fx:id="womenradio" mnemonicParsing="false" text="여" />
+                                    <RadioButton fx:id="menradio" mnemonicParsing="false" text="남">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="gender" />
+                                       </toggleGroup></RadioButton>
+                                    <RadioButton fx:id="womenradio" mnemonicParsing="false" text="여" toggleGroup="$gender" />
                                  </children>
                                  <HBox.margin>
                                     <Insets left="10.0" />

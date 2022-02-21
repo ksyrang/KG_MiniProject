@@ -59,9 +59,9 @@ public class TrainerEnrollService {
 		TextField trnCareerTxt = (TextField) trainerEnrollForm.lookup("#trnCareerTxt");
 		RadioButton trnMenRadio = (RadioButton) trainerEnrollForm.lookup("#trnMenRadio");
 		RadioButton trnWomenRadio = (RadioButton) trainerEnrollForm.lookup("#trnWomenRadio");
-		ToggleGroup group = new ToggleGroup();
-		trnMenRadio.setToggleGroup(group);
-		trnWomenRadio.setToggleGroup(group);
+//		ToggleGroup group = new ToggleGroup();
+//		trnMenRadio.setToggleGroup(group);
+//		trnWomenRadio.setToggleGroup(group);
 		
 		String trnId = trnIdTxt.getText();
 		String trnPw = trnPwTxt.getText();

@@ -60,9 +60,9 @@ public class TrainerMgtService {
 		TextField trnCareerTxt = (TextField) trainerMgtForm.lookup("#trnCareerTxt");
 		RadioButton trnMenRadio = (RadioButton) trainerMgtForm.lookup("#trnMenRadio");
 		RadioButton trnWomenRadio = (RadioButton) trainerMgtForm.lookup("#trnWomenRadio");
-		ToggleGroup group = new ToggleGroup();
-		trnMenRadio.setToggleGroup(group);
-		trnWomenRadio.setToggleGroup(group);
+//		ToggleGroup group = new ToggleGroup();
+//		trnMenRadio.setToggleGroup(group);
+//		trnWomenRadio.setToggleGroup(group);
 
 		trnIdTxt.setText(dto.getTRAINER_ID());
 		trnNameTxt.setText(dto.getTRAINER_Name());

@@ -42,8 +42,10 @@ public class CmnPrmScheDAO {
 				+ "PRMSCHE_Price, "
 				+ "PRM_Code, "
 				+ "TRAINER_Code, "
-				+ "PRMSCHE_Name)"+
-				"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "PRMSCHE_Name,"
+				+ "PRMSCHECODE_Num)"+
+				"VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+		//				1,2,3,4,5,6,7,8,9,10
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, DTO.getPRMSCHE_Code());
@@ -56,6 +58,7 @@ public class CmnPrmScheDAO {
 			ps.setString(8, DTO.getPRM_Code());
 			ps.setString(9, DTO.getTRAINER_Code());
 			ps.setString(10, DTO.getPRMSCHE_Name());
+			ps.setInt(11, DTO.getPRMSCHECode_Num());
 			result = ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -196,6 +199,45 @@ public class CmnPrmScheDAO {
 		}
 		return Datalist;
 	}
+	public ArrayList<CmnPrmScheDTO> SltPrmScheAllbyPrmandTime(String PRM_CODE, String time){
+		ArrayList<CmnPrmScheDTO> Datalist = new ArrayList<>();
+		CmnPrmScheDTO tmpdata = null;
+		sql = "SELECT * FROM PRMSCHE_TB WHERE PRM_CODE = ? AND PRMSCHE_TIME= ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, PRM_CODE);
+			ps.setString(1, time);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				tmpdata = new CmnPrmScheDTO(
+					rs.getString("PRMSCHE_CODE"),
+					rs.getInt("PRMSCHECode_Num"),
+					rs.getDate("PRMSCHE_STRDATE"),
+					rs.getDate("PRMSCHE_ENDDATE"),
+					rs.getString("PRMSCHE_TIME"),
+					rs.getInt("PRMSCHE_LIMITP"),
+					rs.getInt("PRMSCHE_CURRENTP"),
+					rs.getInt("PRMSCHE_PRICE"),
+					rs.getString("PRM_CODE"),
+					rs.getString("TRAINER_CODE"),
+					rs.getString("PRMSCHE_NAME")
+				);
+				Datalist.add(tmpdata);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		return Datalist;
+	}
+	
 	public ArrayList<CmnPrmScheDTO> SltPrmScheAllbyPrm(String PRM_CODE){
 		ArrayList<CmnPrmScheDTO> Datalist = new ArrayList<>();
 		CmnPrmScheDTO tmpdata = null;
@@ -358,12 +400,13 @@ public class CmnPrmScheDAO {
 	}
 	public int SltPrmScheCodeMaxNum() {
 		int result = 0;
-		sql = "SELECT MAX(getPRMSCHECode_Num) FROM PRMSCHE_TB";
+		sql = "SELECT MAX(PRMSCHECode_Num) FROM PRMSCHE_TB";
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
-			while(rs.next()) {
-				result = rs.getInt("MAX(getPRMSCHECode_Num)");
+			if(rs.next()) {
+				result = rs.getInt("MAX(PRMSCHECode_Num)");
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -377,5 +420,30 @@ public class CmnPrmScheDAO {
 		}
 		return result;
 	}
+	public int SltPrmScheCodeMaxNumbyPrmandTime(String PRM_CODE, String time) {
+		int result = 0;
+		sql = "SELECT MAX(PRMSCHECode_Num) FROM PRMSCHE_TB WHERE PRM_CODE = ? AND PRMSCHE_TIME= ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, PRM_CODE);
+			ps.setString(2, time);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("MAX(PRMSCHECode_Num)");
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (rs != null)	rs.close();
+				if (ps != null)	ps.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
 	
 }//class end

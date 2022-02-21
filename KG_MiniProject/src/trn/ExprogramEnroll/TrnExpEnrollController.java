@@ -49,6 +49,7 @@ public class TrnExpEnrollController implements Initializable {
 	
 	private TrnExPEnrollService trnExPEnrollSvc;
 	private Parent trnExpEnrollForm;
+	private Parent TrnWlcForm;
 	private String trnCode;
 	
 	public TrnExpEnrollController() {
@@ -64,22 +65,27 @@ public class TrnExpEnrollController implements Initializable {
 	public void CheckSrtDate() {
 		trnExPEnrollSvc.CheckSrtDate();
 	}
-	
+	public void CheckEndDate() {
+		trnExPEnrollSvc.CheckEndDate();
+	}
 	public void ExPErllProc(){
 		trnExPEnrollSvc.ExPErllProc(trnExpEnrollForm);
 		
 	}
-	
 	public void BackProc() {
 		trnExPEnrollSvc.BackProc(trnExpEnrollForm);
 	}
+
 	
-	
-	
+	public Parent getTrnWlcForm() {
+		return TrnWlcForm;
+	}
+	public void setTrnWlcForm(Parent trnWlcForm) {
+		TrnWlcForm = trnWlcForm;
+	}
 	public void setTrnCode(String trnCode) {
 		this.trnCode = trnCode;
-	}
-	
+	}	
 	public String getTrnCode() {
 		return trnCode;
 	}

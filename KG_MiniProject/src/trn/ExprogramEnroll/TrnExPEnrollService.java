@@ -1,5 +1,6 @@
 package trn.ExprogramEnroll;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import common.CmnPrmDAO;
@@ -39,7 +40,17 @@ public class TrnExPEnrollService {
 	}
 	
 	public void CheckSrtDate() {
-		
+		if(CommonService.CompareDate(LocalDate.now(),SrtDate.getValue())) {
+			CommonService.Msg("현재 일짜 이후로 입력해주십시오.");
+			SrtDate.getEditor().clear();
+			return;
+		}
+	}
+	public void CheckEndDate() {
+		if(CommonService.CompareDate(SrtDate.getValue(), EndDate.getValue())) {
+			CommonService.Msg("종료일을 시작일 뒤의 날짜로 입력해주십시오.");
+			return;
+		}
 	}
 	
 
@@ -48,44 +59,32 @@ public class TrnExPEnrollService {
 			CommonService.Msg("종료일을 시작일 뒤의 날짜로 입력해주십시오.");
 			return;
 		}
+		//강의 일정용 코드 생성
+		String PrmScheCodegeneration = null;//Rule : PrmSche+강의종류 + 오전/오후 + 강사 + num
 		int InitCrtMems = 0;
-		String Time = null;
-		String PrmType = ExPTypeBox.getSelectionModel().getSelectedItem();
+		String PrmType = ExPTypeBox.getSelectionModel().getSelectedItem();//강의종류
+		String Time = null;//시간
 		if(AMRBtn.isSelected()) Time = "오전";
-		else {
+		else if(PMRBtn.isSelected()){
 			Time = "오후";
+		}else {
+			Time = "오전";
 		}
 		String getPrmCode = null;
-		ArrayList<CmnPrmDTO> PrmList = new CmnPrmDAO().SltPrmAll();
+		ArrayList<CmnPrmDTO> PrmList = new CmnPrmDAO().SltPrmAll();//DB에 있는 모든 ExP리스트 가져오기
 //		System.out.println("선택한 종류코드: "+ExPTypeBox.getSelectionModel().getSelectedItem());
 		for(CmnPrmDTO DTO : PrmList) {
 			if(ExPTypeBox.getSelectionModel().getSelectedItem().equals(DTO.getPRM_Name())) {
 				getPrmCode = DTO.getPRM_Code();
 				break;
-//				System.out.println("코드로 찾은 종류: "+getPrmCode);
 			}
 		}
 		//강사 정보 -> 이름찾기용
 		CmnTrainerDTO TrnInfo = new CmnTrainerDAO().SltTrnOne(TrnExpEnrollController.getTrnCode()); 
-		//강의 일정용 코드 생성
-		String PrmScheCodegeneration = null;//Rule : PrmSche+강의종류 + 오전/오후 + 강사 + num
-
-		ArrayList<CmnPrmScheDTO> PrmScheListbyPrmCode = new CmnPrmScheDAO().SltPrmScheAllbyPrm(getPrmCode);
-
-		//스케쥴 코드 리스트 생성
-		String[] PrmScheListbyPrmCodeList = new String[PrmScheListbyPrmCode.size()];
-		int i=0;
-		for(CmnPrmScheDTO DTO: PrmScheListbyPrmCode) {
-			if(DTO.getPRMSCHE_Time().equals("오전")) {
-				PrmScheListbyPrmCodeList[i] = DTO.getPRMSCHE_Code();	
-			}else {
-				PrmScheListbyPrmCodeList[i] = DTO.getPRMSCHE_Code();
-			}
-			i++;
-		}
-//		String PrmScheNumber = getlatestNumToString(PrmScheListbyPrmCodeList);
+		//비교해야될것 강의종류 && 오전/오후
+		//선택한 프로그램을 가지고 있는 스케쥴 리스트들의 최대코드 번호
+		int latestNum = new CmnPrmScheDAO().SltPrmScheCodeMaxNumbyPrmandTime(getPrmCode,Time);
 		//코드 생성
-		int latestNum = new CmnPrmScheDAO().SltPrmScheCodeMaxNum();
 		System.out.println("최신번호 결과: " + latestNum);
 		PrmScheCodegeneration ="PrmSche"+"_"+PrmType+"_"+Time+"_"+TrnInfo.getTRAINER_Name()+"_"+Integer.toString(latestNum+1);
 		System.out.println("생성된 코드 : "+PrmScheCodegeneration);
@@ -109,16 +108,17 @@ public class TrnExPEnrollService {
 		}else {
 			CommonService.Msg("이상 발생!");
 		}
-//		//Table View Refresh 
-//		TableView<TrnTbVDTO> refreshTable = (TableView<TrnTbVDTO>)WelcomeForm.lookup("#CurrentProgramTableList");
-//		refreshTable.getItems().clear();
-//		ArrayList<CmnPrmScheDTO> tmplist = new CmnPrmScheDAO().SltPrmScheAllbyTrn(TrnExpEnrollController.getTrnCode());
-//		ObservableList<TrnTbVDTO> TBVwlist = FXCollections.observableArrayList();
-//		for(CmnPrmScheDTO tmpdto: tmplist) {//PCodeColumn, PNameColumn, MembersColumn
-//			TBVwlist.add(new TrnTbVDTO(tmpdto.getPRMSCHE_Code(), tmpdto.getPRMSCHE_Name(), 
-//					Integer.toString(tmpdto.getPRMSCHE_CurrentP())));
-//		}			
-//		refreshTable.setItems(TBVwlist);	
+		//Table View Refresh 
+		Parent wlcForm = TrnExpEnrollController.getTrnWlcForm();
+		TableView<TrnTbVDTO> refreshTable = (TableView<TrnTbVDTO>)wlcForm.lookup("#CurrentProgramTableList");
+		refreshTable.getItems().clear();
+		ArrayList<CmnPrmScheDTO> tmplist = new CmnPrmScheDAO().SltPrmScheAllbyTrn(TrnExpEnrollController.getTrnCode());
+		ObservableList<TrnTbVDTO> TBVwlist = FXCollections.observableArrayList();
+		for(CmnPrmScheDTO tmpdto: tmplist) {//PCodeColumn, PNameColumn, MembersColumn
+			TBVwlist.add(new TrnTbVDTO(tmpdto.getPRMSCHE_Code(), tmpdto.getPRMSCHE_Name(), 
+					Integer.toString(tmpdto.getPRMSCHE_CurrentP())));
+		}			
+		refreshTable.setItems(TBVwlist);		
 	}
 	
 	public void BackProc(Parent myForm) {
@@ -169,7 +169,8 @@ public class TrnExPEnrollService {
 		System.out.println("연산 결과 : "+LastestNum);
 		return LastestNum;
 	}
-	
+
+
 	
 	
 	

@@ -121,7 +121,8 @@ public class TrnWelcomeService {
 			trnExPEnrollFrom = loader.load();
 			trnWelcomeController.setTrnExpEnrollController(loader.getController());
 			trnWelcomeController.getTrnExpEnrollController().setTrnExpEnrollForm(trnExPEnrollFrom);
-			trnWelcomeController.getTrnExpEnrollController().setTrnCode(trnWelcomeController.getTrnCode());	
+			trnWelcomeController.getTrnExpEnrollController().setTrnCode(trnWelcomeController.getTrnCode());
+			trnWelcomeController.getTrnExpEnrollController().setTrnWlcForm(trnWelcomeController.getTrnWelcomeForm());
 			
 			Label titleUserName = (Label)trnExPEnrollFrom.lookup("#TitleUserNameLabel");
 			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnWelcomeController.getTrnCode()));

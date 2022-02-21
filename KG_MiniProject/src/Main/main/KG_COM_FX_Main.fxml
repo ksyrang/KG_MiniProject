@@ -270,11 +270,11 @@
                      <children>
                         <TableView fx:id="MainTableView" prefHeight="372.0" prefWidth="824.0">
                           <columns>
-                            <TableColumn fx:id="main프로그램명" minWidth="390.0" prefWidth="-1.0" text="프로그램명" />
-                            <TableColumn fx:id="Main강사명" minWidth="120.0" prefWidth="-1.0" text="강사명" />
-                              <TableColumn fx:id="Main참여인원" minWidth="80.0" prefWidth="-1.0" text="참여인원" />
-                              <TableColumn fx:id="Main참여정원" minWidth="80.0" prefWidth="-1.0" text="참여정원" />
-                              <TableColumn fx:id="Main프로그램가격" minWidth="150.0" prefWidth="-1.0" text="프로그램 가격" />
+                            <TableColumn fx:id="mainPrmName" minWidth="390.0" prefWidth="-1.0" text="프로그램명" />
+                            <TableColumn fx:id="mainTrnName" minWidth="120.0" prefWidth="-1.0" text="강사명" />
+                              <TableColumn fx:id="mainCurrentP" minWidth="80.0" prefWidth="-1.0" text="참여인원" />
+                              <TableColumn fx:id="mainLimitP" minWidth="80.0" prefWidth="-1.0" text="참여정원" />
+                              <TableColumn fx:id="mainPrmPrice" minWidth="150.0" prefWidth="-1.0" text="프로그램 가격(원)" />
                           </columns>
                         </TableView>
                      </children></AnchorPane>

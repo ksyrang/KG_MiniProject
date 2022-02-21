@@ -299,6 +299,34 @@ public class CmnPrmScheDAO {
 		return Datalist;
 	}
 	
+	public ObservableList<CmnPrmScheDTO> GetPrmScheAll(){
+		ObservableList<CmnPrmScheDTO> Datalist = FXCollections.observableArrayList();
+		CmnPrmScheDTO prmScheDto;
+		sql = "SELECT * FROM PRMSCHE_TB";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				prmScheDto = new CmnPrmScheDTO(rs.getString("PRMSCHE_Code"), rs.getInt("PRMSCHECode_Num"), 
+						rs.getDate("PRMSCHE_Strdate"), rs.getDate("PRMSCHE_Enddate"), rs.getString("PRMSCHE_Time"), 
+						rs.getInt("PRMSCHE_LimitP"), rs.getInt("PRMSCHE_CurrentP"), rs.getInt("PRMSCHE_Price"), 
+						rs.getString("PRM_Code"), rs.getString("TRAINER_Code"), rs.getString("PRMSCHE_Name"));
+				Datalist.add(prmScheDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		return Datalist;
+	}
+	
 	public ArrayList<CmnPrmScheDTO> GetPrmScheCode(String PRM_Code) {
 		sql = "SELECT * FROM PRMSCHE_TB WHERE PRM_Code = ?";
 		ArrayList<CmnPrmScheDTO> Datalist = new ArrayList<>();

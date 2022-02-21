@@ -7,88 +7,69 @@ import java.util.ResourceBundle;
 import Main.main.Controller;
 import common.CmnMemShipDAO;
 import common.CmnMemShipDTO;
+import common.CmnPrmScheDAO;
+import common.CmnPrmScheDTO;
+import common.CmnTrainerDAO;
+import common.CmnTrainerDTO;
 import common.CommonService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 public class LoginController implements Initializable{
 
-	@FXML
-    private VBox 회원권표시00;
-    @FXML
-    private Label MemshipName1;
-    @FXML
-    private Label MemshipPrice1;
-    @FXML
-    private VBox 회원권표시10;
-    @FXML
-    private Label MemshipName2;
-    @FXML
-    private Label MemshipPrice2;
-    @FXML
-    private VBox 회원권표시20;
-    @FXML
-    private Label MemshipName3;
-    @FXML
-    private Label MemshipPrice3;
-    @FXML
-    private VBox 회원권표시30;
-    @FXML
-    private Label MemshipName4;
-    @FXML
-    private Label MemshipPrice4;
-    @FXML
-    private VBox 회원권표시01;
-    @FXML
-    private Label MemshipName5;
-    @FXML
-    private Label MemshipPrice5;
-    @FXML
-    private VBox 회원권표시11;
-    @FXML
-    private Label MemshipName6;
-    @FXML
-    private Label MemshipPrice6;
-    @FXML
-    private VBox 회원권표시21;
-    @FXML
-    private Label MemshipName7;
-    @FXML
-    private Label MemshipPrice7;
-    @FXML
-    private VBox 회원권표시31;
-    @FXML
-    private Label MemshipName8;
-    @FXML
-    private Label MemshipPrice8;
-    @FXML
-    private VBox 회원권표시02;
-    @FXML
-    private Label MemshipName9;
-    @FXML
-    private Label MemshipPrice9;
-    @FXML
-    private VBox 회원권표시12;
-    @FXML
-    private Label MemshipName10;
-    @FXML
-    private Label MemshipPrice10;
-    @FXML
-    private VBox 회원권표시22;
-    @FXML
-    private Label MemshipName11;
-    @FXML
-    private Label MemshipPrice11;
-    @FXML
-    private VBox 회원권표시32;
-    @FXML
-    private Label MemshipName12;
-    @FXML
-    private Label MemshipPrice12;
-
+	@FXML private VBox 회원권표시00;
+    @FXML private Label MemshipName1;
+    @FXML private Label MemshipPrice1;
+    @FXML private VBox 회원권표시10;
+    @FXML private Label MemshipName2;
+    @FXML private Label MemshipPrice2;
+    @FXML private VBox 회원권표시20;
+    @FXML private Label MemshipName3;
+    @FXML private Label MemshipPrice3;
+    @FXML private VBox 회원권표시30;
+    @FXML private Label MemshipName4;
+    @FXML private Label MemshipPrice4;
+    @FXML private VBox 회원권표시01;
+    @FXML private Label MemshipName5;
+    @FXML private Label MemshipPrice5;
+    @FXML private VBox 회원권표시11;
+    @FXML private Label MemshipName6;
+    @FXML private Label MemshipPrice6;
+    @FXML private VBox 회원권표시21;
+    @FXML private Label MemshipName7;
+    @FXML private Label MemshipPrice7;
+    @FXML private VBox 회원권표시31;
+    @FXML private Label MemshipName8;
+    @FXML private Label MemshipPrice8;
+    @FXML private VBox 회원권표시02;
+    @FXML private Label MemshipName9;
+    @FXML private Label MemshipPrice9;
+    @FXML private VBox 회원권표시12;
+    @FXML private Label MemshipName10;
+    @FXML private Label MemshipPrice10;
+    @FXML private VBox 회원권표시22;
+    @FXML private Label MemshipName11;
+    @FXML private Label MemshipPrice11;
+    @FXML private VBox 회원권표시32;
+    @FXML private Label MemshipName12;
+    @FXML private Label MemshipPrice12;
+    
+    @FXML private TableView<MainPrmTable> MainTableView;
+    @FXML private TableColumn<MainPrmTable, String> mainPrmName;
+    @FXML private TableColumn<MainPrmTable, String> mainTrnName;
+    @FXML private TableColumn<MainPrmTable, Integer> mainCurrentP;
+    @FXML private TableColumn<MainPrmTable, Integer> mainLimitP;
+    @FXML private TableColumn<MainPrmTable, Integer> mainPrmPrice;
+    
+    ObservableList<MainPrmTable> obserList;
 	
 	
 	private Parent mainForm;
@@ -232,6 +213,24 @@ public class LoginController implements Initializable{
 		if(MemshipName11.getText().equals("-")) 회원권표시22.setVisible(false);
 		if(MemshipName12.getText().equals("-")) 회원권표시32.setVisible(false);
 		
+		// EX프로그램 테이블뷰
+		CmnPrmScheDAO prmScheDao = new CmnPrmScheDAO();
+		ObservableList<CmnPrmScheDTO> prmScheDto = prmScheDao.GetPrmScheAll();
+		CmnTrainerDAO trnDao = new CmnTrainerDAO();
+		CmnTrainerDTO trnDto;
+		obserList = FXCollections.observableArrayList();
+		
+		mainPrmName.setCellValueFactory(new PropertyValueFactory<>("mainPrmName"));
+		mainTrnName.setCellValueFactory(new PropertyValueFactory<>("mainTrnName"));
+		mainCurrentP.setCellValueFactory(new PropertyValueFactory<>("mainCurrentP"));
+		mainLimitP.setCellValueFactory(new PropertyValueFactory<>("mainLimitP"));
+		mainPrmPrice.setCellValueFactory(new PropertyValueFactory<>("mainPrmPrice"));
+		for(CmnPrmScheDTO m : prmScheDto) {
+			trnDto = trnDao.SltTrnOne(m.getTRAINER_Code());
+			String trnName = trnDto.getTRAINER_Name();
+			obserList.add(new MainPrmTable(m.getPRMSCHE_Name(), trnName, m.getPRMSCHE_CurrentP(), m.getPRMSCHE_LimitP(), m.getPRMSCHE_Price()));
+		}
+		MainTableView.setItems(obserList);
 	}
 
 }

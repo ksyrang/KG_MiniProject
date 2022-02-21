@@ -28,6 +28,7 @@ import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.PieChart.Data;
+import javafx.scene.control.Tooltip;
 import javafx.scene.chart.XYChart;
 
 public class StatisticsController implements Initializable {
@@ -57,7 +58,6 @@ public class StatisticsController implements Initializable {
 		int noGender = 0;
 
 		for (CmnMemDTO m : member) {
-			System.out.println(m);
 			try {
 				if (m.getMEM_Gender().equals("남")) {
 					menCnt++;
@@ -72,16 +72,16 @@ public class StatisticsController implements Initializable {
 
 		ObservableList<Data> list1 = FXCollections.observableArrayList();
 		if (menCnt > 0) {
-			list1.add(new PieChart.Data("남", menCnt));
+			list1.add(new Data("남 : " + menCnt + " 명", menCnt));
 		}
 		if (womenCnt > 0) {
-			list1.add(new PieChart.Data("여", womenCnt));
+			list1.add(new Data("여 : " + womenCnt + " 명", womenCnt));
 		}
 		if (noGender > 0) {
-			list1.add(new PieChart.Data("선택안함", noGender));
+			list1.add(new Data("선택안함 : " + noGender +" 명", noGender));
 		}
 		genderPie.setData(list1);
-
+	
 		
 		// 2.회원권, 각 프로그램 종류 별 PieChart
 		// 회원권 갯수
@@ -101,7 +101,7 @@ public class StatisticsController implements Initializable {
 
 		ObservableList<Data> list2 = FXCollections.observableArrayList();
 		if (memshipSche != 0) {
-			list2.add(new PieChart.Data("회원권", memshipSche));
+			list2.add(new PieChart.Data("회원권 : " + memshipSche, memshipSche));
 		}
 
 		for (CmnPrmDTO m : prmDto) {
@@ -119,7 +119,7 @@ public class StatisticsController implements Initializable {
 				}
 			}
 			if (payedPrm > 0) {
-				list2.add(new PieChart.Data(m.getPRM_Name(), payedPrm));
+				list2.add(new PieChart.Data(m.getPRM_Name() + " : " + payedPrm, payedPrm));
 			}
 		}
 		proPie.setData(list2);
@@ -144,9 +144,11 @@ public class StatisticsController implements Initializable {
 					}
 				}
 			}
-			series1.getData().add(new XYChart.Data(trainerName, sales));
+			//series1.getData().add(new XYChart.Data(trainerName, sales));
+			series1.getData().add(new XYChart.Data(trainerName + "\n(" + sales / 10000 + " 만원)", sales));
 		}
 		trainerArea.getData().add(series1);
+		
 
 		// 4. 월별 차트
 		XYChart.Series series2 = new XYChart.Series();
@@ -171,7 +173,7 @@ public class StatisticsController implements Initializable {
 			series2.getData().add(new XYChart.Data(strMonthDate,sales2));
 		}
 		monthlyBar.getData().add(series2);
-
+		//monthlyBar.
 	}
 
 	public void setStatisticsForm(Parent statisticsForm) {

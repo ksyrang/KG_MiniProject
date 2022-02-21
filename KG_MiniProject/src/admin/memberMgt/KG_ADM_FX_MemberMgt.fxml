@@ -17,30 +17,36 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.memberMgt.MemberMgtController">
    <top>
-      <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+      <HBox prefHeight="55.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
-            <Label text="KG GYM">
-               <font>
-                  <Font size="25.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="10.0" top="12.5" />
-               </HBox.margin>
-            </Label>
-            <Label text="관리자님">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="600.0" top="12.5" />
-               </HBox.margin>
-            </Label>
-            <Button mnemonicParsing="false" text="logout">
-               <HBox.margin>
-                  <Insets left="20.0" top="12.5" />
-               </HBox.margin>
-            </Button>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="450.0">
+               <children>
+                  <Label text="KG GYM">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
+               <children>
+                  <Label text="관리자님">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
          </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
       </HBox>
    </top>
    <bottom>
@@ -59,7 +65,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="900.0" spacing="30.0">
                <children>
                   <Label text="필터" />
-                  <ComboBox fx:id="filterCombo" onAction="#memberMgtFilterCombo" prefWidth="150.0" />
+                  <ComboBox fx:id="filterCombo" onAction="#memberMgtFilterCombo" prefHeight="30.0" prefWidth="150.0" />
                </children>
                <VBox.margin>
                   <Insets left="20.0" />
@@ -86,36 +92,36 @@
                         </TableView>
                      </children>
                   </VBox>
-                  <VBox prefHeight="400.0" prefWidth="480.0" spacing="5.0">
+                  <VBox prefHeight="400.0" prefWidth="480.0" spacing="10.0">
                      <children>
                         <Label text="회원 상세정보">
                            <font>
                               <Font size="18.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
-                        <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <Label text="ID">
+                              <Label prefWidth="65.0" text="ID">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="idtxt" prefWidth="160.0">
+                              <TextField fx:id="idtxt" prefHeight="30.0" prefWidth="160.0">
                                  <HBox.margin>
-                                    <Insets left="55.0" />
+                                    <Insets />
                                  </HBox.margin>
                               </TextField>
-                              <Label text="*이름">
+                              <Label prefWidth="65.0" text="*이름">
                                  <HBox.margin>
-                                    <Insets left="55.0" />
+                                    <Insets />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="nametxt" prefHeight="29.0" prefWidth="125.0">
+                              <TextField fx:id="nametxt" prefHeight="30.0" prefWidth="130.0">
                                  <HBox.margin>
-                                    <Insets left="10.0" />
+                                    <Insets />
                                  </HBox.margin>
                               </TextField>
                            </children>
@@ -123,12 +129,15 @@
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <Label text="*PW" />
-                              <TextField fx:id="pwtxt" prefHeight="29.0" prefWidth="197.0">
+                              <Label prefWidth="65.0" text="*PW">
                                  <HBox.margin>
-                                    <Insets left="40.0" />
+                                    <Insets />
+                                 </HBox.margin></Label>
+                              <TextField fx:id="pwtxt" prefHeight="30.0" prefWidth="190.0">
+                                 <HBox.margin>
+                                    <Insets />
                                  </HBox.margin>
                               </TextField>
                            </children>
@@ -136,17 +145,20 @@
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <Label text="전화번호" />
-                              <TextField fx:id="mobiletxt" prefWidth="197.0">
+                              <Label prefWidth="65.0" text="전화번호">
                                  <HBox.margin>
-                                    <Insets left="10.0" />
+                                    <Insets />
+                                 </HBox.margin></Label>
+                              <TextField fx:id="mobiletxt" prefHeight="30.0" prefWidth="190.0">
+                                 <HBox.margin>
+                                    <Insets />
                                  </HBox.margin>
                               </TextField>
                               <Label text="성별">
                                  <HBox.margin>
-                                    <Insets left="20.0" />
+                                    <Insets />
                                  </HBox.margin>
                               </Label>
                               <VBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="99.0" spacing="5.0">
@@ -158,7 +170,7 @@
                                     <RadioButton fx:id="womenradio" mnemonicParsing="false" text="여" toggleGroup="$gender" />
                                  </children>
                                  <HBox.margin>
-                                    <Insets left="10.0" />
+                                    <Insets />
                                  </HBox.margin>
                               </VBox>
                            </children>
@@ -166,12 +178,12 @@
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <Label text="생년월일" />
-                              <TextField fx:id="birthtxt" prefHeight="29.0" prefWidth="197.0">
+                              <Label prefWidth="65.0" text="생년월일" />
+                              <TextField fx:id="birthtxt" prefHeight="30.0" prefWidth="190.0">
                                  <HBox.margin>
-                                    <Insets left="10.0" />
+                                    <Insets />
                                  </HBox.margin>
                               </TextField>
                            </children>
@@ -179,16 +191,16 @@
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox prefHeight="30.0" prefWidth="200.0">
+                        <HBox prefHeight="30.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <Label text="주소" />
-                              <VBox prefHeight="58.0" prefWidth="321.0" spacing="5.0">
+                              <Label prefWidth="65.0" text="주소" />
+                              <VBox prefHeight="63.0" prefWidth="346.0" spacing="5.0">
                                  <children>
-                                    <TextField fx:id="addrtxt1" />
-                                    <TextField fx:id="addrtxt2" />
+                                    <TextField fx:id="addrtxt1" prefHeight="30.0" prefWidth="250.0" />
+                                    <TextField fx:id="addrtxt2" prefHeight="30.0" prefWidth="250.0" />
                                  </children>
                                  <HBox.margin>
-                                    <Insets left="40.0" />
+                                    <Insets />
                                  </HBox.margin>
                               </VBox>
                            </children>

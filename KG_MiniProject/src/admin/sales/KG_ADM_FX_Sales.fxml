@@ -16,28 +16,34 @@
    <top>
       <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
-            <Label text="KG GYM">
-               <font>
-                  <Font size="25.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="10.0" top="12.5" />
-               </HBox.margin>
-            </Label>
-            <Label text="관리자님">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="600.0" top="12.5" />
-               </HBox.margin>
-            </Label>
-            <Button mnemonicParsing="false" text="logout">
-               <HBox.margin>
-                  <Insets left="20.0" top="12.5" />
-               </HBox.margin>
-            </Button>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="450.0">
+               <children>
+                  <Label text="KG GYM">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
+               <children>
+                  <Label text="관리자님">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
          </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
       </HBox>
    </top>
    <bottom>
@@ -56,13 +62,13 @@
             <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="900.0" spacing="10.0">
                <children>
                   <Label text="필터 :" />
-                  <ComboBox fx:id="filterCombo" onAction="#filterComboProc" prefHeight="23.0" prefWidth="117.0" promptText="전체" />
+                  <ComboBox fx:id="filterCombo" onAction="#filterComboProc" prefHeight="30.0" prefWidth="117.0" promptText="전체" />
                   <Label text="세부항목 :">
                      <padding>
                         <Insets left="30.0" />
                      </padding>
                   </Label>
-                  <ComboBox fx:id="detailCombo" onAction="#detailComboProc" prefHeight="23.0" prefWidth="125.0" promptText="필터 선택 필요" />
+                  <ComboBox fx:id="detailCombo" onAction="#detailComboProc" prefHeight="30.0" prefWidth="125.0" promptText="필터 선택 필요" />
                </children>
                <VBox.margin>
                   <Insets />

@@ -14,30 +14,39 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.helthProgramMgt.HelthProgramMgtController">
    <top>
-      <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+      <HBox prefHeight="55.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
-            <Label text="KG GYM">
-               <font>
-                  <Font size="25.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="10.0" top="12.5" />
-               </HBox.margin>
-            </Label>
-            <Label text="관리자님">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="600.0" top="12.5" />
-               </HBox.margin>
-            </Label>
-            <Button mnemonicParsing="false" text="logout">
-               <HBox.margin>
-                  <Insets left="20.0" top="12.5" />
-               </HBox.margin>
-            </Button>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="450.0">
+               <children>
+                  <Label text="KG GYM">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="450.0">
+               <children>
+                  <Label text="관리자님">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
       </HBox>
    </top>
    <bottom>
@@ -52,7 +61,7 @@
    <center>
       <VBox prefHeight="400.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox spacing="30.0">
+            <HBox prefHeight="437.0" prefWidth="900.0" spacing="30.0">
                <children>
                   <VBox prefHeight="400.0" prefWidth="435.0" spacing="5.0">
                      <HBox.margin>
@@ -64,7 +73,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TableView fx:id="memshipTable" onMouseClicked="#tableClick" prefHeight="376.0" prefWidth="425.0">
+                        <TableView fx:id="memshipTable" onMouseClicked="#tableClick" prefHeight="410.0" prefWidth="425.0">
                           <columns>
                             <TableColumn fx:id="colCode" prefWidth="97.0" text="회원퀀 코드" />
                             <TableColumn fx:id="colType" prefWidth="204.0" text="회원권 종류" />
@@ -80,12 +89,12 @@
                               <Font size="18.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
                         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
-                              <Label text="헬스 회원권명">
+                              <Label prefWidth="120.0" text="헬스 회원권명 :">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin></Label>
@@ -94,7 +103,7 @@
                                     <Insets left="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="memshipType" prefHeight="29.0" prefWidth="44.0">
+                              <TextField fx:id="memshipType" prefHeight="30.0" prefWidth="45.0">
                                  <HBox.margin>
                                     <Insets left="5.0" />
                                  </HBox.margin>
@@ -111,10 +120,10 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
-                              <Label text="가격" />
-                              <TextField fx:id="memshipPrice" prefHeight="29.0" prefWidth="161.0">
+                              <Label prefWidth="120.0" text="가격 :" />
+                              <TextField fx:id="memshipPrice" prefHeight="30.0" prefWidth="170.0">
                                  <HBox.margin>
-                                    <Insets left="50.0" />
+                                    <Insets />
                                  </HBox.margin>
                               </TextField>
                               <Label text="원">

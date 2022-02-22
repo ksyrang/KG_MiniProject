@@ -339,20 +339,20 @@
                   </Button>
                </children>
             </HBox>
-            <HBox alignment="CENTER" spacing="200.0">
+            <HBox alignment="CENTER" spacing="175.0">
                <children>
-                  <HBox alignment="CENTER" spacing="20.0">
+                  <HBox alignment="CENTER" spacing="40.0">
                      <children>
-                        <RadioButton fx:id="memberRadio" mnemonicParsing="false" prefHeight="20.0" prefWidth="70.0" text="회원">
+                        <RadioButton fx:id="memberRadio" mnemonicParsing="false" prefHeight="25.0" text="회원">
                            <toggleGroup>
                               <ToggleGroup fx:id="job" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="trainerRadio" mnemonicParsing="false" prefHeight="20.0" prefWidth="70.0" text="강사" toggleGroup="$job" />
-                        <RadioButton fx:id="adminRadio" mnemonicParsing="false" prefHeight="20.0" prefWidth="70.0" text="관리자" toggleGroup="$job" />
+                        <RadioButton fx:id="trainerRadio" mnemonicParsing="false" prefHeight="25.0" text="강사" toggleGroup="$job" />
+                        <RadioButton fx:id="adminRadio" mnemonicParsing="false" prefHeight="25.0" text="관리자" toggleGroup="$job" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" spacing="10.0">
+                  <HBox alignment="CENTER" spacing="15.0">
                      <children>
                         <Label fx:id="FindIDLabel" onMouseClicked="#findIDProc" text="아이디 찾기" />
                         <Label text="/" />

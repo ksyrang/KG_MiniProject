@@ -170,6 +170,9 @@ public class MEM_WelcomeController implements Initializable {
 				selectTable = memProgramTable.getSelectionModel().getSelectedItem();
 				memWelcomeSvc.setSelectTable(selectTable);
 				
+				if(selectTable.getColPrmName() == null) { 
+					return; 
+				}
 				String memberStr = selectTable.getColPrmName();
 				String[] memberStr2= memberStr.split("_"); //회원권
 				String memberStr3 = memberStr2[0];

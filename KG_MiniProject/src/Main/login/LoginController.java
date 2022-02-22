@@ -156,9 +156,7 @@ public class LoginController implements Initializable{
 			tmpPricelist[tmpnum] = E.getMEMSHIP_Price();
 			tmpnum++;
 		}
-		for(int i = 0; i < tmpTypelist.length; i++) {
-			System.out.println(i + " : " + tmpTypelist[i]);
-		}
+		
 		int listLength = tmpTypelist.length;
 		//Type과 가격 입력
 		switch(listLength) {

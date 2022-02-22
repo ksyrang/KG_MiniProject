@@ -175,7 +175,7 @@ public class TrnWelcomeService {
 			CmnTrainerDTO tmpTrnDto = new CmnTrainerDTO(new CmnTrainerDAO().SltTrnOne(trnWelcomeController.getTrnCode()));
 			titleUserName.setText(tmpTrnDto.getTRAINER_Name()+" 강사님");
 			
-			//표시용 컨트롤러(오브젝트) 초기 선언
+			//넣을 데이터 컨트롤러(오브젝트) 초기 선언
 			Label PrmScheCodeLabel = (Label)trnExPMgtFrom.lookup("#PrmScheCodeLabel");
 			Label ExPTypeLabel = (Label)trnExPMgtFrom.lookup("#ExPTypeLabel");
 			TextField ExPNameFeild = (TextField)trnExPMgtFrom.lookup("#ExPNameFeild");
@@ -183,10 +183,13 @@ public class TrnWelcomeService {
 			DatePicker EndDate = (DatePicker)trnExPMgtFrom.lookup("#EndDate");//seteditalbe 존재
 			RadioButton AMRBtn = (RadioButton)trnExPMgtFrom.lookup("#AMRBtn");
 			RadioButton PMRBtn = (RadioButton)trnExPMgtFrom.lookup("#PMRBtn");
+			ToggleGroup group = new ToggleGroup();
 			Label ExPMgtCrtMemDisLabel = (Label)trnExPMgtFrom.lookup("#ExPMgtCrtMemDisLabel");
 			TextField LimitMemsField = (TextField)trnExPMgtFrom.lookup("#LimitMemsField");
+			AMRBtn.setToggleGroup(group);
+			PMRBtn.setToggleGroup(group);
 			
-			//데이터 인풋용 컨트롤러(오브젝트) 초기 선언
+			//가저올 데이터 컨트롤러(오브젝트) 초기 선언
 			Label ExPCodeDisLabel= (Label)form.lookup("#ExPCodeDisLabel");
 			Label ExPTypeDisLabel= (Label)form.lookup("#ExPTypeDisLabel");
 		    Label ExPNameDisLabel= (Label)form.lookup("#ExPNameDisLabel");
@@ -204,6 +207,7 @@ public class TrnWelcomeService {
 		    if(ExPTimeDisLabel.equals("오전"))AMRBtn.setSelected(true);
 		    else if(ExPTimeDisLabel.equals("오후"))PMRBtn.setSelected(true);
 		    else AMRBtn.setSelected(true);		    
+		    ExPMgtCrtMemDisLabel.setText(ExPCrtMemsDisLabel.getText()+"명");
 		    LimitMemsField.setText(ExPLmtMemsDisLabel.getText());
 
 			Stage stage = new Stage();

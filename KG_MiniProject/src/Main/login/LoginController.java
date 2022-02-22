@@ -127,7 +127,7 @@ public class LoginController implements Initializable{
 			else {
 				CommonService.Msg("로그인 중 이상 발생");
 			}
-		}else CommonService.Msg("로그인 정보가 없습니다.");
+		}
 	}
 
 	//회원가입 버튼 클릭 시 호출

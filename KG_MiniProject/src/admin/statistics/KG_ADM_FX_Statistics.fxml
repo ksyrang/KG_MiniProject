@@ -91,7 +91,7 @@
                   <VBox prefHeight="200.0" prefWidth="435.0">
                      <children>
                         <Label text="강사별 매출" />
-                        <AreaChart fx:id="trainerArea">
+                        <AreaChart fx:id="trainerArea" legendVisible="false">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
@@ -104,7 +104,7 @@
                   <VBox prefHeight="200.0" prefWidth="435.0">
                      <children>
                         <Label text="월별 매출" />
-                        <BarChart fx:id="monthlyBar">
+                        <BarChart fx:id="monthlyBar" legendVisible="false">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>

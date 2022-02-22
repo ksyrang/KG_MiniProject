@@ -101,7 +101,7 @@ public class StatisticsController implements Initializable {
 
 		ObservableList<Data> list2 = FXCollections.observableArrayList();
 		if (memshipSche != 0) {
-			list2.add(new PieChart.Data("회원권 : " + memshipSche, memshipSche));
+			list2.add(new PieChart.Data("회원권 : " + memshipSche + "건", memshipSche));
 		}
 
 		for (CmnPrmDTO m : prmDto) {
@@ -115,11 +115,10 @@ public class StatisticsController implements Initializable {
 					for (CmnPayDTO pay : payDto) {
 						payedPrm++;
 					}
-				} else {
 				}
 			}
 			if (payedPrm > 0) {
-				list2.add(new PieChart.Data(m.getPRM_Name() + " : " + payedPrm, payedPrm));
+				list2.add(new PieChart.Data(m.getPRM_Name() + " : " + payedPrm + "건", payedPrm));
 			}
 		}
 		proPie.setData(list2);

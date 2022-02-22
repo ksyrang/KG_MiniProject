@@ -209,7 +209,7 @@ public class TrainerMgtService {
 			} else {
 				if (trnMobile == 0 || mobile.length() == 11) {
 					if (trnBirth == 0 || birth.length() == 8) {
-						if (trnCareer > 0) {
+						if (trnCareer >= 0) {
 							CmnTrainerDTO dto = dao.SltTrnId(trnId);
 							if (dto != null) {
 								dto.setTRAINER_ID(trnId);
@@ -265,7 +265,7 @@ public class TrainerMgtService {
 						}
 					}
 				} else {
-					CommonService.Msg("강의가 남아있어 탈퇴하지 못합니다.");
+					CommonService.Msg("강의가 남아있어 삭제하지 못합니다.");
 				}
 			}
 //			else {

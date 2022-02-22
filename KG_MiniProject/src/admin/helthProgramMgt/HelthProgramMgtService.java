@@ -1,5 +1,9 @@
 package admin.helthProgramMgt;
 
+import common.CmnMemShipDAO;
+import common.CmnMemShipDTO;
+import common.CmnMemShipScheDAO;
+import common.CmnMemShipScheDTO;
 import common.CommonService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -91,10 +95,20 @@ public class HelthProgramMgtService {
 		String type = typetxt.getText();
 		
 		try {
-			if(helthProgramDao.selectType(type) != null) {
-			helthProgramDao.memshipDelete(type);
-			CommonService.Msg("헬스 이용권 " + type + " 개월 회원권 삭제");
-			refreshTable(helthProgramMgtForm);
+			HelthProgramMgtDTO healthPrmDto = helthProgramDao.selectType(type);
+		
+			if (healthPrmDto != null) {
+				CmnMemShipScheDAO memshipScheDao = new CmnMemShipScheDAO();
+				CmnMemShipScheDTO memshipScheDto = memshipScheDao.SltMemShipOne(healthPrmDto.getMemship_code());
+				if (memshipScheDto == null) {
+					if (CommonService.CheckMsg("헬스 이용권 " + type + " 개월 회원권을 삭제하시겠습니까?") == true) {
+						helthProgramDao.memshipDelete(type);
+						CommonService.Msg("헬스 이용권 " + type + " 개월 회원권 삭제");
+						refreshTable(helthProgramMgtForm);
+					}
+				} else {
+					CommonService.Msg("회원이 사용하고 있는 회원권입니다. 삭제할 수 없습니다.");
+				}
 			} else {
 				CommonService.Msg("회원권을 선택해주세요.");
 			}

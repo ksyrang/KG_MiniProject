@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -23,11 +24,17 @@ public class HelthProgramMgtController implements Initializable{
 	@FXML private TableColumn<HelthProTable, String> colType;
 	@FXML private TableColumn<HelthProTable, Integer> colPrice;
 	
+	@FXML private TextField memshipType;
+	
 	ObservableList<HelthProTable> obserList;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		healthSvc = new HelthProgramMgtService();
 		initSetting();
+		
+		memshipType.textProperty().addListener((attribute,before, after) -> {
+			memshipType.setText(CommonService.getLengthLimit(5, memshipType.getText()));
+	      });
 	}
 	
 	public void setHelthMgtForm(Parent helthProgramMgtForm) {

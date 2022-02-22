@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import org.omg.CORBA.COMM_FAILURE;
 
+import common.CmnPrmScheDAO;
+import common.CmnPrmScheDTO;
 import common.CmnTrainerDAO;
 import common.CmnTrainerDTO;
 import common.CommonService;
@@ -140,12 +142,18 @@ public class TrainerMgtService {
 		String trnPw = trnPwTxt.getText();
 
 		String mobile = null;
-		int trnMobile;
+		int trnMobile = 1;
 		if(trnMobileTxt.getText().isEmpty()) {
 			trnMobile = 0;
 		} else {
-			trnMobile = Integer.parseInt(trnMobileTxt.getText());
-			mobile =trnMobileTxt.getText();
+			try {
+				trnMobile = Integer.parseInt(trnMobileTxt.getText());
+				mobile =trnMobileTxt.getText();
+			} catch (NumberFormatException e) {
+				CommonService.Msg("전화번호를 정확하게 입력해주세요.");
+				trnMobileTxt.requestFocus();
+			}
+			
 		}
 		
 		String trnAddr1 = trnAddrTxt1.getText();
@@ -159,19 +167,30 @@ public class TrainerMgtService {
 		String trnAddr = trnAddr1 + "/" + trnAddr2;
 		
 		String birth = null;
-		int trnBirth;
+		int trnBirth = 1;
 		if(trnBirthTxt.getText().isEmpty()) {
 			trnBirth = 0;
 		} else {
-			trnBirth = Integer.parseInt(trnBirthTxt.getText());
-			birth = trnBirthTxt.getText();
+			try {
+				trnBirth = Integer.parseInt(trnBirthTxt.getText());
+				birth = trnBirthTxt.getText();
+			} catch (NumberFormatException e) {
+				CommonService.Msg("생년월일을 정확하게 입력해주세요.");
+				trnBirthTxt.requestFocus();
+			}
+			
 		}
 		
-		int trnCareer;
+		int trnCareer = -1;
 		if (trnCareerTxt.getText().isEmpty()) {
 			trnCareer = 0;
 		} else {
-			trnCareer = Integer.parseInt(trnCareerTxt.getText());
+			try {
+				trnCareer = Integer.parseInt(trnCareerTxt.getText());
+			} catch (NumberFormatException e) {
+				CommonService.Msg("경력을 정확하게 입력해주세요.");
+				trnCareerTxt.requestFocus();
+			}
 		}
 		
 		String trnGender;
@@ -188,36 +207,38 @@ public class TrainerMgtService {
 			if (trnName.isEmpty() || trnPw.isEmpty()) {
 				CommonService.Msg(" * 필수입력란을 입력해주세요.");
 			} else {
-				if(trnMobile == 0 || mobile.length() == 11) {
-					if(trnBirth == 0 || birth.length() == 8) {
-						CmnTrainerDTO dto = dao.SltTrnId(trnId);
-						if (dto != null) {
-							dto.setTRAINER_ID(trnId);
-							dto.setTRAINER_Name(trnName);
-							dto.setTRAINER_PW(trnPw);
-							dto.setTRAINER_Gender(trnGender);
-							dto.setTRAINER_Birth(trnBirth);
-							dto.setTRAINER_Mobile(trnMobile);
-							dto.setTRAINER_Career(trnCareer);
-							dto.setTRAINER_Addr(trnAddr);
-							if (dao.UptTrnId(dto) == 1) {
-								CommonService.Msg(trnId + " 강사 수정 완료");
-								refreshTable(trainerMgtForm);
+				if (trnMobile == 0 || mobile.length() == 11) {
+					if (trnBirth == 0 || birth.length() == 8) {
+						if (trnCareer > 0) {
+							CmnTrainerDTO dto = dao.SltTrnId(trnId);
+							if (dto != null) {
+								dto.setTRAINER_ID(trnId);
+								dto.setTRAINER_Name(trnName);
+								dto.setTRAINER_PW(trnPw);
+								dto.setTRAINER_Gender(trnGender);
+								dto.setTRAINER_Birth(trnBirth);
+								dto.setTRAINER_Mobile(trnMobile);
+								dto.setTRAINER_Career(trnCareer);
+								dto.setTRAINER_Addr(trnAddr);
+								if (dao.UptTrnId(dto) == 1) {
+									CommonService.Msg(trnId + " 강사 수정 완료");
+									refreshTable(trainerMgtForm);
+								} else {
+									CommonService.Msg(trnId + " 강사 수정 실패");
+								}
 							} else {
-								CommonService.Msg(trnId + " 강사 수정 실패");
+								CommonService.Msg("강사를 선택해주세요.");
 							}
-						} else {
-							CommonService.Msg("강사를 선택해주세요.");
 						}
-					}else {
+					} else {
 						CommonService.Msg("생년월일을 정확하게 입력해주세요.");
 						trnBirthTxt.requestFocus();
 					}
-				}else {
+				} else {
 					CommonService.Msg("전화번호를 정확하게 입력주세요.");
 					trnMobileTxt.requestFocus();
 				}
-				
+
 			}
 
 		} catch (NullPointerException e) {
@@ -229,19 +250,27 @@ public class TrainerMgtService {
 	public void trnDeleteProc(Parent trainerMgtForm) {
 		TextField trnIdTxt = (TextField) trainerMgtForm.lookup("#trnIdTxt");
 		String trnId = trnIdTxt.getText();
-		
+		CmnPrmScheDAO prmscheDao= new CmnPrmScheDAO();
 		try {
 			CmnTrainerDTO dto = dao.SltTrnId(trnId);
-			if(dto != null) {
-				if(dao.DelTrnId(trnId) == 1) {
-					CommonService.Msg(trnId + " 강사 삭제 완료");
-					refreshTable(trainerMgtForm);
-				}else {
-					CommonService.Msg(trnId + " 강사 삭제 실패");
+			CmnPrmScheDTO prmscheDto = prmscheDao.SltByTrnCode(dto.getTRAINER_Code());
+			if (dto != null) {
+				if (prmscheDto == null) {
+					if(CommonService.CheckMsg(trnId + " 강사님을 정말 삭제하시겠습니까?") == true) {
+						if (dao.DelTrnId(trnId) == 1) {
+							CommonService.Msg(trnId + " 강사 삭제 완료");
+							refreshTable(trainerMgtForm);
+						} else {
+							CommonService.Msg(trnId + " 강사 삭제 실패");
+						}
+					}
+				} else {
+					CommonService.Msg("강의가 남아있어 탈퇴하지 못합니다.");
 				}
-			}else {
-				CommonService.Msg(" 강사를 선택해주세요.");
 			}
+//			else {
+//				CommonService.Msg(" 강사를 선택해주세요.");
+//			}
 		} catch (NullPointerException e) {
 			CommonService.Msg(" 강사를 선택해주세요.");
 		}

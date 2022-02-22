@@ -1,6 +1,5 @@
 package admin.trainerEnroll;
 
-import java.util.ArrayList;
 
 import admin.trainerMgt.TrainerMgtController;
 import admin.trainerMgt.TrainerMgtTable;
@@ -14,7 +13,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 public class TrainerEnrollService {
 	
 	private TrainerEnrollController TrainerEnrollController;
@@ -98,7 +96,7 @@ public class TrainerEnrollService {
 			
 		}
 		
-		int trnCareer = 1;
+		int trnCareer = -1;
 		if (trnCareerTxt.getText().isEmpty()) {
 			trnCareer = 0;
 		} else {
@@ -108,7 +106,6 @@ public class TrainerEnrollService {
 				CommonService.Msg("경력을 정확하게 입력해주세요.");
 				trnCareerTxt.requestFocus();
 			}
-			
 		}
 		
 		String trnCode = "Trn_" + trnId;
@@ -121,46 +118,47 @@ public class TrainerEnrollService {
 			trnGender = null;
 		}
 		
-		
-		
 		try {
 			if (trnId.isEmpty() || trnPw.isEmpty() || trnPwComfrim.isEmpty() || trnName.isEmpty()) {
 				CommonService.Msg(" * 필수 입력란을 입력해주세요.");
 			} else {
 				if (trnBirth == 0 || birth.length() == 8) {
 					if (trnMobile == 0 || mobile.length() == 11) {
-						if (dao.SltTrnId(trnId) == null) {
-							if (trnPw.equals(trnPwComfrim)) {
-								dao = new CmnTrainerDAO();
-								CmnTrainerDTO dto = new CmnTrainerDTO(trnCode, trnName, trnId, trnPw, trnGender,
-										trnBirth, trnMobile, trnCareer, trnAaddr);
-								if (dao.IstTrn(dto) == 1) {
-									CommonService.Msg(trnId + "강사 등록되었습니다.");
-									CommonService.WindowClose(trainerEnrollForm);
-									// Table View Refresh
-									Parent TMgtForm = TrainerEnrollController.getTrainerMgtForm();
-									ObservableList<TrainerMgtTable> tableView = FXCollections.observableArrayList();
-									TableView<TrainerMgtTable> newTable = (TableView<TrainerMgtTable>) TMgtForm.lookup("#trnTable");
-									newTable.getItems().clear();
-									try {
-										ObservableList<CmnTrainerDTO> list = dao.OLSltTrnAll();
-										for (CmnTrainerDTO t : list) {
-											tableView.add(new TrainerMgtTable(t.getTRAINER_Code(), t.getTRAINER_Name(), t.getTRAINER_Mobile()));
+						if (trnCareer > 0) {
+							if (dao.SltTrnId(trnId) == null) {
+								if (trnPw.equals(trnPwComfrim)) {
+									dao = new CmnTrainerDAO();
+									CmnTrainerDTO dto = new CmnTrainerDTO(trnCode, trnName, trnId, trnPw, trnGender,
+											trnBirth, trnMobile, trnCareer, trnAaddr);
+									if (dao.IstTrn(dto) == 1) {
+										CommonService.Msg(trnId + "강사 등록되었습니다.");
+										CommonService.WindowClose(trainerEnrollForm);
+										// Table View Refresh
+										Parent TMgtForm = TrainerEnrollController.getTrainerMgtForm();
+										ObservableList<TrainerMgtTable> tableView = FXCollections.observableArrayList();
+										TableView<TrainerMgtTable> newTable = (TableView<TrainerMgtTable>) TMgtForm.lookup("#trnTable");
+										newTable.getItems().clear();
+										try {
+											ObservableList<CmnTrainerDTO> list = dao.OLSltTrnAll();
+											for (CmnTrainerDTO t : list) {
+												tableView.add(new TrainerMgtTable(t.getTRAINER_Code(),
+														t.getTRAINER_Name(), t.getTRAINER_Mobile()));
+											}
+											newTable.setItems(tableView);
+										} catch (NullPointerException e) {
+											CommonService.Msg("새로고침중 이상 발생");
 										}
-										newTable.setItems(tableView);
-									} catch (NullPointerException e) {
-										CommonService.Msg("새로고침중 이상 발생");
+									} else {
+										CommonService.Msg("강사 등록 실패");
 									}
 								} else {
-									CommonService.Msg("강사 등록 실패");
+									CommonService.Msg("비밀번호가 다릅니다.");
+									trnPwComfrimTxt.clear();
+									trnPwComfrimTxt.requestFocus();
 								}
 							} else {
-								CommonService.Msg("비밀번호가 다릅니다.");
-								trnPwComfrimTxt.clear();
-								trnPwComfrimTxt.requestFocus();
+								CommonService.Msg("중복 체크를 해주세요.");
 							}
-						} else {
-							CommonService.Msg("중복 체크를 해주세요.");
 						}
 					} else {
 						CommonService.Msg("전화번호를 정확하게 입력해주세요.");
@@ -174,7 +172,7 @@ public class TrainerEnrollService {
 		} catch (NullPointerException e) {
 			CommonService.Msg("중복 체크를 해주세요.");
 		}
-	
+
 	}
-	
+
 }

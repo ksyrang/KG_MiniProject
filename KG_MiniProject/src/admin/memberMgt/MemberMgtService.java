@@ -1,5 +1,7 @@
 package admin.memberMgt;
 
+import common.CmnMemScheDAO;
+import common.CmnMemScheDTO;
 import common.CommonService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -110,7 +112,7 @@ import javafx.scene.control.ToggleGroup;
 		
 		if(memberMgtDto.getMem_mobile() != 0) {
 			String memMobile = Integer.toString(memberMgtDto.getMem_mobile());
-			mobilefield.setText(memMobile);
+			mobilefield.setText("0" + memMobile);
 		} else {
 			mobilefield.setText("");
 		}
@@ -198,15 +200,20 @@ import javafx.scene.control.ToggleGroup;
 		String id = idfield.getText();
 		String name = namefield.getText();
 		String pw = pwfield.getText();
+		
 		String birth = null;
-		int memBirth;
+		int memBirth = 1;
 		if(birthfield.getText().isEmpty()) {
 			memBirth = 0;
 		} else {
-			memBirth = Integer.parseInt(birthfield.getText());
-			birth = birthfield.getText();
+			try {
+				memBirth = Integer.parseInt(birthfield.getText());
+				birth = birthfield.getText();
+			} catch (NumberFormatException e) {
+				CommonService.Msg("생년월일을 정확하게 입력해주세요.");
+				birthfield.requestFocus();
+			}
 		}
-		
 		
 		String addr = addr1field.getText() + "/" + addr2field.getText();
 		String gender;
@@ -251,17 +258,25 @@ import javafx.scene.control.ToggleGroup;
 		String id = idfield.getText();
 		String name = namefield.getText();
 		
+		CmnMemScheDAO memscheDao = new CmnMemScheDAO();
 		try {
 			MemberMgtDTO memberMgtDto = memberMgtDao.selectId(id);
+			CmnMemScheDTO memscheDto = memscheDao.SltMemOne(memberMgtDto.getMem_code());
+			
 			if (memberMgtDto != null) {
-				if (CommonService.CheckMsg(name + "(" + id + ") 회원을 삭제하시겠습니까?") == true) {
-					memberMgtDao.memberDelete(id);
-					CommonService.Msg(name + "(" + id + ") 회원 삭제 완료");
-					filter(memberMgtForm);
-				} 		
-			} else {
-				CommonService.Msg("회원을 선택해주세요.");
-			}
+				if(memscheDto == null) {
+					if (CommonService.CheckMsg(name + "(" + id + ") 회원을 삭제하시겠습니까?") == true) {
+						memberMgtDao.memberDelete(id);
+						CommonService.Msg(name + "(" + id + ") 회원 삭제 완료");
+						filter(memberMgtForm);
+					} 	
+				} else {
+					CommonService.Msg("회원권이 남아있습니다. 탈퇴할 수 없습니다.");
+				}
+			} 
+//			else {
+//				CommonService.Msg("회원을 선택해주세요.");
+//			}
 		} catch (NullPointerException e) {
 			CommonService.Msg("회원을 선택해주세요.");
 		}

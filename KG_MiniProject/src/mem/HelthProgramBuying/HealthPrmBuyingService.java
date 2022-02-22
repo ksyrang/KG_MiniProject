@@ -48,7 +48,7 @@ public class HealthPrmBuyingService {
 		Label SrtDateLabel = (Label)MyForm.lookup("#SrtDateLabel");
 		Label EndDateLabel = (Label)MyForm.lookup("#EndDateLabel");
 
-		if(CommonService.CompareDate(LocalDate.now(),sltDate.getValue())) {
+		if(sltDate.getValue() == null || CommonService.CompareDate(LocalDate.now(),sltDate.getValue())) {
 			CommonService.Msg("현재 일짜 이후로 입력해주십시오.");
 			sltDate.getEditor().clear();
 			return;
@@ -67,7 +67,19 @@ public class HealthPrmBuyingService {
 	// 결제 버튼
 	public void PaymentProc(Parent MyForm) {
 		ComboBox<String> memshipComboBox = (ComboBox<String>) MyForm.lookup("#memshipComboBox");
+		Label memshipPriceTxt = (Label) MyForm.lookup("#memshipPriceTxt");
+		CmnMemShipDTO memshipDto = memshipDao.SltMemShipAll(memshipComboBox.getValue());
+		if(memshipComboBox.getValue() == "0") {
+			CommonService.Msg("회원권을 선택하세요.");
+			return;
+		}
+		
 		DatePicker sltDate = (DatePicker)MyForm.lookup("#SltDate");
+		if(sltDate.getValue() == null || CommonService.CompareDate(LocalDate.now(),sltDate.getValue())) {
+			CommonService.Msg("현재 일짜 이후로 입력해주십시오.");
+			sltDate.getEditor().clear();
+			return;
+		}
 		//회원권 스케줄 생성!
 		CmnMemShipScheDAO ShceDAO = new CmnMemShipScheDAO();
 		
@@ -77,7 +89,8 @@ public class HealthPrmBuyingService {
 		//코드 번호 개설
 		//DB에서 번호의 최대 값을 가지고 와서 +1 해줘서 넣어줘야 함
 		int InputCodeNum = ShceDAO.MemShipScheMaxCodeNum()+1;
-		CmnMemShipDTO memshipDto = memshipDao.SltMemShipAll(memshipComboBox.getValue());
+//		CmnMemShipDTO memshipDto = memshipDao.SltMemShipAll(memshipComboBox.getValue());
+//		memshipDto = memshipDao.SltMemShipAll(memshipComboBox.getValue());
 		ShceDTO.setMEMSHIPSCHE_Code(
 				memshipDto.getMEMSHIP_Code()
 				+"_"+HealthPrmBuyingController.getMembCode()+"_"+ InputCodeNum);

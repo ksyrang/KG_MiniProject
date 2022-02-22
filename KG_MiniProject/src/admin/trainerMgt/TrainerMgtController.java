@@ -33,7 +33,7 @@ public class TrainerMgtController implements Initializable{
 	@FXML private TableView<TrainerMgtTable> trnTable;
 	@FXML private TableColumn<TrainerMgtTable, String> colTrnCode;
 	@FXML private TableColumn<TrainerMgtTable, String> colTrnName;
-	@FXML private TableColumn<TrainerMgtTable, Integer> colTrnMobile;
+	@FXML private TableColumn<TrainerMgtTable, String> colTrnMobile;
 	
 	ObservableList<TrainerMgtTable> obserList;
 	
@@ -98,8 +98,10 @@ public class TrainerMgtController implements Initializable{
 		colTrnName.setCellValueFactory(new PropertyValueFactory<>("colTrnName"));
 		colTrnMobile.setCellValueFactory(new PropertyValueFactory<>("colTrnMobile"));
 		for (CmnTrainerDTO t : dto) {
-			// 전화번호 앞에 0 추가
-			obserList.add(new TrainerMgtTable(t.getTRAINER_Code(), t.getTRAINER_Name(), t.getTRAINER_Mobile()));
+			String TBmobile = null;
+			if(t.getTRAINER_Mobile() != 0) TBmobile =  "0" + t.getTRAINER_Mobile();
+			else TBmobile = "";
+			obserList.add(new TrainerMgtTable(t.getTRAINER_Code(), t.getTRAINER_Name(), TBmobile));
 		}
 
 		trnTable.setItems(obserList);

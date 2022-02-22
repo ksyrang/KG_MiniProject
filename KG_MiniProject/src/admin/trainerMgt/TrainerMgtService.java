@@ -283,7 +283,10 @@ public class TrainerMgtService {
 		try {
 			ObservableList<CmnTrainerDTO> list = dao.OLSltTrnAll();
 			for(CmnTrainerDTO t : list) {
-				tableView.add(new TrainerMgtTable(t.getTRAINER_Code(), t.getTRAINER_Name(), t.getTRAINER_Mobile()));
+				String TBmobile = null;
+				if(t.getTRAINER_Mobile() != 0) TBmobile =  "0" + t.getTRAINER_Mobile();
+				else TBmobile = "";
+				tableView.add(new TrainerMgtTable(t.getTRAINER_Code(), t.getTRAINER_Name(), TBmobile));
 			}
 			newTable.setItems(tableView);
 			removeTxt(trainerMgtForm);

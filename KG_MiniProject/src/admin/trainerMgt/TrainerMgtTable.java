@@ -3,9 +3,9 @@ package admin.trainerMgt;
 public class TrainerMgtTable {
 	private String colTrnCode;
 	private String colTrnName;
-	private int colTrnMobile;
+	private String colTrnMobile;
 	
-	public TrainerMgtTable(String colTrnCode, String colTrnName, int colTrnMobile) {
+	public TrainerMgtTable(String colTrnCode, String colTrnName, String colTrnMobile) {
 		this.colTrnCode = colTrnCode;
 		this.colTrnName = colTrnName;
 		this.colTrnMobile = colTrnMobile;
@@ -22,10 +22,10 @@ public class TrainerMgtTable {
 	public void setColTrnName(String colTrnName) {
 		this.colTrnName = colTrnName;
 	}
-	public int getColTrnMobile() {
+	public String getColTrnMobile() {
 		return colTrnMobile;
 	}
-	public void setColTrnMobile(int colTrnMobile) {
+	public void setColTrnMobile(String colTrnMobile) {
 		this.colTrnMobile = colTrnMobile;
 	}
 	

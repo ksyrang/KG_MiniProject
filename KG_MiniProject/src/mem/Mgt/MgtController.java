@@ -38,11 +38,11 @@ public class MgtController implements Initializable{
 	private MgtController mgtController;
 	private Parent deleteForm;
 	private DeleteController deleteController;
+	private String formerMobileNum;
 	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
 	}
 	
 	public MgtController() {
@@ -90,11 +90,21 @@ public class MgtController implements Initializable{
 		mgtService.MemDeleteOpen(deleteForm, membCode);
 		
 	}
-	
+	public void MBCheckProc() {
+		mgtService.MBCheckProc(memMgtForm, formerMobileNum);
+	}
 	
 	//취소버튼 클릭 시	
 	public void BackMgtProc() {
 		mgtService.BackMgtProc(memMgtForm);
+	}
+
+	public String getFormerMobileNum() {
+		return formerMobileNum;
+	}
+
+	public void setFormerMobileNum(String formerMobileNum) {
+		this.formerMobileNum = formerMobileNum;
 	}
 	
 	

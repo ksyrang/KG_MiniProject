@@ -97,6 +97,7 @@ public class MEM_WelcomeService {
 			memWelcomeController.setMgtController(loader.getController());
 			memWelcomeController.getMgtController().setMemberMgtForm(memMgtForm);
 			memWelcomeController.getMgtController().setMembCode(membCode);
+			
 
 			// 회원 정보 get
 			// title sector set
@@ -114,7 +115,8 @@ public class MEM_WelcomeService {
 			RadioButton FeMaleBtn = (RadioButton) memMgtForm.lookup("#FeMaleRabtn");// 기존 여자버튼
 			TextField Addr1Field = (TextField) memMgtForm.lookup("#MemAddr1");// 기존 주소 표시
 			TextField Addr2Field = (TextField) memMgtForm.lookup("#MemAddr2");// 기존 주소 표시
-
+			//이전 전화 번호 기억
+			memWelcomeController.getMgtController().setFormerMobileNum("0"+Integer.toString(tmpMemDto.getMEM_Mobile()));
 			// ID Sector
 			IDField.setText(tmpMemDto.getMEM_ID());
 			IDField.setEditable(false);// false:입력 불가
@@ -124,7 +126,7 @@ public class MEM_WelcomeService {
 			// Birth Sector
 			BirthField.setText(Integer.toString(tmpMemDto.getMEM_Birth()));
 			// Mobile Sector
-			MobileField.setText(Integer.toString(tmpMemDto.getMEM_Mobile()));
+			MobileField.setText("0"+Integer.toString(tmpMemDto.getMEM_Mobile()));
 			// Gender Sector
 			ToggleGroup group = new ToggleGroup();
 			maleBtn.setToggleGroup(group);
@@ -139,8 +141,9 @@ public class MEM_WelcomeService {
 				FeMaleBtn.setSelected(false);
 			}
 			// Addr Sector
-			Addr1Field.setText(tmpMemDto.getMEM_Addr());
-			Addr2Field.setText(tmpMemDto.getMEM_Addr());
+			String[] tmpAddr = tmpMemDto.getMEM_Addr().split("/");
+			Addr1Field.setText(tmpAddr[0]);
+			Addr2Field.setText(tmpAddr[1]);
 
 			Stage stage = new Stage();
 			stage.setScene(new Scene(memMgtForm));

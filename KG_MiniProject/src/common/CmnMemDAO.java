@@ -92,6 +92,29 @@ public class CmnMemDAO {
 		return tmpdata;		
 	}
 	
+	public ArrayList<Integer> SltMBAll() {
+		ArrayList<Integer> tmpdata = new ArrayList<>();
+		sql = "SELECT MEM_Mobile FROM MEM_TB" ;
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				tmpdata.add(rs.getInt("MEM_Mobile"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		return tmpdata;		
+	}
+	
 	public int UptMem(CmnMemDTO DTO) {
 		int result = 0;
 

@@ -40,6 +40,7 @@ public class MEM_BuyingTypeController implements Initializable{
 	private MgtController memMgtController;
 	private String membCode;
 	private Parent memMgtForm;
+	private Parent ExPBuyingForm;
 
 	private String UserCode;
 	private String MEMSHIPSCHE_Code;
@@ -136,6 +137,14 @@ public class MEM_BuyingTypeController implements Initializable{
 
 	public void setPrmScheName(String prmScheName) {
 		PrmScheName = prmScheName;
+	}
+
+	public Parent getExPBuyingForm() {
+		return ExPBuyingForm;
+	}
+
+	public void setExPBuyingForm(Parent exPBuyingForm) {
+		ExPBuyingForm = exPBuyingForm;
 	}
 	
 

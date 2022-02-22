@@ -77,7 +77,7 @@ public class ExProgramMgtController implements Initializable{
 			
 			@Override public void handle(MouseEvent event) { 
 				selectData = programListView.getSelectionModel().getSelectedItem(); 
-				System.out.println(selectData);
+//				System.out.println(selectData);
 				exProgramSvc.setSelectData(selectData);
 				}
 			});

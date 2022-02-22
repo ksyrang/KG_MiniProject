@@ -101,6 +101,7 @@ public class ExProgramMgtService {
 	public void modifyTableUp(Parent exProgramMgtForm) {
 		Label exnameText = (Label) exProgramMgtForm.lookup("#exnameText");
 		Label exPrmNameText = (Label) exProgramMgtForm.lookup("#exPrmNameText");
+		Label curText = (Label) exProgramMgtForm.lookup("#curText");
 		TextField priceText = (TextField) exProgramMgtForm.lookup("#priceText");
 		TextField personLimitText = (TextField) exProgramMgtForm.lookup("#personLimitText");
 		Label currnentDateText = (Label) exProgramMgtForm.lookup("#currnentDateText");
@@ -114,6 +115,8 @@ public class ExProgramMgtService {
 		
 		exnameText.setText(" : " + codeTable.getProgramName() + "_" +codeTable.getTrainerName()+ "_" + codeTable.getTimeC());
 
+		curText.setText(Integer.toString(codeTable.getCurrentPerson()));
+		
 		currnentDateText.setText("현재기간 : " + codeTable.getStrDate() + " ~ " + codeTable.getEndDate());
 		Date strDate = codeTable.getStrDate();
 		LocalDate localStr = CommonService.DateCnvt(strDate);

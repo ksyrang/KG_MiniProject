@@ -42,25 +42,28 @@ public class LoginService {
 		if(job != null) {
 			if(job.equals("관리자") || job.equals("회원")) {
 				loginDto = loginDao.SelectMemberId(idText.getText());//getInfo form DB
-//				System.out.println("Mcode: "+loginDto.getMEM_Code());
 				if(loginDto != null && loginDto.getMEM_PW().equals(pwText.getText())) {
-					if(job.equals("관리자"))
+					if(job.equals("관리자") && loginDto.getMEM_ID().equals("admin")) {
 						welcomepage = "adminWelcome"; //관리자
-					else if(job.equals("회원"))	{
+					}else if(job.equals("회원"))	{
 						UserCode =loginDto.getMEM_Code();
 						welcomepage = "memberWelcome";	//회원
-					}		
+					}else {
+						CommonService.Msg("로그인 실패 : 관리자 권한 없음");
+						loginDto=null;
+					}
 				}else {
-					CommonService.Msg("로그인 실패");
+					CommonService.Msg("로그인 실패 : 아이디/비밀번호 오류");
+					loginDto=null;
 				}
 			}else if(job.equals("강사")) {
 				loginDto = loginDao.SelectTrainerId(idText.getText());
-//				System.out.println("Tcode: "+loginDto.getTRAINER_Code());
 				if(loginDto != null && loginDto.getTRAINER_PW().equals(pwText.getText())) {
 					UserCode = loginDto.getTRAINER_Code();
 					welcomepage = "trainerWelcome";//강사
 				}else {
 					CommonService.Msg("로그인 실패");
+					loginDto=null;
 				}
 			}
 		}else {

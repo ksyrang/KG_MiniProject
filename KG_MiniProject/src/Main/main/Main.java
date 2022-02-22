@@ -1,5 +1,8 @@
 package Main.main;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 import Main.login.LoginController;
 import common.CommonService;
 import common.LogOut;
@@ -20,23 +23,17 @@ public class Main extends Application{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/main/KG_COM_FX_Main.fxml"));
 		Parent mainForm = loader.load();
 		Controller controller = new Controller();
-//		CommonService cmnsvc = new CommonService();
 		
 		controller.setLoginController(loader.getController());
-//		controller.getLoginController().setmainForm(mainForm);
 		LoginController loginController = controller.getLoginController();
 		loginController.setmainForm(mainForm);
 		controller.setLogOut(new LogOut());
-//		LogOut logout = new LogOut();
-//		logout.setLoginForm(mainForm);
-//		controller.setLogOut(logout);
-		
+
 		Scene scene = new Scene(mainForm);
 		
 		primaryStage.setTitle("MainPage");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
-	
 	
 }

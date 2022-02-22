@@ -210,7 +210,6 @@ public class ExProgramMgtDAO {
 
 	}
 	
-	
 //	//클릭한 ex프로그램 세부상항중 ex프로그램이름 수정
 //	public int PRM_NAMEModify(ExProgramMgtDTO exProgramMgtDto) {
 //		String sql = "UPDATE PRM_TB SET PRM_NAME=? WHERE PRM_CODE=?";

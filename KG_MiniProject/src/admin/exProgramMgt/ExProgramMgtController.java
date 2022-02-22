@@ -139,6 +139,18 @@ public class ExProgramMgtController implements Initializable{
 		}
 	}
 	
+	//시작날짜 선택 시
+	public void startDateProc() {
+		exProgramSvc.startDateProc(exProgramMgtForm);
+	}
+	//마감날짜 선택 시
+	public void endDateProc() {
+		exProgramSvc.endDateProc(exProgramMgtForm);
+	}
+	
+	
+	
+	
 	// 이전 버튼 클릭 시
 	public void exProgramCancleProc() {
 		CommonService.WindowClose(exProgramMgtForm);

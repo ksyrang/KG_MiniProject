@@ -29,6 +29,7 @@ public class ExProgramMgtService {
 	private ExProTable codeTable;
 	private ObservableList<String> allProgram;
 	private String selectData;
+	private DatePicker startDatePicker;
 
 	// 실행 시 리스트뷰 업
 	public void listUp(ListView<String> programListView) {
@@ -125,6 +126,7 @@ public class ExProgramMgtService {
 
 		startDatePicker.setValue(localStr);
 		endDatePicker.setValue(localEnd);
+		
 
 		if (codeTable.getTimeC().equals("오전")) {
 			amRadioButton.setSelected(true);
@@ -228,7 +230,34 @@ public class ExProgramMgtService {
 		this.tableUp(this.exProgramTableView);
 
 	}
+	
+	//날짜 선택 시
+		public void startDateProc(Parent exProgramMgtForm) {
+			startDatePicker = (DatePicker)exProgramMgtForm.lookup("#startDatePicker");
 
+			if(startDatePicker.getValue() == null || CommonService.CompareDate(LocalDate.now(),startDatePicker.getValue())) {
+				CommonService.Msg("현재 일짜 이후로 입력해주십시오.");
+				startDatePicker.getEditor().clear();
+				return;
+			}else {
+				
+			}
+		}
+		public void endDateProc(Parent exProgramMgtForm) {
+			DatePicker endDatePicker = (DatePicker)exProgramMgtForm.lookup("#endDatePicker");
+			
+			if(endDatePicker.getValue() == null || CommonService.CompareDate(LocalDate.now(),endDatePicker.getValue())) {
+				CommonService.Msg("현재 일짜 이후로 입력해주십시오.");
+				endDatePicker.getEditor().clear();
+				return;
+			} else {
+				
+			}
+		}
+
+		
+		
+		
 	public void setSelectData(String selectData) {
 		this.selectData = selectData;
 

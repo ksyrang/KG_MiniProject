@@ -148,8 +148,8 @@
                               <VBox alignment="CENTER_RIGHT" prefHeight="51.0" prefWidth="169.0" spacing="5.0">
                                  <children>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" />
-                                    <DatePicker fx:id="startDatePicker" promptText="시작일" />
-                                    <DatePicker fx:id="endDatePicker" promptText="마감일" />
+                                    <DatePicker fx:id="startDatePicker" onAction="#startDateProc" promptText="시작일" />
+                                    <DatePicker fx:id="endDatePicker" onAction="#endDateProc" promptText="마감일" />
                                  </children>
                                  <HBox.margin>
                                     <Insets left="20.0" />

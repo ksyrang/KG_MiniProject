@@ -307,6 +307,43 @@ public class CmnTrainerDAO {
 		return Datalist;
 	}
 	
+	public CmnTrainerDTO SltCode(String TRAINER_NAME) {
+		CmnTrainerDTO tmpdata = null;
+		sql = "SELECT * FROM TRAINER_TB WHERE TRAINER_Name = ?" ;
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, TRAINER_NAME);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				tmpdata = new CmnTrainerDTO(
+					rs.getString("TRAINER_Code"),
+					rs.getString("TRAINER_Name"),
+					rs.getString("TRAINER_ID"),
+					rs.getString("TRAINER_PW"),
+					rs.getString("TRAINER_Gender"),
+					rs.getInt("TRAINER_Birth"),
+					rs.getInt("TRAINER_Mobile"),
+					rs.getInt("TRAINER_Career"),
+					rs.getString("TRAINER_Addr")
+				);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		return tmpdata;		
+	}
+	
+	
+	
+	
 	
 	
 }

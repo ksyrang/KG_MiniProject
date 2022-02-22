@@ -86,7 +86,9 @@ public class SalesDAO {
 				}
 				else {
 					//ex프로그램
-					
+					if(rs.getString("PRMSCHE_Code") ==null) {
+						System.out.println("null 발생 DB 확인");
+					}
 					String prmScheCode = rs.getString("PRMSCHE_Code");
 					System.out.println("prmschecode"+prmScheCode);
 					salesDto.setPRMSCHE_Code(prmScheCode);

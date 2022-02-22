@@ -5,7 +5,7 @@ import java.sql.Date;
 public class ExProTable {
 	
 	private String programName;
-	private String code; //프로그램스케줄고유번호
+	private String code; //프로그램스케줄고유번호prmschecode
 	private String trainerName;
 	private int limtPerson;
 	private int currentPerson;

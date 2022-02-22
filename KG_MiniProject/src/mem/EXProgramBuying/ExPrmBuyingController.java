@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-
+import common.CmnPrmScheDTO;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -35,6 +35,8 @@ public class ExPrmBuyingController implements Initializable {
 	private MgtController memMgtController;
 	private Parent memWelcomeForm;
 	private String PrmscheName;
+	private CmnPrmScheDTO cmnPrmScheDto; //이거
+	
 	
 	@FXML
 	private ComboBox<String> kindComboBox;
@@ -77,7 +79,7 @@ public class ExPrmBuyingController implements Initializable {
 		timeC.setCellValueFactory(new PropertyValueFactory<>("timeC"));
 
 		exProgramSvc.tableUp(exProgramTableView);
-
+		
 		// 수정창
 		// tabelView 클릭 시
 		exProgramTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -151,6 +153,8 @@ public class ExPrmBuyingController implements Initializable {
 	public void paymentProc() {
 		// System.out.println("결제처리");
 		exProgramSvc.paymentProc(exProgramMgtForm, membCode);
+		buyingTypeController.setExProBForm(buyingTypeForm);
+		buyingTypeController.setCmnPrmScheDto(cmnPrmScheDto);
 	}
 
 	// 이전 버튼 클릭 시
@@ -171,6 +175,12 @@ public class ExPrmBuyingController implements Initializable {
 	}
 	public void setPrmscheName(String prmscheName) {
 		PrmscheName = prmscheName;
+	}
+	public CmnPrmScheDTO getCmnPrmScheDto() {
+		return cmnPrmScheDto;
+	}
+	public void setCmnPrmScheDto(CmnPrmScheDTO cmnPrmScheDto) {
+		this.cmnPrmScheDto = cmnPrmScheDto;
 	}
 	
 

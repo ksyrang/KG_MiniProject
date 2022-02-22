@@ -543,5 +543,32 @@ public class CmnPrmScheDAO {
 		return tmpdata;		
 	}
    
+// 회원권스케줄 코드번호 최대 값 찾기
+		public int PrmScheMaxCodeNum() {
+			int result = 0;
+			sql = "SELECT Max(PRMSCHECODE_NUM) FROM PRMSCHE_TB";
+			try {
+				ps = con.prepareStatement(sql);
+				rs = ps.executeQuery();
+				while (rs.next()) {
+					result = rs.getInt("Max(PRMSCHECODE_NUM)");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (rs != null)
+						rs.close();
+					if (ps != null)
+						ps.close();
+				} catch (SQLException e2) {
+					e2.printStackTrace();
+				}
+			}
+			return result;
+		}
+   
+   
+   
    
 }//class end

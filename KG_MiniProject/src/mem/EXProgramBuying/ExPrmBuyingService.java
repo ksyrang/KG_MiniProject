@@ -1,10 +1,15 @@
 package mem.EXProgramBuying;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.time.LocalDate;
 
+import common.CmnMemShipScheDAO;
+import common.CmnMemShipScheDTO;
 import common.CmnPrmScheDAO;
 import common.CmnPrmScheDTO;
+import common.CmnTrainerDAO;
+import common.CmnTrainerDTO;
 import common.CommonService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +36,7 @@ public class ExPrmBuyingService {
 	private ObservableList<String> allProgram;
 	private String selectData;
 	private ExPrmBuyingController exPrmBuyingController;
+	
 
 	public void setExPrmBuyingController(ExPrmBuyingController exPrmBuyingController) {
 		this.exPrmBuyingController = exPrmBuyingController;
@@ -119,8 +125,8 @@ public class ExPrmBuyingService {
 	//ex프로그램 종류 등록
 	public void paymentProc(Parent exProgramBuyingForm, String membCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/BuyingType/KG_MEM_FX_BuyingType.fxml"));
-		CmnPrmScheDAO cmnPrmScheDAO = new CmnPrmScheDAO();
-		CmnPrmScheDTO cmnPrmScheDTO = new CmnPrmScheDTO();
+		CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
+		CmnPrmScheDTO cmnPrmScheDto = new CmnPrmScheDTO();
 		Parent buyingTypeForm;
 		
 		try {
@@ -131,7 +137,7 @@ public class ExPrmBuyingService {
 			exPrmBuyingController.getMEM_BuyingTypeController().setBuyingTypeForm(buyingTypeForm);
 //			System.out.println("exPrmBuyingController.getMembCode(): "+exPrmBuyingController.getMembCode());
 			exPrmBuyingController.getMEM_BuyingTypeController().setUserCode(exPrmBuyingController.getMembCode());
-			System.out.println("getMEM_BuyingTypeController.getMembCode(): "+exPrmBuyingController.getMEM_BuyingTypeController().getUserCode());
+//			System.out.println("getMEM_BuyingTypeController.getMembCode(): "+exPrmBuyingController.getMEM_BuyingTypeController().getUserCode());
 			exPrmBuyingController.getMEM_BuyingTypeController().setMemWelcomeForm(exPrmBuyingController.getWelcomForm());
 			
 			
@@ -156,7 +162,6 @@ public class ExPrmBuyingService {
 //			System.out.println(ScheNameLabel.getText());
 			
 			ScheNameLabel.setText(tmpData.getProgramName());
-			
 			SchePriceLabel.setText(Integer.toString(tmpData.getPrice()));
 			PayDateLabel.setText(CommonService.getNowDatetoString());
 
@@ -172,6 +177,65 @@ public class ExPrmBuyingService {
 //			SchePriceLabel.setText(Integer.toString(PrmScheDTO.getPRMSCHE_Price())+" 원");
 //			//결제 일 표시
 //			PayDateLabel.setText(CommonService.getNowDatetoString());
+			
+			
+			
+			//코드 번호 개설
+			//DB에서 번호의 최대 값을 가지고 와서 +1 해줘서 넣어줘야 함
+			int InputCodeNum = cmnPrmScheDao.PrmScheMaxCodeNum()+1;
+			cmnPrmScheDto = new CmnPrmScheDTO();
+			
+			
+			String PRMSCHE_CODE = tmpData.getCode();;
+			int PRMSCHE_CURRENTP = tmpData.getCurrentPerson();
+			int PRMSCHE_LIMITP = tmpData.getLimtPerson();
+			int  PRMSCHE_PRICE = tmpData.getPrice();
+			String  PRMSCHE_NAME = tmpData.getProgramName();
+			Date  PRMSCHE_STRDATE = tmpData.getStrDate();
+			Date  PRMSCHE_ENDDATE = tmpData.getEndDate();
+			String PRMSCHE_TIME = tmpData.getTimeC();
+
+			CmnTrainerDAO cmnTrainerDao = new CmnTrainerDAO();
+			CmnTrainerDTO cmnTrainerDto = cmnTrainerDao.SltCode(tmpData.getTrainerName());
+			String TRAINER_CODE = cmnTrainerDto.getTRAINER_Code();
+
+			cmnPrmScheDto = cmnPrmScheDao.SltPrmScheOne(PRMSCHE_CODE);	
+			String PRM_CODE =cmnPrmScheDto.getPRM_Code();
+			
+			
+			CmnPrmScheDTO cmnPrmScheDtoPass = new CmnPrmScheDTO(PRMSCHE_CODE, InputCodeNum, PRMSCHE_STRDATE, PRMSCHE_ENDDATE, 
+					PRMSCHE_TIME, PRMSCHE_LIMITP, PRMSCHE_CURRENTP, PRMSCHE_PRICE, PRM_CODE, TRAINER_CODE, PRMSCHE_NAME);
+				
+//			String prmScheCode = tmpData.getCode();
+//			cmnPrmScheDto = cmnPrmScheDao.SltPrmScheOne(prmScheCode);
+			
+			exPrmBuyingController.setCmnPrmScheDto(cmnPrmScheDtoPass);
+			
+			
+			
+			
+			
+			
+//			(
+//					memshipDto.getMEMSHIP_Code()
+//					+"_"+HealthPrmBuyingController.getMembCode()+"_"+ InputCodeNum);
+////					+"_"+HealthPrmBuyingController.getMembCode()+"_"+"코드번호1");//DB 수정 후 해당 위치의 코드번호용 알고리즘 코딩 필요
+//			String memShipScheCode = memshipDto.getMEMSHIP_Code()
+//					+"_"+HealthPrmBuyingController.getMembCode()+"_"+ InputCodeNum;
+//			
+//			ShceDTO.setMEMSHIPSCHECode_Num(InputCodeNum);
+//			ShceDTO.setMEMSHIPSCHE_Strdate(CommonService.LocalDateCnvt(sltDate.getValue()));
+//			LocalDate enddate = sltDate.getValue().plusMonths(Integer.parseInt(memshipComboBox.getSelectionModel().getSelectedItem()));
+//			ShceDTO.setMEMSHIPSCHE_Enddate(CommonService.LocalDateCnvt(enddate));
+//			ShceDTO.setMEMSHIP_Code(memshipDto.getMEMSHIP_Code());
+//			ShceDTO.setMEM_Code(HealthPrmBuyingController.getMembCode());
+			
+			
+			
+			//
+			
+			
+			
 			
 			Scene scene = new Scene(buyingTypeForm);
 			Stage primaryStage = new Stage();

@@ -40,6 +40,7 @@ public class MEM_WelcomeService {
 			memWelcomeController.getHealthPrmBuyingController().setMembCode(memWelcomeController.getMembCode());
 			memWelcomeController.getHealthPrmBuyingController().setWelcomForm(memWelcomeController.getMemWelcomeForm());
 			
+			
 			// 상단 이름
 			Label titleUserName = (Label) healthProgramBuyingForm.lookup("#TitleMemNameLabel");
 			MgtDTO tmpMemDto = new MgtDTO(new MgtDAO().selectCode(membCode));
@@ -97,7 +98,6 @@ public class MEM_WelcomeService {
 			memWelcomeController.setMgtController(loader.getController());
 			memWelcomeController.getMgtController().setMemberMgtForm(memMgtForm);
 			memWelcomeController.getMgtController().setMembCode(membCode);
-			memWelcomeController.getMgtController().setMemWlcForm(memWelcomeController.getMemWelcomeForm());
 			
 
 			// 회원 정보 get

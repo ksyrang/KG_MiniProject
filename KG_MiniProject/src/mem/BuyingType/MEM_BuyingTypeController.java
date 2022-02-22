@@ -7,6 +7,7 @@ import Main.login.LoginService;
 import Main.main.Controller;
 import Main.main.MainService;
 import common.CmnMemShipScheDTO;
+import common.CmnPrmScheDTO;
 import common.CommonService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.text.Text;
+import mem.EXProgramBuying.ExPrmBuyingController;
 import mem.Mgt.MgtController;
 import mem.Welcome.MEM_WelcomeController;
 
@@ -38,10 +40,13 @@ public class MEM_BuyingTypeController implements Initializable{
 	private Parent buyingTypeForm;
 	private MEM_BuyingTypeService buyingTypeSvc;
 	private MEM_BuyingTypeController buyingTypeController;
+	private ExPrmBuyingController exPrmBuyingController;
 	private MgtController memMgtController;
 	private String membCode;
 	private Parent memMgtForm;
+	private Parent exProBForm;
 	private Parent HealthBForm;
+	private CmnPrmScheDTO cmnPrmScheDto;
 
 	private String UserCode;
 	private String MEMSHIPSCHE_Code;
@@ -113,6 +118,8 @@ public class MEM_BuyingTypeController implements Initializable{
 		UserCode = userCode;
 	}
 
+	
+	//결제버튼 클릭시 
 	public void PaymentProc() {
 		buyingTypeSvc.PaymentProc();
 		
@@ -154,6 +161,30 @@ public class MEM_BuyingTypeController implements Initializable{
 
 	public void setHealthBForm(Parent healthBForm) {
 		HealthBForm = healthBForm;
+	}
+
+	public ExPrmBuyingController getExPrmBuyingController() {
+		return exPrmBuyingController;
+	}
+
+	public void setExPrmBuyingController(ExPrmBuyingController exPrmBuyingController) {
+		this.exPrmBuyingController = exPrmBuyingController;
+	}
+
+	public CmnPrmScheDTO getCmnPrmScheDto() {
+		return cmnPrmScheDto;
+	}
+
+	public void setCmnPrmScheDto(CmnPrmScheDTO cmnPrmScheDto) {
+		this.cmnPrmScheDto = cmnPrmScheDto;
+	}
+
+	public Parent getExProBForm() {
+		return exProBForm;
+	}
+
+	public void setExProBForm(Parent exProBForm) {
+		this.exProBForm = exProBForm;
 	}
 	
 

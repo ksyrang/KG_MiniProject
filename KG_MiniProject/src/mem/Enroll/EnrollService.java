@@ -59,7 +59,10 @@ public class EnrollService {
 		PasswordField confirmTxt = (PasswordField) memberJoinForm.lookup("#confirmTxt");
 		TextField birthTxt = (TextField) memberJoinForm.lookup("#birthTxt");
 		TextField mobileTxt = (TextField) memberJoinForm.lookup("#mobileTxt");
-		TextField addrTxt = (TextField) memberJoinForm.lookup("#addrTxt");
+		TextField addrTxt1 = (TextField) memberJoinForm.lookup("#addrTxt1");
+		TextField addrTxt2 = (TextField) memberJoinForm.lookup("#addrTxt2");
+		RadioButton manRadio = (RadioButton) memberJoinForm.lookup("#manRadio");
+		RadioButton womanRadio = (RadioButton) memberJoinForm.lookup("#womanRadio");
 //		Text labelTxt1 = (Text) memberJoinForm.lookup("#labelTxt1");
 //		Label colorLabel1 = (Label) KG_MEM_FX_Enroll.lookup("#colorLabel1");
 //		Label colorLabel2 = (Label) KG_MEM_FX_Enroll.lookup("#colorLabel2");
@@ -68,26 +71,38 @@ public class EnrollService {
 		String id = idTxt.getText();
 		String pw = pwTxt.getText();
 		String confirm = confirmTxt.getText();
-		String birth = birthTxt.getText();
-		String mobile = mobileTxt.getText();
-		String addr = addrTxt.getText();
+		String addr = addrTxt1.getText() + "/" + addrTxt2.getText();
 		String approve = "false";
 //		 label1 = labelTxt1.getTextFill;
 //		colorLabel1.setTextFill(Color.RED);
 //		colorLabel2.setTextFill(Color.RED);
 //		Paint label = colorLabel.getTextFill(#e10b0b);
 		
+		int birth;
+		if (birthTxt.getText().isEmpty()) {
+			birth = 0;
+		} else {
+			birth = Integer.parseInt(birthTxt.getText());
+		}
+
+		int mobile;
+		if (mobileTxt.getText().isEmpty()) {
+			mobile = 0;
+		} else {
+			mobile = Integer.parseInt(mobileTxt.getText());
+		}	
 		
-		RadioButton manRadio = (RadioButton) memberJoinForm.lookup("#manRadio");
-		RadioButton womanRadio = (RadioButton) memberJoinForm.lookup("#womanRadio");
-
-		String gender = "";
-		if (manRadio.isSelected())
+		String Code = "Mem_" + id;
+		String gender = null;
+		if (manRadio.isSelected()) {
 			gender += "남";
-		else if (womanRadio.isSelected())
-			gender += "여";
-
-		if(name.isEmpty() || id.isEmpty() || pw.isEmpty() || confirm.isEmpty() || birth.isEmpty() || mobile.isEmpty() ) {
+		}else if (womanRadio.isSelected()) {
+			gender += "여"; 
+		}else {
+			gender = null;
+		}
+		
+		if(name.isEmpty() || id.isEmpty() || pw.isEmpty() || confirm.isEmpty()) {
 			CommonService.Msg("필수 데이터 입니다.");
 			
 		}
@@ -108,8 +123,8 @@ public class EnrollService {
 				enrollDTO.setMEM_PW(pw);
 				enrollDTO.setMEM_Name(name);
 				enrollDTO.setMEM_Gender(gender);
-				enrollDTO.setMEM_Birth(Integer.parseInt(birth));
-				enrollDTO.setMEM_Mobile(Integer.parseInt(mobile));
+				enrollDTO.setMEM_Birth(birth);
+				enrollDTO.setMEM_Mobile(mobile);
 				enrollDTO.setMEM_Addr(addr);
 				enrollDTO.setMEM_Approve(approve);
 				

@@ -38,7 +38,6 @@ public class EnrollController implements Initializable{
 //	 회원 가입 버튼 클릭 시 동작.
 	public void enrollProc() {
 		enrollService.insert(memberJoinForm);
-		CommonService.WindowClose(memberJoinForm);
 		
 	}
 	

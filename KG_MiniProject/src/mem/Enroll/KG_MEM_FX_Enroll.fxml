@@ -39,7 +39,7 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="60.0" text="ID">
+                  <Label prefHeight="20.0" prefWidth="60.0" text="* ID">
                      <HBox.margin>
                         <Insets left="10.0" top="13.0" />
                      </HBox.margin>
@@ -58,7 +58,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="655.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="60.0" text="PW">
+                  <Label prefHeight="20.0" prefWidth="60.0" text="* PW">
                      <HBox.margin>
                         <Insets left="10.0" top="13.0" />
                      </HBox.margin>
@@ -68,7 +68,7 @@
                         <Insets left="25.0" top="13.0" />
                      </HBox.margin>
                   </PasswordField>
-                  <Label prefHeight="20.0" prefWidth="60.0" text="PW확인">
+                  <Label prefHeight="20.0" prefWidth="60.0" text="* PW 확인">
                      <HBox.margin>
                         <Insets left="25.0" top="13.0" />
                      </HBox.margin>
@@ -89,7 +89,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="60.0" text="이름">
+                  <Label prefHeight="20.0" prefWidth="60.0" text="* 이름">
                      <HBox.margin>
                         <Insets left="10.0" top="13.0" />
                      </HBox.margin>
@@ -161,12 +161,12 @@
                   </Label>
                   <VBox prefHeight="81.0" prefWidth="400.0">
                      <children>
-                        <TextField fx:id="addrTxt" alignment="CENTER" maxWidth="350.0" prefHeight="20.0" prefWidth="350.0" promptText="도로명주소 or 지번주소">
+                        <TextField fx:id="addrTxt1" alignment="CENTER" maxWidth="350.0" prefHeight="20.0" prefWidth="350.0" promptText="도로명주소 or 지번주소">
                            <VBox.margin>
                               <Insets left="25.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField fx:id="addrTxt" alignment="CENTER" maxWidth="350.0" prefHeight="20.0" prefWidth="350.0" promptText="상세주소">
+                        <TextField fx:id="addrTxt2" alignment="CENTER" maxWidth="350.0" prefHeight="20.0" prefWidth="350.0" promptText="상세주소">
                            <VBox.margin>
                               <Insets left="25.0" />
                            </VBox.margin>

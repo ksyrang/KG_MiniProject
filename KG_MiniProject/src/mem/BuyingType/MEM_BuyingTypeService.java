@@ -94,6 +94,7 @@ public class MEM_BuyingTypeService {
 		PayDTO.setPAYCode_Num(maxCodeNum);
 		PayDTO.setPAY_Type(PayType);
 		PayDTO.setPAY_Date(CommonService.CnvtsqlDate(new java.util.Date()));
+		
 		System.out.println("buyingTypeController.getUserCode() : "+ buyingTypeController.getUserCode());
 		PayDTO.setMEM_Code(buyingTypeController.getUserCode());
 		
@@ -106,7 +107,8 @@ public class MEM_BuyingTypeService {
 		CmnMemScheDTO cmnMemScheDto = new CmnMemScheDTO();
 		CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
 		CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheName(buyingTypeController.getPrmScheName());
-
+		
+		System.out.println("cmnPrmScheDto : "+ cmnPrmScheDto.getPRMSCHE_Code());
 		if(cmnPrmScheDto != null) { 
 			//프로그램
 			PayDTO.setPRMSCHE_Code(buyingTypeController.getPRMSCHE_Code());
@@ -184,7 +186,7 @@ public class MEM_BuyingTypeService {
 		MEM_WelcomeDAO memWelcomeDao = new MEM_WelcomeDAO();
 		ObservableList<MEM_WelcomeMgtTable> obserList = FXCollections.observableArrayList();
 		ObservableList<MEM_WelcomeDTO> memWelcomeDto = memWelcomeDao.selectMemScheAllProgram(buyingTypeController.getUserCode());
-		
+		int checknum = 0;
 		for (MEM_WelcomeDTO m : memWelcomeDto) {
 			String memCode = m.getMem_code();
 			String PrmScheCode = m.getPrmsche_code();
@@ -201,14 +203,14 @@ public class MEM_BuyingTypeService {
 			int prmsche_price = 0;
 			Date prmsche_strdate = null;
 			Date prmsche_enddate = null;
-
 			if (PrmScheCode != null) {
 				// 프로그램임
-
+System.out.println(checknum + " CHECK1 PrmScheCode : "+ PrmScheCode);
 				// type(프로그램명)
 				CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
 				CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheOne(PrmScheCode);
 				String prmCode = cmnPrmScheDto.getPRM_Code();
+System.out.println(checknum + " CHECK1 prmCode : "+ prmCode);
 				CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
 				CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(prmCode);
 				type = cmnPrmDto.getPRM_Name();
@@ -230,6 +232,7 @@ public class MEM_BuyingTypeService {
 				prmsche_enddate = cmnPrmScheDto.getPRMSCHE_Enddate();
 
 			} else {
+System.out.println(checknum + " CHECK2 memShipScheCode : "+ memShipScheCode);
 				// 회원권
 				// type(프로그램명)
 				CmnMemShipScheDAO cmnMemShipScheDao = new CmnMemShipScheDAO();
@@ -238,8 +241,8 @@ public class MEM_BuyingTypeService {
 				CmnMemShipDAO cmnMemShipDao = new CmnMemShipDAO();
 				CmnMemShipDTO cmnMemShipDto = cmnMemShipDao.SltMemShipOne(memShipCode);
 				String memShipType = cmnMemShipDto.getMEMSHIP_Type();
+System.out.println(checknum + " CHECK2 memShipCode : "+ memShipCode);
 				type = "회원권_" + memShipType + "개월";
-
 				// time
 				time = "-";
 
@@ -257,7 +260,7 @@ public class MEM_BuyingTypeService {
 			
 			obserList.add(new MEM_WelcomeMgtTable(trainerName, type, time, prmsche_price, prmsche_strdate,
 					prmsche_enddate));
-
+checknum++;
 		}
 		memProgramTable.setItems(obserList);
 	}

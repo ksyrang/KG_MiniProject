@@ -501,7 +501,6 @@ public class CmnPrmScheDAO {
 				if(rs != null) rs.close();
 				if(ps != null) ps.close();
 			} catch (Exception e2) {
-				// TODO Auto-generated catch block
 				e2.printStackTrace();
 			}
 		}

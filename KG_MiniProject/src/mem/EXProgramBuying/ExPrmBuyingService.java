@@ -40,7 +40,6 @@ public class ExPrmBuyingService {
 	public void tableUp(TableView<ExProTable> exProgramTableView) {
 		this.exProgramTableView = exProgramTableView;
 		ObservableList<ExProTable> tableItems = FXCollections.observableArrayList();
-		System.out.println(exprogramDao);
 		exprogramDao = new ExProgramBuyingDAO();
 		ObservableList<ExProgramBuyingDTO> allList = exprogramDao.getAllInfo();
 		for (ExProgramBuyingDTO i : allList) {

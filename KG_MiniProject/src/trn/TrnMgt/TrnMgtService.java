@@ -31,6 +31,24 @@ public class TrnMgtService {
 		TextField Addr1Field = (TextField)trnMgtForm.lookup("#TrnAddr1");//변경 주소
 		TextField Addr2Field = (TextField)trnMgtForm.lookup("#TrnAddr2");//변경 주소
 		TextField CareerField = (TextField)trnMgtForm.lookup("#TrnCareer");//변경 커리어
+		//입력 사항의 형식 확인
+		try {
+			int tmpMB = Integer.parseInt(MobileField.getText());
+			int tmpBD = Integer.parseInt(BirthField.getText());
+		} catch (NumberFormatException e) {
+			CommonService.Msg("숫자만 입력 해주세요.");
+			return;
+		}
+		
+		//입력 사항 최소 길이 확인
+		if(MobileField.getText().length()<11){
+			CommonService.Msg("11자리의 전화번호를 입력 해주세요.");
+			return;
+		}else if(BirthField.getText().length()<8){
+			CommonService.Msg("8자리의 생년월일를 입력 해주세요.");
+			return;
+		}
+		
 		//변경사항 업데이트
 		if(!PWField.getText().isEmpty() && !PWCField.getText().isEmpty()) {//정상 입력 조건
 			if(PWField.getText().equals(PWCField.getText())){//입력 값이 동일하다는 조건

@@ -50,7 +50,30 @@ public class TrnMgtController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		TrnPWField.textProperty().addListener((attribute,before, after) -> {
+			TrnPWField.setText(CommonService.getLengthLimit(20, TrnPWField.getText()));
+	      });
+		TrnNameField.textProperty().addListener((attribute,before, after) -> {
+			TrnNameField.setText(CommonService.getLengthLimit(5, TrnNameField.getText()));
+	      });
+		TrnPWCField.textProperty().addListener((attribute,before, after) -> {
+			TrnPWCField.setText(CommonService.getLengthLimit(20, TrnPWCField.getText()));
+	      });
+		TrnCareer.textProperty().addListener((attribute,before, after) -> {
+			TrnCareer.setText(CommonService.getLengthLimit(2, TrnCareer.getText()));
+	      });
+		TrnMobileField.textProperty().addListener((attribute,before, after) -> {
+			TrnMobileField.setText(CommonService.getLengthLimit(11, TrnMobileField.getText()));
+	      });
+		TrnBirthField.textProperty().addListener((attribute,before, after) -> {
+			TrnBirthField.setText(CommonService.getLengthLimit(8, TrnBirthField.getText()));
+	      });
+		TrnAddr1.textProperty().addListener((attribute,before, after) -> {
+			TrnAddr1.setText(CommonService.getLengthLimit(200, TrnAddr1.getText()));
+	      });
+		TrnAddr2.textProperty().addListener((attribute,before, after) -> {
+			TrnAddr2.setText(CommonService.getLengthLimit(100, TrnAddr2.getText()));
+	      });
 	}
 	public void TnrModifyProc() {
 		TrnMgtSvc.TnrModifyProc(trnMgtForm, trnCode);		

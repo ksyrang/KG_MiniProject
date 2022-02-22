@@ -81,7 +81,7 @@ public class TrnWelcomeService {
 			//Birth Sector
 			BirthField.setText(Integer.toString(tmpTrnDto.getTRAINER_Birth()));
 			//Mobile Sector
-			MobileField.setText(Integer.toString(tmpTrnDto.getTRAINER_Mobile()));
+			MobileField.setText("0"+Integer.toString(tmpTrnDto.getTRAINER_Mobile()));
 			//Gender Sector
 			ToggleGroup group = new ToggleGroup();
 			maleBtn.setToggleGroup(group);

@@ -22,7 +22,7 @@ public class EnrollService {
 			mobile = mobileTxt.getText();
 			if(mobile.isEmpty()) {
 				CommonService.Msg("전화번호를 입력해주세요.");
-			} else {
+			} else {			
 				if(mobile.length()<11){
 					CommonService.Msg("11자리의 전화번호를 입력 해주세요.");
 					return;
@@ -134,7 +134,6 @@ public class EnrollService {
 		}else {
 			gender = null;
 		}
-	
 		
 //		if(enrollDTOC.getMobile().equals(mobile)) {
 //			colorLabel2.setTextFill(Color.RED);

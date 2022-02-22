@@ -25,11 +25,10 @@ public class WelcomeService {
 			welcomeController.setMemberMgtForm(memberMgtForm);
 			welcomeController.settingMemberMgt();
 			
-			
 			// 콤보 박스
 			ComboBox<String> filterCombo = (ComboBox<String>)memberMgtForm.lookup("#filterCombo");
 			if(filterCombo != null) {
-				filterCombo.getItems().addAll("전체보기", "승인여부");
+				filterCombo.getItems().addAll("전체보기", "미승인");
 			}
 			
 			Scene scene = new Scene(memberMgtForm);
@@ -71,12 +70,6 @@ public class WelcomeService {
 			welcomeController.setExProgramMgtController(loader.getController());
 			welcomeController.setExProgramMgtForm(exProgramMgtForm);
 			welcomeController.settingExProgramMgt();
-			
-			// 콤보 박스
-			ComboBox<String> kindCombo = (ComboBox<String>)exProgramMgtForm.lookup("#filterCombo");
-			if(kindCombo != null) {
-				kindCombo.getItems().addAll("필라테스", "요가", "스피닝", "경찰시험 대비반");
-			}
 			
 			Scene scene = new Scene(exProgramMgtForm);
 			Stage primaryStage = new Stage();

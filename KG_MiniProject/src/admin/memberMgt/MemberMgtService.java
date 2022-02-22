@@ -25,7 +25,7 @@ import javafx.scene.control.ToggleGroup;
 		if (combo.equals("전체보기")) {
 			// 전체 회원 테이블 뷰
 			refreshTable(memberMgtForm);
-		} else if (combo.equals("승인여부")) {
+		} else if (combo.equals("미승인")) {
 			// 가입 승인 안된 회원 테이블 뷰
 			refreshApporve(memberMgtForm);
 		}
@@ -39,8 +39,11 @@ import javafx.scene.control.ToggleGroup;
 		memberMgtDao = new MemberMgtDAO();
 		TableView<MemberMgtTable> allTable = (TableView<MemberMgtTable>) memberMgtForm.lookup("#memTable");
 		ObservableList<MemberMgtDTO> allList = memberMgtDao.getAllMemberList();;
+		String approve;
 		for(MemberMgtDTO m : allList) {
-			tableView.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), m.getMem_approve()));
+			if(m.getMem_approve().equals("true")) approve = "승인";
+			else approve = "미승인";
+			tableView.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), approve));
 		}
 		allTable.setItems(tableView);
 		removeTxt(memberMgtForm);
@@ -52,8 +55,9 @@ import javafx.scene.control.ToggleGroup;
 		memberMgtDao = new MemberMgtDAO();
 		TableView<MemberMgtTable> notApproveTable = (TableView<MemberMgtTable>) memberMgtForm.lookup("#memTable");
 		ObservableList<MemberMgtDTO> notApproveList = memberMgtDao.getNotApproveList();
+		String approve = "미승인";
 		for(MemberMgtDTO m : notApproveList) {
-			tableView.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), m.getMem_approve()));
+			tableView.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), approve));
 		}
 		notApproveTable.setItems(tableView);
 		removeTxt(memberMgtForm);
@@ -139,7 +143,10 @@ import javafx.scene.control.ToggleGroup;
 				men.setSelected(true);
 			} else if(memberMgtDto.getMem_gender().equals("여")) {
 				women.setSelected(true);
-			} 
+			} else {
+				men.setSelected(false);
+				women.setSelected(false);
+			}
 		}else {
 			men.setSelected(false);
 			women.setSelected(false);
@@ -191,13 +198,15 @@ import javafx.scene.control.ToggleGroup;
 		String id = idfield.getText();
 		String name = namefield.getText();
 		String pw = pwfield.getText();
-		
+		String birth = null;
 		int memBirth;
 		if(birthfield.getText().isEmpty()) {
 			memBirth = 0;
 		} else {
 			memBirth = Integer.parseInt(birthfield.getText());
+			birth = birthfield.getText();
 		}
+		
 		
 		String addr = addr1field.getText() + "/" + addr2field.getText();
 		String gender;
@@ -210,16 +219,21 @@ import javafx.scene.control.ToggleGroup;
 		}
 		
 		try {
-			if(name.isEmpty() || pw.isEmpty()) {
+			if (name.isEmpty() || pw.isEmpty()) {
 				CommonService.Msg("* 필수 입력란을 입력해주세요.");
-			}else {
-				MemberMgtDTO memberMgtDto = memberMgtDao.selectId(id);
-				if (memberMgtDto != null) {
-					memberMgtDao.memberUpdate(id, name, pw, gender, memBirth, addr);
-					CommonService.Msg(name + "(" + id + ") 회원 수정 완료");
-					filter(memberMgtForm);
-				} else {
-					CommonService.Msg("회원을 선택해주세요.");
+			} else {
+				if (memBirth == 0 || birth.length() == 8) {
+					MemberMgtDTO memberMgtDto = memberMgtDao.selectId(id);
+					if (memberMgtDto != null) {
+						memberMgtDao.memberUpdate(id, name, pw, gender, memBirth, addr);
+						CommonService.Msg(name + "(" + id + ") 회원 수정 완료");
+						filter(memberMgtForm);
+					} else {
+						CommonService.Msg("회원을 선택해주세요.");
+					}
+				}else {
+					CommonService.Msg("생년월일을 정확하게 입력해주세요.");
+					birthfield.requestFocus();
 				}
 			}
 		} catch (NullPointerException e) {
@@ -240,9 +254,11 @@ import javafx.scene.control.ToggleGroup;
 		try {
 			MemberMgtDTO memberMgtDto = memberMgtDao.selectId(id);
 			if (memberMgtDto != null) {
-				memberMgtDao.memberDelete(id);
-				CommonService.Msg(name + "(" + id + ") 회원 삭제 완료");
-				filter(memberMgtForm);
+				if (CommonService.CheckMsg(name + "(" + id + ") 회원을 삭제하시겠습니까?") == true) {
+					memberMgtDao.memberDelete(id);
+					CommonService.Msg(name + "(" + id + ") 회원 삭제 완료");
+					filter(memberMgtForm);
+				} 		
 			} else {
 				CommonService.Msg("회원을 선택해주세요.");
 			}

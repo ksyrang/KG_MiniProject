@@ -200,7 +200,8 @@ public class TrnWelcomeService {
 		    Label ExPTimeDisLabel= (Label)form.lookup("#ExPTimeDisLabel");
 		    Label ExPCrtMemsDisLabel= (Label)form.lookup("#ExPCrtMemsDisLabel");
 		    Label ExPLmtMemsDisLabel= (Label)form.lookup("#ExPLmtMemsDisLabel");
-			//Set the get Info data
+			
+		    //Set the get Info data
 		    PrmScheCodeLabel.setText(ExPCodeDisLabel.getText());
 		    ExPTypeLabel.setText(ExPTypeDisLabel.getText());
 		    ExPNameFeild.setText(ExPNameDisLabel.getText());

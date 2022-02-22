@@ -95,7 +95,7 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0">
                      <children>
                         <Label text="강의종류 : " />
-                        <TextField fx:id="prm_nameTxtFld" prefHeight="25.0">
+                        <TextField fx:id="prm_nameTxtFld" prefHeight="25.0" promptText="Ex) 필라테스">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
@@ -133,7 +133,7 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0">
                      <children>
                         <Label text="시  작  일 : " />
-                        <TextField fx:id="prmsche_strdateTxtFld" prefHeight="25.0">
+                        <TextField fx:id="prmsche_strdateTxtFld" prefHeight="25.0" promptText="Ex) xxxx-xx-xx">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
@@ -152,7 +152,7 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0">
                      <children>
                         <Label text="종  료  일 : " />
-                        <TextField fx:id="prmsche_enddateTxtFld" prefHeight="25.0">
+                        <TextField fx:id="prmsche_enddateTxtFld" prefHeight="25.0" promptText="Ex) xxxx-xx-xx">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
@@ -171,7 +171,7 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0">
                      <children>
                         <Label text="시       간 : " />
-                        <TextField fx:id="prmsche_timeTxtFld" prefHeight="25.0">
+                        <TextField fx:id="prmsche_timeTxtFld" prefHeight="25.0" promptText="오전 or 오후">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
@@ -190,7 +190,7 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0">
                      <children>
                         <Label text="가       격 : " />
-                        <TextField fx:id="price_TxtFld" prefHeight="25.0">
+                        <TextField fx:id="price_TxtFld" prefHeight="25.0" promptText="EX) 1,000원">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>

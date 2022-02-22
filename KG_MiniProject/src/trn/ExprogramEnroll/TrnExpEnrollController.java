@@ -47,7 +47,9 @@ public class TrnExpEnrollController implements Initializable {
 //
 //    @FXML
 //    private TextField LimitMemField;
-
+    @FXML
+    private TextField ExPPriceField;
+    
 	
 	private TrnExPEnrollService trnExPEnrollSvc;
 	private Parent trnExpEnrollForm;
@@ -68,6 +70,12 @@ public class TrnExpEnrollController implements Initializable {
 		ExPNameFeild.textProperty().addListener((attribute,before, after) -> {
 			ExPNameFeild.setText(CommonService.getLengthLimit(250, ExPNameFeild.getText()));
 	      });
+//		ExPPriceField.textProperty().addListener((attribute,before, after) -> {
+//			String tmp = String.format("%,d", Integer.parseInt(CommonService.getLengthLimit(9, ExPPriceField.getText())));
+//			ExPPriceField.setText(CommonService.getLengthLimit(9, tmp));
+//	      });
+		
+		
 	}
 	public void CheckSrtDate() {
 		trnExPEnrollSvc.CheckSrtDate();

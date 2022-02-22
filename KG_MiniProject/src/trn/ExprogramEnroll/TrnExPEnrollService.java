@@ -54,15 +54,27 @@ public class TrnExPEnrollService {
 	}
 	
 
-	public void ExPErllProc(Parent myForm) {
+	public void ExPErllProc(Parent myForm) {//개설 버튼 클릭 시
+		//입력 형식 확인
+		try {
+			int tmpMB = Integer.parseInt(LimitMemField.getText());
+			int tmpBD = Integer.parseInt(ExPPriceField.getText());
+		} catch (NumberFormatException e) {
+			CommonService.Msg("숫자만 입력 해주세요.");
+			return;
+		}
+		//기간 순서 확인
 		if(CommonService.CompareDate(SrtDate.getValue(), EndDate.getValue())) {
 			CommonService.Msg("종료일을 시작일 뒤의 날짜로 입력해주십시오.");
 			return;
 		}
+
 		//강의 일정용 코드 생성
 		String PrmScheCodegeneration = null;//Rule : PrmSche+강의종류 + 오전/오후 + 강사 + num
 		int InitCrtMems = 0;
+		//강의 종류 입력
 		String PrmType = ExPTypeBox.getSelectionModel().getSelectedItem();//강의종류
+		//시간 입력
 		String Time = null;//시간
 		if(AMRBtn.isSelected()) Time = "오전";
 		else if(PMRBtn.isSelected()){
@@ -108,6 +120,7 @@ public class TrnExPEnrollService {
 		}else {
 			CommonService.Msg("이상 발생!");
 		}
+		
 		//Table View Refresh 
 		Parent wlcForm = TrnExpEnrollController.getWlcForm();
 		TableView<TrnTbVDTO> refreshTable = (TableView<TrnTbVDTO>)wlcForm.lookup("#CurrentProgramTableList");
@@ -124,20 +137,7 @@ public class TrnExPEnrollService {
 	public void BackProc(Parent myForm) {
 		CommonService.WindowClose(myForm);
 	}
-	
-	public void SetFxId(Parent myForm) {
-		TitleUserNameLabel = (Label)myForm.lookup("#TitleUserNameLabel");
-		ExPTypeBox = (ComboBox<String>)myForm.lookup("#ExPTypeBox");
-		ExPNameFeild = (TextField)myForm.lookup("#ExPNameFeild");
-		SrtDate = (DatePicker)myForm.lookup("#SrtDate");
-		EndDate = (DatePicker)myForm.lookup("#EndDate");
-		AMRBtn = (RadioButton)myForm.lookup("#AMRBtn");
-		PMRBtn = (RadioButton)myForm.lookup("#PMRBtn");
-		LimitMemField = (TextField)myForm.lookup("#LimitMemField");
-		ExPPriceField = (TextField)myForm.lookup("#ExPPriceField");
-			
-	}
-	
+
 	private String getlatestNumToString(String[] PrmScheCodeListbyPrmCode) {//substring(0, 2);
 		/*
 		 * 해당 강의 종류만 포함한 스케쥴 리스트 = PrmScheListbyPrmCode ->
@@ -145,7 +145,6 @@ public class TrnExPEnrollService {
 		 * 4번째"_" 이후의 데이터(5번째 데이터)를 int형으로 변환하여 +1 -> 
 		 * => 최신화된 숫자!
 		 */	
-		
 		String LastestNum = null;
 		String[] extractionNum = new String[PrmScheCodeListbyPrmCode.length];
 //			System.out.println("입력받은 문자열개수"+PrmScheCodeListbyPrmCode.length);
@@ -169,7 +168,19 @@ public class TrnExPEnrollService {
 		System.out.println("연산 결과 : "+LastestNum);
 		return LastestNum;
 	}
-
+	
+	public void SetFxId(Parent myForm) {
+		TitleUserNameLabel = (Label)myForm.lookup("#TitleUserNameLabel");
+		ExPTypeBox = (ComboBox<String>)myForm.lookup("#ExPTypeBox");
+		ExPNameFeild = (TextField)myForm.lookup("#ExPNameFeild");
+		SrtDate = (DatePicker)myForm.lookup("#SrtDate");
+		EndDate = (DatePicker)myForm.lookup("#EndDate");
+		AMRBtn = (RadioButton)myForm.lookup("#AMRBtn");
+		PMRBtn = (RadioButton)myForm.lookup("#PMRBtn");
+		LimitMemField = (TextField)myForm.lookup("#LimitMemField");
+		ExPPriceField = (TextField)myForm.lookup("#ExPPriceField");
+			
+	}
 
 	
 	

@@ -30,8 +30,8 @@ public class TrnExpEnrollController implements Initializable {
 //    @FXML
 //    private ComboBox<?> ExPTypeBox;
 //
-//    @FXML
-//    private TextField ExPNameFeild;
+    @FXML
+    private TextField ExPNameFeild;
 //
 //    @FXML
 //    private RadioButton PMRBtn;
@@ -65,7 +65,9 @@ public class TrnExpEnrollController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {		
-	
+		ExPNameFeild.textProperty().addListener((attribute,before, after) -> {
+			ExPNameFeild.setText(CommonService.getLengthLimit(250, ExPNameFeild.getText()));
+	      });
 	}
 	public void CheckSrtDate() {
 		trnExPEnrollSvc.CheckSrtDate();

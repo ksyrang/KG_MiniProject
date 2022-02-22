@@ -41,8 +41,8 @@ public class TrnExPMgtService {
 		this.TrnExPMgtController = trnExPMgtController;
 	}
 	
-	
-	public void ExPDltProc(Parent MyForm ,Parent WelcomeForm) {//삭제
+	//삭제 버튼 클릭시
+	public void ExPDltProc(Parent MyForm ,Parent WelcomeForm) {
 		boolean Checkresult = CommonService.CheckMsg("삭제 하시겠습니까?");
 		if(!Checkresult) {
 			return;			
@@ -61,19 +61,19 @@ public class TrnExPMgtService {
 		}else {
 			CommonService.Msg("이상 발생 확인 요망");
 		}
-		//Table View Refresh 
-		TableView<TrnTbVDTO> refreshTable = (TableView<TrnTbVDTO>)WelcomeForm.lookup("#CurrentProgramTableList");
-		refreshTable.getItems().clear();
-		ArrayList<CmnPrmScheDTO> tmplist = new CmnPrmScheDAO().SltPrmScheAllbyTrn(TrnExPMgtController.getTrnCode());
-		ObservableList<TrnTbVDTO> TBVwlist = FXCollections.observableArrayList();
-		for(CmnPrmScheDTO tmpdto: tmplist) {//PCodeColumn, PNameColumn, MembersColumn
-			TBVwlist.add(new TrnTbVDTO(tmpdto.getPRMSCHE_Code(), tmpdto.getPRMSCHE_Name(), 
-					Integer.toString(tmpdto.getPRMSCHE_CurrentP())));
-		}			
-		refreshTable.setItems(TBVwlist);		
+		//웰컴 페이지 테이블 뷰 업데이트
+		WlcTableRefresh(WelcomeForm);		
 	}
 	
-	public void ExPMdyProc(Parent MyForm, Parent WelcomeForm) {//수정
+	//수정버튼 클릭시
+	public void ExPMdyProc(Parent MyForm, Parent WelcomeForm) {
+		try {
+			int tmpMB = Integer.parseInt(LimitMemsField.getText());
+		} catch (NumberFormatException e) {
+			CommonService.Msg("숫자만 입력 해주세요.");
+			return;
+		}
+		
 		boolean Checkresult = CommonService.CheckMsg("수정 하시겠습니까?");
 		if(!Checkresult) {
 			return;			
@@ -111,7 +111,16 @@ public class TrnExPMgtService {
 		}else {
 			CommonService.Msg("이상 발생 확인 요망");
 		}
+		//웰컴 페이지 테이블 뷰 업데이트
+		WlcTableRefresh(WelcomeForm);
+	
+	}
 		
+	public void backClose(Parent MyForm) {
+		CommonService.WindowClose(MyForm);
+		
+	}
+	private void WlcTableRefresh(Parent WelcomeForm) {
 		//Table View Refresh 
 		TableView<TrnTbVDTO> refreshTable = (TableView<TrnTbVDTO>)WelcomeForm.lookup("#CurrentProgramTableList");
 		refreshTable.getItems().clear();
@@ -121,13 +130,9 @@ public class TrnExPMgtService {
 			TBVwlist.add(new TrnTbVDTO(tmpdto.getPRMSCHE_Code(), tmpdto.getPRMSCHE_Name(), 
 					Integer.toString(tmpdto.getPRMSCHE_CurrentP())));
 		}			
-		refreshTable.setItems(TBVwlist);		
+		refreshTable.setItems(TBVwlist);	
 	}
-		
-	public void backClose(Parent MyForm) {
-		CommonService.WindowClose(MyForm);
-		
-	}
+	
 	
 	public void SetFxId(Parent MyForm) {
 		TitleUserNameLabel = (Label)MyForm.lookup("#TitleUserNameLabel");
@@ -141,5 +146,7 @@ public class TrnExPMgtService {
 		LimitMemsField = (TextField)MyForm.lookup("#LimitMemsField");
 		CrtMemsDis = (Label)MyForm.lookup("#ExPMgtCrtMemDisLabel");
 	}
+	
+	
 }
 

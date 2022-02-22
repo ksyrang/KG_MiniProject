@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import trn.DBDAO.TrnTrainerDAO;
 import trn.DBDTO.TrnTrainerDTO;
 
@@ -30,8 +31,8 @@ public class TrnExPMgtController implements Initializable {
 //    private Button Backbtn;
 //    @FXML
 //    private Label TrnName;
-//    @FXML
-//    private TextField ExPNameField;
+    @FXML
+    private TextField ExPNameFeild;
 //    @FXML
 //    private DatePicker SrtDate;
 //    @FXML
@@ -62,7 +63,9 @@ public class TrnExPMgtController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		ExPNameFeild.textProperty().addListener((attribute,before, after) -> {
+			ExPNameFeild.setText(CommonService.getLengthLimit(250, ExPNameFeild.getText()));
+	      });
 	}
 	public void ExPDltProc() {//삭제
 		trnExPMgtsvc.ExPDltProc(trnExPMgtForm, trnWelcomForm);

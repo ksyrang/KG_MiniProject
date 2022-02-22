@@ -27,7 +27,9 @@ public class TrainerMgtController implements Initializable{
 	private Parent trainerEnrollForm;
 	private TrainerEnrollController trainerEnrollController;
 	
-	@FXML private TextField trnIdTxt;
+	
+	
+	@FXML private TextField trnIdTxt, trnNameTxt, trnPwTxt, trnMobileTxt, trnAddrTxt1, trnAddrTxt2, trnBirthTxt, trnCareerTxt;
 	@FXML private TableView<TrainerMgtTable> trnTable;
 	@FXML private TableColumn<TrainerMgtTable, String> colTrnCode;
 	@FXML private TableColumn<TrainerMgtTable, String> colTrnName;
@@ -40,6 +42,29 @@ public class TrainerMgtController implements Initializable{
 		trainerMgtSvc = new TrainerMgtService();
 		trainerMgtSvc.setTrainerMgtController(this);
 		initSetting();
+		
+		// 길이제한
+		trnNameTxt.textProperty().addListener((attribute,before, after) -> {
+			trnNameTxt.setText(CommonService.getLengthLimit(5, trnNameTxt.getText()));
+		});
+		trnPwTxt.textProperty().addListener((attribute,before, after) -> {
+			trnPwTxt.setText(CommonService.getLengthLimit(20, trnPwTxt.getText()));
+		});
+		trnMobileTxt.textProperty().addListener((attribute,before, after) -> {
+			trnMobileTxt.setText(CommonService.getLengthLimit(11, trnMobileTxt.getText()));
+		});
+		trnAddrTxt1.textProperty().addListener((attribute,before, after) -> {
+			trnAddrTxt1.setText(CommonService.getLengthLimit(200, trnAddrTxt1.getText()));
+		});
+		trnAddrTxt2.textProperty().addListener((attribute,before, after) -> {
+			trnAddrTxt2.setText(CommonService.getLengthLimit(100, trnAddrTxt2.getText()));
+		});
+		trnBirthTxt.textProperty().addListener((attribute,before, after) -> {
+			trnBirthTxt.setText(CommonService.getLengthLimit(8, trnBirthTxt.getText()));
+		});
+		trnCareerTxt.textProperty().addListener((attribute,before, after) -> {
+			trnCareerTxt.setText(CommonService.getLengthLimit(2, trnCareerTxt.getText()));
+		});
 	}
 	
 	public TrainerMgtController getTrainerMgtController() {
@@ -140,5 +165,6 @@ public class TrainerMgtController implements Initializable{
 	public void trnCloseProc() {
 		CommonService.WindowClose(trainerMgtForm);
 	}
+
 
 }

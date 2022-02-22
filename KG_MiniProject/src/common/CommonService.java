@@ -107,6 +107,13 @@ public class CommonService {
 //		stage.show();		
 //	}
 	
+	public static String getLengthLimit(int Length, String data) {
+		String tmp = data;
+		if (data.length() > Length) {
+			tmp = tmp.substring(0, Length);
+		}
+		return tmp;
+	}
 	
 	
 }

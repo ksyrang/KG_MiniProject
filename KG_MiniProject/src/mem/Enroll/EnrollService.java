@@ -23,8 +23,11 @@ public class EnrollService {
 			if(mobile.isEmpty()) {
 				CommonService.Msg("전화번호를 입력해주세요.");
 			} else {
+				if(mobile.length()<11){
+					CommonService.Msg("11자리의 전화번호를 입력 해주세요.");
+					return;
+				}
 				enrollDAO = new EnrollDAO();
-				
 				if(enrollDAO.SelectMobile(Integer.parseInt(mobile)) == null) {
 					CommonService.Msg(mobile + " 은(는) 사용 가능한 전화번호입니다.");
 				}else {
@@ -48,7 +51,6 @@ public class EnrollService {
 				CommonService.Msg("ID를 입력해주세요.");
 			} else {
 				enrollDAO = new EnrollDAO();
-				
 				if(enrollDAO.SelectId(id) == null) {
 					CommonService.Msg(id + " 은(는) 사용 가능한 ID입니다.");
 				}else {
@@ -85,17 +87,35 @@ public class EnrollService {
 //		colorLabel2.setTextFill(Color.RED);
 //		Paint label = colorLabel.getTextFill(#e10b0b);
 		
+		if(name.isEmpty() || id.isEmpty() || pw.isEmpty() || confirm.isEmpty()) {
+			CommonService.Msg("* 항목은 필수 입력 데이터 입니다.");
+			return;
+		}				
+		
 		int birth;
 		if (birthTxt.getText().isEmpty()) {
 			birth = 0;
 		} else {
-			birth = Integer.parseInt(birthTxt.getText());
+			if(birthTxt.getText().length()<8){
+				CommonService.Msg("8자리의 생년월일을 입력 해주세요.");
+				return;
+			}
+			try {
+				birth = Integer.parseInt(birthTxt.getText());
+			} catch (NumberFormatException e) {
+				CommonService.Msg("숫자만 입력 해주세요.");
+				return;
+			}
 		}
 
 		int mobile;
 		if (mobileTxt.getText().isEmpty()) {
 			mobile = 0;
 		} else {
+			if(mobileTxt.getText().length()<11){
+				CommonService.Msg("11자리의 전화번호를 입력 해주세요.");
+				return;
+			}
 			try {
 				mobile = Integer.parseInt(mobileTxt.getText());
 			} catch (NumberFormatException e) {
@@ -114,12 +134,7 @@ public class EnrollService {
 		}else {
 			gender = null;
 		}
-		
-		if(name.isEmpty() || id.isEmpty() || pw.isEmpty() || confirm.isEmpty()) {
-			CommonService.Msg("* 항목은 필수 입력 데이터 입니다.");
-			
-		}
-		
+	
 		
 //		if(enrollDTOC.getMobile().equals(mobile)) {
 //			colorLabel2.setTextFill(Color.RED);

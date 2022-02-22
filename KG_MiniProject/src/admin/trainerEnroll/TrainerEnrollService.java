@@ -78,6 +78,7 @@ public class TrainerEnrollService {
 			} catch (NumberFormatException e) {
 				CommonService.Msg("생년월일을 정확하게 입력해주세요.");
 				trnBirthTxt.requestFocus();
+				return;
 			}
 		}
 
@@ -92,6 +93,7 @@ public class TrainerEnrollService {
 			} catch (NumberFormatException e) {
 				CommonService.Msg("전화번호을 정확하게 입력해주세요.");
 				trnMobileTxt.requestFocus();
+				return;
 			}
 			
 		}
@@ -105,6 +107,7 @@ public class TrainerEnrollService {
 			} catch (Exception e) {
 				CommonService.Msg("경력을 정확하게 입력해주세요.");
 				trnCareerTxt.requestFocus();
+				return;
 			}
 		}
 		

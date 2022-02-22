@@ -152,6 +152,7 @@ public class TrainerMgtService {
 			} catch (NumberFormatException e) {
 				CommonService.Msg("전화번호를 정확하게 입력해주세요.");
 				trnMobileTxt.requestFocus();
+				return;
 			}
 			
 		}
@@ -177,6 +178,7 @@ public class TrainerMgtService {
 			} catch (NumberFormatException e) {
 				CommonService.Msg("생년월일을 정확하게 입력해주세요.");
 				trnBirthTxt.requestFocus();
+				return;
 			}
 			
 		}
@@ -190,6 +192,7 @@ public class TrainerMgtService {
 			} catch (NumberFormatException e) {
 				CommonService.Msg("경력을 정확하게 입력해주세요.");
 				trnCareerTxt.requestFocus();
+				return;
 			}
 		}
 		
@@ -202,45 +205,42 @@ public class TrainerMgtService {
 			trnGender = null;
 		}
 	
+		if (trnName.isEmpty() || trnPw.isEmpty()) {
+			CommonService.Msg(" * 필수입력란을 입력해주세요.");
+		}
 		
 		try {
-			if (trnName.isEmpty() || trnPw.isEmpty()) {
-				CommonService.Msg(" * 필수입력란을 입력해주세요.");
-			} else {
-				if (trnMobile == 0 || mobile.length() == 11) {
-					if (trnBirth == 0 || birth.length() == 8) {
-						if (trnCareer >= 0) {
-							CmnTrainerDTO dto = dao.SltTrnId(trnId);
-							if (dto != null) {
-								dto.setTRAINER_ID(trnId);
-								dto.setTRAINER_Name(trnName);
-								dto.setTRAINER_PW(trnPw);
-								dto.setTRAINER_Gender(trnGender);
-								dto.setTRAINER_Birth(trnBirth);
-								dto.setTRAINER_Mobile(trnMobile);
-								dto.setTRAINER_Career(trnCareer);
-								dto.setTRAINER_Addr(trnAddr);
-								if (dao.UptTrnId(dto) == 1) {
-									CommonService.Msg(trnId + " 강사 수정 완료");
-									refreshTable(trainerMgtForm);
-								} else {
-									CommonService.Msg(trnId + " 강사 수정 실패");
-								}
+			if (trnMobile == 0 || mobile.length() == 11) {
+				if (trnBirth == 0 || birth.length() == 8) {
+					if (trnCareer >= 0) {
+						CmnTrainerDTO dto = dao.SltTrnId(trnId);
+						if (dto != null) {
+							dto.setTRAINER_ID(trnId);
+							dto.setTRAINER_Name(trnName);
+							dto.setTRAINER_PW(trnPw);
+							dto.setTRAINER_Gender(trnGender);
+							dto.setTRAINER_Birth(trnBirth);
+							dto.setTRAINER_Mobile(trnMobile);
+							dto.setTRAINER_Career(trnCareer);
+							dto.setTRAINER_Addr(trnAddr);
+							if (dao.UptTrnId(dto) == 1) {
+								CommonService.Msg(trnId + " 강사 수정 완료");
+								refreshTable(trainerMgtForm);
 							} else {
-								CommonService.Msg("강사를 선택해주세요.");
+								CommonService.Msg(trnId + " 강사 수정 실패");
 							}
+						} else {
+							CommonService.Msg("강사를 선택해주세요.");
 						}
-					} else {
-						CommonService.Msg("생년월일을 정확하게 입력해주세요.");
-						trnBirthTxt.requestFocus();
 					}
 				} else {
-					CommonService.Msg("전화번호를 정확하게 입력주세요.");
-					trnMobileTxt.requestFocus();
+					CommonService.Msg("생년월일을 정확하게 입력해주세요.");
+					trnBirthTxt.requestFocus();
 				}
-
+			} else {
+				CommonService.Msg("전화번호를 정확하게 입력주세요.");
+				trnMobileTxt.requestFocus();
 			}
-
 		} catch (NullPointerException e) {
 			CommonService.Msg("강사를 선택해주세요.");
 		}

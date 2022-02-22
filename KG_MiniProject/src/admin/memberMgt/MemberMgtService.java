@@ -212,6 +212,7 @@ import javafx.scene.control.ToggleGroup;
 			} catch (NumberFormatException e) {
 				CommonService.Msg("생년월일을 정확하게 입력해주세요.");
 				birthfield.requestFocus();
+				return;
 			}
 		}
 		

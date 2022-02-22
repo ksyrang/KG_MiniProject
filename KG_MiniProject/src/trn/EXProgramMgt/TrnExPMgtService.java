@@ -34,6 +34,7 @@ public class TrnExPMgtService {
 	private RadioButton AMRBtn;
 	private RadioButton PMRBtn;
 	private TextField LimitMemsField;
+	private Label CrtMemsDis;
 	private CmnPrmScheDAO PRMSCHEDAO;
 	
 	public void setTrnExPMgtController(TrnExPMgtController trnExPMgtController) {
@@ -47,6 +48,11 @@ public class TrnExPMgtService {
 			return;			
 		}
 		PRMSCHEDAO = new CmnPrmScheDAO();
+		int CheckCurrentMem = PRMSCHEDAO.SltPrmScheOne(PrmScheCodeLabel.getText()).getPRMSCHE_CurrentP();
+		if(CheckCurrentMem > 0) {
+			CommonService.Msg("수강 인원이 존재하여 삭제 할 수 없습니다.");
+			return;
+		}
 		int result = 0; 
 		result = PRMSCHEDAO.DltPrmSche(PRMSCHEDAO.SltPrmScheOne(PrmScheCodeLabel.getText()).getPRMSCHE_Code());
 		if(result == 1) {
@@ -76,6 +82,9 @@ public class TrnExPMgtService {
 		if(CommonService.CompareDate(SrtDate.getValue(), EndDate.getValue())) {
 			CommonService.Msg("종료일을 시작일 뒤의 날짜로 입력해주십시오.");
 			return;
+		}else if(Integer.parseInt(CrtMemsDis.getText().substring(0, 1)) > Integer.parseInt(LimitMemsField.getText())){
+			CommonService.Msg("현재 인원보다 정원을 낮출 수 없습니다.");
+			return;
 		}
 		PRMSCHEDAO = new CmnPrmScheDAO();
 		int result = 0; 
@@ -83,8 +92,16 @@ public class TrnExPMgtService {
 		DTO.setPRMSCHE_Name(ExPNameFeild.getText());
 		DTO.setPRMSCHE_Strdate(CommonService.LocalDateCnvt(SrtDate.getValue()));
 		DTO.setPRMSCHE_Enddate(CommonService.LocalDateCnvt(EndDate.getValue()));		
-		if(AMRBtn.isSelected()) DTO.setPRMSCHE_Time("오전");
-		else if(PMRBtn.isSelected()) DTO.setPRMSCHE_Time("오전");
+		if(AMRBtn.isSelected()) {
+			DTO.setPRMSCHE_Time("오전");
+		}
+		else if(PMRBtn.isSelected()) {
+			DTO.setPRMSCHE_Time("오후");
+		}
+		else { 
+			CommonService.Msg("시간을 선택하여 주세요");
+			return;
+		}
 		DTO.setPRMSCHE_LimitP(Integer.parseInt(LimitMemsField.getText()));//Integer.parseInt(String data);//int형 변환
 
 		result = PRMSCHEDAO.UptPrmSche(DTO);
@@ -122,5 +139,7 @@ public class TrnExPMgtService {
 		AMRBtn = (RadioButton)MyForm.lookup("#AMRBtn");
 		PMRBtn = (RadioButton)MyForm.lookup("#PMRBtn");
 		LimitMemsField = (TextField)MyForm.lookup("#LimitMemsField");
+		CrtMemsDis = (Label)MyForm.lookup("#ExPMgtCrtMemDisLabel");
 	}
 }
+

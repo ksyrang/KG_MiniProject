@@ -46,7 +46,7 @@
             </Label>
             <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Label layoutX="10.0" layoutY="22.0" prefHeight="25.0" text="강의일정 코드 : ">
+                  <Label layoutX="10.0" layoutY="22.0" prefHeight="25.0" text="코드 번호 : ">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -56,7 +56,7 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="25.0" text="프로그램 타입 : ">
+                  <Label prefHeight="25.0" text="종 류 : ">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -73,7 +73,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Label prefHeight="25.0" text="프로그램 이름 : ">
+                  <Label prefHeight="25.0" text="강의 명 : ">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -83,7 +83,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Label prefHeight="25.0" text="프로그램 기간 : ">
+                  <Label prefHeight="25.0" text="강의 기간 : ">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -116,42 +116,38 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="200.0" spacing="10.0">
                <children>
+                  <Label text="현재 인원 :">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="ExPMgtCrtMemDisLabel" text="명">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label text="/">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </Label>
                   <Label prefHeight="25.0" text="프로그램 정원 : ">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="50.0" spacing="10.0">
-                     <children>
-                        <TextField fx:id="LimitMemsField" prefHeight="35.0" prefWidth="50.0" />
-                        <Label text="명">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                        <Label layoutX="70.0" layoutY="29.0" text="/">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                           <padding>
-                              <Insets left="5.0" right="5.0" />
-                           </padding>
-                        </Label>
-                        <Label layoutX="70.0" layoutY="29.0" text="현재 수강인원 :">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="ExPMgtCrtMemDisLabel" layoutX="116.0" layoutY="29.0" text="명">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
+                  <TextField fx:id="LimitMemsField" prefHeight="35.0" prefWidth="50.0" />
+                  <Label text="명">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
                </children>
             </HBox>
          </children>

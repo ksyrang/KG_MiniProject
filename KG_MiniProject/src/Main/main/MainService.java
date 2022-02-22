@@ -51,9 +51,10 @@ public class MainService {
 		Parent adminWelcomeForm;
 		try {
 			adminWelcomeForm = loader.load();
-			controller.setAdminWelcomeController(loader.getController());
 			controller.setAdminWelcomeForm(adminWelcomeForm);
+			controller.setAdminWelcomeController(loader.getController());
 			controller.settingAdmin();
+			controller.getAdminWelcomeController().setLogout(controller.getLogOut());
 
 			Scene scene = new Scene(adminWelcomeForm);
 			Stage primaryStage = new Stage();

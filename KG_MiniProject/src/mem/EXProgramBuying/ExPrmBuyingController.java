@@ -47,8 +47,6 @@ public class ExPrmBuyingController implements Initializable {
 	@FXML
 	private TableColumn<ExProTable, String> programName;
 	@FXML
-	private TableColumn<ExProTable, String> code;
-	@FXML
 	private TableColumn<ExProTable, String> trainerName;
 	@FXML
 	private TableColumn<ExProTable, Integer> limtPerson;
@@ -70,7 +68,6 @@ public class ExPrmBuyingController implements Initializable {
 	//	exProgramSvc.setExPrmBuyingController(this);
 		// 테이블 창
 		programName.setCellValueFactory(new PropertyValueFactory<>("programName"));
-		code.setCellValueFactory(new PropertyValueFactory<>("code"));
 		trainerName.setCellValueFactory(new PropertyValueFactory<>("trainerName"));
 		limtPerson.setCellValueFactory(new PropertyValueFactory<>("limtPerson"));
 		currentPerson.setCellValueFactory(new PropertyValueFactory<>("currentPerson"));
@@ -135,7 +132,7 @@ public class ExPrmBuyingController implements Initializable {
 	public void setBuyingTypeForm(Parent buyingTypeForm) {
 		this.buyingTypeForm = buyingTypeForm;
 	}
-	
+	/*
 	public MgtController getMgtController() {
 		return memMgtController;
 	}
@@ -149,7 +146,7 @@ public class ExPrmBuyingController implements Initializable {
 	public void MemClickProc() {
 		exProgramSvc.memMgtOpen(membCode);
 	}
-	
+	*/
 	// 결제 버튼 클릭 시
 	public void paymentProc() {
 		// System.out.println("결제처리");
@@ -161,12 +158,7 @@ public class ExPrmBuyingController implements Initializable {
 		// CommonService.WindowClose(exProgramBuyingForm);
 		exProgramSvc.cancelProc(exProgramMgtForm);
 	}
-
-	public void logoutProc() {
-		exProgramSvc.logoutProc(exProgramMgtForm);
-		// CommonService.WindowClose(exProgramBuyingForm);
-
-	}
+	
 	public Parent getWelcomForm() {
 		return memWelcomeForm;
 	}

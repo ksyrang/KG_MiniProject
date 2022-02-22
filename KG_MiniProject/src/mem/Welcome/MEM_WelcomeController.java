@@ -3,25 +3,17 @@ package mem.Welcome;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import Main.login.LoginService;
-import Main.main.Controller;
 import common.CmnPrmDAO;
 import common.CmnPrmDTO;
-import common.CmnPrmScheDAO;
-import common.CmnPrmScheDTO;
-import common.CmnTrainerDAO;
-import common.CmnTrainerDTO;
 import common.CommonService;
-import javafx.collections.FXCollections;
+import common.LogOut;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -49,7 +41,7 @@ public class MEM_WelcomeController implements Initializable {
 	private String membCode;
 
 	private MEM_WelcomeMgtTable selectTable;
-
+	private LogOut logOut;
 	@FXML
 	private TextField prm_nameTxtFld;
 	@FXML
@@ -118,6 +110,14 @@ public class MEM_WelcomeController implements Initializable {
 
 	public Parent getMemWelcomeForm() {
 		return memWelcomeForm;
+	}
+
+	public LogOut getLogOut() {
+		return logOut;
+	}
+
+	public void setLogOut(LogOut logOut) {
+		this.logOut = logOut;
 	}
 
 	public void MemClickProc() {
@@ -275,22 +275,21 @@ public class MEM_WelcomeController implements Initializable {
 		});
 
 	}
-
+	//헬스권 구매
 	public void healthProgramBuyingProc() {
 		memWelcomeSvc.healthProgramBuyingProc(membCode, healthProgramBuyingForm);
 	}
-
+	//ex프로그램 구매
 	public void exProgramBuyingProc() {
 		memWelcomeSvc.exProgramBuyingOpen(membCode, exProgramBuyingForm);
 	}
 
-
+	//로그아웃
 	public void logoutProc() {
-		memWelcomeSvc.logoutProc(memWelcomeForm);
-		CommonService.WindowClose(memWelcomeForm);
+		memWelcomeSvc.LogOut();
 
 	}
-
+	//취소
 	public void cancelProc() {
 		memWelcomeSvc.cancelProc(memWelcomeForm);
 	}

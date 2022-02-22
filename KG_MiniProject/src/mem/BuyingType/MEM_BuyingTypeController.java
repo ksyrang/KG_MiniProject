@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.text.Text;
+import mem.Mgt.MgtController;
 import mem.Welcome.MEM_WelcomeController;
 
 
@@ -36,7 +37,9 @@ public class MEM_BuyingTypeController implements Initializable{
 	private Parent buyingTypeForm;
 	private MEM_BuyingTypeService buyingTypeSvc;
 	private MEM_BuyingTypeController buyingTypeController;
-//	private String membCode;
+	private MgtController memMgtController;
+	private String membCode;
+	private Parent memMgtForm;
 
 	private String UserCode;
 	private String MEMSHIPSCHE_Code;
@@ -65,7 +68,7 @@ public class MEM_BuyingTypeController implements Initializable{
 //	public void setMembCode(String membCode) {
 //		this.membCode = membCode;
 //	}
-	
+//	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 //		buyingTypeSvc = new MEM_BuyingTypeService();
@@ -135,7 +138,7 @@ public class MEM_BuyingTypeController implements Initializable{
 		PrmScheName = prmScheName;
 	}
 	
-	
+
 	
 	
 //	public void PayInfoInit() {

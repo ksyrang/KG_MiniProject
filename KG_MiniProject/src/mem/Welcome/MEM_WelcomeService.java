@@ -2,8 +2,10 @@ package mem.Welcome;
 
 import java.io.IOException;
 
-import admin.exProgramMgt.ExProTable;
+import Main.login.LoginController;
+import Main.main.Controller;
 import common.CommonService;
+import common.LogOut;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -25,7 +27,7 @@ public class MEM_WelcomeService {
 	public void setMEM_WelcomeController(MEM_WelcomeController memWelcomeController) {
 		this.memWelcomeController = memWelcomeController;
 	}
-
+	//헬스권 클릭 시
 	public void healthProgramBuyingProc(String membCode, Parent healthProgramBuyingForm2) {
 		FXMLLoader loader = new FXMLLoader(
 				getClass().getResource("/mem/HelthProgramBuying/KG_MEM_FX_HealthProgramBuying.fxml"));
@@ -37,6 +39,12 @@ public class MEM_WelcomeService {
 			memWelcomeController.getHealthPrmBuyingController().setHealthPrmBuyingForm(healthProgramBuyingForm);
 			memWelcomeController.getHealthPrmBuyingController().setMembCode(memWelcomeController.getMembCode());
 			memWelcomeController.getHealthPrmBuyingController().setWelcomForm(memWelcomeController.getMemWelcomeForm());
+			
+			// 상단 이름
+			Label titleUserName = (Label) healthProgramBuyingForm.lookup("#TitleMemNameLabel");
+			MgtDTO tmpMemDto = new MgtDTO(new MgtDAO().selectCode(membCode));
+			//System.out.println(titleUserName);
+			titleUserName.setText(tmpMemDto.getMEM_Name() + " 회원님");
 			
 			ComboBox<String> combo = (ComboBox<String>) healthProgramBuyingForm.lookup("#memshipComboBox");
 			combo.setValue("0");
@@ -145,7 +153,28 @@ public class MEM_WelcomeService {
 
 	}
 
-
+	public void LogOut(){
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/main/KG_COM_FX_Main.fxml"));
+		try {
+			Parent mainForm = loader.load();
+			Controller controller = new Controller();
+			controller.setLoginController(loader.getController());
+//			controller.getLoginController().setmainForm(mainForm);
+			LoginController loginController = controller.getLoginController();
+			loginController.setmainForm(mainForm);
+			controller.setLogOut(new LogOut());
+			
+			Stage stage = new Stage();
+			Scene scene = new Scene(mainForm);
+			
+			stage.setScene(scene);
+			stage.setTitle("new login");
+			stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	// selectTable 세팅
 
@@ -154,11 +183,7 @@ public class MEM_WelcomeService {
 
 	}
 
-	public void logoutProc(Parent memWelcomeForm) {
-		CommonService.Msg("로그아웃 되셨습니다.");
-		CommonService.WindowClose(memWelcomeForm);
-
-	}
+	
 
 	public void cancelProc(Parent memWelcomeForm) {
 		CommonService.WindowClose(memWelcomeForm);

@@ -50,7 +50,7 @@ public class ExPrmBuyingService {
 		exProgramTableView.setItems(tableItems);
 	}
 	
-	
+	/*
 	// 회원정보페이지
 	public void memMgtOpen(String membCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/Mgt/KG_MEM_FX_Mgt.fxml"));
@@ -115,7 +115,7 @@ public class ExPrmBuyingService {
 		}
 
 	}
-	
+	*/
 	//ex프로그램 종류 등록
 	public void paymentProc(Parent exProgramBuyingForm, String membCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/BuyingType/KG_MEM_FX_BuyingType.fxml"));
@@ -184,13 +184,8 @@ public class ExPrmBuyingService {
 	public void cancelProc(Parent exProgramMgtForm) {
 		CommonService.WindowClose(exProgramMgtForm);
 	}
-	//로그아웃 버튼
-	public void logoutProc(Parent exProgramMgtForm) {
-		CommonService.Msg("로그아웃 되셨습니다.");
-		CommonService.WindowClose(exProgramMgtForm);
-		
-		
-	}
+	
+	
 
 	public void setCodeTable(ExProTable codeTable) {
 		this.codeTable = codeTable;

@@ -6,38 +6,47 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mem.EXProgramBuying.ExPrmBuyingController">
    <top>
-      <HBox prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+      <GridPane prefHeight="50.0" BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
             <Label text="KG GYM">
                <font>
                   <Font size="25.0" />
                </font>
-               <HBox.margin>
-                  <Insets left="10.0" top="12.5" />
-               </HBox.margin>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
             </Label>
-            <Label fx:id="TitleMemNameLabel" onMouseClicked="#MemClickProc" text="-회원님">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="600.0" top="12.5" />
-               </HBox.margin>
-            </Label>
-            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutProc" text="logout">
-               <HBox.margin>
-                  <Insets left="20.0" top="12.5" />
-               </HBox.margin>
-            </Button>
+            <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="1">
+               <children>
+                  <Label fx:id="TitleMemNameLabel" alignment="CENTER_RIGHT" text="-회원님">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </HBox>
          </children>
-      </HBox>
+      </GridPane>
    </top>
    <bottom>
       <FlowPane alignment="CENTER" columnHalignment="CENTER" orientation="VERTICAL" prefHeight="90.0" prefWidth="900.0">
@@ -76,9 +85,8 @@
                         </Label>
                         <TableView fx:id="exProgramTableView" prefHeight="374.0" prefWidth="772.0" tableMenuButtonVisible="true">
                           <columns>
-                            <TableColumn fx:id="programName" minWidth="0.0" prefWidth="114.0" text="프로그램 종류" />
+                            <TableColumn fx:id="programName" minWidth="0.0" prefWidth="114.0" text="프로그램 이름" />
                               <TableColumn fx:id="trainerName" minWidth="0.0" prefWidth="99.0" text="강사" />
-                            <TableColumn fx:id="code" minWidth="0.0" prefWidth="78.0" text="고유번호" />
                               <TableColumn fx:id="currentPerson" minWidth="0.0" prefWidth="74.0" text="현재인원" />
                               <TableColumn fx:id="limtPerson" minWidth="0.0" prefWidth="91.0" resizable="false" text="최대인원" />
                               <TableColumn fx:id="strDate" minWidth="0.0" prefWidth="91.0" text="시작일" />

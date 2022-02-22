@@ -39,6 +39,7 @@ public class MgtController implements Initializable{
 	private Parent deleteForm;
 	private DeleteController deleteController;
 	private String formerMobileNum;
+	private Parent memWlcForm;
 	
 	
 	@Override
@@ -87,7 +88,7 @@ public class MgtController implements Initializable{
 	}
 	// 탈퇴버튼 클릭 시
 	public void MemDeleteProc() {
-		mgtService.MemDeleteOpen(deleteForm, membCode);
+		mgtService.MemDeleteOpen(memMgtForm, membCode);
 		
 	}
 	public void MBCheckProc() {
@@ -105,6 +106,14 @@ public class MgtController implements Initializable{
 
 	public void setFormerMobileNum(String formerMobileNum) {
 		this.formerMobileNum = formerMobileNum;
+	}
+
+	public Parent getMemWlcForm() {
+		return memWlcForm;
+	}
+
+	public void setMemWlcForm(Parent memWlcForm) {
+		this.memWlcForm = memWlcForm;
 	}
 	
 	

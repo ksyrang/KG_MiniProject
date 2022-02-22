@@ -129,15 +129,20 @@ public class MgtService {
 		CommonService.WindowClose(memMgtForm);
 	}
 
-	public void MemDeleteOpen(Parent deleteForm, String membCode) {
+	//탈퇴 버튼 클릭 시
+	public void MemDeleteOpen(Parent MemMgtForm, String membCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/Delete/KG_MEM_FX_Delete.fxml"));
 		try {
-			deleteForm = loader.load();
+			Parent DltForm = loader.load();
 			mgtcontroller.setDeleteController(loader.getController());
-			mgtcontroller.getDeleteController().setDeleteForm(deleteForm);
+			mgtcontroller.getDeleteController().setDeleteForm(DltForm);
 			mgtcontroller.getDeleteController().setMembCode(membCode);
+			System.out.println("MemMgtForm :" + MemMgtForm);
+			mgtcontroller.getDeleteController().setMemMgtFrom(MemMgtForm);
+			System.out.println("mgtcontroller.getMemWlcForm() : "+mgtcontroller.getMemWlcForm());
+			mgtcontroller.getDeleteController().setMemWelcomeForm(mgtcontroller.getMemWlcForm());
 
-			Scene scene = new Scene(deleteForm);
+			Scene scene = new Scene(DltForm);
 			Stage primaryStage = new Stage();
 			primaryStage.setTitle("memberDelete");
 			primaryStage.setScene(scene);

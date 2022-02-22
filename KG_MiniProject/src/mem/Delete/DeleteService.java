@@ -17,8 +17,14 @@ import javafx.stage.Stage;
 
 public class DeleteService {
 
+	
 	private DeleteDAO deleteDAO;
-
+	private DeleteController DltCtrller;
+	
+	public void setDeleteController(DeleteController DltCtrller) {
+		this.DltCtrller = DltCtrller;
+	}
+	
 	public void BackDeleteProc(Parent deleteForm) {
 		CommonService.WindowClose(deleteForm);
 	}
@@ -58,32 +64,14 @@ public class DeleteService {
 			
 			if(deleteDAO.SelectPW(pw) != null) {
 				int deleteDTO = deleteDAO.delete(membCode);
-				CommonService.Msg("탈퇴가 완료되었습니다.");
 				CommonService.WindowClose(deleteForm);
+				CommonService.WindowClose(DltCtrller.getMemMgtFrom());
+				CommonService.WindowClose(DltCtrller.getMemWelcomeForm());
 				
+				LogOut logout = new LogOut();
+				logout.LogOut();
+				CommonService.Msg("탈퇴가 완료되었습니다.");
 				
-				
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("/Main/main/KG_COM_FX_Main.fxml"));
-				try {
-					Parent mainForm = loader.load();
-					Controller controller = new Controller();
-					controller.setLoginController(loader.getController());
-//					controller.getLoginController().setmainForm(mainForm);
-					LoginController loginController = controller.getLoginController();
-					loginController.setmainForm(mainForm);
-					controller.setLogOut(new LogOut());
-					
-					Stage stage = new Stage();
-					Scene scene = new Scene(mainForm);
-					
-					stage.setScene(scene);
-					stage.setTitle("new login");
-					stage.show();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			
 			}else {
 				CommonService.Msg("비밀번호가 틀렸습니다.");
 

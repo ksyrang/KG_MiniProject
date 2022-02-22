@@ -17,6 +17,8 @@ public class DeleteController implements Initializable {
 	private DeleteController deleteController;
 	private MEM_WelcomeController memWelcomeController;
 	private String membCode;
+	private Parent MemMgtFrom;
+	
 	
 	public void setMembCode(String membCode) {
 		this.membCode = membCode;
@@ -44,21 +46,12 @@ public class DeleteController implements Initializable {
 		this.deleteController = deleteController;
 	}
 	
-	public void setDeleteForm(Parent deleteForm) {
-		this.deleteForm = deleteForm;
-	}
-	
-	public void setMemWelcomeForm(Parent memWelcomeForm) {
-		this.memWelcomeForm = memWelcomeForm;
-	}
 
-	public Parent getMemWelcomeForm() {
-		return memWelcomeForm;
-	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		deleteService = new DeleteService();		
+		deleteService = new DeleteService();
+		deleteService.setDeleteController(this);
 	}
 	
 	//취소버튼 클릭 시	
@@ -69,12 +62,29 @@ public class DeleteController implements Initializable {
 
 		public void DeleteProc() {
 			deleteService.deleteProc(deleteForm, membCode);
-			CommonService.WindowClose(deleteForm);
-	//		CommonService.WindowClose(memWelcomeForm);
-	//		CommonService.WindowClose(mgtWelcomeForm);
+//			CommonService.WindowClose(deleteForm);
+//			CommonService.WindowClose(memWelcomeForm);
+//			CommonService.WindowClose(mgtWelcomeForm);
 		}
 
 		
+		
+		
+		public Parent getMemMgtFrom() {
+			return MemMgtFrom;
+		}
+		public void setMemMgtFrom(Parent memMgtFrom) {
+			MemMgtFrom = memMgtFrom;
+		}
+		public void setDeleteForm(Parent deleteForm) {
+			this.deleteForm = deleteForm;
+		}		
+		public void setMemWelcomeForm(Parent memWelcomeForm) {
+			this.memWelcomeForm = memWelcomeForm;
+		}
+		public Parent getMemWelcomeForm() {
+			return memWelcomeForm;
+		}
 	
 	
 }

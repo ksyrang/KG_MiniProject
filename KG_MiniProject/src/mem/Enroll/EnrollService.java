@@ -7,9 +7,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
-
-
-
 public class EnrollService {
 
 	EnrollDAO enrollDAO;
@@ -39,8 +36,6 @@ public class EnrollService {
 			CommonService.Msg("숫자만 입력 해주세요.");
 			return;
 		}
-		
-
 	}
 	
 	//아이디 중복 체크
@@ -156,12 +151,12 @@ public class EnrollService {
 				enrollDTO.setMEM_Approve(approve);
 				
 				enrollDAO.insert(enrollDTO);
+				CommonService.WindowClose(memberJoinForm);
 				CommonService.Msg(id + " 계정이 등록되었습니다.");			
 			}else {
 				CommonService.Msg(id + "는/은 등록된 계정입니다.");
 				}
 		}else {
-//			colorLabel1.setTextFill(Color.RED);
 			CommonService.Msg("비밀번호가 일치하지 않습니다.");
 			confirmTxt.clear();
 			pwTxt.clear();

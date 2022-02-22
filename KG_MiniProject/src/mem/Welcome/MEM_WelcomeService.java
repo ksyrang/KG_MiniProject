@@ -97,6 +97,7 @@ public class MEM_WelcomeService {
 			memWelcomeController.setMgtController(loader.getController());
 			memWelcomeController.getMgtController().setMemberMgtForm(memMgtForm);
 			memWelcomeController.getMgtController().setMembCode(membCode);
+			memWelcomeController.getMgtController().setMemWlcForm(memWelcomeController.getMemWelcomeForm());
 			
 
 			// 회원 정보 get

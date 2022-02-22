@@ -3,6 +3,7 @@ package mem.HelthProgramBuying;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import common.CmnMemShipScheDTO;
 import common.CommonService;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,6 +24,8 @@ public class HealthPrmBuyingController implements Initializable{
 	private String membCode;
 	private MEM_BuyingTypeController MEM_BuyingTypeController;
 	private Parent memWelcomeForm;
+	private String memShipScheCode;
+	private CmnMemShipScheDTO cmnMemShipScheDtoforTrance;
 
 
     
@@ -69,6 +72,16 @@ public class HealthPrmBuyingController implements Initializable{
 	public void setMembCode(String membCode) {
 		this.membCode = membCode;
 	}
+	
+	
+
+	public CmnMemShipScheDTO getCmnMemShipScheDtoforTrance() {
+		return cmnMemShipScheDtoforTrance;
+	}
+
+	public void setCmnMemShipScheDtoforTrance(CmnMemShipScheDTO cmnMemShipScheDtoforTrance) {
+		this.cmnMemShipScheDtoforTrance = cmnMemShipScheDtoforTrance;
+	}
 
 	public MEM_BuyingTypeController getMEM_BuyingTypeController() {
 		return MEM_BuyingTypeController;
@@ -84,6 +97,14 @@ public class HealthPrmBuyingController implements Initializable{
 
 	public Parent getMemWelcomeForm() {
 		return memWelcomeForm;
+	}
+
+	public String getMemShipScheCode() {
+		return memShipScheCode;
+	}
+
+	public void setMemShipScheCode(String memShipScheCode) {
+		this.memShipScheCode = memShipScheCode;
 	}
 	
 	

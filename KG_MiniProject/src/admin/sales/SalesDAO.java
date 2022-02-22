@@ -94,7 +94,9 @@ public class SalesDAO {
 					CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheOne(prmScheCode);
 					
 					//prmcode 생성
+					System.out.println(cmnPrmScheDto);
 					String prmCode = cmnPrmScheDto.getPRM_Code();
+					System.out.println(prmCode+"prmCode");
 					CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
 					CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(prmCode);
 					//trainer정보생성

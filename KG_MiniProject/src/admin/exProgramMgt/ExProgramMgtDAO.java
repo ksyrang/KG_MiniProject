@@ -111,13 +111,11 @@ public class ExProgramMgtDAO {
 				ExProgramMgtDTO exProgramDto = new ExProgramMgtDTO();
 				exProgramDto.setPRM_Code(rs.getString("PRM_Code"));
 				exProgramDto.setPRM_Name(rs.getString("PRM_Name"));
-				System.out.println("ddddddd");
 				return exProgramDto;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("xxxxxxxx");
 		return null;
 	}
 	
@@ -168,6 +166,16 @@ public class ExProgramMgtDAO {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
+				System.out.println(exProgramMgtDto.getPRMSCHE_Strdate().equals(rs.getDate("PRMSCHE_STRDATE")));
+				System.out.println(rs.getDate("PRMSCHE_ENDDATE"));
+				System.out.println(exProgramMgtDto.getPRMSCHE_Time().equals(rs.getString("PRMSCHE_TIME")));
+				System.out.println(exProgramMgtDto.getTRAINER_Code().equals(rs.getString("TRAINER_CODE")));
+				System.out.println(exProgramMgtDto.getPRMSCHE_LimitP()==(rs.getInt("PRMSCHE_LIMITP")));
+				System.out.println(exProgramMgtDto.getPRM_Code().equals(rs.getString("PRM_CODE")));
+				System.out.println(exProgramMgtDto.getPRMSCHE_CurrentP()==(rs.getInt("PRMSCHE_CURRENTP")));
+				System.out.println(exProgramMgtDto.getPRMSCHE_Code().equals(rs.getString("PRMSCHE_CODE")));
+				System.out.println(exProgramMgtDto.getPRMSCHE_Price() == rs.getInt("PRMSCHE_PRICE"));
+				System.out.println("===================");
 				if ((exProgramMgtDto.getPRMSCHE_Strdate().equals(rs.getDate("PRMSCHE_STRDATE"))) &
 					(exProgramMgtDto.getPRMSCHE_Enddate().equals(rs.getDate("PRMSCHE_ENDDATE"))) &
 					(exProgramMgtDto.getPRMSCHE_Time().equals(rs.getString("PRMSCHE_TIME"))) &

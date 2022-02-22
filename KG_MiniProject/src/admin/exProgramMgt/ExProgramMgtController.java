@@ -77,7 +77,7 @@ public class ExProgramMgtController implements Initializable{
 			
 			@Override public void handle(MouseEvent event) { 
 				selectData = programListView.getSelectionModel().getSelectedItem(); 
-//				System.out.println(selectData);
+				
 				exProgramSvc.setSelectData(selectData);
 				}
 			});
@@ -86,9 +86,9 @@ public class ExProgramMgtController implements Initializable{
 		exProgramTableView.setOnMouseClicked(new EventHandler<MouseEvent>() { 
 			@Override public void handle(MouseEvent event) { 
 				codeTable = exProgramTableView.getSelectionModel().getSelectedItem();
-				exProgramSvc.setCodeTable(codeTable);
-				exProgramSvc.modifyTableUp(exProgramMgtForm);
-				
+				exProgramSvc.setCodeTable(codeTable);			
+				if(codeTable != null)
+					exProgramSvc.modifyTableUp(exProgramMgtForm);
 				}
 			});
 		
@@ -107,7 +107,6 @@ public class ExProgramMgtController implements Initializable{
 	
 	// 등록 버튼 클릭 시
 	public void insertProc() {
-		System.out.println("프로그램 등록");
 		exProgramSvc.insertProc(exProgramMgtForm);
 		this.allProgram = exProgramSvc.getAllProgram();
 	}
@@ -116,7 +115,6 @@ public class ExProgramMgtController implements Initializable{
 	public void deleteProc() {
 		exProgramSvc.deleteProc(exProgramMgtForm);
 		this.allProgram = exProgramSvc.getAllProgram();
-		kindComboBox.setItems(this.allProgram);
 	}
 	
 	
@@ -127,6 +125,7 @@ public class ExProgramMgtController implements Initializable{
 		}else {
 			CommonService.Msg("항목을 선택하시오");
 		}
+		exProgramSvc.clearInfo(exProgramMgtForm);
 		
 	}
 	
@@ -137,6 +136,7 @@ public class ExProgramMgtController implements Initializable{
 		}else {
 			CommonService.Msg("항목을 선택하시오");
 		}
+		exProgramSvc.clearInfo(exProgramMgtForm);
 	}
 	
 	//시작날짜 선택 시

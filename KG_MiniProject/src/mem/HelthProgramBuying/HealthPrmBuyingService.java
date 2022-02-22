@@ -95,22 +95,24 @@ public class HealthPrmBuyingService {
 				memshipDto.getMEMSHIP_Code()
 				+"_"+HealthPrmBuyingController.getMembCode()+"_"+ InputCodeNum);
 //				+"_"+HealthPrmBuyingController.getMembCode()+"_"+"코드번호1");//DB 수정 후 해당 위치의 코드번호용 알고리즘 코딩 필요
+		String memShipScheCode = memshipDto.getMEMSHIP_Code()
+				+"_"+HealthPrmBuyingController.getMembCode()+"_"+ InputCodeNum;
+		
 		ShceDTO.setMEMSHIPSCHECode_Num(InputCodeNum);
 		ShceDTO.setMEMSHIPSCHE_Strdate(CommonService.LocalDateCnvt(sltDate.getValue()));
 		LocalDate enddate = sltDate.getValue().plusMonths(Integer.parseInt(memshipComboBox.getSelectionModel().getSelectedItem()));
 		ShceDTO.setMEMSHIPSCHE_Enddate(CommonService.LocalDateCnvt(enddate));
 		ShceDTO.setMEMSHIP_Code(memshipDto.getMEMSHIP_Code());
 		ShceDTO.setMEM_Code(HealthPrmBuyingController.getMembCode());
-
-		int result = 0;
-		result = ShceDAO.IstMemShipSche(ShceDTO);
-		System.out.println(ShceDTO.getMEMSHIPSCHE_Code());
-		System.out.println(ShceDTO.getMEM_Code());
-		if(result > 0) {
-			System.out.println("생성 완료");
-			CommonService.WindowClose(MyForm);
-		}else System.out.println("이상 발생");
-		//회원권 스케줄 생성 End
+//		int result = 0;
+//		result = ShceDAO.IstMemShipSche(ShceDTO);
+//		System.out.println(ShceDTO.getMEMSHIPSCHE_Code());
+//		System.out.println(ShceDTO.getMEM_Code());
+//		if(result > 0) {
+//			System.out.println("생성 완료");
+//			CommonService.WindowClose(MyForm);
+//		}else System.out.println("이상 발생");
+//		//회원권 스케줄 생성 End
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/BuyingType/KG_MEM_FX_BuyingType.fxml"));
 		try {
@@ -119,8 +121,8 @@ public class HealthPrmBuyingService {
 			HealthPrmBuyingController.getMEM_BuyingTypeController().setBuyingTypeForm(BuyingTypeForm);
 			HealthPrmBuyingController.getMEM_BuyingTypeController().setUserCode(HealthPrmBuyingController.getMembCode());
 			HealthPrmBuyingController.getMEM_BuyingTypeController().setMemWelcomeForm(HealthPrmBuyingController.getMemWelcomeForm());
-			
-			
+			HealthPrmBuyingController.getMEM_BuyingTypeController().setCmnMemShipScheDtoforRecive(ShceDTO);
+			HealthPrmBuyingController.getMEM_BuyingTypeController().setHealthBForm(MyForm);
 			
 			Text ScheNameLabel = (Text)BuyingTypeForm.lookup("#ScheNameLabel");
 			Text SchePriceLabel = (Text)BuyingTypeForm.lookup("#SchePriceLabel");

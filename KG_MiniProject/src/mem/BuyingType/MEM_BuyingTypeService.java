@@ -80,10 +80,7 @@ public class MEM_BuyingTypeService {
 			return;
 		}
 		
-		CmnPayDAO payDao = new CmnPayDAO();
-		CmnMemShipScheDAO memshipScheDao = new CmnMemShipScheDAO();
-		CmnMemShipScheDTO memshipScheDto = memshipScheDao.SltMemShipScheCode(buyingTypeController.getUserCode());
-		
+		CmnPayDAO payDao = new CmnPayDAO();	
 		int maxCodeNum = payDao.PayMaxCodeNum() + 1;
 		
 		Date strPayDate = CommonService.CnvtsqlDate(new java.util.Date());
@@ -103,31 +100,41 @@ public class MEM_BuyingTypeService {
 		//MEMSCHE_CODE
 		//MEMSHIPSCHE_CODE
 		//넣어주기
+
+		CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
+		
+		
+//		CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheCode(buyingTypeController.getMEMSHIPSCHE_Code());
+		
 		CmnMemScheDAO cmnMemScheDao = new CmnMemScheDAO();
 		CmnMemScheDTO cmnMemScheDto = new CmnMemScheDTO();
-		CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
-		CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheName(buyingTypeController.getPrmScheName());
-		
-		System.out.println("cmnPrmScheDto : "+ cmnPrmScheDto.getPRMSCHE_Code());
-		if(cmnPrmScheDto != null) { 
+//		CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
+//		CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheName(buyingTypeController.getPrmScheName());
+	
+		if(buyingTypeController.getCmnMemShipScheDtoforRecive().getMEMSHIPSCHE_Code() != null) { 
+			//회원권
+			CmnMemShipScheDAO cmnMemShipScheDao = new CmnMemShipScheDAO();
+			int iresult = 0;
+			iresult = cmnMemShipScheDao.IstMemShipSche(buyingTypeController.getCmnMemShipScheDtoforRecive());
+			if(iresult > 0) {
+				System.out.println("생성 완료");
+			}else System.out.println("이상 발생");
+			
+			System.out.println(buyingTypeController.getCmnMemShipScheDtoforRecive().getMEMSHIPSCHE_Code()+"///////////");
+			PayDTO.setMEMSHIPSCHE_Code(buyingTypeController.getCmnMemShipScheDtoforRecive().getMEMSHIPSCHE_Code());
+			cmnMemScheDto.setMEMSHIPSCHE_Code(buyingTypeController.getCmnMemShipScheDtoforRecive().getMEMSHIPSCHE_Code());
+			cmnMemScheDto.setMEM_Code(buyingTypeController.getCmnMemShipScheDtoforRecive().getMEM_Code());
+			cmnMemScheDto.setMEMSCHE_Code(cmnMemScheDto.getMEM_Code()+cmnMemScheDto.getMEMSHIPSCHE_Code()+maxCodeNum);
+			cmnMemScheDao.IstMem(cmnMemScheDto);
+		}else {
 			//프로그램
-			PayDTO.setPRMSCHE_Code(buyingTypeController.getPRMSCHE_Code());
-			cmnMemScheDto.setPRMSCHE_Code(cmnPrmScheDto.getPRMSCHE_Code());
+			PayDTO.setPRMSCHE_Code(cmnPrmScheDto.getPRMSCHE_Code());//해결 필요
+			cmnMemScheDto.setPRMSCHE_Code(buyingTypeController.getUserCode());/해결 필요
 			cmnMemScheDto.setMEM_Code(buyingTypeController.getUserCode());
 			cmnMemScheDto.setMEMSCHE_Code(cmnMemScheDto.getMEM_Code()+cmnMemScheDto.getPRMSCHE_Code()+maxCodeNum);
 			cmnMemScheDao.IstPro(cmnMemScheDto);
-
-		}else {
-			//회원권
-			PayDTO.setMEMSHIPSCHE_Code(memshipScheDto.getMEMSHIPSCHE_Code());
-			cmnMemScheDto.setMEMSHIPSCHE_Code(memshipScheDto.getMEMSHIPSCHE_Code());
-			cmnMemScheDto.setMEM_Code(buyingTypeController.getUserCode());
-			cmnMemScheDto.setMEMSCHE_Code(cmnMemScheDto.getMEM_Code()+cmnMemScheDto.getMEMSHIPSCHE_Code()+maxCodeNum);
-			cmnMemScheDao.IstMem(cmnMemScheDto);
 		}
-		
-
-		
+			
 		
 //		CmnMemDAO memDao = new CmnMemDAO();
 		
@@ -137,6 +144,7 @@ public class MEM_BuyingTypeService {
 		if(result == 1) {
 //			if(memDao.memShipScheCodeUpdate(buyingTypeController.getUserCode(), memshipScheDto.getMEMSHIPSCHE_Code()) == 1) {
 				CommonService.WindowClose(MyForm);
+				CommonService.WindowClose(buyingTypeController.getHealthBForm());
 				CommonService.Msg("결제완료");
 //			}else {
 //				CommonService.Msg("결제 이상 발생");

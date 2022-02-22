@@ -2,6 +2,7 @@ package admin.exProgramMgt;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import common.CmnPrmDAO;
 import common.CmnPrmDTO;
@@ -88,13 +89,33 @@ public class ExProgramMgtService {
 
 	// ex프로그램 종류 삭제
 	public void deleteProc(Parent exProgramMgtForm) {
-		exprogramDao = new ExProgramMgtDAO();
-		if (exprogramDao.selectDelete(this.selectData) == 1) {
-			CommonService.Msg("EX프로그램 삭제 완료");
-		} else {
-			CommonService.Msg("EX프로그램 삭제 실패");
+//		this.selectData != null 
+		
+		//현재 인원수가 1이상이면 삭제 금지
+		String prmName = this.selectData;
+		CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
+		CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmNameOne(prmName);
+		String prmCode = cmnPrmDto.getPRM_Code();
+		CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
+		ArrayList<CmnPrmScheDTO> cmnPrmScheDto = cmnPrmScheDao.SltPrmScheAllbyPrm(prmCode);
+		int prmScheCurrentP = 0;
+		for(CmnPrmScheDTO i : cmnPrmScheDto) {
+			prmScheCurrentP = i.getPRMSCHE_CurrentP();
+			if(i.getPRMSCHE_CurrentP()>0) {
+				prmScheCurrentP = 1;
+			}
 		}
-		programListView.getItems().remove(this.selectData);
+		if(prmScheCurrentP==0) {
+			exprogramDao = new ExProgramMgtDAO();
+			if (exprogramDao.selectDelete(prmName) == 1) {
+				CommonService.Msg("프로그램 종류 삭제 완료");
+			} else {
+				CommonService.Msg("프로그램 종류 삭제 실패");
+			}
+			programListView.getItems().remove(this.selectData);
+		}else {
+			CommonService.Msg("프로그램 종류 삭제 실패 : 현재 수강중인 회원이 존재합니다. ");
+		}
 
 	}
 
@@ -189,7 +210,7 @@ public class ExProgramMgtService {
 		
 		ExProgramMgtDAO exProgramMgtDao = new ExProgramMgtDAO();
 		ExProgramMgtDTO exProgramMgtDto = new ExProgramMgtDTO();
-		
+		System.out.println();
 		exProgramMgtDto.setPRM_Code(prmCode);
 		exProgramMgtDto.setPRMSCHE_Strdate(strDate);
 		exProgramMgtDto.setPRMSCHE_Enddate(endDate);
@@ -200,6 +221,17 @@ public class ExProgramMgtService {
 		exProgramMgtDto.setTRAINER_Code(trainerCode);
 		exProgramMgtDto.setTRAINER_Name(trainerName);
 		exProgramMgtDto.setPRMSCHE_Name(prmScheName);
+		System.out.println(prmCode);
+		System.out.println(strDate);
+		System.out.println(endDate);
+		System.out.println(timeC);
+		System.out.println(price);
+		System.out.println(personLimit);
+		System.out.println(prmScheCode);
+		System.out.println(trainerCode);
+		System.out.println(trainerName);
+		System.out.println(prmScheName);
+		System.out.println(">>>>>>>>>>>>>>>>>>");
 		
 		ExProgramMgtDTO exProgramMgtDto2 = new ExProgramMgtDTO();
 		exProgramMgtDto2.setPRM_Code(prmCode);
@@ -220,15 +252,18 @@ public class ExProgramMgtService {
 
 	// 프로그램 세부삭제
 	public void exProgramDeleteProc(Parent exProgramMgtForm) {
-		String code = this.codeTable.getCode();
-		CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
-		CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheOne(codeTable.getCode());
-		ExProgramMgtDAO exProgramMgtDao = new ExProgramMgtDAO();
-		exProgramMgtDao.exProgramDeleteProc(cmnPrmScheDto);
-
-		// 테이블 리로드
-		this.tableUp(this.exProgramTableView);
-
+		if(this.codeTable.getCurrentPerson()!=0) {
+			CommonService.Msg("삭제 실패 : 현재 수강중인 회원이 존재합니다.");
+		}else {
+			String code = this.codeTable.getCode();
+			CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
+			CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheOne(codeTable.getCode());
+			ExProgramMgtDAO exProgramMgtDao = new ExProgramMgtDAO();
+			exProgramMgtDao.exProgramDeleteProc(cmnPrmScheDto);
+			
+			// 테이블 리로드
+			this.tableUp(this.exProgramTableView);
+		}
 	}
 	
 	//날짜 선택 시
@@ -255,6 +290,31 @@ public class ExProgramMgtService {
 			}
 		}
 
+	public void clearInfo(Parent exProgramMgtForm) {
+		Label exnameText = (Label) exProgramMgtForm.lookup("#exnameText");
+		Label exPrmNameText = (Label) exProgramMgtForm.lookup("#exPrmNameText");
+		TextField priceText = (TextField) exProgramMgtForm.lookup("#priceText");
+		TextField personLimitText = (TextField) exProgramMgtForm.lookup("#personLimitText");
+		Label currnentDateText = (Label) exProgramMgtForm.lookup("#currnentDateText");
+		DatePicker startDatePicker = (DatePicker) exProgramMgtForm.lookup("#startDatePicker");
+		DatePicker endDatePicker = (DatePicker) exProgramMgtForm.lookup("#endDatePicker");
+		RadioButton amRadioButton = (RadioButton) exProgramMgtForm.lookup("#amRadioButton");
+		RadioButton pmRadioButton = (RadioButton) exProgramMgtForm.lookup("#pmRadioButton");
+		
+		exPrmNameText.setText(" :");
+		exnameText.setText(" :");
+		currnentDateText.setText("현재 기간");
+		priceText.clear();
+		personLimitText.clear();
+	    LocalDate strDateSetting = 	LocalDate.now();
+	    LocalDate endDateSetting = strDateSetting.plusMonths(1);
+		startDatePicker.setValue(strDateSetting);
+		endDatePicker.setValue(endDateSetting);
+		amRadioButton.setSelected(false);
+		pmRadioButton.setSelected(false);
+		
+		
+	}
 		
 		
 		

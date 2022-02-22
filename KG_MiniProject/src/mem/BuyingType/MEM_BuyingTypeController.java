@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import Main.login.LoginService;
 import Main.main.Controller;
 import Main.main.MainService;
+import common.CmnMemShipScheDTO;
 import common.CommonService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,13 +41,13 @@ public class MEM_BuyingTypeController implements Initializable{
 	private MgtController memMgtController;
 	private String membCode;
 	private Parent memMgtForm;
-	private Parent ExPBuyingForm;
+	private Parent HealthBForm;
 
 	private String UserCode;
 	private String MEMSHIPSCHE_Code;
 	private String PRMSCHE_Code;	
 	private String PrmScheName;
-	
+	private CmnMemShipScheDTO cmnMemShipScheDtoforRecive;
 	
 	
 	public MEM_BuyingTypeController() {
@@ -139,12 +140,20 @@ public class MEM_BuyingTypeController implements Initializable{
 		PrmScheName = prmScheName;
 	}
 
-	public Parent getExPBuyingForm() {
-		return ExPBuyingForm;
+	public CmnMemShipScheDTO getCmnMemShipScheDtoforRecive() {
+		return cmnMemShipScheDtoforRecive;
 	}
 
-	public void setExPBuyingForm(Parent exPBuyingForm) {
-		ExPBuyingForm = exPBuyingForm;
+	public void setCmnMemShipScheDtoforRecive(CmnMemShipScheDTO cmnMemShipScheDtoforRecive) {
+		this.cmnMemShipScheDtoforRecive = cmnMemShipScheDtoforRecive;
+	}
+
+	public Parent getHealthBForm() {
+		return HealthBForm;
+	}
+
+	public void setHealthBForm(Parent healthBForm) {
+		HealthBForm = healthBForm;
 	}
 	
 

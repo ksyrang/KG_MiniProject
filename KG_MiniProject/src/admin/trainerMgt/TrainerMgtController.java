@@ -98,6 +98,7 @@ public class TrainerMgtController implements Initializable{
 		colTrnName.setCellValueFactory(new PropertyValueFactory<>("colTrnName"));
 		colTrnMobile.setCellValueFactory(new PropertyValueFactory<>("colTrnMobile"));
 		for (CmnTrainerDTO t : dto) {
+			// 전화번호 앞에 0 추가
 			obserList.add(new TrainerMgtTable(t.getTRAINER_Code(), t.getTRAINER_Name(), t.getTRAINER_Mobile()));
 		}
 

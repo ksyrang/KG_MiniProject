@@ -173,7 +173,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0">
                            <children>
                               <Label text="경력" />
-                              <TextField fx:id="trnCareerTxt" prefHeight="30.0" prefWidth="36.0">
+                              <TextField fx:id="trnCareerTxt" prefHeight="30.0" prefWidth="50.0">
                                  <HBox.margin>
                                     <Insets left="40.0" />
                                  </HBox.margin>

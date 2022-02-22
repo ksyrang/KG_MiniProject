@@ -2,6 +2,8 @@ package admin.trainerMgt;
 
 import java.io.IOException;
 
+import org.omg.CORBA.COMM_FAILURE;
+
 import common.CmnTrainerDAO;
 import common.CmnTrainerDTO;
 import common.CommonService;
@@ -60,9 +62,6 @@ public class TrainerMgtService {
 		TextField trnCareerTxt = (TextField) trainerMgtForm.lookup("#trnCareerTxt");
 		RadioButton trnMenRadio = (RadioButton) trainerMgtForm.lookup("#trnMenRadio");
 		RadioButton trnWomenRadio = (RadioButton) trainerMgtForm.lookup("#trnWomenRadio");
-//		ToggleGroup group = new ToggleGroup();
-//		trnMenRadio.setToggleGroup(group);
-//		trnWomenRadio.setToggleGroup(group);
 
 		trnIdTxt.setText(dto.getTRAINER_ID());
 		trnNameTxt.setText(dto.getTRAINER_Name());
@@ -72,7 +71,7 @@ public class TrainerMgtService {
 			trnMobileTxt.setText("");
 		}else {
 			String trnMobile = Integer.toString(dto.getTRAINER_Mobile());
-			trnMobileTxt.setText(trnMobile);
+			trnMobileTxt.setText("0" + trnMobile);
 		}
 		
 		if(dto.getTRAINER_Birth() == 0) {
@@ -139,12 +138,14 @@ public class TrainerMgtService {
 		String trnId = trnIdTxt.getText();
 		String trnName = trnNameTxt.getText();
 		String trnPw = trnPwTxt.getText();
-		
+
+		String mobile = null;
 		int trnMobile;
 		if(trnMobileTxt.getText().isEmpty()) {
 			trnMobile = 0;
 		} else {
 			trnMobile = Integer.parseInt(trnMobileTxt.getText());
+			mobile =trnMobileTxt.getText();
 		}
 		
 		String trnAddr1 = trnAddrTxt1.getText();
@@ -157,11 +158,13 @@ public class TrainerMgtService {
 		
 		String trnAddr = trnAddr1 + "/" + trnAddr2;
 		
+		String birth = null;
 		int trnBirth;
 		if(trnBirthTxt.getText().isEmpty()) {
 			trnBirth = 0;
 		} else {
 			trnBirth = Integer.parseInt(trnBirthTxt.getText());
+			birth = trnBirthTxt.getText();
 		}
 		
 		int trnCareer;
@@ -179,35 +182,47 @@ public class TrainerMgtService {
 		} else {
 			trnGender = null;
 		}
+	
 		
 		try {
-			if(trnName.isEmpty() || trnPw.isEmpty()) {
+			if (trnName.isEmpty() || trnPw.isEmpty()) {
 				CommonService.Msg(" * 필수입력란을 입력해주세요.");
-			}else {
-				CmnTrainerDTO dto = dao.SltTrnId(trnId);
-				if(dto != null) {
-					dto.setTRAINER_ID(trnId);
-					dto.setTRAINER_Name(trnName);
-					dto.setTRAINER_PW(trnPw);
-					dto.setTRAINER_Gender(trnGender);
-					dto.setTRAINER_Birth(trnBirth);
-					dto.setTRAINER_Mobile(trnMobile);
-					dto.setTRAINER_Career(trnCareer);
-					dto.setTRAINER_Addr(trnAddr);
-					if(dao.UptTrnId(dto) == 1) {
-						CommonService.Msg(trnId + " 강사 수정 완료");
-						refreshTable(trainerMgtForm);
+			} else {
+				if(trnMobile == 0 || mobile.length() == 11) {
+					if(trnBirth == 0 || birth.length() == 8) {
+						CmnTrainerDTO dto = dao.SltTrnId(trnId);
+						if (dto != null) {
+							dto.setTRAINER_ID(trnId);
+							dto.setTRAINER_Name(trnName);
+							dto.setTRAINER_PW(trnPw);
+							dto.setTRAINER_Gender(trnGender);
+							dto.setTRAINER_Birth(trnBirth);
+							dto.setTRAINER_Mobile(trnMobile);
+							dto.setTRAINER_Career(trnCareer);
+							dto.setTRAINER_Addr(trnAddr);
+							if (dao.UptTrnId(dto) == 1) {
+								CommonService.Msg(trnId + " 강사 수정 완료");
+								refreshTable(trainerMgtForm);
+							} else {
+								CommonService.Msg(trnId + " 강사 수정 실패");
+							}
+						} else {
+							CommonService.Msg("강사를 선택해주세요.");
+						}
 					}else {
-						CommonService.Msg(trnId + " 강사 수정 실패");
+						CommonService.Msg("생년월일을 정확하게 입력해주세요.");
+						trnBirthTxt.requestFocus();
 					}
 				}else {
-					CommonService.Msg("강사를 선택해주세요.");
+					CommonService.Msg("전화번호를 정확하게 입력주세요.");
+					trnMobileTxt.requestFocus();
 				}
+				
 			}
+
 		} catch (NullPointerException e) {
 			CommonService.Msg("강사를 선택해주세요.");
 		}
-		
 	}
 
 	// 강사 삭제

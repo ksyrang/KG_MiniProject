@@ -1,6 +1,7 @@
 package mem.EXProgramBuying;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import common.CmnPrmScheDAO;
 import common.CmnPrmScheDTO;
@@ -138,6 +139,9 @@ public class ExPrmBuyingService {
 			TableView<ExProTable> exProgramTableView = (TableView<ExProTable>)exProgramBuyingForm.lookup("#exProgramTableView");
 			ExProTable tmpData = new ExProTable();
 			tmpData = exProgramTableView.getSelectionModel().getSelectedItem();
+			if(tmpData == null) {
+				CommonService.Msg("프로그램 선택 후 다시 하세요."); return;
+			}
 			
 			// 상단 이름
 			Label titleUserName = (Label) buyingTypeForm.lookup("#TitleMemNameLabel");
@@ -151,7 +155,6 @@ public class ExPrmBuyingService {
 //			
 //			//데이터 대입
 //			System.out.println(ScheNameLabel.getText());
-
 			
 			ScheNameLabel.setText(tmpData.getProgramName());
 			

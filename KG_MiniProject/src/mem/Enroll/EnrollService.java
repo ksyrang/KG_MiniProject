@@ -17,19 +17,27 @@ public class EnrollService {
 	//전화번호 중복 체크
 	public void mobileConfirmProc(Parent memberJoinForm) {
 		TextField mobileTxt = (TextField) memberJoinForm.lookup("#mobileTxt");
-		String mobile = mobileTxt.getText();
-		if(mobile.isEmpty()) {
-			CommonService.Msg("전화번호를 입력해주세요.");
-		} else {
-			enrollDAO = new EnrollDAO();
-			
-			if(enrollDAO.SelectMobile(Integer.parseInt(mobile)) == null) {
-				CommonService.Msg(mobile + " 은(는) 사용 가능한 전화번호입니다.");
-			}else {
-				CommonService.Msg(mobile + " 은(는) 이미 사용하고 있는 전화번호입니다.");
-				mobileTxt.setText(null);
+		String mobile;
+		try {
+			mobile = mobileTxt.getText();
+			if(mobile.isEmpty()) {
+				CommonService.Msg("전화번호를 입력해주세요.");
+			} else {
+				enrollDAO = new EnrollDAO();
+				
+				if(enrollDAO.SelectMobile(Integer.parseInt(mobile)) == null) {
+					CommonService.Msg(mobile + " 은(는) 사용 가능한 전화번호입니다.");
+				}else {
+					CommonService.Msg(mobile + " 은(는) 이미 사용하고 있는 전화번호입니다.");
+					mobileTxt.setText(null);
+				}
 			}
+		} catch (NumberFormatException e) {
+			CommonService.Msg("숫자만 입력 해주세요.");
+			return;
 		}
+		
+
 	}
 	
 	//아이디 중복 체크
@@ -50,9 +58,8 @@ public class EnrollService {
 			}
 		}
 	
-	public void insert(Parent memberJoinForm) {
+	public void insert(Parent memberJoinForm) {//회원 가입 버튼 클릭 시
 		// 화면에 입력한 데이터 출력하기.
-		// System.out.println();
 		TextField nameTxt = (TextField) memberJoinForm.lookup("#nameTxt");
 		TextField idTxt = (TextField) memberJoinForm.lookup("#idTxt");
 		PasswordField pwTxt = (PasswordField) memberJoinForm.lookup("#pwTxt");
@@ -89,21 +96,27 @@ public class EnrollService {
 		if (mobileTxt.getText().isEmpty()) {
 			mobile = 0;
 		} else {
-			mobile = Integer.parseInt(mobileTxt.getText());
+			try {
+				mobile = Integer.parseInt(mobileTxt.getText());
+			} catch (NumberFormatException e) {
+				CommonService.Msg("숫자만 입력 해주세요.");
+				return;
+			}
+			
 		}	
 		
 		String Code = "Mem_" + id;
 		String gender = null;
 		if (manRadio.isSelected()) {
-			gender += "남";
+			gender = "남";
 		}else if (womanRadio.isSelected()) {
-			gender += "여"; 
+			gender = "여"; 
 		}else {
 			gender = null;
 		}
 		
 		if(name.isEmpty() || id.isEmpty() || pw.isEmpty() || confirm.isEmpty()) {
-			CommonService.Msg("필수 데이터 입니다.");
+			CommonService.Msg("* 항목은 필수 입력 데이터 입니다.");
 			
 		}
 		
@@ -136,6 +149,9 @@ public class EnrollService {
 		}else {
 //			colorLabel1.setTextFill(Color.RED);
 			CommonService.Msg("비밀번호가 일치하지 않습니다.");
+			confirmTxt.clear();
+			pwTxt.clear();
+			pwTxt.requestFocus();
 		}
 	}
 

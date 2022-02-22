@@ -6,13 +6,16 @@ import java.util.ResourceBundle;
 import common.CommonService;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import mem.Welcome.MEM_WelcomeController;
 
 
 public class DeleteController implements Initializable {
 
 	private Parent deleteForm;
+	private Parent memWelcomeForm;
 	private DeleteService deleteService;
 	private DeleteController deleteController;
+	private MEM_WelcomeController memWelcomeController;
 	private String membCode;
 	
 	public void setMembCode(String membCode) {
@@ -20,10 +23,19 @@ public class DeleteController implements Initializable {
 	}
 	
 	
-	public void setMemDeleteForm(Parent deleteForm) {
-		this.deleteForm = deleteForm;
+
+	public MEM_WelcomeController getMemWelcomeController() {
+		return memWelcomeController;
 	}
-	
+
+
+
+	public void setMemWelcomeController(MEM_WelcomeController memWelcomeController) {
+		this.memWelcomeController = memWelcomeController;
+	}
+
+
+
 	public DeleteController getDeleteController() {
 		return deleteController;
 	}
@@ -36,6 +48,13 @@ public class DeleteController implements Initializable {
 		this.deleteForm = deleteForm;
 	}
 	
+	public void setMemWelcomeForm(Parent memWelcomeForm) {
+		this.memWelcomeForm = memWelcomeForm;
+	}
+
+	public Parent getMemWelcomeForm() {
+		return memWelcomeForm;
+	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -51,6 +70,8 @@ public class DeleteController implements Initializable {
 		public void DeleteProc() {
 			deleteService.deleteProc(deleteForm, membCode);
 			CommonService.WindowClose(deleteForm);
+	//		CommonService.WindowClose(memWelcomeForm);
+	//		CommonService.WindowClose(mgtWelcomeForm);
 		}
 
 		

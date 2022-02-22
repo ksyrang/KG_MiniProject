@@ -46,8 +46,8 @@ public class DeleteDAO {
 				deleteDTO.setMEM_Birth(rs.getInt("mem_Birth"));
 				deleteDTO.setMEM_Mobile(rs.getInt("mem_Mobile"));
 				deleteDTO.setMEM_Addr(rs.getString("mem_Addr"));
-				deleteDTO.setPRMSCHE_Code(rs.getString("prmsche_Code"));
-				deleteDTO.setMEMSHIPSCHE_Code(rs.getString("memshipsche_Code"));
+	//			deleteDTO.setPRMSCHE_Code(rs.getString("prmsche_Code"));
+	//			deleteDTO.setMEMSHIPSCHE_Code(rs.getString("memshipsche_Code"));
 				deleteDTO.setMEM_Approve(rs.getString("mem_approve"));
 				return deleteDTO;
 			}

@@ -80,8 +80,8 @@ public class TrnWelcomeController implements Initializable {
 		CodeColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("PCodeColumn"));
 	    NameColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("PNameColumn"));
 	    MemsColumn.setCellValueFactory(new PropertyValueFactory<TrnTbVDTO, String>("MembersColumn"));
-	    ExpSrtDateDisPicker.setEditable(false);//설정 금지
-	    ExpSrtDateDisPicker.setEditable(false);//설정 금지
+//	    ExpSrtDateDisPicker.setEditable(false);//설정 금지
+//	    ExpSrtDateDisPicker.setEditable(false);//설정 금지
 	    
 //	    WelcomeSvc.InitTable(CurrentProgramTableList);
 	}

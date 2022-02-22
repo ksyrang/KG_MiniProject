@@ -193,8 +193,10 @@ public class TrnWelcomeService {
 			Label ExPCodeDisLabel= (Label)form.lookup("#ExPCodeDisLabel");
 			Label ExPTypeDisLabel= (Label)form.lookup("#ExPTypeDisLabel");
 		    Label ExPNameDisLabel= (Label)form.lookup("#ExPNameDisLabel");
-		    DatePicker ExpSrtDateDisPicker= (DatePicker)form.lookup("#ExpSrtDateDisPicker");
-		    DatePicker ExpEndDateDisPicker= (DatePicker)form.lookup("#ExpEndDateDisPicker");
+//		    DatePicker ExpSrtDateDisPicker= (DatePicker)form.lookup("#ExpSrtDateDisPicker");
+//		    DatePicker ExpEndDateDisPicker= (DatePicker)form.lookup("#ExpEndDateDisPicker");
+		    Label SrtDateDis= (Label)form.lookup("#SrtDateDis");
+		    Label ErtDateDis= (Label)form.lookup("#ErtDateDis");
 		    Label ExPTimeDisLabel= (Label)form.lookup("#ExPTimeDisLabel");
 		    Label ExPCrtMemsDisLabel= (Label)form.lookup("#ExPCrtMemsDisLabel");
 		    Label ExPLmtMemsDisLabel= (Label)form.lookup("#ExPLmtMemsDisLabel");
@@ -202,8 +204,10 @@ public class TrnWelcomeService {
 		    PrmScheCodeLabel.setText(ExPCodeDisLabel.getText());
 		    ExPTypeLabel.setText(ExPTypeDisLabel.getText());
 		    ExPNameFeild.setText(ExPNameDisLabel.getText());
-		    SrtDate.setValue(ExpSrtDateDisPicker.getValue());
-		    EndDate.setValue(ExpEndDateDisPicker.getValue());
+		    SrtDate.setValue(CommonService.StringtoLocalDate(SrtDateDis.getText()));
+		    EndDate.setValue(CommonService.StringtoLocalDate(ErtDateDis.getText()));
+//		    SrtDate.setValue(ExpSrtDateDisPicker.getValue());
+//		    EndDate.setValue(ExpEndDateDisPicker.getValue());
 		    if(ExPTimeDisLabel.equals("오전"))AMRBtn.setSelected(true);
 		    else if(ExPTimeDisLabel.equals("오후"))PMRBtn.setSelected(true);
 		    else AMRBtn.setSelected(true);		    
@@ -233,11 +237,13 @@ public class TrnWelcomeService {
 		Label ExPCodeDisLabel= (Label)form.lookup("#ExPCodeDisLabel");
 		Label ExPTypeDisLabel= (Label)form.lookup("#ExPTypeDisLabel");
 	    Label ExPNameDisLabel= (Label)form.lookup("#ExPNameDisLabel");
-	    DatePicker ExpSrtDateDisPicker= (DatePicker)form.lookup("#ExpSrtDateDisPicker");
-	    DatePicker ExpEndDateDisPicker= (DatePicker)form.lookup("#ExpEndDateDisPicker");
+//	    DatePicker ExpSrtDateDisPicker= (DatePicker)form.lookup("#ExpSrtDateDisPicker");
+//	    DatePicker ExpEndDateDisPicker= (DatePicker)form.lookup("#ExpEndDateDisPicker");
 	    Label ExPTimeDisLabel= (Label)form.lookup("#ExPTimeDisLabel");
 	    Label ExPCrtMemsDisLabel= (Label)form.lookup("#ExPCrtMemsDisLabel");
 	    Label ExPLmtMemsDisLabel= (Label)form.lookup("#ExPLmtMemsDisLabel");
+	    Label SrtDateDis= (Label)form.lookup("#SrtDateDis");
+	    Label ErtDateDis= (Label)form.lookup("#ErtDateDis");
 		
 	    //Dis PRMSCHE Code
 	    ExPCodeDisLabel.setText(getPrmSchetmpDto.getPRMSCHE_Code());
@@ -246,10 +252,12 @@ public class TrnWelcomeService {
 	    //Dis ExPName
 	    ExPNameDisLabel.setText(getPrmSchetmpDto.getPRMSCHE_Name());
 	    //Dis Date
-	    ExpSrtDateDisPicker.setEditable(false);//False : 입력 불가 상태
-	    ExpSrtDateDisPicker.setValue(CommonService.DateCnvt(getPrmSchetmpDto.getPRMSCHE_Strdate()));
-	    ExpEndDateDisPicker.setEditable(false);//False : 입력 불가 상태
-	    ExpEndDateDisPicker.setValue(CommonService.DateCnvt(getPrmSchetmpDto.getPRMSCHE_Enddate()));
+//	    ExpSrtDateDisPicker.setEditable(false);//False : 입력 불가 상태
+//	    ExpSrtDateDisPicker.setValue(CommonService.DateCnvt(getPrmSchetmpDto.getPRMSCHE_Strdate()));
+	    SrtDateDis.setText(getPrmSchetmpDto.getPRMSCHE_Strdate().toString());	    
+//	    ExpEndDateDisPicker.setEditable(false);//False : 입력 불가 상태
+//	    ExpEndDateDisPicker.setValue(CommonService.DateCnvt(getPrmSchetmpDto.getPRMSCHE_Enddate()));
+	    ErtDateDis.setText(getPrmSchetmpDto.getPRMSCHE_Enddate().toString());
 	    //Dis Time
 	    ExPTimeDisLabel.setText(getPrmSchetmpDto.getPRMSCHE_Time());
 	    //Dis Mems

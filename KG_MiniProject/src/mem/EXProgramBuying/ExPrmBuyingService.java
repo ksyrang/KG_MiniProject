@@ -101,6 +101,8 @@ public class ExPrmBuyingService {
 
 			exPrmBuyingController.getMEM_BuyingTypeController().setPrmScheName(tmpData.getProgramName());
 			
+			
+			
 			//코드 번호 개설
 			//DB에서 번호의 최대 값을 가지고 와서 +1 해줘서 넣어줘야 함
 			int InputCodeNum = cmnPrmScheDao.PrmScheMaxCodeNum()+1;

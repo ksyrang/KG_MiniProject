@@ -24,7 +24,7 @@ import mem.Mgt.MgtController;
 
 
 public class ExPrmBuyingController implements Initializable {
-	private Parent exProgramMgtForm;
+	private Parent exProgramBuyingForm;
 	private ExPrmBuyingService exProgramSvc;
 	private ExProTable codeTable;
 	private ObservableList<String> allProgram;
@@ -63,6 +63,11 @@ public class ExPrmBuyingController implements Initializable {
 	@FXML
 	private TableColumn<ExProTable, String> timeC;
 
+	public ExPrmBuyingController() {
+		exProgramSvc = new ExPrmBuyingService();
+		exProgramSvc.setExPrmBuyingController(this);
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -81,25 +86,27 @@ public class ExPrmBuyingController implements Initializable {
 		exProgramSvc.tableUp(exProgramTableView);
 		
 		// 수정창
-		// tabelView 클릭 시
-		exProgramTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				codeTable = exProgramTableView.getSelectionModel().getSelectedItem();
-				exProgramSvc.setCodeTable(codeTable);
+//		// tabelView 클릭 시
+//		exProgramTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//			@Override
+//			public void handle(MouseEvent event) {
+//				codeTable = exProgramTableView.getSelectionModel().getSelectedItem();
+//				exProgramSvc.setCodeTable(codeTable);
+//			}
+//		});
 
-			}
-		});
-
-	 
 	}
-	public void setExProgramMgtForm(Parent exProgramMgtForm) {
-		this.exProgramMgtForm = exProgramMgtForm;
+	public void SltExPProc() {
+		exProgramSvc.SltExPProc();
 	}
 
-	public ExPrmBuyingController() {
-		exProgramSvc = new ExPrmBuyingService();
-		exProgramSvc.setExPrmBuyingController(this);
+
+	public void setExProgramBuyingForm(Parent exProgramBuyingForm) {
+		this.exProgramBuyingForm = exProgramBuyingForm;
+
+	}
+	public Parent getExProgramBuyingForm() {
+		return exProgramBuyingForm;
 	}
 
 	public ExPrmBuyingController getExPrmBuyingController() {
@@ -118,10 +125,6 @@ public class ExPrmBuyingController implements Initializable {
 		return membCode;
 	}
 
-	public void setExProgramBuyingForm(Parent exProgramMgtForm) {
-		this.exProgramMgtForm = exProgramMgtForm;
-
-	}
 
 	public MEM_BuyingTypeController getMEM_BuyingTypeController() {
 		return buyingTypeController;
@@ -134,25 +137,10 @@ public class ExPrmBuyingController implements Initializable {
 	public void setBuyingTypeForm(Parent buyingTypeForm) {
 		this.buyingTypeForm = buyingTypeForm;
 	}
-	/*
-	public MgtController getMgtController() {
-		return memMgtController;
-	}
-
-	public void setMgtController(MgtController memMgtController) {
-		this.memMgtController = memMgtController;
-	}
-
-	
-	// 회원님 클릭 시
-	public void MemClickProc() {
-		exProgramSvc.memMgtOpen(membCode);
-	}
-	*/
 	// 결제 버튼 클릭 시
 	public void paymentProc() {
 		// System.out.println("결제처리");
-		exProgramSvc.paymentProc(exProgramMgtForm, membCode);
+		exProgramSvc.paymentProc(exProgramBuyingForm, membCode);
 		buyingTypeController.setExProBForm(buyingTypeForm);
 		buyingTypeController.setCmnPrmScheDto(cmnPrmScheDto);
 	}
@@ -160,7 +148,7 @@ public class ExPrmBuyingController implements Initializable {
 	// 이전 버튼 클릭 시
 	public void cancleProc() {
 		// CommonService.WindowClose(exProgramBuyingForm);
-		exProgramSvc.cancelProc(exProgramMgtForm);
+		exProgramSvc.cancelProc(exProgramBuyingForm);
 	}
 	
 	public Parent getWelcomForm() {

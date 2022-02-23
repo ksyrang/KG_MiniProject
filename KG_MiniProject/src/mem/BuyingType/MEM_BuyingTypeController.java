@@ -38,6 +38,7 @@ public class MEM_BuyingTypeController implements Initializable{
     
     private Parent memWelcomeForm;
 	private Parent buyingTypeForm;
+	private Parent PreviousForm;
 	private MEM_BuyingTypeService buyingTypeSvc;
 	private MEM_BuyingTypeController buyingTypeController;
 	private ExPrmBuyingController exPrmBuyingController;
@@ -185,6 +186,14 @@ public class MEM_BuyingTypeController implements Initializable{
 
 	public void setExProBForm(Parent exProBForm) {
 		this.exProBForm = exProBForm;
+	}
+
+	public Parent getPreviousForm() {
+		return this.PreviousForm;
+	}
+
+	public void setPreviousForm(Parent previousForm) {
+		this.PreviousForm = previousForm;
 	}
 	
 

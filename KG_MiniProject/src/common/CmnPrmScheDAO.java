@@ -543,7 +543,7 @@ public class CmnPrmScheDAO {
 		return tmpdata;		
 	}
    
-// 회원권스케줄 코드번호 최대 값 찾기
+// 프로그램스케줄 코드번호 최대 값 찾기
 		public int PrmScheMaxCodeNum() {
 			int result = 0;
 			sql = "SELECT Max(PRMSCHECODE_NUM) FROM PRMSCHE_TB";
@@ -567,7 +567,29 @@ public class CmnPrmScheDAO {
 			}
 			return result;
 		}
-   
+//프로그램별 프로그램 스케쥴 최대값
+		public int PrmScheMaxCodeNumbyPrm(String Prm_Code) {
+			int result = 0;
+			sql = "SELECT Max(PRMSCHECODE_NUM) FROM PRMSCHE_TB WHERE PRM_Code = ?";
+			try {
+				ps = con.prepareStatement(sql);
+				ps.setString(1, Prm_Code);
+				rs = ps.executeQuery();
+				if(rs.next()) {
+					result = rs.getInt("Max(PRMSCHECODE_NUM)");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (rs != null)	rs.close();
+					if (ps != null)	ps.close();
+				} catch (SQLException e2) {
+					e2.printStackTrace();
+				}
+			}
+			return result;
+		}   
    
    
    

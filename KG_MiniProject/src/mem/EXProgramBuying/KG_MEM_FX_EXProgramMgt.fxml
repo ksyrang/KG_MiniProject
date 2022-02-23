@@ -16,7 +16,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mem.EXProgramBuying.ExPrmBuyingController">
    <top>
-      <GridPane prefHeight="50.0" BorderPane.alignment="CENTER">
+      <GridPane alignment="CENTER_LEFT" prefHeight="50.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -83,7 +83,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TableView fx:id="exProgramTableView" prefHeight="374.0" prefWidth="772.0" tableMenuButtonVisible="true">
+                        <TableView fx:id="exProgramTableView" onMouseClicked="#SltExPProc" prefHeight="374.0" prefWidth="772.0" tableMenuButtonVisible="true">
                           <columns>
                             <TableColumn fx:id="programName" minWidth="0.0" prefWidth="114.0" text="프로그램 이름" />
                               <TableColumn fx:id="trainerName" minWidth="0.0" prefWidth="99.0" text="강사" />

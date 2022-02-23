@@ -61,9 +61,9 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <VBox prefHeight="378.0" prefWidth="503.0">
+                  <VBox prefWidth="503.0">
                      <children>
-                        <TableView fx:id="CurrentProgramTableList" onMouseClicked="#programclickPro" prefHeight="321.0" prefWidth="503.0">
+                        <TableView fx:id="CurrentProgramTableList" onMouseClicked="#programclickPro" prefHeight="348.0" prefWidth="503.0">
                            <columns>
                               <TableColumn fx:id="CodeColumn" minWidth="70.0" prefWidth="124.0" text="코드번호" />
                               <TableColumn fx:id="NameColumn" minWidth="100.0" prefWidth="281.0" text="프로그램 이름" />

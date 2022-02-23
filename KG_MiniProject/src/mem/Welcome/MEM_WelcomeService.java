@@ -97,7 +97,7 @@ public class MEM_WelcomeService {
 			memMgtForm = loader.load();
 			memWelcomeController.setMemMgtForm(memMgtForm);
 			memWelcomeController.setMgtController(loader.getController());
-			memWelcomeController.getMgtController().setMemberMgtForm(memWelcomeForm);
+			memWelcomeController.getMgtController().setMemberMgtForm(memMgtForm);
 			memWelcomeController.getMgtController().setMembCode(membCode);
 			memWelcomeController.getMgtController().setMemWelcomeForm(memWelcomeController.getMemWelcomeForm());
 
@@ -154,7 +154,7 @@ public class MEM_WelcomeService {
 
 			Stage stage = new Stage();
 			stage.setScene(new Scene(memMgtForm));
-			stage.setTitle("memMgt");
+			stage.setTitle("회원 수정 화면");
 			stage.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

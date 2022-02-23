@@ -89,7 +89,7 @@ public class MgtController implements Initializable{
 	// 탈퇴버튼 클릭 시
 	public void MemDeleteProc() {
 		mgtService.MemDeleteOpen(memMgtForm, membCode);
-		
+	//전화번호 중복 확인 클릭 시	
 	}
 	public void MBCheckProc() {
 		mgtService.MBCheckProc(memMgtForm, formerMobileNum);

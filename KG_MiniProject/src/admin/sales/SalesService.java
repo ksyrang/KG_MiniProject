@@ -9,6 +9,7 @@ import common.CmnPrmDAO;
 import common.CmnPrmDTO;
 import common.CmnTrainerDAO;
 import common.CmnTrainerDTO;
+import common.CommonService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
@@ -21,6 +22,7 @@ public class SalesService {
 	private String programName;
 	private String programType;
 	private String trainerName;
+	private String strPrice =null;
 
 	ObservableList<SalesDTO> allList;
 	
@@ -36,18 +38,20 @@ public class SalesService {
 			if(i.getPRMSCHE_Code() != null){
 				//ex프로그램임
 				price = i.getPRMSCHE_Price();
+				strPrice = CommonService.priceFormat(price);
 				programName = i.getPRMSCHE_Name();
 				programType = i.getPRM_Name();
 				trainerName = i.getTRAINER_NAME();
 			}else {
 				//헬스 회원권임
 				price = i.getMEMSHIP_Price();
+				strPrice = CommonService.priceFormat(price);
 				programName = "헬스 회원권 " + i.getMEMSHIP_Type() + " 개월";
 				programType = "헬스 회원권";
 				trainerName = "KGGYM";
 			}
 			tableItems.add(new SalesTable(i.getMEM_Code(), programName, programType,
-					price, i.getPAY_Type(), i.getPAY_Date(), trainerName));
+					strPrice, i.getPAY_Type(), i.getPAY_Date(), trainerName));
 		}
 		salesTableView.setItems(tableItems);
 	}
@@ -63,18 +67,20 @@ public class SalesService {
 			if(i.getPRMSCHE_Code() != null){
 				//ex프로그램임
 				price = i.getPRMSCHE_Price();
+				strPrice = CommonService.priceFormat(price);
 				programName = i.getPRMSCHE_Name();
 				programType = i.getPRM_Name();
 				trainerName = i.getTRAINER_NAME();
 			}else {
 				//헬스 회원권임
 				price = i.getMEMSHIP_Price();
+				strPrice = CommonService.priceFormat(price);
 				programName = "헬스 회원권 " + i.getMEMSHIP_Type() + " 개월";
 				programType = "헬스 회원권";
 				trainerName = "KGGYM";
 			}
 			tableItems.add(new SalesTable(i.getMEM_Code(), programName, programType,
-					price, i.getPAY_Type(), i.getPAY_Date(), trainerName));
+					strPrice, i.getPAY_Type(), i.getPAY_Date(), trainerName));
 		}
 		salesTableView.setItems(tableItems);
 	}
@@ -89,11 +95,12 @@ public class SalesService {
 			}else {
 				//헬스 회원권
 				price = i.getMEMSHIP_Price();
+				strPrice = CommonService.priceFormat(price);
 				programName = "헬스 회원권" + i.getMEMSHIP_Type() + " 개월";
 				programType = "헬스 회원권";
 				trainerName = "KGGYM";
 				tableItems.add(new SalesTable(i.getMEM_Code(), programName, programType,
-						price, i.getPAY_Type(), i.getPAY_Date(), trainerName));
+						strPrice, i.getPAY_Type(), i.getPAY_Date(), trainerName));
 			}
 			
 		}
@@ -109,10 +116,11 @@ public class SalesService {
 			if(i.getPRMSCHE_Code() != null){
 				//ExProgram
 				price = i.getPRMSCHE_Price();
+				strPrice = CommonService.priceFormat(price);
 				programName = i.getPRMSCHE_Name();
 				programType = i.getPRM_Name();
 				tableItems.add(new SalesTable(i.getMEM_Code(), programName, programType,
-						price, i.getPAY_Type(), i.getPAY_Date(), i.getTRAINER_NAME()));
+						strPrice, i.getPAY_Type(), i.getPAY_Date(), i.getTRAINER_NAME()));
 			}
 			
 		}
@@ -129,9 +137,10 @@ public class SalesService {
 			if(i.getPRMSCHE_Code() != null && programType != null){
 				if(programType.equals(i.getPRM_Name())){
 					price = i.getPRMSCHE_Price();
+					strPrice = CommonService.priceFormat(price);
 					programName = i.getPRMSCHE_Name();
 					tableItems.add(new SalesTable(i.getMEM_Code(), programName, programType,
-							price, i.getPAY_Type(), i.getPAY_Date(), i.getTRAINER_NAME()));
+							strPrice, i.getPAY_Type(), i.getPAY_Date(), i.getTRAINER_NAME()));
 				}
 			}
 			
@@ -149,10 +158,11 @@ public class SalesService {
 			if(i.getPRMSCHE_Code() != null && trainerName != null){
 				if(trainerName.equals(i.getTRAINER_NAME())){
 					price = i.getPRMSCHE_Price();
+					strPrice = CommonService.priceFormat(price);
 					programName = i.getPRMSCHE_Name();
 					programType = i.getPRM_Name();
 					tableItems.add(new SalesTable(i.getMEM_Code(), programName, programType,
-							price, i.getPAY_Type(), i.getPAY_Date(),i.getTRAINER_NAME()));
+							strPrice, i.getPAY_Type(), i.getPAY_Date(),i.getTRAINER_NAME()));
 				}
 			}
 			

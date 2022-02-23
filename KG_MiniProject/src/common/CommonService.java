@@ -8,6 +8,7 @@ import java.util.Optional;
 import Main.login.LoginController;
 import Main.main.Controller;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -113,6 +114,14 @@ public class CommonService {
 			tmp = tmp.substring(0, Length);
 		}
 		return tmp;
+	}
+	
+	
+	public static String priceFormat(int number) {
+		DecimalFormat df = new DecimalFormat("###,###");
+		String strNumber = df.format(number);
+		
+		return strNumber;
 	}
 	
 	

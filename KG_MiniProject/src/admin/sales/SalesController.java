@@ -62,7 +62,7 @@ public class SalesController implements Initializable{
 		
 		//로딩 시 전체 매출 표시
 		allPrice = salesSvc.seles("전체 매출");
-		strAllPrice = Integer.toString(allPrice);
+		strAllPrice = CommonService.priceFormat(allPrice);
 		totalPriceLabel.setText(strAllPrice);
 	}
 
@@ -97,7 +97,8 @@ public class SalesController implements Initializable{
 			allPrice = salesSvc.seles("강사별 매출");
 		}
 		
-		String strAllPrice = Integer.toString(allPrice);
+		
+		String strAllPrice = CommonService.priceFormat(allPrice);
 		totalPriceLabel.setText(strAllPrice);
 
 	}
@@ -112,7 +113,7 @@ public class SalesController implements Initializable{
 			salesSvc.trainerTypeTableUp(salesTableView, selectDetail);
 			allPrice = salesSvc.seles("강사별 매출",selectDetail);
 		}
-		String strAllPrice =Integer.toString(allPrice);
+		String strAllPrice =CommonService.priceFormat(allPrice);
 		totalPriceLabel.setText(strAllPrice);
 	}
 

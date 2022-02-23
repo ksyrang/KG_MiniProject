@@ -7,12 +7,12 @@ public class SalesTable {
 	private String colMemNumber;
 	private String colProgramName;
 	private String colProgramType;
-	private int colPrice;
+	private String colPrice;
 	private String colSalesType;
 	private Date colDate;
 	private String colTrainerName;
 	
-	public SalesTable(String colMemNumber, String colProgramName, String colProgramType, int colPrice,
+	public SalesTable(String colMemNumber, String colProgramName, String colProgramType, String colPrice,
 			String colSalesType, Date colDate, String colTrainerName) {
 		super();
 		this.colMemNumber = colMemNumber;
@@ -45,10 +45,10 @@ public class SalesTable {
 	public void setColProgramType(String colProgramType) {
 		this.colProgramType = colProgramType;
 	}
-	public int getColPrice() {
+	public String getColPrice() {
 		return colPrice;
 	}
-	public void setColPrice(int colPrice) {
+	public void setColPrice(String colPrice) {
 		this.colPrice = colPrice;
 	}
 	public String getColSalesType() {

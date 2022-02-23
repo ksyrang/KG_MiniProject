@@ -9,11 +9,11 @@ public class CmnMemDTO {
 	private int MEM_Birth;
 	private int MEM_Mobile;
 	private String MEM_Addr;
+	private String MEM_Approve;
 	
 	//FK
-	private String PRMSCHE_Code; 
-	private String MEMSHIPSCHE_Code;
-	private String MEM_Approve;
+//	private String PRMSCHE_Code; 
+//	private String MEMSHIPSCHE_Code;
 	
 	public CmnMemDTO() {
 		// TODO Auto-generated constructor stub
@@ -28,13 +28,13 @@ public class CmnMemDTO {
 		MEM_Birth = cmnMemDTO.getMEM_Birth();
 		MEM_Mobile = cmnMemDTO.getMEM_Mobile();
 		MEM_Addr = cmnMemDTO.getMEM_Addr();
-		PRMSCHE_Code = cmnMemDTO.getPRMSCHE_Code();
-		MEMSHIPSCHE_Code = cmnMemDTO.getMEMSHIPSCHE_Code();
+//		PRMSCHE_Code = cmnMemDTO.getPRMSCHE_Code();
+//		MEMSHIPSCHE_Code = cmnMemDTO.getMEMSHIPSCHE_Code();
 		MEM_Approve = cmnMemDTO.getMEM_Approve();
 	}
 	
 	public CmnMemDTO(String mEM_Code, String mEM_ID, String mEM_PW, String mEM_Name, String mEM_Gender, int mEM_Birth,
-			int mEM_Mobile, String mEM_Addr, String pRMSCHE_Code, String mEMSHIPSCHE_Code, String mEM_Approve) {
+			int mEM_Mobile, String mEM_Addr, String mEM_Approve) {
 		super();
 		MEM_Code = mEM_Code;
 		MEM_ID = mEM_ID;
@@ -44,8 +44,8 @@ public class CmnMemDTO {
 		MEM_Birth = mEM_Birth;
 		MEM_Mobile = mEM_Mobile;
 		MEM_Addr = mEM_Addr;
-		PRMSCHE_Code = pRMSCHE_Code;
-		MEMSHIPSCHE_Code = mEMSHIPSCHE_Code;
+//		PRMSCHE_Code = pRMSCHE_Code;
+//		MEMSHIPSCHE_Code = mEMSHIPSCHE_Code;
 		MEM_Approve = mEM_Approve;
 	}
 	
@@ -119,21 +119,21 @@ public class CmnMemDTO {
 		MEM_Addr = mEM_Addr;
 	}
 
-	public String getPRMSCHE_Code() {
-		return PRMSCHE_Code;
-	}
-
-	public void setPRMSCHE_Code(String pRMSCHE_Code) {
-		PRMSCHE_Code = pRMSCHE_Code;
-	}
-
-	public String getMEMSHIPSCHE_Code() {
-		return MEMSHIPSCHE_Code;
-	}
-
-	public void setMEMSHIPSCHE_Code(String mEMSHIPSCHE_Code) {
-		MEMSHIPSCHE_Code = mEMSHIPSCHE_Code;
-	}
+//	public String getPRMSCHE_Code() {
+//		return PRMSCHE_Code;
+//	}
+//
+//	public void setPRMSCHE_Code(String pRMSCHE_Code) {
+//		PRMSCHE_Code = pRMSCHE_Code;
+//	}
+//
+//	public String getMEMSHIPSCHE_Code() {
+//		return MEMSHIPSCHE_Code;
+//	}
+//
+//	public void setMEMSHIPSCHE_Code(String mEMSHIPSCHE_Code) {
+//		MEMSHIPSCHE_Code = mEMSHIPSCHE_Code;
+//	}
 
 	public String getMEM_Approve() {
 		return MEM_Approve;

@@ -56,72 +56,6 @@ public class ExPrmBuyingService {
 		exProgramTableView.setItems(tableItems);
 	}
 	
-	/*
-	// 회원정보페이지
-	public void memMgtOpen(String membCode) {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/Mgt/KG_MEM_FX_Mgt.fxml"));
-		Parent memMgtForm;
-		try {
-			memMgtForm = loader.load();
-			exPrmBuyingController.setMgtController(loader.getController());
-			exPrmBuyingController.getMgtController().setMemberMgtForm(memMgtForm);
-			exPrmBuyingController.getMgtController().setMembCode(membCode);
-
-			// 회원 정보 get
-			// title sector set
-			Label titleUserName = (Label) memMgtForm.lookup("#TitleMemNameLabel");
-			MgtDTO tmpMemDto = new MgtDTO(new MgtDAO().selectCode(membCode));
-			titleUserName.setText(tmpMemDto.getMEM_Name() + " 회원님");
-			// 초기 표시 설정
-			TextField IDField = (TextField) memMgtForm.lookup("#MemIDField");// 기존 아이디 표시
-			TextField NameField = (TextField) memMgtForm.lookup("#MemNameField");// 기존 이름 표시
-			PasswordField PWField = (PasswordField) memMgtForm.lookup("#MemPWField");// 기존 비밀번호 표시
-			PasswordField PWCField = (PasswordField) memMgtForm.lookup("#MemPWCField");// 기존 비밀번호확인 표시
-			TextField BirthField = (TextField) memMgtForm.lookup("#MemBirthField");// 기존 생일 표시
-			TextField MobileField = (TextField) memMgtForm.lookup("#MemMobileField");// 기존 전번 표시
-			RadioButton maleBtn = (RadioButton) memMgtForm.lookup("#MaleRabtn");// 기존 남성버튼
-			RadioButton FeMaleBtn = (RadioButton) memMgtForm.lookup("#FeMaleRabtn");// 기존 여자버튼
-			TextField Addr1Field = (TextField) memMgtForm.lookup("#MemAddr1");// 기존 주소 표시
-			TextField Addr2Field = (TextField) memMgtForm.lookup("#MemAddr2");// 기존 주소 표시
-
-			// ID Sector
-			IDField.setText(tmpMemDto.getMEM_ID());
-			IDField.setEditable(false);// false:입력 불가
-			// Name Sector
-			NameField.setText(tmpMemDto.getMEM_Name());
-			// PW Sector :초기 미표시
-			// Birth Sector
-			BirthField.setText(Integer.toString(tmpMemDto.getMEM_Birth()));
-			// Mobile Sector
-			MobileField.setText(Integer.toString(tmpMemDto.getMEM_Mobile()));
-			// Gender Sector
-			ToggleGroup group = new ToggleGroup();
-			maleBtn.setToggleGroup(group);
-			FeMaleBtn.setToggleGroup(group);
-			if (tmpMemDto.getMEM_Gender() != null) {
-				if (tmpMemDto.getMEM_Gender().equals("남성"))
-					maleBtn.setSelected(true);
-				else if (tmpMemDto.getMEM_Gender().equals("여성"))
-					FeMaleBtn.setSelected(true);
-			} else {
-				maleBtn.setSelected(false);
-				FeMaleBtn.setSelected(false);
-			}
-			// Addr Sector
-			Addr1Field.setText(tmpMemDto.getMEM_Addr());
-			Addr2Field.setText(tmpMemDto.getMEM_Addr());
-
-			Stage stage = new Stage();
-			stage.setScene(new Scene(memMgtForm));
-			stage.setTitle("memMgt");
-			stage.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-	*/
 	//ex프로그램 종류 등록
 	public void paymentProc(Parent exProgramBuyingForm, String membCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/BuyingType/KG_MEM_FX_BuyingType.fxml"));
@@ -165,20 +99,7 @@ public class ExPrmBuyingService {
 			SchePriceLabel.setText(Integer.toString(tmpData.getPrice()));
 			PayDateLabel.setText(CommonService.getNowDatetoString());
 
-//			MEM_BuyingTypeService setName = new MEM_BuyingTypeService();
 			exPrmBuyingController.getMEM_BuyingTypeController().setPrmScheName(tmpData.getProgramName());
-//			setName.setName(tmpData.getProgramName());
-			
-			
-//			CmnPrmScheDTO PrmScheDTO = new CmnPrmScheDAO().SltPrmScheOne(cmnPrmScheDTO.getPRMSCHE_Code());	
-//			System.out.println(PrmScheDTO.getPRMSCHE_Name());
-//			ScheNameLabel.setText("KGGYM "+PrmScheDTO.getPRMSCHE_Name()+" 개월 이용권");
-//			//결제 금액	
-//			SchePriceLabel.setText(Integer.toString(PrmScheDTO.getPRMSCHE_Price())+" 원");
-//			//결제 일 표시
-//			PayDateLabel.setText(CommonService.getNowDatetoString());
-			
-			
 			
 			//코드 번호 개설
 			//DB에서 번호의 최대 값을 가지고 와서 +1 해줘서 넣어줘야 함
@@ -187,7 +108,7 @@ public class ExPrmBuyingService {
 			
 			
 			String PRMSCHE_CODE = tmpData.getCode();;
-			int PRMSCHE_CURRENTP = tmpData.getCurrentPerson();
+			int PRMSCHE_CURRENTP = tmpData.getCurrentPerson()+1;
 			int PRMSCHE_LIMITP = tmpData.getLimtPerson();
 			int  PRMSCHE_PRICE = tmpData.getPrice();
 			String  PRMSCHE_NAME = tmpData.getProgramName();
@@ -205,37 +126,8 @@ public class ExPrmBuyingService {
 			
 			CmnPrmScheDTO cmnPrmScheDtoPass = new CmnPrmScheDTO(PRMSCHE_CODE, InputCodeNum, PRMSCHE_STRDATE, PRMSCHE_ENDDATE, 
 					PRMSCHE_TIME, PRMSCHE_LIMITP, PRMSCHE_CURRENTP, PRMSCHE_PRICE, PRM_CODE, TRAINER_CODE, PRMSCHE_NAME);
-				
-//			String prmScheCode = tmpData.getCode();
-//			cmnPrmScheDto = cmnPrmScheDao.SltPrmScheOne(prmScheCode);
-			
+
 			exPrmBuyingController.setCmnPrmScheDto(cmnPrmScheDtoPass);
-			
-			
-			
-			
-			
-			
-//			(
-//					memshipDto.getMEMSHIP_Code()
-//					+"_"+HealthPrmBuyingController.getMembCode()+"_"+ InputCodeNum);
-////					+"_"+HealthPrmBuyingController.getMembCode()+"_"+"코드번호1");//DB 수정 후 해당 위치의 코드번호용 알고리즘 코딩 필요
-//			String memShipScheCode = memshipDto.getMEMSHIP_Code()
-//					+"_"+HealthPrmBuyingController.getMembCode()+"_"+ InputCodeNum;
-//			
-//			ShceDTO.setMEMSHIPSCHECode_Num(InputCodeNum);
-//			ShceDTO.setMEMSHIPSCHE_Strdate(CommonService.LocalDateCnvt(sltDate.getValue()));
-//			LocalDate enddate = sltDate.getValue().plusMonths(Integer.parseInt(memshipComboBox.getSelectionModel().getSelectedItem()));
-//			ShceDTO.setMEMSHIPSCHE_Enddate(CommonService.LocalDateCnvt(enddate));
-//			ShceDTO.setMEMSHIP_Code(memshipDto.getMEMSHIP_Code());
-//			ShceDTO.setMEM_Code(HealthPrmBuyingController.getMembCode());
-			
-			
-			
-			//
-			
-			
-			
 			
 			Scene scene = new Scene(buyingTypeForm);
 			Stage primaryStage = new Stage();

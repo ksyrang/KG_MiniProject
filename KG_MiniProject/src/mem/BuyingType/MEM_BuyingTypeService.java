@@ -67,7 +67,8 @@ public class MEM_BuyingTypeService {
 		CmnPayDTO PayDTO = new CmnPayDTO();
 		String PayType;
 		int result = 0;
-		//결제 타입에 따른 결제 코드 생성. 	
+		
+		//결제 타입 입력. 	
 		if(CardBtn.isSelected()) {
 			PayType = "카드";
 		}else if(AccountBtn.isSelected()) {
@@ -80,76 +81,68 @@ public class MEM_BuyingTypeService {
 			CommonService.Msg("결제타입 선택 오류");
 			return;
 		}
-		
+		//DB 입력을 위한 메소드변수 선언 
 		CmnPayDAO payDao = new CmnPayDAO();	
+		//PayDB의 순서 확인		
 		int maxCodeNum = payDao.PayMaxCodeNum() + 1;
-		
+		//결제일 입력
 		Date strPayDate = CommonService.CnvtsqlDate(new java.util.Date());
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
 		String payDate = transFormat.format(strPayDate);
-
-		PayDTO.setPAY_Code(buyingTypeController.getUserCode()+ payDate + maxCodeNum);
-		PayDTO.setPAYCode_Num(maxCodeNum);
-		PayDTO.setPAY_Type(PayType);
-		PayDTO.setPAY_Date(CommonService.CnvtsqlDate(new java.util.Date()));
 		
-		System.out.println("buyingTypeController.getUserCode() : "+ buyingTypeController.getUserCode());
+		//PayDB 입력용 변수에 인스턴스
+		//PayCode
+		PayDTO.setPAY_Code(buyingTypeController.getUserCode()+ payDate + maxCodeNum);
+		//PayCodeNum
+		PayDTO.setPAYCode_Num(maxCodeNum);
+		//PayType
+		PayDTO.setPAY_Type(PayType);
+		//PayDate
+		PayDTO.setPAY_Date(CommonService.CnvtsqlDate(new java.util.Date()));		
+		//MemCode
 		PayDTO.setMEM_Code(buyingTypeController.getUserCode());
 		
-		
-		//MEM_CODE		
-		//MEMSCHE_CODE
 		//MEMSHIPSCHE_CODE
-		//넣어주기
-		
-		
-//		CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheCode(buyingTypeController.getMEMSHIPSCHE_Code());
-		
 		CmnMemScheDAO cmnMemScheDao = new CmnMemScheDAO();
 		CmnMemScheDTO cmnMemScheDto = new CmnMemScheDTO();
-//		CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
-//		CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheName(buyingTypeController.getPrmScheName());
-	
+		
+		//회원권/프로그램 구분
+		int MemShipScheReuslt = 0; //회원권스케쥴 결과
+		int PrmcheReuslt = 0; //프로그램스케쥴 DB입력 결과
+		int PayResult = 0;//결재 DB입력 결과
+		int MemScheResult = 0;//맴버스케쥴 DB입력 결과
+		
 		if(buyingTypeController.getCmnMemShipScheDtoforRecive() != null) { 
-			//회원권
+			//회원권스케쥴 DB 입력
 			CmnMemShipScheDAO cmnMemShipScheDao = new CmnMemShipScheDAO();
-			int iresult = 0;
-			iresult = cmnMemShipScheDao.IstMemShipSche(buyingTypeController.getCmnMemShipScheDtoforRecive());
-			if(iresult > 0) {
-				System.out.println("생성 완료");
-			}else System.out.println("이상 발생");
-			
-			System.out.println(buyingTypeController.getCmnMemShipScheDtoforRecive().getMEMSHIPSCHE_Code()+"///////////");
+			MemShipScheReuslt = cmnMemShipScheDao.IstMemShipSche(buyingTypeController.getCmnMemShipScheDtoforRecive());
+//			MemShipScheReuslt = new CmnMemShipScheDAO().IstMemShipSche(buyingTypeController.getCmnMemShipScheDtoforRecive());			
+			//PAyDB에 ScheCode입력
 			PayDTO.setMEMSHIPSCHE_Code(buyingTypeController.getCmnMemShipScheDtoforRecive().getMEMSHIPSCHE_Code());
+			
 			cmnMemScheDto.setMEMSHIPSCHE_Code(buyingTypeController.getCmnMemShipScheDtoforRecive().getMEMSHIPSCHE_Code());
 			cmnMemScheDto.setMEM_Code(buyingTypeController.getUserCode());
 			cmnMemScheDto.setMEMSCHE_Code(cmnMemScheDto.getMEM_Code()+cmnMemScheDto.getMEMSHIPSCHE_Code()+maxCodeNum);
-			cmnMemScheDao.IstMem(cmnMemScheDto);
+			MemScheResult = cmnMemScheDao.IstMem(cmnMemScheDto);
 		}else {
-			//프로그램
-			
+			//프로그램스케쥴 DB 입력
 			CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
 			CmnPrmScheDTO cmnPrmScheDto = buyingTypeController.getCmnPrmScheDto();
-//			int iresult = 0;
-////			iresult = cmnPrmScheDao.IstPrmSche(cmnPrmScheDto);
-//			if(iresult > 0) {
-//				System.out.println("생성 완료");
-//			}else System.out.println("이상 발생");
-			String prmScheCode = cmnPrmScheDto.getPRMSCHE_Code();
-			//for PAY_TB
-			PayDTO.setPRMSCHE_Code(prmScheCode);
+			
+			PrmcheReuslt = cmnPrmScheDao.UptPrmSche(cmnPrmScheDto);
+			//PAyDB에 ScheCode입력
+			PayDTO.setPRMSCHE_Code(cmnPrmScheDto.getPRMSCHE_Code());
 			//for MemSche+TB;
-			cmnMemScheDto.setMEMSCHE_Code((buyingTypeController.getUserCode()
-											+cmnPrmScheDto.getPRMSCHE_Code()+maxCodeNum));
-			cmnMemScheDto.setPRMSCHE_Code(prmScheCode);
+			cmnMemScheDto.setMEMSCHE_Code((buyingTypeController.getUserCode()+cmnPrmScheDto.getPRMSCHE_Code()+maxCodeNum));
+			cmnMemScheDto.setPRMSCHE_Code(cmnPrmScheDto.getPRMSCHE_Code());
 			cmnMemScheDto.setMEM_Code(buyingTypeController.getUserCode());
-			cmnMemScheDao.IstPro(cmnMemScheDto);
+			MemScheResult = cmnMemScheDao.IstPro(cmnMemScheDto);
 		}
 		
 		//입력 결과
-		result = payDao.Istpay(PayDTO);
-
-		if(result == 1) {
+		PayResult = payDao.Istpay(PayDTO);
+		
+		if(PayResult == 1 && MemScheResult == 1 && PrmcheReuslt  == 1 && MemShipScheReuslt == 1) {
 			if(buyingTypeController.getCmnMemShipScheDtoforRecive() != null) { 
 				//회원권	
 				CommonService.WindowClose(MyForm);

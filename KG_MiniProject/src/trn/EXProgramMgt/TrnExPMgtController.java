@@ -86,11 +86,11 @@ public class TrnExPMgtController implements Initializable {
 	public void BackProc() {
 		trnExPMgtsvc.backClose(trnExPMgtForm);
 	}
-	public void LogOutProc(){
-		trnExPMgtsvc.backClose(trnExPMgtForm);
-		CommonService.WindowClose(WlcForm);
-		logOut.LogOut();
-	}	
+//	public void LogOutProc(){
+//		trnExPMgtsvc.backClose(trnExPMgtForm);
+//		CommonService.WindowClose(WlcForm);
+//		logOut.LogOut();
+//	}	
 	
 	
 	public void setTrnCode(String trnCode) {

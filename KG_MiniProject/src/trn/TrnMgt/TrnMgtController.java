@@ -83,11 +83,11 @@ public class TrnMgtController implements Initializable {
 	public void BackProc() {
 		TrnMgtSvc.BackProc(trnMgtForm);
 	}
-	public void LogOutProc(){
-		TrnMgtSvc.BackProc(trnMgtForm);
-		CommonService.WindowClose(WlcForm);
-		logOut.LogOut();
-	}
+//	public void LogOutProc(){
+//		TrnMgtSvc.BackProc(trnMgtForm);
+//		CommonService.WindowClose(WlcForm);
+//		logOut.LogOut();
+//	}
 	
 	public void setTrnMgtForm(Parent trnMgtForm) {
 		this.trnMgtForm = trnMgtForm;

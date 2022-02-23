@@ -93,11 +93,11 @@ public class TrnExpEnrollController implements Initializable {
 	public void BackProc() {
 		trnExPEnrollSvc.BackProc(trnExpEnrollForm);
 	}
-	public void LogOutProc(){
-		trnExPEnrollSvc.BackProc(trnExpEnrollForm);
-		CommonService.WindowClose(WlcForm);
-		logOut.LogOut();
-	}
+//	public void LogOutProc(){
+//		trnExPEnrollSvc.BackProc(trnExpEnrollForm);
+//		CommonService.WindowClose(WlcForm);
+//		logOut.LogOut();
+//	}
 
 	public void setTrnCode(String trnCode) {
 		this.trnCode = trnCode;

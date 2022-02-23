@@ -44,13 +44,10 @@
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
-               <padding>
-                  <Insets right="15.0" />
-               </padding>
             </HBox>
          </children>
          <padding>
-            <Insets left="20.0" />
+            <Insets left="20.0" right="20.0" />
          </padding>
       </GridPane>
    </top>

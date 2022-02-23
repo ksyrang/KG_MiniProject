@@ -37,15 +37,12 @@
                      <font>
                         <Font size="20.0" />
                      </font>
-                     <padding>
-                        <Insets right="20.0" />
-                     </padding>
                   </Label>
                </children>
             </HBox>
          </children>
          <padding>
-            <Insets left="20.0" />
+            <Insets left="20.0" right="20.0" />
          </padding>
       </GridPane>
    </top>

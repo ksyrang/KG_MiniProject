@@ -1,5 +1,6 @@
 package admin.exProgramMgt;
 
+import java.net.CookieManager;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -167,6 +168,7 @@ public class ExProgramMgtService {
 		Label exPrmNameText = (Label) exProgramMgtForm.lookup("#exPrmNameText");
 		TextField priceText = (TextField) exProgramMgtForm.lookup("#priceText");
 		TextField personLimitText = (TextField) exProgramMgtForm.lookup("#personLimitText");
+		Label curText = (Label) exProgramMgtForm.lookup("#curText");
 		Label currnentDateText = (Label) exProgramMgtForm.lookup("#currnentDateText");
 		DatePicker startDatePicker = (DatePicker) exProgramMgtForm.lookup("#startDatePicker");
 		DatePicker endDatePicker = (DatePicker) exProgramMgtForm.lookup("#endDatePicker");
@@ -176,78 +178,76 @@ public class ExProgramMgtService {
 		exPrmNameText.setText(" :");
 		exnameText.setText(" :");
 		currnentDateText.setText("현재 기간");
-
-		LocalDate lStrDate = startDatePicker.getValue();
-		LocalDate lEndDate = endDatePicker.getValue();
-		Date strDate = CommonService.LocalDateCnvt(lStrDate);
-		Date endDate = CommonService.LocalDateCnvt(lEndDate);
-
-		String timeC = "";
-		if (amRadioButton.isSelected())
-			timeC = "오전";
-		else if (pmRadioButton.isSelected())
-			timeC = "오후";
-		int price = Integer.parseInt(priceText.getText());
-		int personLimit = Integer.parseInt(personLimitText.getText());
-
-		// 클릭한 PRMSCHE_TB 데이터 코드
-		String prmScheCode = this.codeTable.getCode();
-		CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
-		CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheOne(prmScheCode);
 		
-		String trainerCode = cmnPrmScheDto.getTRAINER_Code();
-		CmnTrainerDAO cmnTrainerDao = new CmnTrainerDAO();
-		CmnTrainerDTO cmnTrainerDto = cmnTrainerDao.SltTrnOne(trainerCode);
-		String trainerName = cmnTrainerDto.getTRAINER_Name();
-		
-		String prmCode = cmnPrmScheDto.getPRM_Code();
-		CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
-		CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(prmCode);
-		String prmName = cmnPrmDto.getPRM_Name();
-		
-
-		String prmScheName = prmName + "_" + trainerName + "_" + timeC; 
-		
-		ExProgramMgtDAO exProgramMgtDao = new ExProgramMgtDAO();
-		ExProgramMgtDTO exProgramMgtDto = new ExProgramMgtDTO();
-		System.out.println();
-		exProgramMgtDto.setPRM_Code(prmCode);
-		exProgramMgtDto.setPRMSCHE_Strdate(strDate);
-		exProgramMgtDto.setPRMSCHE_Enddate(endDate);
-		exProgramMgtDto.setPRMSCHE_Time(timeC);
-		exProgramMgtDto.setPRMSCHE_Price(price);
-		exProgramMgtDto.setPRMSCHE_LimitP(personLimit);
-		exProgramMgtDto.setPRMSCHE_Code(prmScheCode);
-		exProgramMgtDto.setTRAINER_Code(trainerCode);
-		exProgramMgtDto.setTRAINER_Name(trainerName);
-		exProgramMgtDto.setPRMSCHE_Name(prmScheName);
-		System.out.println(prmCode);
-		System.out.println(strDate);
-		System.out.println(endDate);
-		System.out.println(timeC);
-		System.out.println(price);
-		System.out.println(personLimit);
-		System.out.println(prmScheCode);
-		System.out.println(trainerCode);
-		System.out.println(trainerName);
-		System.out.println(prmScheName);
-		System.out.println(">>>>>>>>>>>>>>>>>>");
-		
-		ExProgramMgtDTO exProgramMgtDto2 = new ExProgramMgtDTO();
-		exProgramMgtDto2.setPRM_Code(prmCode);
-		
-
-		int result = exProgramMgtDao.selectModifyExProgram(exProgramMgtDto);
-		if (result != 1) {
-			if(exProgramMgtDao.setProgramModify(exProgramMgtDto) == 1) {
-				CommonService.Msg("수정 성공");
-			}else
-				CommonService.Msg("수정 실패");
+		if(priceText.getText().length() <= 8) {
+			String timeC = "";
+			if (amRadioButton.isSelected())
+				timeC = "오전";
+			else if (pmRadioButton.isSelected())
+				timeC = "오후";
+			LocalDate lStrDate = startDatePicker.getValue();
+			LocalDate lEndDate = endDatePicker.getValue();
+			Date strDate = null;
+			Date endDate = null;
+			if(lStrDate != null && lEndDate != null) {
+				strDate = CommonService.LocalDateCnvt(lStrDate);
+				endDate = CommonService.LocalDateCnvt(lEndDate);
+			}else {
+				strDate = codeTable.getStrDate();
+				endDate = codeTable.getEndDate();
+			}
+			int price = Integer.parseInt(priceText.getText());
+			int personLimit = Integer.parseInt(personLimitText.getText());
+			int personCurrent = Integer.parseInt(curText.getText());
+			// 클릭한 PRMSCHE_TB 데이터 코드
+			String prmScheCode = this.codeTable.getCode();
+			CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
+			CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheOne(prmScheCode);
+			
+			String trainerCode = cmnPrmScheDto.getTRAINER_Code();
+			CmnTrainerDAO cmnTrainerDao = new CmnTrainerDAO();
+			CmnTrainerDTO cmnTrainerDto = cmnTrainerDao.SltTrnOne(trainerCode);
+			String trainerName = cmnTrainerDto.getTRAINER_Name();
+			
+			String prmCode = cmnPrmScheDto.getPRM_Code();
+			CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
+			CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(prmCode);
+			String prmName = cmnPrmDto.getPRM_Name();
+			
+			
+			String prmScheName = prmName + "_" + trainerName + "_" + timeC; 
+			
+			ExProgramMgtDAO exProgramMgtDao = new ExProgramMgtDAO();
+			ExProgramMgtDTO exProgramMgtDto = new ExProgramMgtDTO();
+			exProgramMgtDto.setPRM_Code(prmCode);
+			exProgramMgtDto.setPRMSCHE_Strdate(strDate);
+			exProgramMgtDto.setPRMSCHE_Enddate(endDate);
+			exProgramMgtDto.setPRMSCHE_Time(timeC);
+			exProgramMgtDto.setPRMSCHE_Price(price);
+			exProgramMgtDto.setPRMSCHE_LimitP(personLimit);
+			exProgramMgtDto.setPRMSCHE_CurrentP(personCurrent);
+			exProgramMgtDto.setPRMSCHE_Code(prmScheCode);
+			exProgramMgtDto.setTRAINER_Code(trainerCode);
+			exProgramMgtDto.setTRAINER_Name(trainerName);
+			exProgramMgtDto.setPRMSCHE_Name(prmScheName);
+			
+			ExProgramMgtDTO exProgramMgtDto2 = new ExProgramMgtDTO();
+			exProgramMgtDto2.setPRM_Code(prmCode);
+			
+			if (exProgramMgtDao.selectModifyExProgram(exProgramMgtDto) != 1) {
+				if(exProgramMgtDao.setProgramModify(exProgramMgtDto) == 1) {
+					CommonService.Msg("수정 성공");
+				}else
+					CommonService.Msg("수정 실패");
+			}else {
+				CommonService.Msg("수정 실패: 모든사항이 중복됨");
+			}
+			// 테이블 리로드
+			this.tableUp(this.exProgramTableView);
 		}else {
-			CommonService.Msg("수정 실패: 모든사항이 중복됨");
+			CommonService.Msg("입력가능한 가격을 초과하셨습니다 : 1억 이하로 입력하세요");
 		}
-		// 테이블 리로드
-		this.tableUp(this.exProgramTableView);
+
 	}
 
 	// 프로그램 세부삭제

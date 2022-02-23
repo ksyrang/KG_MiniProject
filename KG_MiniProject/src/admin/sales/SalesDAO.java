@@ -86,19 +86,16 @@ public class SalesDAO {
 				}
 				else {
 					//ex프로그램
-					if(rs.getString("PRMSCHE_Code") ==null) {
-						System.out.println("null 발생 DB 확인");
-					}
+//					if(rs.getString("PRMSCHE_Code") ==null) {
+//						System.out.println("null 발생 DB 확인");
+//					}
 					String prmScheCode = rs.getString("PRMSCHE_Code");
-					System.out.println("prmschecode"+prmScheCode);
 					salesDto.setPRMSCHE_Code(prmScheCode);
 					CmnPrmScheDAO cmnPrmScheDao = new CmnPrmScheDAO();
 					CmnPrmScheDTO cmnPrmScheDto = cmnPrmScheDao.SltPrmScheOne(prmScheCode);
 					
 					//prmcode 생성
-					System.out.println(cmnPrmScheDto);
 					String prmCode = cmnPrmScheDto.getPRM_Code();
-					System.out.println(prmCode+"prmCode");
 					CmnPrmDAO cmnPrmDao = new CmnPrmDAO();
 					CmnPrmDTO cmnPrmDto = cmnPrmDao.SltPrmOne(prmCode);
 					//trainer정보생성

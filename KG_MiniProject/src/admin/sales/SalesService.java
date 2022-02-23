@@ -39,7 +39,6 @@ public class SalesService {
 				programName = i.getPRMSCHE_Name();
 				programType = i.getPRM_Name();
 				trainerName = i.getTRAINER_NAME();
-				System.out.println(i.getPRMSCHE_Code());
 			}else {
 				//헬스 회원권임
 				price = i.getMEMSHIP_Price();
@@ -67,7 +66,6 @@ public class SalesService {
 				programName = i.getPRMSCHE_Name();
 				programType = i.getPRM_Name();
 				trainerName = i.getTRAINER_NAME();
-				System.out.println(i.getPRMSCHE_Code());
 			}else {
 				//헬스 회원권임
 				price = i.getMEMSHIP_Price();

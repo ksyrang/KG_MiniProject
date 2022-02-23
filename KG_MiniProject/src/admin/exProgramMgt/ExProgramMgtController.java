@@ -125,6 +125,7 @@ public class ExProgramMgtController implements Initializable{
 		}else {
 			CommonService.Msg("항목을 선택하시오");
 		}
+		codeTable = null;
 		exProgramSvc.clearInfo(exProgramMgtForm);
 		
 	}
@@ -136,6 +137,7 @@ public class ExProgramMgtController implements Initializable{
 		}else {
 			CommonService.Msg("항목을 선택하시오");
 		}
+		codeTable = null;
 		exProgramSvc.clearInfo(exProgramMgtForm);
 	}
 	

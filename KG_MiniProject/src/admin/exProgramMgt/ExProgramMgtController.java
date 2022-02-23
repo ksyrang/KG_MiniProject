@@ -93,10 +93,10 @@ public class ExProgramMgtController implements Initializable{
 			});
 		
 		//실행 시 DatePicker setting
-	    LocalDate strDateSetting = 	LocalDate.now();
-	    LocalDate endDateSetting = strDateSetting.plusMonths(1);
-		startDatePicker.setValue(strDateSetting);
-		endDatePicker.setValue(endDateSetting);
+//	    LocalDate strDateSetting = 	LocalDate.now();
+//	    LocalDate endDateSetting = strDateSetting.plusMonths(1);
+//		startDatePicker.setValue(strDateSetting);
+//		endDatePicker.setValue(endDateSetting);
 	}
 	
 	public void setExProgramMgtForm(Parent exProgramMgtForm) {

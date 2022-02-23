@@ -145,8 +145,8 @@ public class ExProgramMgtService {
 		Date endDate = codeTable.getEndDate();
 		LocalDate localEnd = CommonService.DateCnvt(endDate);
 
-		startDatePicker.setValue(localStr);
-		endDatePicker.setValue(localEnd);
+//		startDatePicker.setValue(localStr);
+//		endDatePicker.setValue(localEnd);
 		
 
 		if (codeTable.getTimeC().equals("오전")) {

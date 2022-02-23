@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
@@ -25,14 +27,11 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label text="KG GYM">
-               <font>
-                  <Font size="25.0" />
-               </font>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
+            <ImageView fitHeight="42.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/Main/image/logo.png" />
+               </image>
+            </ImageView>
             <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="1">
                <children>
                   <Label fx:id="TitleMemNameLabel" alignment="CENTER_RIGHT" text="-회원님">
@@ -46,6 +45,9 @@
                </padding>
             </HBox>
          </children>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
       </GridPane>
    </top>
    <bottom>

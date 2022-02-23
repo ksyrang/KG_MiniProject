@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.welcome.WelcomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.welcome.WelcomeController">
    <center>
       <VBox prefHeight="450.0" prefWidth="900.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
@@ -44,7 +44,7 @@
       </VBox>
    </center>
    <top>
-      <GridPane prefHeight="55.0" prefWidth="900.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+      <GridPane prefHeight="55.0" prefWidth="900.0" style="-fx-background-color: #DDDDFF;" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -58,7 +58,7 @@
                   <Image url="/Main/image/logo.png" />
                </image>
             </ImageView>
-            <HBox alignment="CENTER_RIGHT" prefHeight="42.0" spacing="10.0" style="-fx-background-color: gray;" GridPane.columnIndex="1">
+            <HBox alignment="CENTER_RIGHT" prefHeight="42.0" spacing="10.0" GridPane.columnIndex="1">
                <children>
                   <Label text="관리자님">
                      <font>

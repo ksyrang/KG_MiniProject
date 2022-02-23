@@ -16,9 +16,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mem.HelthProgramBuying.HealthPrmBuyingController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mem.HelthProgramBuying.HealthPrmBuyingController">
    <top>
-      <GridPane alignment="CENTER_RIGHT" prefHeight="50.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER_RIGHT">
+      <GridPane alignment="CENTER_RIGHT" prefHeight="50.0" style="-fx-background-color: #FFDDDD;" BorderPane.alignment="CENTER_RIGHT">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

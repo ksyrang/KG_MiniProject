@@ -43,9 +43,9 @@ public class EnrollController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		enrollService = new EnrollService();
 		 
-		idTxt.textProperty().addListener((attribute,before, after) -> {
-			idTxt.setText(CommonService.getLengthLimit(20, idTxt.getText()));
-	      });
+//		idTxt.textProperty().addListener((attribute,before, after) -> {
+//			idTxt.setText(CommonService.getLengthLimit(20, idTxt.getText()));
+//	      });
 		nameTxt.textProperty().addListener((attribute,before, after) -> {
 			nameTxt.setText(CommonService.getLengthLimit(5, nameTxt.getText()));
 	      });
@@ -55,9 +55,9 @@ public class EnrollController implements Initializable{
 		confirmTxt.textProperty().addListener((attribute,before, after) -> {
 			confirmTxt.setText(CommonService.getLengthLimit(20, confirmTxt.getText()));
 	      });
-		mobileTxt.textProperty().addListener((attribute,before, after) -> {
-			mobileTxt.setText(CommonService.getLengthLimit(11, mobileTxt.getText()));
-	      });
+//		mobileTxt.textProperty().addListener((attribute,before, after) -> {
+//			mobileTxt.setText(CommonService.getLengthLimit(11, mobileTxt.getText()));
+//	      });
 		birthTxt.textProperty().addListener((attribute,before, after) -> {
 			birthTxt.setText(CommonService.getLengthLimit(8, birthTxt.getText()));
 	      });

@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import common.CmnPrmScheDTO;
+import common.CommonService;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -140,6 +141,8 @@ public class ExPrmBuyingController implements Initializable {
 	// 결제 버튼 클릭 시
 	public void paymentProc() {
 		// System.out.println("결제처리");
+		CommonService.WindowClose(exProgramBuyingForm);
+		
 		exProgramSvc.paymentProc(exProgramBuyingForm, membCode);
 		buyingTypeController.setExProBForm(buyingTypeForm);
 		buyingTypeController.setCmnPrmScheDto(cmnPrmScheDto);

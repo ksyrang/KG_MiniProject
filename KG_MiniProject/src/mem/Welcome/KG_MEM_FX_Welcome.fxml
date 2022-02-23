@@ -51,8 +51,8 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="65.0" spacing="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="healthProgramBuyingBtn" mnemonicParsing="false" onAction="#healthProgramBuyingProc" prefHeight="45.0" prefWidth="120.0" text="회원권" />
-            <Button fx:id="exProgramBuyingBtn" mnemonicParsing="false" onAction="#exProgramBuyingProc" prefHeight="45.0" prefWidth="120.0" text="프로그램" />
+            <Button fx:id="healthProgramBuyingBtn" mnemonicParsing="false" onAction="#healthProgramBuyingProc" prefHeight="45.0" prefWidth="120.0" text="회원권 구매" />
+            <Button fx:id="exProgramBuyingBtn" mnemonicParsing="false" onAction="#exProgramBuyingProc" prefHeight="45.0" prefWidth="120.0" text="프로그램 신청" />
             <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#cancelProc" prefHeight="45.0" prefWidth="120.0" text="종료" />
          </children>
       </HBox>

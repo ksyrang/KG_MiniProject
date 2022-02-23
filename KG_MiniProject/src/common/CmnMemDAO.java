@@ -57,26 +57,23 @@ public class CmnMemDAO {
 	}
 	
 	public CmnMemDTO SltMemOne(String MEM_Code) {
-		CmnMemDTO tmpdata = null;
+		CmnMemDTO tmpdata = new CmnMemDTO();
 		sql = "SELECT * FROM MEM_TB WHERE MEM_Code = ?" ;
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, MEM_Code);
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				tmpdata = new CmnMemDTO(
-					rs.getString("MEM_Code"),
-					rs.getString("MEM_ID"),
-					rs.getString("MEM_PW"),
-					rs.getString("MEM_Name"),
-					rs.getString("MEM_Gender"),
-					rs.getInt("MEM_Birth"),
-					rs.getInt("MEM_Mobile"),
-					rs.getString("MEM_Addr"),
-					rs.getString("PRMSCHE_Code"),
-					rs.getString("MEMSHIPSCHE_Code"),
-					rs.getString("MEM_Approve")
-				);
+				tmpdata.setMEM_Code(rs.getString("MEM_Code"));
+				tmpdata.setMEM_ID(rs.getString("MEM_ID"));
+				tmpdata.setMEM_PW(rs.getString("MEM_PW"));
+				tmpdata.setMEM_Name(rs.getString("MEM_Name"));
+				tmpdata.setMEM_Gender(rs.getString("MEM_Gender"));
+				tmpdata.setMEM_Birth(rs.getInt("MEM_Birth"));
+				tmpdata.setMEM_Mobile(rs.getInt("MEM_Mobile"));
+				tmpdata.setMEM_Addr(rs.getString("MEM_Addr"));
+				tmpdata.setMEM_Approve(rs.getString("MEM_Approve"));
+					
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

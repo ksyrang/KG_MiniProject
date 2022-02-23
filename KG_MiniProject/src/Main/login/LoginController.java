@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Main.main.Controller;
+import common.CmnMemDAO;
+import common.CmnMemDTO;
 import common.CmnMemShipDAO;
 import common.CmnMemShipDTO;
 import common.CmnPrmScheDAO;
@@ -110,7 +112,7 @@ public class LoginController implements Initializable{
 		String job = loginSvc.getjob();
 		if(loginDto != null) {
 			CommonService.WindowClose(mainForm);
-			if(job.equals("회원")) {
+			if (job.equals("회원")) {
 				controller.setUserCode(loginSvc.getUserCode());
 				controller.open(loginSvc.getpage(UserCode));
 				CommonService.Msg("회원 계정 로그인 성공");

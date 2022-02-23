@@ -1,5 +1,7 @@
 package Main.login;
 
+import common.CmnMemDAO;
+import common.CmnMemDTO;
 import common.CommonService;
 import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
@@ -46,8 +48,16 @@ public class LoginService {
 					if(job.equals("관리자") && loginDto.getMEM_ID().equals("admin")) {
 						welcomepage = "adminWelcome"; //관리자
 					}else if(job.equals("회원"))	{
-						UserCode =loginDto.getMEM_Code();
-						welcomepage = "memberWelcome";	//회원
+						// 회원 가입 승인 여부
+						CmnMemDAO memDao = new CmnMemDAO();
+						CmnMemDTO memDto = memDao.SltMemOne(loginDto.getMEM_Code());
+						if(memDto.getMEM_Approve().equals("true")) {
+							UserCode =loginDto.getMEM_Code();
+							welcomepage = "memberWelcome";	//회원
+						}else {
+							CommonService.Msg("관리자의 승인이 필요합니다.");
+							loginDto = null;
+						}
 					}else {
 						CommonService.Msg("로그인 실패 : 관리자 권한 없음");
 						loginDto=null;

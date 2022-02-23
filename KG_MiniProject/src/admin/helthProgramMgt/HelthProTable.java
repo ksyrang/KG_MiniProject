@@ -4,9 +4,9 @@ public class HelthProTable {
 	
 	private String colCode;
 	private String colType;
-	private int colPrice;
+	private String colPrice;
 	
-	public HelthProTable(String colCode, String colType, int colPrice) {
+	public HelthProTable(String colCode, String colType, String colPrice) {
 		this.colCode = colCode;
 		this.colType = colType;
 		this.colPrice = colPrice;
@@ -28,11 +28,11 @@ public class HelthProTable {
 		this.colType = colType;
 	}
 
-	public int getColPrice() {
+	public String getColPrice() {
 		return colPrice;
 	}
 
-	public void setColPrice(int colPrice) {
+	public void setColPrice(String colPrice) {
 		this.colPrice = colPrice;
 	}
 	

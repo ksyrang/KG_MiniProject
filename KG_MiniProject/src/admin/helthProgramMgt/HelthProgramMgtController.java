@@ -22,7 +22,7 @@ public class HelthProgramMgtController implements Initializable{
 	@FXML private TableView<HelthProTable> memshipTable;
 	@FXML private TableColumn<HelthProTable, String> colCode;
 	@FXML private TableColumn<HelthProTable, String> colType;
-	@FXML private TableColumn<HelthProTable, Integer> colPrice;
+	@FXML private TableColumn<HelthProTable, String> colPrice;
 	
 	@FXML private TextField memshipType, memshipPrice;
 	
@@ -35,9 +35,11 @@ public class HelthProgramMgtController implements Initializable{
 		memshipType.textProperty().addListener((attribute,before, after) -> {
 			memshipType.setText(CommonService.getLengthLimit(5, memshipType.getText()));
 	      });
-		memshipPrice.textProperty().addListener((attribute,before, after) -> {
+
+		memshipPrice.textProperty().addListener((attribute, before, after) -> {
 			memshipPrice.setText(CommonService.getLengthLimit(8, memshipPrice.getText()));
-	      });
+		});
+		
 	}
 	
 	public void setHelthMgtForm(Parent helthProgramMgtForm) {
@@ -57,8 +59,9 @@ public class HelthProgramMgtController implements Initializable{
 		colPrice.setCellValueFactory(new PropertyValueFactory<>("colPrice"));
 
 		for (HelthProgramMgtDTO m : helthProMgtDto) {
+			String price = CommonService.priceFormat(m.getMemship_price());
 			obserList.add(new HelthProTable(m.getMemship_code(), "헬스 회원권 " + m.getMemship_type() + "개월",
-					m.getMemship_price()));
+					price));
 		}
 
 		memshipTable.setItems(obserList);

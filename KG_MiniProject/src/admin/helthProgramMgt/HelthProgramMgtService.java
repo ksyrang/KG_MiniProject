@@ -26,7 +26,8 @@ public class HelthProgramMgtService {
 		TableView<HelthProTable> allTable = (TableView<HelthProTable>) helthProgramMgtForm.lookup("#memshipTable");
 		ObservableList<HelthProgramMgtDTO> allList = helthProgramDao.getAllPro();
 		for(HelthProgramMgtDTO m : allList) {
-			tableView.add(new HelthProTable(m.getMemship_code(), "헬스 회원권 " + m.getMemship_type() + "개월", m.getMemship_price()));
+			String price = CommonService.priceFormat(m.getMemship_price());
+			tableView.add(new HelthProTable(m.getMemship_code(), "헬스 회원권 " + m.getMemship_type() + "개월", price));
 		}
 		allTable.setItems(tableView);
 	}

@@ -222,9 +222,9 @@ public class TrnWelcomeService {
 		    ExPMgtCrtMemDisLabel.setText(ExPCrtMemsDisLabel.getText()+"명");
 		    LimitMemsField.setText(ExPLmtMemsDisLabel.getText());
 		   
-		    int RowPriceDate = new CmnPrmScheDAO().SltPrmScheOne(ExPCodeDisLabel.getText()).getPRMSCHE_Price();
-		    String FormatPrice = NumberFormat.getInstance(Locale.KOREA).format(RowPriceDate);
-		    PriceField.setText(FormatPrice);
+		    int RowPriceData = new CmnPrmScheDAO().SltPrmScheOne(ExPCodeDisLabel.getText()).getPRMSCHE_Price();
+//		    String FormatPrice = NumberFormat.getInstance(Locale.KOREA).format(RowPriceData);
+		    PriceField.setText(Integer.toString(RowPriceData));
 		    
 		    
 			Stage stage = new Stage();

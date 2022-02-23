@@ -2,6 +2,9 @@ package trn.EXProgramMgt;
 
 
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import common.CmnTrainerDAO;
@@ -43,8 +46,9 @@ public class TrnExPMgtController implements Initializable {
 //    private RadioButton PMRBtn;
 //    @FXML
 //    private TextField LimitMemsField;
-	
-	
+    @FXML
+    private TextField PriceField;
+    
 	private TrnExPMgtService trnExPMgtsvc;
 	private Parent trnWelcomForm;
 	private Parent trnExPMgtForm;
@@ -66,6 +70,10 @@ public class TrnExPMgtController implements Initializable {
 		ExPNameFeild.textProperty().addListener((attribute,before, after) -> {
 			ExPNameFeild.setText(CommonService.getLengthLimit(250, ExPNameFeild.getText()));
 	      });
+	      
+		PriceField.textProperty().addListener((attribute,before, after) -> {
+			PriceField.setText(CommonService.getLengthLimit(8, PriceField.getText()));
+			});
 	}
 	public void ExPDltProc() {//삭제
 		trnExPMgtsvc.ExPDltProc(trnExPMgtForm, trnWelcomForm);

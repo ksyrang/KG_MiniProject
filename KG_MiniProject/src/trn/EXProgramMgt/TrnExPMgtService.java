@@ -105,7 +105,8 @@ public class TrnExPMgtService {
 		}
 		DTO.setPRMSCHE_LimitP(Integer.parseInt(LimitMemsField.getText()));//Integer.parseInt(String data);//int형 변환
 		
-		DTO.setPRMSCHE_Price(Integer.parseInt(PriceField.getText()));
+//		System.out.println("Integer.parseInt(PriceField.getText())"+ Integer.parseInt(PriceField.getText().replace(",", "")));
+		DTO.setPRMSCHE_Price(Integer.parseInt(PriceField.getText().replace(",", "")));
 		
 		result = PRMSCHEDAO.UptPrmSche(DTO);
 		if(result == 1) {

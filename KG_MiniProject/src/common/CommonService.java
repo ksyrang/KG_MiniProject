@@ -3,12 +3,14 @@ package common;
 
 
 import java.util.Date;
+import java.util.Locale;
 import java.util.Optional;
 
 import Main.login.LoginController;
 import Main.main.Controller;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -23,6 +25,18 @@ import javafx.stage.Stage;
 
 public class CommonService {
 
+	public static String CvtPriceComma(String Data) {
+		String RowData = Data.replace(",", "");
+		//입력 개수 한정
+		RowData = getLengthLimit(8,RowData);
+		//해당 데이터를 int화
+		int RowPriceint = Integer.parseInt(RowData);
+		//int형 데이터에 ',' 추가
+		String FormatPrice = NumberFormat.getInstance(Locale.KOREA).format(RowPriceint);
+		return FormatPrice;
+	}
+	
+	
 	public static boolean CheckMsg(String content) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("확인 알림");

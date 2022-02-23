@@ -25,7 +25,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.login.LoginController">
    <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="900.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="900.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="41.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <viewport>

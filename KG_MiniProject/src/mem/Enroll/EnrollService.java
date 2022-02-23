@@ -82,14 +82,11 @@ public class EnrollService {
 //		colorLabel2.setTextFill(Color.RED);
 //		Paint label = colorLabel.getTextFill(#e10b0b);
 		
-		if(name.isEmpty() || id.isEmpty() || pw.isEmpty() || confirm.isEmpty()) {
-			CommonService.Msg("* 항목은 필수 입력 데이터 입니다.");
-			return;
-		}				
+					
 		
-		int birth;
+		int birth = 0;
 		if (birthTxt.getText().isEmpty()) {
-			birth = 0;
+			CommonService.Msg("* 항목은 필수 입력 데이터 입니다.");
 		} else {
 			if(birthTxt.getText().length()<8){
 				CommonService.Msg("8자리의 생년월일을 입력 해주세요.");
@@ -103,9 +100,9 @@ public class EnrollService {
 			}
 		}
 
-		int mobile;
+		int mobile = 0;
 		if (mobileTxt.getText().isEmpty()) {
-			mobile = 0;
+			CommonService.Msg("* 항목은 필수 입력 데이터 입니다.");
 		} else {
 			if(mobileTxt.getText().length()<11){
 				CommonService.Msg("11자리의 전화번호를 입력 해주세요.");
@@ -133,7 +130,10 @@ public class EnrollService {
 //		if(enrollDTOC.getMobile().equals(mobile)) {
 //			colorLabel2.setTextFill(Color.RED);
 //		}
-		
+		if(name.isEmpty() || id.isEmpty() || pw.isEmpty() || confirm.isEmpty() || addrTxt1.getText().isEmpty() || addrTxt2.getText().isEmpty()) {
+			CommonService.Msg("* 항목은 필수 입력 데이터 입니다.");
+			return;
+		}	
 		if(pw.equals(confirm)) {	
 			enrollDAO = new EnrollDAO();
 			EnrollDTO enrollDTO = enrollDAO.SelectId(id);

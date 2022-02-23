@@ -66,8 +66,7 @@ public class MgtDAO {
 
 			sql = "UPDATE MEM_TB SET MEM_ID=?, MEM_PW=?, "
 					+ "MEM_Name=?, MEM_Gender=?, MEM_Birth=?, "
-					+ "MEM_Mobile=?, MEM_Addr=?, PRMSCHE_Code=?, "
-					+ "MEMSHIPSCHE_Code=?, MEM_Approve=?"
+					+ "MEM_Mobile=?, MEM_Addr=?,  MEM_Approve=?"
 					+ "WHERE MEM_Code =? ";
 			
 			try {
@@ -79,10 +78,10 @@ public class MgtDAO {
 				ps.setInt(5, DTO.getMEM_Birth());
 				ps.setInt(6, DTO.getMEM_Mobile());
 				ps.setString(7, DTO.getMEM_Addr());
-				ps.setString(8, DTO.getPRMSCHE_Code());
-				ps.setString(9, DTO.getMEMSHIPSCHE_Code());
-				ps.setString(10, DTO.getMEM_Approve());
-				ps.setString(11, DTO.getMEM_Code());
+	//			ps.setString(8, DTO.getPRMSCHE_Code());
+	//			ps.setString(9, DTO.getMEMSHIPSCHE_Code());
+				ps.setString(8, DTO.getMEM_Approve());
+				ps.setString(9, DTO.getMEM_Code());
 				result = ps.executeUpdate();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

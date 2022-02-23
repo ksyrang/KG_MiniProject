@@ -68,6 +68,7 @@ public class DeleteService {
 				CommonService.WindowClose(DltCtrller.getMemMgtFrom());
 				CommonService.WindowClose(DltCtrller.getMemWelcomeForm());
 				
+				deleteDAO.delete(membCode);
 				LogOut logout = new LogOut();
 				logout.LogOut();
 				CommonService.Msg("탈퇴가 완료되었습니다.");

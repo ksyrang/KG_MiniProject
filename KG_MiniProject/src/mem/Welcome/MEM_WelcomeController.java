@@ -237,6 +237,7 @@ public class MEM_WelcomeController implements Initializable {
 
 	// 로그아웃
 	public void logoutProc() {
+		CommonService.WindowClose(memWelcomeForm);
 		memWelcomeSvc.LogOut();
 
 	}

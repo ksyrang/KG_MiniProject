@@ -74,7 +74,7 @@ public class MgtService {
 				if(!Addr2Field.getText().isEmpty()) {
 					tmpDto.setMEM_Addr(Addr1Field.getText() + "/" + Addr2Field.getText());	
 				}else {
-					tmpDto.setMEM_Addr(Addr1Field.getText());	
+					tmpDto.setMEM_Addr(Addr1Field.getText()+"/");	
 				}
 				
 				int result = tmpDAO.UptMem(tmpDto);

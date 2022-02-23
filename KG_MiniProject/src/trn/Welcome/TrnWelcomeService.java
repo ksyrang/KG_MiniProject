@@ -1,8 +1,10 @@
 package trn.Welcome;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import Main.main.Controller;
 import common.LogOut;
@@ -187,6 +189,7 @@ public class TrnWelcomeService {
 			DatePicker EndDate = (DatePicker)trnExPMgtFrom.lookup("#EndDate");//seteditalbe 존재
 			RadioButton AMRBtn = (RadioButton)trnExPMgtFrom.lookup("#AMRBtn");
 			RadioButton PMRBtn = (RadioButton)trnExPMgtFrom.lookup("#PMRBtn");
+			TextField PriceField = (TextField)trnExPMgtFrom.lookup("#PriceField");
 			ToggleGroup group = new ToggleGroup();
 			Label ExPMgtCrtMemDisLabel = (Label)trnExPMgtFrom.lookup("#ExPMgtCrtMemDisLabel");
 			TextField LimitMemsField = (TextField)trnExPMgtFrom.lookup("#LimitMemsField");
@@ -218,7 +221,12 @@ public class TrnWelcomeService {
 		    else AMRBtn.setSelected(true);		    
 		    ExPMgtCrtMemDisLabel.setText(ExPCrtMemsDisLabel.getText()+"명");
 		    LimitMemsField.setText(ExPLmtMemsDisLabel.getText());
-
+		   
+		    int RowPriceDate = new CmnPrmScheDAO().SltPrmScheOne(ExPCodeDisLabel.getText()).getPRMSCHE_Price();
+		    String FormatPrice = NumberFormat.getInstance(Locale.KOREA).format(RowPriceDate);
+		    PriceField.setText(FormatPrice);
+		    
+		    
 			Stage stage = new Stage();
 			stage.setScene(new Scene(trnExPMgtFrom));
 			stage.setTitle("trnExPMgt");

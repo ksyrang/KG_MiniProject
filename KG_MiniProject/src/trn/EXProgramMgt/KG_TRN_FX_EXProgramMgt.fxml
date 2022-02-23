@@ -121,7 +121,7 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="PriceField1" prefHeight="35.0" prefWidth="239.0" />
+                  <TextField fx:id="PriceField" alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="239.0" />
                   <Label text="원">
                      <font>
                         <Font size="17.0" />

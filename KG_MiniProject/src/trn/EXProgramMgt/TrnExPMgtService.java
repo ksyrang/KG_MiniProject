@@ -36,6 +36,7 @@ public class TrnExPMgtService {
 	private TextField LimitMemsField;
 	private Label CrtMemsDis;
 	private CmnPrmScheDAO PRMSCHEDAO;
+	private TextField PriceField;
 	
 	public void setTrnExPMgtController(TrnExPMgtController trnExPMgtController) {
 		this.TrnExPMgtController = trnExPMgtController;
@@ -103,7 +104,9 @@ public class TrnExPMgtService {
 			return;
 		}
 		DTO.setPRMSCHE_LimitP(Integer.parseInt(LimitMemsField.getText()));//Integer.parseInt(String data);//int형 변환
-
+		
+		DTO.setPRMSCHE_Price(Integer.parseInt(PriceField.getText()));
+		
 		result = PRMSCHEDAO.UptPrmSche(DTO);
 		if(result == 1) {
 			CommonService.WindowClose(MyForm);
@@ -145,6 +148,7 @@ public class TrnExPMgtService {
 		PMRBtn = (RadioButton)MyForm.lookup("#PMRBtn");
 		LimitMemsField = (TextField)MyForm.lookup("#LimitMemsField");
 		CrtMemsDis = (Label)MyForm.lookup("#ExPMgtCrtMemDisLabel");
+		PriceField = (TextField)MyForm.lookup("#PriceField");
 	}
 	
 	

@@ -90,15 +90,16 @@ public class MEM_WelcomeService {
 	}
 
 	// 회원정보페이지
-	public void memMgtOpen(String membCode) {
+	public void memMgtOpen(Parent memWelcomeForm, String membCode) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/mem/Mgt/KG_MEM_FX_Mgt.fxml"));
 		Parent memMgtForm;
 		try {
 			memMgtForm = loader.load();
+			memWelcomeController.setMemMgtForm(memMgtForm);
 			memWelcomeController.setMgtController(loader.getController());
-			memWelcomeController.getMgtController().setMemberMgtForm(memMgtForm);
+			memWelcomeController.getMgtController().setMemberMgtForm(memWelcomeForm);
 			memWelcomeController.getMgtController().setMembCode(membCode);
-			
+			memWelcomeController.getMgtController().setMemWelcomeForm(memWelcomeController.getMemWelcomeForm());
 
 			// 회원 정보 get
 			// title sector set

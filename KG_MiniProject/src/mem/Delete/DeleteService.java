@@ -65,10 +65,11 @@ public class DeleteService {
 			if(deleteDAO.SelectPW(pw) != null) {
 				int deleteDTO = deleteDAO.delete(membCode);
 				CommonService.WindowClose(deleteForm);
-				CommonService.WindowClose(DltCtrller.getMemMgtFrom());
+//				System.out.println("DltCtrller.getMemMgtForm() : " + DltCtrller.getMemMgtForm());
+				CommonService.WindowClose(DltCtrller.getMemMgtForm());
+//				System.out.println("DltCtrller.getMemWelcomeForm() : " + DltCtrller.getMemWelcomeForm());
 				CommonService.WindowClose(DltCtrller.getMemWelcomeForm());
 				
-				deleteDAO.delete(membCode);
 				LogOut logout = new LogOut();
 				logout.LogOut();
 				CommonService.Msg("탈퇴가 완료되었습니다.");

@@ -35,6 +35,9 @@ public class MEM_WelcomeController implements Initializable {
 	private MgtController memMgtController;
 	private ProgramMgtController programMgtController;
 
+	private Parent memMgtForm;
+	
+
 	private MEM_WelcomeService memWelcomeSvc;
 	private Parent memWelcomeForm;
 	private Parent programMgtForm;
@@ -100,6 +103,14 @@ public class MEM_WelcomeController implements Initializable {
 		this.memMgtController = memMgtController;
 	}
 
+	public Parent getMemMgtForm() {
+		return memMgtForm;
+	}
+
+	public void setMemMgtForm(Parent memMgtForm) {
+		this.memMgtForm = memMgtForm;
+	}
+	
 	public void setMemWelcomeForm(Parent memWelcomeForm) {
 		this.memWelcomeForm = memWelcomeForm;
 	}
@@ -115,9 +126,9 @@ public class MEM_WelcomeController implements Initializable {
 	public void setLogOut(LogOut logOut) {
 		this.logOut = logOut;
 	}
-
+	//회원정보로 넘어가는 오픈
 	public void MemClickProc() {
-		memWelcomeSvc.memMgtOpen(membCode);
+		memWelcomeSvc.memMgtOpen(memWelcomeForm, membCode);
 	}
 
 	@Override

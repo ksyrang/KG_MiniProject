@@ -39,7 +39,7 @@ public class MgtController implements Initializable{
 	private Parent deleteForm;
 	private DeleteController deleteController;
 	private String formerMobileNum;
-	private Parent memWlcForm;
+	private Parent memWelcomeForm;
 	
 	
 	@Override
@@ -108,12 +108,12 @@ public class MgtController implements Initializable{
 		this.formerMobileNum = formerMobileNum;
 	}
 
-	public Parent getMemWlcForm() {
-		return memWlcForm;
+	public Parent getMemWelcomeForm() {
+		return memWelcomeForm;
 	}
 
-	public void setMemWlcForm(Parent memWlcForm) {
-		this.memWlcForm = memWlcForm;
+	public void setMemWelcomeForm(Parent memWelcomeForm) {
+		this.memWelcomeForm = memWelcomeForm;
 	}
 	
 	

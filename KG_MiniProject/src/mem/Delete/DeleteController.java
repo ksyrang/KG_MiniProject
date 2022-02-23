@@ -17,7 +17,7 @@ public class DeleteController implements Initializable {
 	private DeleteController deleteController;
 	private MEM_WelcomeController memWelcomeController;
 	private String membCode;
-	private Parent MemMgtFrom;
+	private Parent memMgtForm;
 	
 	
 	public void setMembCode(String membCode) {
@@ -70,11 +70,11 @@ public class DeleteController implements Initializable {
 		
 		
 		
-		public Parent getMemMgtFrom() {
-			return MemMgtFrom;
+		public Parent getMemMgtForm() {
+			return memMgtForm;
 		}
-		public void setMemMgtFrom(Parent memMgtFrom) {
-			MemMgtFrom = memMgtFrom;
+		public void setMemMgtForm(Parent memMgtForm) {
+			this.memMgtForm = memMgtForm;
 		}
 		public void setDeleteForm(Parent deleteForm) {
 			this.deleteForm = deleteForm;

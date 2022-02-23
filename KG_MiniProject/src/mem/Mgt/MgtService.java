@@ -71,7 +71,12 @@ public class MgtService {
 				}
 				tmpDto.setMEM_Birth(Integer.parseInt(BirthField.getText()));
 				tmpDto.setMEM_Mobile(Integer.parseInt(MobileField.getText()));
-				tmpDto.setMEM_Addr(Addr1Field.getText() + "/" + Addr2Field.getText());
+				if(!Addr2Field.getText().isEmpty()) {
+					tmpDto.setMEM_Addr(Addr1Field.getText() + "/" + Addr2Field.getText());	
+				}else {
+					tmpDto.setMEM_Addr(Addr1Field.getText());	
+				}
+				
 				int result = tmpDAO.UptMem(tmpDto);
 				if (result == 1) {
 					CommonService.Msg("수정완료");

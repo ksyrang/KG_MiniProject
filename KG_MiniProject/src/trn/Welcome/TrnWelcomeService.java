@@ -91,8 +91,12 @@ public class TrnWelcomeService {
 			else maleBtn.setSelected(true);
 			//Addr Sector
 			String[] AddrSplit = tmpTrnDto.getTRAINER_Addr().split("/");
-			Addr1Field.setText(AddrSplit[0]);
-			Addr2Field.setText(AddrSplit[1]);
+			if(!AddrSplit[1].isEmpty()) {
+				Addr1Field.setText(AddrSplit[0]);
+				Addr2Field.setText(AddrSplit[1]);
+			}else {
+				Addr1Field.setText(tmpTrnDto.getTRAINER_Addr());
+			}
 			//Career Sector
 			CareerField.setText(Integer.toString(tmpTrnDto.getTRAINER_Career()));
 		

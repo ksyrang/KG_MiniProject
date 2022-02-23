@@ -58,7 +58,11 @@ public class TrnMgtService {
 				else tmpDto.setTRAINER_Gender("여");
 				tmpDto.setTRAINER_Birth(Integer.parseInt(BirthField.getText()));
 				tmpDto.setTRAINER_Mobile(Integer.parseInt(MobileField.getText()));
-				tmpDto.setTRAINER_Addr(Addr1Field.getText()+"/"+Addr2Field.getText());
+				if(!Addr2Field.getText().isEmpty()) {
+					tmpDto.setTRAINER_Addr(Addr1Field.getText()+"/"+Addr2Field.getText());	
+				}else {
+					tmpDto.setTRAINER_Addr(Addr1Field.getText());
+				}
 				tmpDto.setTRAINER_Career(Integer.parseInt(CareerField.getText()));
 				int result = tmpDAO.UptTrn(tmpDto);
 				if(result == 1) {

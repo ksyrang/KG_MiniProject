@@ -143,8 +143,13 @@ public class MEM_WelcomeService {
 			}
 			// Addr Sector
 			String[] tmpAddr = tmpMemDto.getMEM_Addr().split("/");
-			Addr1Field.setText(tmpAddr[0]);
-			Addr2Field.setText(tmpAddr[1]);
+			if(!tmpAddr[1].isEmpty()) {
+				Addr1Field.setText(tmpAddr[0]);
+				Addr2Field.setText(tmpAddr[1]);
+			}else {
+				Addr1Field.setText(tmpMemDto.getMEM_Addr());
+			}
+			
 
 			Stage stage = new Stage();
 			stage.setScene(new Scene(memMgtForm));

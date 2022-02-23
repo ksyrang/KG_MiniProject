@@ -24,7 +24,7 @@ public class HelthProgramMgtController implements Initializable{
 	@FXML private TableColumn<HelthProTable, String> colType;
 	@FXML private TableColumn<HelthProTable, Integer> colPrice;
 	
-	@FXML private TextField memshipType;
+	@FXML private TextField memshipType, memshipPrice;
 	
 	ObservableList<HelthProTable> obserList;
 	@Override
@@ -34,6 +34,9 @@ public class HelthProgramMgtController implements Initializable{
 		
 		memshipType.textProperty().addListener((attribute,before, after) -> {
 			memshipType.setText(CommonService.getLengthLimit(5, memshipType.getText()));
+	      });
+		memshipPrice.textProperty().addListener((attribute,before, after) -> {
+			memshipPrice.setText(CommonService.getLengthLimit(8, memshipPrice.getText()));
 	      });
 	}
 	

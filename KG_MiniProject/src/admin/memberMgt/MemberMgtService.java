@@ -43,7 +43,8 @@ import javafx.scene.control.ToggleGroup;
 		ObservableList<MemberMgtDTO> allList = memberMgtDao.getAllMemberList();;
 		String approve;
 		for(MemberMgtDTO m : allList) {
-			if(m.getMem_approve().equals("true")) approve = "승인";
+			String strApp = m.getMem_approve().toLowerCase();
+			if(strApp.equals("true")) approve = "승인";
 			else approve = "미승인";
 			tableView.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), approve));
 		}
@@ -227,7 +228,7 @@ import javafx.scene.control.ToggleGroup;
 		}
 		
 		try {
-			if (name.isEmpty() || pw.isEmpty()) {
+			if (name.isEmpty() || pw.isEmpty() || birthfield.getText().isEmpty()) {
 				CommonService.Msg("* 필수 입력란을 입력해주세요.");
 			} else {
 				if (memBirth == 0 || birth.length() == 8) {

@@ -81,7 +81,8 @@ public class MemberMgtController implements Initializable{
 		colApprove.setCellValueFactory(new PropertyValueFactory<>("colApprove"));
 		String approve;
 		for (MemberMgtDTO m : memberMgtDto) {
-			if(m.getMem_approve().equals("true")) approve = "승인";
+			String strApp = m.getMem_approve().toLowerCase();
+			if(strApp.equals("true")) approve = "승인";
 			else approve = "미승인";
 			obserList.add(new MemberMgtTable(m.getMem_code(), m.getMem_name(), approve));
 		}

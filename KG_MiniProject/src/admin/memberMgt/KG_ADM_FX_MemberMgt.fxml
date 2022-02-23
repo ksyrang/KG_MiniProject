@@ -114,9 +114,9 @@
                                     <Insets />
                                  </HBox.margin>
                               </TextField>
-                              <Label prefWidth="65.0" text="*이름">
+                              <Label prefWidth="40.0" text="*이름">
                                  <HBox.margin>
-                                    <Insets />
+                                    <Insets left="30.0" />
                                  </HBox.margin>
                               </Label>
                               <TextField fx:id="nametxt" prefHeight="30.0" prefWidth="130.0">
@@ -170,7 +170,7 @@
                                     <RadioButton fx:id="womenradio" mnemonicParsing="false" text="여" toggleGroup="$gender" />
                                  </children>
                                  <HBox.margin>
-                                    <Insets />
+                                    <Insets left="15.0" />
                                  </HBox.margin>
                               </VBox>
                            </children>
@@ -180,7 +180,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <Label prefWidth="65.0" text="생년월일" />
+                              <Label prefWidth="70.0" text="*생년월일" />
                               <TextField fx:id="birthtxt" prefHeight="30.0" prefWidth="190.0">
                                  <HBox.margin>
                                     <Insets />
